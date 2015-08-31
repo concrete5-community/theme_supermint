@@ -1,4 +1,4 @@
-<?php    
+<?php
 namespace Concrete\Package\ThemeSupermint;
 
 use PageTemplate;
@@ -19,9 +19,9 @@ use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Concrete\Package\ThemeSupermint\Src\Helper\MclInstaller;
 use Concrete\Package\ThemeSupermint\Controller\Tools\PresetColors;
 use Concrete\Core\Editor\Plugin;
-use PageType; 
-use FileImporter; 
-use Concrete\Core\Backup\ContentImporter; 
+use PageType;
+use FileImporter;
+use Concrete\Core\Backup\ContentImporter;
 use FileList;
 use PageList;
 use StackList;
@@ -33,16 +33,16 @@ class Controller extends Package  {
 
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
-	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '3.0.2.4';
-	protected $pkg;	
+		protected $appVersionRequired = '5.7.3';
+		protected $pkgVersion = '3.0.3';
+		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
-    protected $startingPoint;    
-	
+    protected $startingPoint;
+
 	public function getPackageDescription() {
 		return t("Supermint responsive suit any kind of website.");
 	}
-	
+
 	public function getPackageName() {
 		return t("Supermint Theme");
 	}
@@ -50,12 +50,12 @@ class Controller extends Package  {
 	public function install($data = array()) {
 
         $this->startingPoint = $data['spHandle'];
-        
-        if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0') 
-            throw new \Exception(t('You must choose a Starting point to Swap all content'));        
+
+        if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0')
+            throw new \Exception(t('You must choose a Starting point to Swap all content'));
 
 		$pkg = parent::install();
-		
+
 	// Theme options
 		$o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
 		$o->install_db($this->startingPoint);
@@ -67,14 +67,14 @@ class Controller extends Package  {
 	private function installOrUpgrade($pkg) {
 
 		$ci = new MclInstaller($pkg);
-		$ci->importContentFile($this->getPackagePath() . '/config/install/base/single_page.xml');		
-		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');		
-		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');		
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/single_page.xml');
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/attributes.xml');
-        $ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');	
+        $ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
 	}
-		
-	public function uninstall() { 
+
+	public function uninstall() {
 	      parent::uninstall();
 	      $db = Loader::db();
 	      $db->execute("DROP TABLE SupermintOptions, SupermintOptionsPreset");
@@ -85,26 +85,26 @@ class Controller extends Package  {
         $o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
         $o->update_db();
         // All things
-		$this->installOrUpgrade($this);	
+		$this->installOrUpgrade($this);
 		parent::upgrade();
 	}
-    
+
     public function on_start() {
         $this->registerRoutes();
         $this->registerAssets();
-        $this->registerEvents();  
-        $this->registerMenuItem();    
+        $this->registerEvents();
+
     }
-    
-    function registerEvents () {    	
+
+    function registerEvents () {
         Events::addListener(
             'on_before_render',
             function() {
                 $session = \Core::make('session');
 
                 // Register options into the session
-		        $options = ThemeSupermintOptions::get_options_from_active_preset_ID();
-				$session->set('supermint.options',$options);
+				        $options = ThemeSupermintOptions::get_options_from_active_preset_ID();
+								$session->set('supermint.options',$options);
 
                 // Register colors from active or default preset in the session
                 if (is_object( Page::getCurrentPage())) :
@@ -112,36 +112,38 @@ class Controller extends Package  {
                     $session->set('supermint.colors',$colors);
                 endif;
 
+								$this->registerMenuItem();
+
             });
     }
 
     public function registerAssets () {
- 		$al = AssetList::getInstance(); 
- 		$al->register( 'javascript', 'boxnav', 'themes/supermint/js/jquery.boxnav.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'javascript', 'slick', 'themes/supermint/js/slick.min.js', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'javascript', 'fitvids', 'themes/supermint/js/jquery.fitvids.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'javascript', 'rcrumbs', 'themes/supermint/js/jquery.rcrumbs.min.js', array('version' => '1.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'javascript', 'nprogress', 'themes/supermint/js/nprogress.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'javascript', 'autohidingnavbar', 'themes/supermint/js/jquery.autohidingnavbar.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'javascript', 'supermint.script', 'themes/supermint/js/script.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
-   		$al->register( 'javascript', 'YTPlayer', 'themes/supermint/js/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
-		$al->register( 'javascript', 'modernizr.custom', 'themes/supermint/js/modernizr.custom.js', array('version' => '2.7.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
-		$al->register( 'javascript', 'transit', 'themes/supermint/js/jquery.transit.js', array('version' => '0.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this ); 
-        $al->register( 'javascript', 'isotope', 'themes/supermint/js/isotope.pkgd.min.js', array('version' => '2.1.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );         
-        $al->register( 'javascript', 'wow', 'themes/supermint/js/wow.js', array('version' => '1.1.2', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );         
-        $al->register( 'javascript', 'happier-text', 'themes/supermint/js/fitter-happier-text.js', array('version' => '1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );         
+ 		$al = AssetList::getInstance();
+ 		$al->register( 'javascript', 'boxnav', 'themes/supermint/js/jquery.boxnav.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'slick', 'themes/supermint/js/slick.min.js', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'fitvids', 'themes/supermint/js/jquery.fitvids.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'rcrumbs', 'themes/supermint/js/jquery.rcrumbs.min.js', array('version' => '1.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'nprogress', 'themes/supermint/js/nprogress.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'autohidingnavbar', 'themes/supermint/js/jquery.autohidingnavbar.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'supermint.script', 'themes/supermint/js/script.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+   	$al->register( 'javascript', 'YTPlayer', 'themes/supermint/js/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+		$al->register( 'javascript', 'modernizr.custom', 'themes/supermint/js/modernizr.custom.js', array('version' => '2.7.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+		$al->register( 'javascript', 'transit', 'themes/supermint/js/jquery.transit.js', array('version' => '0.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+    $al->register( 'javascript', 'isotope', 'themes/supermint/js/isotope.pkgd.min.js', array('version' => '2.1.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+    $al->register( 'javascript', 'wow', 'themes/supermint/js/wow.js', array('version' => '1.1.2', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+    $al->register( 'javascript', 'happier-text', 'themes/supermint/js/fitter-happier-text.js', array('version' => '1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
 
- 		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'css', 'slick-theme', 'themes/supermint/css/addons/slick-theme.css', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this ); 
- 		$al->register( 'css', 'buttons', 'themes/supermint/css/addons/buttons.css', array('version' => '1.3.4', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this ); 
-		$al->register( 'css', 'bootsrap-custom', 'themes/supermint/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );         
-		$al->register( 'css', 'animate', 'themes/supermint/css/addons/animate.css', array('version' => '1', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );         
-		$al->register( 'css', 'mega-menu', 'themes/supermint/css/addons/mega-menu.css', array('version' => '1.1.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );         
-		$al->register( 'css', 'transit', 'themes/supermint/css/addons/jquery.transit.css', array('version' => '0.1', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );         
+ 		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'css', 'slick-theme', 'themes/supermint/css/addons/slick-theme.css', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'css', 'buttons', 'themes/supermint/css/addons/buttons.css', array('version' => '1.3.4', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+		$al->register( 'css', 'bootsrap-custom', 'themes/supermint/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+		$al->register( 'css', 'animate', 'themes/supermint/css/addons/animate.css', array('version' => '1', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+		$al->register( 'css', 'mega-menu', 'themes/supermint/css/addons/mega-menu.css', array('version' => '1.1.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+		$al->register( 'css', 'transit', 'themes/supermint/css/addons/jquery.transit.css', array('version' => '0.1', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
 
 		// -- Redactor Plugins -- \\
-		
+
         $pluginManager = Core::make('editor')->getPluginManager();
 		// ThemeFont plugin
         $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), $this);
@@ -155,14 +157,14 @@ class Controller extends Package  {
         $plugin->setKey('themefontcolor');
         $plugin->setName('Font colors from theme');
         $plugin->requireAsset('editor/plugin/themefontcolor');
-        
+
         $pluginManager->register($plugin);
 		// themClips plugin
         $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), $this);
-        $al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js',  array(), 'theme_supermint' );     
-        $al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js',  array(), 'theme_supermint' );     
-        $al->register( 'css', 'chosenicon', 'css/chosenicon.css',  array(), 'theme_supermint' ); 
-        $al->register( 'css', 'chosen.min', 'css/chosen.min.css', array(), 'theme_supermint' ); 
+        $al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js',  array(), 'theme_supermint' );
+        $al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js',  array(), 'theme_supermint' );
+        $al->register( 'css', 'chosenicon', 'css/chosenicon.css',  array(), 'theme_supermint' );
+        $al->register( 'css', 'chosen.min', 'css/chosen.min.css', array(), 'theme_supermint' );
 
         $al->registerGroup('editor/plugin/themeclips', array(
             array('javascript', 'editor/plugin/themeclips'),
@@ -178,7 +180,7 @@ class Controller extends Package  {
         $plugin->requireAsset('editor/plugin/themeclips');
 
         $pluginManager->register($plugin);
-        
+
 	}
 
 
@@ -210,29 +212,35 @@ class Controller extends Package  {
         Route::register(
             '/ThemeSupermint/tools/xml_preset',
             '\Concrete\Package\ThemeSupermint\Controller\Tools\XmlPreset::render'
-        );    	
+        );
         Route::register(
             '/ThemeSupermint/tools/get_awesome_icons',
             '\Concrete\Package\ThemeSupermint\Controller\Tools\AwesomeArray::getAwesomeArray'
-        );  
+        );
     }
 
     public function registerMenuItem () {
-        $status = t('Supermint Options');
-        $icon = 'toggle-on';        
-        $ihm = Core::make('helper/concrete/ui/menu');
+			// First we check if Supermint is the activated theme
+			$pt = Page::getCurrentPage();
+			if (!is_object($c)) return;
+			$pt = $pt->getCollectionThemeObject();
+			if ($pt->getThemeHandle() != $this->themeHandle) return;
+			// Now we build the button
+			$status = t('Supermint Options');
+			$icon = 'toggle-on';
+			$ihm = Core::make('helper/concrete/ui/menu');
 
-        $ihm->addPageHeaderMenuItem('theme_supermint', 'theme_supermint',
-            array(
-                'label' => $status,
-                'icon' => $icon,
-                'position' => 'right',
-                'href' => URL::to('/dashboard/supermint_options/theme_options')
-            ));       
+			$ihm->addPageHeaderMenuItem('theme_supermint', 'theme_supermint',
+			    array(
+			        'label' => $status,
+			        'icon' => $icon,
+			        'position' => 'right',
+			        'href' => URL::to('/dashboard/supermint_options/theme_options')
+			    ));
     }
 
     public function swapContent($options) {
-              
+
         if ($this->validateClearSiteContents($options)) {
             \Core::make('cache/request')->disable();
 
@@ -251,13 +259,13 @@ class Controller extends Package  {
             $home = Page::getByID(HOME_CID);
             $blocks = $home->getBlocks();
             foreach ($blocks as $b) $b->deleteBlock();
-            
+
 
             $pageTypes = PageType::getList();
             foreach ($pageTypes as $ct) {
                 $ct->delete();
 			}
-            
+
 			$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
 
             // Import Files
@@ -276,7 +284,7 @@ class Controller extends Package  {
                 $ci = new ContentImporter();
                 $ci->importContentFile($startingPointFolder . '/content.xml');
             endif;
-            
+
             // Set it as default for the page theme
             $this->setPresetAsDefault($this->startingPoint);
 
@@ -290,12 +298,12 @@ class Controller extends Package  {
         $baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
         $pt = PageTheme::getByHandle($this->themeHandle);
         $preset = $pt->getThemeCustomizablePreset($presetHandle);
-        if (!is_object($preset)) { 
+        if (!is_object($preset)) {
             if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
             return;
         }
         $styleList = $pt->getThemeCustomizableStyleList();
-        if (!is_object($styleList)) { 
+        if (!is_object($styleList)) {
             if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style List from ' . $presetHandle));
             return;
         }
@@ -303,7 +311,7 @@ class Controller extends Package  {
         $vl = new ValueList();
 
         $sets = $styleList->getSets();
-        if (!is_array($sets)) { 
+        if (!is_array($sets)) {
             if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style Set from ' . $presetHandle));
             return;
         }
@@ -317,7 +325,7 @@ class Controller extends Package  {
         endforeach;
 
         $vl->save();
-        $pt->setCustomStyleObject($vl, $preset);      
+        $pt->setCustomStyleObject($vl, $preset);
     }
 
 }

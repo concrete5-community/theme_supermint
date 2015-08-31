@@ -18,7 +18,7 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 				$f = new Area($area['name']);
 				$f->display($c);
 			endif;
-			?>								
+			?>
 		</div>
 		<?php  endforeach ?>
 		<div class="space-s"></div>
@@ -30,20 +30,20 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
       		<p id="footer-note" class="small">
       			<span>&copy;&nbsp;<?php echo date('Y')?>&nbsp;<a href="<?php echo DIR_REL?>/"><?php echo Config::get('concrete.site')?></a>&nbsp;</span>
 				<?php echo $o->footer_credit ?>
-				<?php 
+				<?php
 				$u = new User();
 				if ($u->isRegistered()) { ?>
-					<?php  
+					<?php
 					if (Config::get("ENABLE_USER_PROFILES")) {
 						$userName = '<a href="' . $this->url('/profile') . '">' . $u->getUserName() . '</a>';
 					} else {
 						$userName = $u->getUserName();
 					}
 					?>
-					<span class="sign-in">&nbsp;<?php echo t('Currently logged in as <b>%s</b>.', $userName)?> <a href="<?php echo $this->url('/login', 'logout')?>"><?php echo t('Sign Out')?></a></span>
+					<span class="sign-in">&nbsp;<?php echo t('Currently logged in as <b>%s</b>.', $userName)?> <a href="<?php  echo $view->url('/login', 'logout', Loader::helper('validation/token')->generate('logout'))?>"><?php  echo t('Sign Out')?></a></span>
 				<?php  } else { ?>
 					<span class="sign-in"><a href="<?php echo $this->url('/login')?>">&nbsp;<?php echo t('Sign In to Edit this Site')?></a></span>
-				<?php  } ?>      			
+				<?php  } ?>
       		</p>
       		<div class="space-s"></div>
       	</div>
@@ -53,7 +53,7 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 <?php endif ?>
 </div>
 
-    
+
 <?php   $this->inc('elements/backstretch.php') ?>
 <?php   Loader::element('footer_required'); ?>
 

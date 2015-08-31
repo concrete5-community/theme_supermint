@@ -33,14 +33,14 @@ a.mpf-inline.open-popup-link {
 	background-color:@light-color;
 	width: 100%;
 	margin-bottom: 1px;
-	position: relative; 
-	.transition(0.25s); 
+	position: relative;
+	.transition(0.25s);
 	.perspective(1000);
 	&:hover {
 		box-shadow: 0px 0px 0px 5px fade(@black-color,10%);
-		.transform(scale(1.08)); 
-		z-index: 1; 
-	}	
+		.transform(scale(1.08));
+		z-index: 1;
+	}
 	td {
 		padding: @space-s;
 		&.i-icon {
@@ -49,7 +49,7 @@ a.mpf-inline.open-popup-link {
 			text-align: center;
 			vertical-align: middle;
 		}
-	}	
+	}
 	h3 {
 		margin:0;
 		text-transform: none;
@@ -57,7 +57,7 @@ a.mpf-inline.open-popup-link {
 		a {
 			color: @black-color;
 		}
-	}	
+	}
 	p {
 		margin: 0
 	}
@@ -79,21 +79,21 @@ a.mpf-inline.open-popup-link {
     border-radius: 50%;
     border: 3px solid @light-color;
     text-align: center;
-    overflow: hidden;  
+    overflow: hidden;
     i {
       margin-top: @space-xl/2-2.6rem;
     }
   	&.big {
 	    width: @space-xxl;
-	    height: @space-xxl;  		
-  	}    
+	    height: @space-xxl;
+  	}
   }
   .image-block {
 
   }
   .item {
     .transition(background .5s);
-    
+
     .inner {
       	.transition(background .5s);
       	background-color: @grey-color;
@@ -108,17 +108,17 @@ a.mpf-inline.open-popup-link {
       hr {
         .animation(moveFromBottom 500ms);
       }      span,p {
-        .animation(moveFromBottom 600ms); 
+        .animation(moveFromBottom 600ms);
       }
       .icon-block, .image-block {
-        .animation(moveFromBottom 300ms); 
+        .animation(moveFromBottom 300ms);
       }
       .inner {
         background-color: @black-color;
       }
     }
   }
-  
+
   // light version
 
 	&-light {
@@ -141,14 +141,14 @@ a.mpf-inline.open-popup-link {
 				font-weight: lighter;
 				margin-bottom: 0 !important;
 			    // display: inline-block; // Sinon c'est pas centré
-			    // border-bottom: 1px solid @grey-color;    
+			    // border-bottom: 1px solid @grey-color;
 				opacity: .6;
 			}
 			hr {
 				margin: 0 0 @space-xs 0;
 			}
 		}
-	}  
+	}
 }
 
 @-webkit-keyframes moveFromBottom {
@@ -166,7 +166,7 @@ a.mpf-inline.open-popup-link {
 
 
 
-// -- Block button 
+// -- Block button
 
 .icooon-blk-button {
 	font-size: 24px;
@@ -215,7 +215,7 @@ a.mpf-inline.open-popup-link {
 // -- Callout
 
 .feature-callout {
-	padding: @space-m 0;	
+	padding: @space-m 0;
 
  	h2 {
 		margin: @space-s 0;
@@ -255,9 +255,9 @@ a.mpf-inline.open-popup-link {
 		width: 20%;
 		i {
 	    	top: -5px;
-	    	position: relative;		
+	    	position: relative;
 		}
-	} 
+	}
 	&:last-child {
 		.icon {
 			border: none;
@@ -304,7 +304,7 @@ a.mpf-inline.open-popup-link {
 			min-height: 30px;
 			padding: 5px;
 			border: 1px dotted rgba(94, 237, 94,.5);
-	}	
+	}
 }
 
 
@@ -359,7 +359,7 @@ div.ccm-block-type-form {
     }
     input, textarea {
 	    border: 1px solid fade(@grey-color, 50%);
-	    border-radius: 2px;    	
+	    border-radius: 2px;
     }
   }
   .btn {
@@ -376,41 +376,3 @@ h1.page-title {
   font-size: @space-ms;
   margin-bottom: @space-xxs;
 }
-
-
-// .3DText(@color,@depth) {
-// 	/* @color: The base color for the text. (Range: 15% - 95% Brightness)  */
-// 	/* @depth: Height of the letters, (Range: 0.4x - 2.5x) */
-// 	font-weight:bold; // 3D Effect works best on fat text. Take this out and make it lean if you want.
-// 	color:@color; /* Sets the font color to the base @e. */
-// 	text-shadow: /* This is where the vertical stack and shadows get built, in a process described by top scientists as "magic" */
-// 		/* Hightlight 100% */
-// 		0 (@depth*0.01em) 0 lighten(@color,2.5%),
-		
-// 		/* Vertical Stack: 40% Shadow */
-// 		0 (@depth*0.02em) (@depth*0.01em) darken(@color,10%),
-		
-// 		/* Vertical Stack: 36% Shadow */
-// 		0 (@depth*0.03em) (@depth*0.02em) darken(@color,11%), /* 36% */
-		
-// 		/* Vertical Stack: 34% Shadow */
-// 		0 (@depth*0.04em) (@depth*0.02em) darken(@color,13%),
-		
-// 		/* Vertical Stack: 31% Shadow */
-// 		0 (@depth*0.06em) (@depth*0.01em) darken(@color,16%),
-		
-// 		/* Immediate Sharp Shadow */
-// 		0 (@depth*0.06em) (@depth*0.03em) rgba(0,0,0,.5),
-		
-// 		/* Sharp Top Shadow */
-// 		0 0 (@depth*0.05em) rgba(0,0,0,.2),
-		
-// 		/* Small Side Shadows */
-// 		0 (@depth*0.02em) (@depth*0.08em) rgba(0,0,0,.3),
-		
-// 		/* Main Bottom Shadow, Blurred */
-// 		0 (@depth*0.1em) (@depth*0.12em) rgba(0,0,0,.25),
-		
-// 		/* Large Diffused Bottom Shadow */
-// 		0 (@depth*0.2em) (@depth*0.20em) rgba(0,0,0,.15); 
-// 	}
