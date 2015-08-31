@@ -1,0 +1,82 @@
+
+.button-colourGetter(@bg; @type; @text-color : @black-color)  when (@type = push)  {
+	@borderColor: hardlight(@bg, #555);
+	background-color: @bg;
+	border: solid 1px @borderColor;
+	box-shadow: 0 4px 0 @borderColor, 1px 5px 5px #555, inset 0 0 #333;
+	margin-bottom: 4px ;
+    color: contrast(@bg, @text-color, @white-color,60%) !important;			
+
+
+	&.button-huge {
+		box-shadow: 0 6px 0 @borderColor, 1px 7px 6px #555, inset 0 0 #333;
+		margin-bottom: 6px;	
+	}
+
+	&.button-tiny {
+		box-shadow: 0 2px 0 @borderColor, 1px 3px 3px #555, inset 0 0 #333;
+		margin-bottom: 2px;	
+		&:focus, &:hover {
+			box-shadow: 0 1px 0 @borderColor, 1px 2px 2px #555, inset 0 0 #333;
+		}
+	}
+
+	&:focus, &:hover {
+		background-color: saturate(@bg, 15%);
+		box-shadow: 0 2px 0 @borderColor, 1px 5px 5px #555, inset 0 0 #333;
+	}
+
+	&.pressed, &:active {
+		box-shadow: 0 0 0 @borderColor, 0 0 0 #555, inset 0 1px 5px #444;
+		background-color: hardlight(@bg, #777);
+
+		&.button-huge {
+			box-shadow: 0 0 0 @borderColor, 0 0 0 #555, inset 0 2px 7px #444;
+		}
+
+		&.button-tiny {
+			box-shadow: 0 0 0 @borderColor, 0 0 0 #555, inset 0 1px 2px #444;
+		}
+	}
+
+	&.disabled {
+		background: hardlight(@bg, #999);
+		border-color: hardlight(@borderColor, #999);
+	}
+
+}
+
+.button-push {
+	position: relative;
+	transition: all 0.1s linear;
+	font-weight: normal;
+	 letter-spacing: 1px;
+	// border-radius: 5px;
+	top: 0;
+
+	&:active {
+		top: 4px;
+
+		&.button-huge {
+			top: 6px;
+		}
+
+		&.button-tiny {
+			top: 2px;
+		}
+	}
+
+	&.disabled {
+		transition-duration: 0;
+		box-shadow: none;
+		text-shadow: none;
+
+		&:active {
+			top: 0;
+		}
+	}
+
+	.button-sizer() !important;
+	.button-colours(push);
+	.button();
+}

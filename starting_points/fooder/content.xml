@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+  <pagetypes>
+    <pagetype name="Page" handle="page" package="" launch-in-composer="0" is-frequently-added="1">
+      <pagetemplates type="all" default="full"/>
+      <target handle="all" package=""/>
+      <composer>
+        <formlayout>
+          <set name="Basics" description="">
+            <control custom-template="" required="1" custom-label="Page Name" description="" type="core_page_property" handle="name"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="url_slug"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="page_template"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+          </set>
+          <set name="Content" description="">
+            <control custom-template="" custom-label="Body" description="" output-control-id="NgKpbuYo" type="block" handle="content"/>
+          </set>
+        </formlayout>
+        <output>
+          <pagetemplate handle="full">
+            <page name="" path="" filename="" pagetype="page" template="full" user="admin" description="" package="">
+              <area name="Main">
+                <blocks>
+                  <block type="core_page_type_composer_control_output" name="" mc-block-id="J97huS5x">
+                    <control output-control-id="NgKpbuYo"/>
+                  </block>
+                </blocks>
+              </area>
+            </page>
+          </pagetemplate>
+          <pagetemplate handle="left_sidebar">
+            <page name="" path="" filename="" pagetype="page" template="left_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="right_sidebar">
+            <page name="" path="" filename="" pagetype="page" template="right_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="wide">
+            <page name="" path="" filename="" pagetype="page" template="wide" user="admin" description="" package=""/>
+          </pagetemplate>
+        </output>
+      </composer>
+    </pagetype>
+  </pagetypes>
+  <stacks>
+    <stack name="Footer 01" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer 02" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer 03" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer Contact" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer Legal" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer Navigation" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Header Navigation" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Header Right" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Header Site Title" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Lateral Navigation Header">
+      <area name="Main">
+        <blocks>
+          <block type="image" name="">
+            <data table="btContentImage">
+              <record>
+                <fID>{ccm:export:file:logo.png}</fID>
+                <fOnstateID/>
+                <maxWidth><![CDATA[0]]></maxWidth>
+                <maxHeight><![CDATA[0]]></maxHeight>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+                <altText><![CDATA[]]></altText>
+                <title><![CDATA[]]></title>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Logo" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Responsive Navigation" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+  </stacks>
+  <pages>
+    <page name="Home" path="" filename="" pagetype="" template="wide" user="admin" description="" package="">
+      <attributes>
+        <attributekey handle="page_background">
+          <value>
+            <fID>{ccm:export:file:meat.jpg}</fID>
+          </value>
+        </attributekey>
+        <attributekey handle="number_of_main_areas">
+          <value>
+            <option>3</option>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <style>
+                    <backgroundColor/>
+                    <backgroundRepeat>no-repeat</backgroundRepeat>
+                    <borderWidth/>
+                    <borderColor/>
+                    <borderStyle/>
+                    <borderRadius/>
+                    <baseFontSize/>
+                    <alignment/>
+                    <textColor/>
+                    <linkColor/>
+                    <paddingTop/>
+                    <paddingBottom/>
+                    <paddingLeft/>
+                    <paddingRight/>
+                    <marginTop/>
+                    <marginBottom/>
+                    <marginLeft/>
+                    <marginRight/>
+                    <rotate/>
+                    <boxShadowHorizontal/>
+                    <boxShadowVertical/>
+                    <boxShadowBlur/>
+                    <boxShadowSpread/>
+                    <boxShadowColor/>
+                    <customClass>page-content-style area-space-s</customClass>
+                    <hideOnExtraSmallDevice/>
+                    <hideOnSmallDevice/>
+                    <hideOnMediumDevice/>
+                    <hideOnLargeDevice/>
+                  </style>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h2>About Our restaurant</h2><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  </p><p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.  </p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="0"/>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Page Footer">
+        <blocks/>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks/>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="image_slider" name="" custom-template="supermint_simple.php">
+                    <style>
+                      <backgroundColor/>
+                      <backgroundRepeat>no-repeat</backgroundRepeat>
+                      <borderWidth/>
+                      <borderColor/>
+                      <borderStyle/>
+                      <borderRadius/>
+                      <baseFontSize/>
+                      <alignment/>
+                      <textColor/>
+                      <linkColor/>
+                      <paddingTop/>
+                      <paddingBottom/>
+                      <paddingLeft/>
+                      <paddingRight/>
+                      <marginTop/>
+                      <marginBottom/>
+                      <marginLeft/>
+                      <marginRight/>
+                      <rotate/>
+                      <boxShadowHorizontal/>
+                      <boxShadowVertical/>
+                      <boxShadowBlur/>
+                      <boxShadowSpread/>
+                      <boxShadowColor/>
+                      <customClass>into-columns</customClass>
+                      <hideOnExtraSmallDevice/>
+                      <hideOnSmallDevice/>
+                      <hideOnMediumDevice/>
+                      <hideOnLargeDevice/>
+                    </style>
+                    <data table="btImageSlider">
+                      <record>
+                        <navigationType><![CDATA[0]]></navigationType>
+                      </record>
+                    </data>
+                    <data table="btImageSliderEntries">
+                      <record>
+                        <id><![CDATA[7]]></id>
+                        <cID><![CDATA[0]]></cID>
+                        <fID>{ccm:export:file:portrait.jpg}</fID>
+                        <linkURL><![CDATA[]]></linkURL>
+                        <internalLinkCID><![CDATA[0]]></internalLinkCID>
+                        <title><![CDATA[You're welcome]]></title>
+                        <description><![CDATA[<p>Lorem ipsum dolor sit amet, <br>consectetuer adipiscing elit.</p>]]></description>
+                        <sortOrder><![CDATA[0]]></sortOrder>
+                      </record>
+                      <record>
+                        <id><![CDATA[8]]></id>
+                        <cID><![CDATA[0]]></cID>
+                        <fID>{ccm:export:file:haricots.jpg}</fID>
+                        <linkURL><![CDATA[]]></linkURL>
+                        <internalLinkCID><![CDATA[0]]></internalLinkCID>
+                        <title><![CDATA[Fresh food]]></title>
+                        <description><![CDATA[<p>Lorem ipsum dolor sit amet,<br> consectetuer adipiscing elit.</p>]]></description>
+                        <sortOrder><![CDATA[1]]></sortOrder>
+                      </record>
+                      <record>
+                        <id><![CDATA[9]]></id>
+                        <cID><![CDATA[0]]></cID>
+                        <fID>{ccm:export:file:lasagne.jpg}</fID>
+                        <linkURL><![CDATA[]]></linkURL>
+                        <internalLinkCID><![CDATA[0]]></internalLinkCID>
+                        <title><![CDATA[Delicious !]]></title>
+                        <description><![CDATA[<p>Lorem ipsum dolor sit amet,<br>consectetuer adipiscing elit.</p>]]></description>
+                        <sortOrder><![CDATA[2]]></sortOrder>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="0"/>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+      <area name="Main - 2">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <style>
+                    <backgroundColor/>
+                    <backgroundRepeat>no-repeat</backgroundRepeat>
+                    <borderWidth/>
+                    <borderColor/>
+                    <borderStyle/>
+                    <borderRadius/>
+                    <baseFontSize/>
+                    <alignment/>
+                    <textColor/>
+                    <linkColor/>
+                    <paddingTop/>
+                    <paddingBottom/>
+                    <paddingLeft/>
+                    <paddingRight/>
+                    <marginTop/>
+                    <marginBottom/>
+                    <marginLeft/>
+                    <marginRight/>
+                    <rotate/>
+                    <boxShadowHorizontal/>
+                    <boxShadowVertical/>
+                    <boxShadowBlur/>
+                    <boxShadowSpread/>
+                    <boxShadowColor/>
+                    <customClass>area-space-s area-primary</customClass>
+                    <hideOnExtraSmallDevice/>
+                    <hideOnSmallDevice/>
+                    <hideOnMediumDevice/>
+                    <hideOnLargeDevice/>
+                  </style>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h1>Events & Specials</h1><hr>  <h2>happy hour</h2>  <p><strong>$5</strong> glasses of wine<br>$10 3-cheese plates<br>4pm-6pm EVERY DAY!<br>  </p>  <p><span class="alternate">So very much to be happy + excited about!</span>  </p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="0"/>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main - 3">
+        <blocks/>
+      </area>
+    </page>
+  </pages>
+  <sociallinks/>
+</concrete5-cif>

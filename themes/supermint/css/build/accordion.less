@@ -1,0 +1,113 @@
+.sm-accordion .title {
+  margin-bottom: -1px;
+  a {
+    display: block;
+    line-height: @space-m;
+    padding-left: @space-s;
+    font-weight: normal;
+    .transition(0.25s);
+    i {
+      margin-right: @space-s;
+      .transition(0.25s);
+    }
+    }
+}
+
+.sm-accordion .title.active a {
+  border-bottom-color:transparent;
+  i {
+    transform:rotate(90deg);
+  }
+}
+
+.sm-accordion .content {
+  border-top-color:transparent;
+  margin: 0;
+  margin-bottom: -1px;
+
+  &.active {
+    display: block;
+  }
+}
+.sm-accordion .content-inner {
+  padding:@space-s;
+}
+
+
+
+.sm-accordion {
+
+  // Default behavior
+  .accordion-mixin-color(@white-color; @link-color; @light-color);
+
+  .element-primary & {
+    .accordion-mixin-color(@primary-color; @primary-text-color; @light-color);
+  }  // Customs Behavior 
+  .element-secondary & {
+    .accordion-mixin-color(@secondary-color; @secondary-text-color; @light-color);
+  }
+  .element-tertiary & {
+    .accordion-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
+  }
+  .element-quaternary & {
+    .accordion-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
+  }
+  .element-light & {
+    .accordion-mixin-color(@light-color; @black-color; @white-color);
+  } 
+
+  .ui-accordion-header {
+    border: 0;
+    margin: 0;
+    padding: 0 @space-m;
+    border-radius: 0;
+    outline: none;
+    font-size: @font-size-base;
+    line-height: @space-m;    
+  }
+  .ui-accordion-content {
+    border: 0;
+    border-radius: 0;
+
+  }
+
+}
+
+// -- Mixin -- \\
+
+.accordion-mixin-color (@color, @contrast, @light) {
+  .title {
+    a {
+      color: @contrast;
+      background-color:@color ;
+      border: 1px solid @light;
+      &:hover {
+        background-color: darken(@color, 5%);
+    }
+    i {
+      color: @light;
+      }
+    }
+     &.active {
+      background-color: darken(@color, 5%); 
+      i {
+        color: @contrast;
+      }
+
+    }
+  }
+  .content {
+    border: 1px solid @light;
+    .content-inner {
+      background-color: @white-color;
+      p,div,li {
+        // color: 
+      }
+    }
+  }
+}
+
+
+
+
+

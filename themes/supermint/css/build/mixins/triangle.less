@@ -1,0 +1,32 @@
+.triangle-top (@width ; @color) {
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 @width @width @width;
+	border-color: transparent transparent @color transparent;	
+}
+.triangle-bottom (@width ; @color) {
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: @width (@width) 0 (@width);
+	border-color: @color transparent transparent transparent;	
+}
+.triangle-left (@width ; @color) {
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: (@width / 2) @width (@width / 2) 0;
+	border-color: transparent @color transparent transparent;	
+}
+.triangle-right (@width ; @color) {
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width:  (@width) 0 (@width ) @width;
+	border-color: transparent transparent transparent @color;	
+}

@@ -1,0 +1,241 @@
+
+/* // 1. RESET STYLES */
+/* ################################################################ */
+ul.mega-menu a { text-decoration: none; text-align:left !important; text-transform: none; }
+/*.mega-menu li a { border:none !important}*/
+
+
+/* // 2. NAVIGATION BAR STYLES */
+/* ################################################################ */
+.mega-menu {
+	position: relative;
+	z-index: 500;
+	clear: both;
+	width: 100%;
+	height: 36px;
+}
+
+.mega-menu:before,
+.mega-menu:after {
+	content: '';
+	clear: both;
+}
+
+/* Nav List */
+.mega-menu > li {
+	position: relative;
+	@include inline-block;
+	height: 36px;
+}
+
+.mega-menu > li.mgm-full-width { position: static; }
+
+.mega-menu > li.mgm-align-right {
+	float: right;
+	border-right: none;
+}
+
+/* Nav Links */
+.mega-menu > li > a, 
+.mega-menu > li > span, 
+.mega-menu > li > span 
+{
+	position: relative;
+	z-index: 550;
+	display: block;
+	line-height: 33px;
+	/*text-transform: uppercase;*/
+
+	-webkit-transition: color .15s ease-in, background-image .2s ease-in;
+	-moz-transition: color .15s ease-in, background-image .2s ease-in;
+	-o-transition: color .15s ease-in, background-image .2s ease-in;
+	-ms-transition: color .15s ease-in, background-image .2s ease-in;
+	transition: color .15s ease-in, background-image .2s ease-in;
+}
+
+.mega-menu > li > a:active {
+	color: #525252;
+
+	-webkit-transition: color 1ms;
+	-moz-transition: color 1ms;
+	-o-transition: color 1s;
+	-ms-transition: color 1s;
+	transition: color 1s;
+}
+/* A quoi ca sert ?
+.mega-menu > li.mgm-drop:hover > a:after,
+.mega-menu > li.mgm-drop > a.mgm-click:after,
+.mega-menu > li.mgm-drop > span.mgm-click:after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 38px;
+}*/
+
+.mega-menu > li.mgm-drop:hover > a, 
+.mega-menu > li.mgm-drop:hover > span,
+.mega-menu > li.mgm-drop > a.mgm-click,
+.mega-menu > li.mgm-drop > span.mgm-click 
+{ z-index: 650; }
+
+
+/* // 4. DROPDOWN */
+/* ################################################################ */
+.mega-menu > li > div,
+.mega-menu > li > ul,
+.mega-menu > li > ul li > ul {
+	position: absolute;
+	z-index: 600;
+	padding: 0;
+	top: 36px;
+	left: -1px;
+	text-align:left;
+
+	opacity: 0;
+	overflow: hidden;
+	visibility: hidden;	
+}
+
+.mega-menu > li.mgm-align-right > div {
+	left: auto;
+	right: -1px;
+}
+
+/* Transitions */
+.mgm-slide > li > div,
+.mgm-slide > li > ul,
+.mgm-slide > li > ul li > ul,
+.mgm-fade > li > div,
+.mgm-fade > li > ul,
+.mgm-fade > li > ul li > ul {
+	-webkit-transition: all .15s ease-in;
+	-moz-transition: all .15s ease-in;
+	-o-transition: all .15s ease-in;
+	-ms-transition: all .15s ease-in;
+	transition: all .15s ease-in;
+}
+
+.mgm-slide > li > div,
+.mgm-slide > li > ul,
+.mgm-slide > li > ul li > ul { top: 100px; }
+
+.mgm-slide > li.mgm-drop:hover > div,
+.mgm-slide > li.mgm-drop:hover > ul,
+.mgm-slide > li > ul li.mgm-drop:hover > ul {
+	top: 37px;
+
+	opacity: 1;
+	overflow: visible;
+	visibility: visible;
+}
+
+.mgm-fade > li.mgm-drop:hover > div,
+.mgm-fade > li.mgm-drop:hover > ul,
+.mgm-fade > li > ul li.mgm-drop:hover > ul,
+.mega-menu > li.mgm-drop:hover > div,
+.mega-menu > li.mgm-drop:hover > ul,
+.mega-menu > li > ul li.mgm-drop:hover > ul {
+	opacity: 1;
+	overflow: visible;
+	visibility: visible;
+}
+
+/* Dropdown Columns */
+.mega-menu li.mgm-full-width > div { left:50% }
+
+/* Dropdown Levels */
+.mega-menu > li > ul,
+.mega-menu > li > ul li > ul {
+	width: 220px;
+}
+
+.mega-menu > li > ul li.mgm-drop:hover > ul,
+.mega-menu.mgm-fade > li > ul li.mgm-drop > ul { top: 0; border-radius:5px;}
+
+.mega-menu > li > ul li { position: relative; display:block !important; }
+
+.mega-menu > li > ul li > ul {
+	position: absolute;
+	left: 100%;
+}
+
+.mega-menu > li.mgm-align-right > ul {
+	left: auto;
+	right: 0;
+}
+
+.mega-menu > li > ul li.mgm-align-left > ul {
+	position: absolute;
+	left: auto;
+	right: 105%;
+}
+
+.mega-menu > li > ul a {
+	display: block;
+	border-left:none !important;
+	border-right:none !important;
+}
+
+.mega-menu > li > ul li:last-child a { border-bottom: none !important; box-shadow:none }
+
+
+
+/*** --- Multi columns layout -- ****/
+
+.mgm-multi-c {
+
+}
+.mgm-multi-c-column {
+	float: left;
+	width: 100%;
+}
+ul.mgm-multi-c-column {
+	list-style: none;
+	padding: 0;
+
+}
+ul.mgm-multi-c-column li:not(.mgm-multi-c-title) {
+	width: 100%;
+	border-left:none;
+	padding: 3px 0;
+}
+ul.mgm-multi-c-column li a {
+	padding-right: 0;
+	display: block;
+
+}
+li.mgm-multi-c-title {
+	padding: 12px 0 !important;
+	border: 1px solid transparent;
+}
+li.mgm-multi-c-title:hover,
+li.mgm-multi-c-title.active {
+	background: none;
+	border-radius:3px;
+}
+li.mgm-multi-c-title a {
+	text-transform: uppercase;
+}
+
+
+
+
+
+@media only screen and (max-width: 767px) {
+
+	.mgm-responsive > li,
+	.mgm-responsive > li.mgm-align-right { width: 49.5%; }
+	.mgm-responsive > li > div {left:-1px;}
+
+}
+
+@media only screen and (max-width: 479px) {
+
+	.mgm-responsive > li,
+	.mgm-responsive > li.mgm-align-right {
+		display: block;
+		width: 100%;
+	}
+}

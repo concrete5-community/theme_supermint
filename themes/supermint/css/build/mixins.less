@@ -1,0 +1,55 @@
+
+// Import specialized
+
+@import "mixins/vendor-prefixes.less";
+@import "mixins/triangle.less";
+@import "mixins/misc.less";
+
+// -- Sizing shortcuts
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+
+// -- Container
+
+.container-fixed(@gutter: @grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+  .clearfix();
+}
+
+// -- Clearfix
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// -- Opacity
+
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  // @opacity-ie: (@opacity * 100);
+  // filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+// -- light color: 
+.light-color (@color; @bright : 95%) {
+	color: hsl(hue(@color),saturation(@color),@bright);
+} 

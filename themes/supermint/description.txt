@@ -1,0 +1,2 @@
+Super Mint
+A very clean and responsive theme for Concrete5

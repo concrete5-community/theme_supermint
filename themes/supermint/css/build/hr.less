@@ -1,0 +1,63 @@
+hr.dashed {
+    margin: 30px auto;
+    border: 0;
+    border-bottom: 1px dashed fade(@black-color, 50%);
+    background:fade(@black-color, 90%) ;
+}
+
+hr {
+    position: relative;
+    border: 0;
+    height: 1px;
+    margin: (@space-l / 2)-.1 auto (@space-l / 2) auto;  // 60px height
+    background-color: @grey-color;
+
+    &.primary{ background: @primary-color }
+    &.secondary { background: @secondary-color }
+    &.tertiary { background: @tertiary-color }
+    &.quaternary { background: @quaternary-color }
+
+    // Pour ceux qui sont dans des boxes coloré, on prend sont contraste
+    .primary & { background: @primary-text-color }
+    .secondary & { background: @secondary-text-color }
+    .tertiary & { background: @tertiary-text-color }
+    .quaternary & { background: @quaternary-text-color }
+
+    &.thin, .thin & {
+        background: darken(@tertiary-color,5%);
+        height:1px;
+    }
+    &.dotted, .dotted & {
+         border-bottom-style:dotted;
+    }
+    &.space-s, &.space-m, &.space-l, &.space-xl, 
+    .space-s &, .space-m &, .space-l &, .space-xl & {
+        background: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        &:after {display: none;}
+    }
+    
+    &.space-s, .space-s & { height: @space-s}  
+    &.space-m, .space-m & { height: @space-m }
+    &.space-l, .space-l & { height: @space-l }
+    &.space-xl, .space-xl & { height: @space-xl }
+
+
+    // -- SPecific Area -- \\
+    #header-right &,
+    #logo & {
+        background-color: fade(contrast(@top-bar-bg-color, @black-color, @white-color),30%);
+        margin: @space-xs/2 0;
+        // margin: 0;
+
+        &:first-child,
+        &:last-child {
+            background: transparent !important;
+            height: @space-xxs;
+        }
+        .edit-mode & {
+
+        }
+    }
+}

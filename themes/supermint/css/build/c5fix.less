@@ -1,0 +1,43 @@
+/* ---- C5 Fix ---- */
+.ccm-ui {
+    font-weight: normal;
+}
+#ccm-page-controls-wrapper li, .ccm-ui li, .ui-dialog-content li {
+  list-style: none !important;
+  text-indent: 0;
+  &:hover {
+  	text-indent: 0;
+  }
+}
+div.ccm-area-footer div.ccm-area-footer-handle i {
+	color: #666 !important;
+}
+div.ccm-panel-content ul.nav li {
+	text-transform: none;
+}
+.ui-dialog-content h2, 
+.ccm-blockEditPane h4, 
+.ccm-blockEditPane h3,
+.ccm-block-field-group h1,
+.ccm-block-field-group h2,
+.ccm-block-field-group h3,
+.ccm-block-field-group h4,
+.ccm-block-field-group p,
+{
+	font-size:inherit;
+	font-family:inherit;
+	font-weight:inherit;
+}
+.ccm-buttons a, .dialog-buttons a {
+	i {
+		text-indent:-999px;
+	}
+	&:hover i {
+		left: 0;
+	}
+}
+.googleMapCanvas img{max-width: inherit;}
+
+*.ccm-content-editor-snippet {
+	color: #999 !important;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+    <themes>
+        <theme handle="supermint" package="theme_supermint" activated="1"/>
+    </themes>
+    <thumbnailtypes>
+    	<thumbnailtype name="Tiny Image" handle="tiny" width="390"/>
+        <thumbnailtype name="Small Image" handle="small" width="740"/>
+        <thumbnailtype name="Medium Image" handle="medium" width="940"/>
+        <thumbnailtype name="Large Image" handle="large" width="1140"/>
+    </thumbnailtypes>
+</concrete5-cif>

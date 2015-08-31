@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<styles version="1.0">
+    <set name="Global Colors">
+        <style name="Primary color" variable="primary" type="color" />
+        <style name="Secondary color" variable="secondary" type="color" />
+        <style name="Tertiary color" variable="tertiary" type="color" />
+        <style name="Quaternary color" variable="quaternary" type="color" />
+        <style name="White" variable="white" type="color" />
+        <style name="Black" variable="black" type="color" />
+    </set>
+    <set name="Emphasis Colors">
+        <style name="Success color" variable="success" type="color" />
+        <style name="Info color" variable="info" type="color" />
+        <style name="Warning color" variable="warning" type="color" />
+        <style name="Danger color" variable="danger" type="color" />
+    </set>
+    <set name="Page elements and text">
+        <style name="Body Background" variable="body-bg" type="color" />
+        <style name="Body Pattern" variable="body-bg-pattern" type="image" />
+        <style name="Boxed Background" variable="boxed-bg" type="color" />
+        <!--  @content-bg style is used when content is wrapped into a white bg and thin bordrer -->
+        <style name="Content Background" variable="content-bg" type="color" />
+        <style name="Sub Header" variable="sub-header-color" type="color" />
+        <style name="Modal background" variable="modal-bg" type="color" />
+        <style name="Text" variable="body-type" type="color" />
+        <style name="Link" variable="link" type="color" />
+    </set>
+    <set name="Navigation">
+        <!-- Navigation top bar -->
+        <style name="First level Navigation backgound color" variable="top-nav-bg" type="color" />
+        <style name="First level Navigation text link color" variable="top-nav-a" type="color" />
+        <style name="First level Navigation hover background color" variable="top-nav-bg-hover" type="color" />
+        <style name="First level Navigation hover" variable="top-nav-hover-a" type="color" />
+        <style name="First level Border bottom default color of a selected top nav" variable="bg-nav-selected" type="color" />
+        <style name="First level Navigation height" variable="top-nav-height" type="size" />
+        <!-- Dropdown -->
+        <style name="Dropdown background color" variable="nav-dropdown-bg" type="color" />
+        <style name="Dropdown links color" variable="nav-dropdown-a" type="color" />
+        <!-- Slider navigation -->
+        <style name="Slider navigation background color" variable="nav-slide-bg" type="color" />
+        <style name="Slider navigation links color" variable="nav-slide-a" type="color" />
+        <style name="Slider navigation text color" variable="nav-slide-text" type="color" />
+        <!-- ? -->
+        <style name="Lateral First level background" variable="lateral-nav-bg" type="color" />        
+        <style name="Lateral deeper level background" variable="lateral-nav-sub-bg" type="color" />        
+    </set>
+    <set name="Headings">
+        <style name="Heading 1" variable="h1" type="color" />
+        <style name="Heading 2" variable="h2" type="color" />
+        <style name="Heading 3" variable="h3" type="color" />
+        <style name="Heading 4" variable="h4" type="color" />
+        <style name="Heading 5" variable="h5" type="color" />
+        <style name="Heading 6" variable="h6" type="color" />
+        <style name="Heading small" variable="headings-small" type="color" />
+        <style name="Font Size" variable="body-font" type="size" />
+    </set>
+    <set name="Footer">
+        <style name="Footer background color" variable="footer-bg" type="color" />
+        <style name="Footer Link Color" variable="footer-link" type="color" />
+        <style name="Footer text Color" variable="footer-text" type="color" />
+        <style name="Footer titles Color" variable="footer-h" type="color" />
+        <style name="Section Divider Color" variable="footer-section-divider" type="color" />            
+    </set>
+    
+</styles>

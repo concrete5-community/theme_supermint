@@ -1,0 +1,189 @@
+
+
+
+
+.small-display-nav-bar   {
+    .edit-mode & {
+        padding-top: 49px;
+    }
+}
+
+.small-display-nav-bar-inner {
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    height: @fixed-bar-height;
+    width: 100%;
+    top:0px;
+    background-color: @primary-color;
+
+    .edit-mode & {
+        display: block;
+        position: relative;
+        z-index: auto;
+    }
+    .ccm-toolbar-visible & {
+        top: 48px
+    }
+    
+    // -- Animations 
+    
+    .transition(top .4s @ease-speed);
+    
+    &.navbar-hidden {
+        top: -@fixed-bar-height;
+    }
+    span.nav-logo {
+        display: inline-block;
+        height: @fixed-bar-height;
+        overflow: hidden;  
+        svg {
+            width: 100%;
+            height: auto;
+        }      
+    }
+}
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: fade(@primary-color,80%);
+    z-index: 1;
+    overflow: scroll;
+    nav {
+        text-align: center;
+        position: relative;
+        top: 50%;
+        height: 60%;
+        .transform(translateY(-50%));
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        display: inline-block;
+        height: 100%;
+        position: relative;
+        text-align: left;
+        li {
+            display: block;
+            a {
+                position: relative;
+                font-size: 54px;
+                font-weight: 300;
+                display: block;
+                color: fade(@primary-text-color,80%);
+                .transition(color 0.2s);
+                &:hover {
+                    color: @primary-text-color;
+                }
+            }
+            &.active {
+                & > a {
+                    font-weight: 600;
+                }
+                & > a:before {
+                    .triangle-right(@space-s/2,fade(@primary-text-color,80%));
+                    position: absolute;
+                    left: -@space-s ;
+                    top: 50%;
+                    margin-top: -@space-s/4;
+                }
+            }
+        }
+    }
+    ul.submenu {
+        margin-top: 10px;
+        margin-left: @space-s;
+        li {
+            a {
+                font-size: 18px;
+            }
+        }
+        .submenu a {
+            font-size: 12px;
+        }
+    }
+    li.has-submenu {
+        margin-bottom: 10px;
+    }
+}
+
+
+.an {
+    .transition(transform 0.5s);
+    transform-origin: 50% 0%;
+    &.overlay-open {
+        .transform(scale(0.8));
+    }
+}
+.overlay-contentscale {
+    visibility: hidden;
+    .translate(-100%;0%);
+    .transition(all 0.5s ease);
+    &.open {
+        visibility: visible;
+        .translate(0%;0%);
+        .transition(transform 0.5s);
+    }
+}
+
+// -- The Hamburger Icon -- \\
+
+@height-icon: 20px;
+@width-line: 20px;
+@height-line: 3px;
+
+@transition-time: 0.4s;
+@rotation: 45deg;
+@translateY: (@height-icon / 2);
+@translateX: 0;
+
+
+#hamburger-icon {
+  width:@width-line;
+  height:@height-icon;
+  position:relative;
+  display:inline-block;
+  margin: 10px ;
+  margin-top:(@fixed-bar-height/2)-1;
+  z-index: 2;
+  vertical-align: top;
+  &:focus {
+    outline: none;
+  }
+  .line {
+    display:block;
+    background:@primary-text-color;
+    width:@width-line;
+    height:@height-line;
+    position:absolute;
+    left:0;
+    border-radius:(@height-line / 2);
+    .transition(all @transition-time);
+    
+    &.line-1 {
+      top:0;
+    }
+    &.line-2 {
+      top:50%;
+    }
+    &.line-3 {
+      top:100%;
+    }
+  }
+  &.active {
+    .line-1 {
+      .transform(translateY(@translateY) translateX(@translateX) rotate(@rotation));
+    }
+    .line-2 {
+      opacity:0;
+    }
+    .line-3 {
+      .transform(translateY(@translateY * -1) translateX(@translateX) rotate(@rotation * -1));
+    }
+  }
+}
+

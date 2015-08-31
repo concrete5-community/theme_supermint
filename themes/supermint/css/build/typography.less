@@ -1,0 +1,435 @@
+// Body reset
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body .ccm-page,
+.mfp-inline-holder  { // FOr the popu that is over the .ccm-page
+  // All of this is defined in overidde.php via the Font options
+  // font-family: @body-type-font-family;
+  // font-weight: @body-type-font-weight;
+
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  color: @body-type-color;
+
+   -webkit-font-smoothing: subpixel-antialiased; // Pour un meilleur rendu des polices très light sur Safari
+
+}
+
+
+
+.row + .row {
+  // Experimental :
+  // pour ajouter automatiquement de l'espace entre deux layouts
+  margin-top:@space-s;
+}
+
+
+// -- Headings
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  padding: 0;
+  margin-bottom: @space-xs;
+
+  small,.small {
+    font-weight: normal;
+    line-height: 1;
+    color: @headings-small-color;
+  }
+}
+
+h1,h2,h3 {
+  line-height:1;
+  small,.small {font-size: 65%;}
+}
+h4,h5,h6 {
+  small,.small {font-size: 75%}
+}
+h1 {
+  color: @h1-color;
+}
+h2 {
+  color: @h2-color;
+}
+h3 {
+  color: @h3-color;
+}
+h4 {
+  color: @h4-color;
+}
+h5 {
+  color: @h5-color;
+}
+h6 {
+  color: @h6-color;
+}
+
+.leaders  { 
+  clear: both;
+  i {
+    font-style: normal;
+  } 
+  i:first-child {
+    float: left;
+    padding: 0 .4em 0 0;
+    margin: 0;
+  }
+  i + i {
+    float: right;
+    padding: 0 0 0 .4em;
+    margin: 0;
+  }  
+  &:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    height: 1em;
+    background-image: radial-gradient(circle closest-side,fade(@black-color, 50%) 80%, transparent 10%);
+    background-position: 50% 90%;
+    background-size: 6px 2px;
+    background-repeat: repeat-x;
+  }
+}
+
+// -- Paragraphs 
+
+p {
+  margin-top: 0;
+  padding: 0;
+  margin-bottom: @space-xs;
+}
+
+// -- Links
+
+a {
+  color: @link-color;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: none;
+     outline: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+small,.small {
+    font-size: 81.25%; // 16px / 13px;
+}
+b, strong,.strong {
+    font-weight: bold;
+}
+
+dfn {
+    font-style: italic;
+}
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+.alternate .alternate {
+  font-size: 1em !important;
+}
+
+// -- Colors
+
+.text-primary-color {
+  color: @primary-color !important;
+}
+.text-secondary-color {
+  color: @secondary-color !important;
+}
+.text-tertiary-color {
+  color: @tertiary-color !important;
+}
+.text-quaternary-color {
+  color: @quaternary-color !important;
+}
+
+.text-success-color {
+  color: @success-color !important;
+}
+.text-info-color {
+  color: @info-color !important;
+}
+.text-warning-color {
+  color: @warning-color !important;
+}
+.text-danger-color {
+  color: @danger-color !important;
+}
+
+  // Contrast
+  
+.text-primary-contrast-color {
+  color: @primary-text-color !important;
+}
+.text-secondary-contrast-color {
+  color: @secondary-text-color !important;
+}
+.text-tertiary-contrast-color {
+  color: @tertiary-text-color !important;
+}
+.text-quaternary-contrast-color {
+  color: @quaternary-text-color !important;
+}
+
+// -- Forms & Inputs
+
+button, input, optgroup, select, textarea {
+  color: @black-color;
+}
+
+
+// Icons color
+
+.fa {
+  &-stack {
+    i:first-child {
+      // color: @primary-color
+    }
+
+    .fa-inverse {
+      &.primary {
+
+      }
+    }
+  }
+}
+
+
+// -- Super Anchor Hover style
+
+a.fun-anchor {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  vertical-align: bottom;
+  text-decoration: none;
+  white-space: nowrap;  
+  .transition(color 0.2s @ease-speed);
+  
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: @link-color;
+    content: '';
+    .transition(transform 0.2s @ease-speed);
+    .transform(translateY(95%));
+  }
+  
+  &:hover {
+    color: contrast(@link-color, @black-color, @white-color);
+    &:after {
+      .transform(translateY(0));
+    }
+  }
+}
+
+//
+// Code (inline and block)
+// --------------------------------------------------
+
+
+// Inline and block code styles
+code,
+kbd,
+pre,
+samp,
+.code {
+  font-family: @font-family-monospace;
+}
+
+// Inline code
+code, .code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: @code-color;
+  background-color: @code-bg;
+  border-radius: @border-radius-base;
+  border: 1px solid darken(@code-bg, 5%);
+}
+
+// Blocks of code
+pre {
+  display: block;
+  padding: ((@space-s - 1) / 2);
+  margin: 0 0 (@space-s / 2);
+  line-height: @line-height-base;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: @pre-color;
+  background-color: @pre-bg;
+  border: 1px solid @pre-border-color;
+  border-radius: @border-radius-base;
+}
+
+//-- Table
+
+.table
+{
+  
+  margin: @space-m;
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid darken(@light-color, 10%);
+}
+.table th
+{
+  padding: @space-xs @space-xxs @space-xxs @space-xxs;
+  font-weight: normal;
+  font-size: @font-size-base+.5;
+  color: @black-color;
+}
+.table tbody
+{
+  background: @light-color;
+}
+.table td
+{
+  padding: @space-xxs;
+  color: @grey-color;
+  border-top: 1px dashed @white-color;
+}
+.table tbody tr:hover td
+{
+  color: darken(@grey-color, 10%);
+  background: darken(@light-color, 10%);
+}
+.table tfoot {
+  font-size: @font-size-small;
+}
+
+// -- Bloquote
+
+blockquote {
+  padding: @space-s @space-m;
+  margin: 0 0 @space-s;
+  font-size: @font-size-large;
+  border-left: 5px solid @grey-color;
+
+  p,
+  ul,
+  ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  footer {
+    display: block;
+    font-size: 80%; // back to default font-size
+    line-height: @line-height-base;
+    color: @grey-color;
+
+    &:before {
+      content: '\2014 \00A0'; // em dash, nbsp
+    }
+  }
+}
+
+// Opposite alignment of blockquote
+//
+// Heads up: `blockquote.pull-right` has been deprecated as of v3.1.0.
+.blockquote-reverse,
+blockquote.pull-right {
+  padding-right: 15px;
+  padding-left: 0;
+  border-right: 5px solid @grey-color;
+  border-left: 0;
+  text-align: right;
+
+  // Account for citation
+  footer,
+  small,
+  .small {
+    &:before { content: ''; }
+    &:after {
+      content: '\00A0 \2014'; // nbsp, em dash
+    }
+  }
+}
+
+// quand un bouton est dans un H1, il est décalé vers le bas
+
+h1 a.pull-right,
+h1 a.pull-left {
+  line-height: 0;
+}
+
+.supermint {
+
+  ::-moz-selection { 
+      color: @primary-text-color;
+      background: fade(darken(@primary-color,25%),80%);
+  }
+
+  ::selection {
+      color: @primary-text-color;
+      background: fade(darken(@primary-color,25%),80%);
+  }
+
+  .shadow {
+    text-shadow: 1px 1px 3px fade(@black-color,80%);
+  }
+
+}
+
+// -- Some of custom Typography elements and tunning -- \\
+
+.loud {
+  color: @grey-color;
+  h1 + &,
+  h2 + &,
+  h3 + &,
+  h4 + &,
+  h5 + & {
+    margin-top: -1em;
+  }
+}
+.lead,
+// For the block custom classe 'leaded'
+.leaded p {
+  margin-bottom: @space-s;
+  font-size: @space-s;
+  line-height: @space-s+1;
+  font-weight: 300;
+
+  @media (min-width: @screen-sm-min) {
+    font-size: (@font-size-base * 1.5);
+  }
+}
+
+.lead strong {
+  color: @primary-color;
+  font-weight: inherit;
+}
+
+.light {
+  font-weight: lighter;
+  opacity: .5;
+}
+
+.lighted  {
+  & h1,& h2,& h3,& h4,& h5,& h6,
+  p {
+    .light();
+  }
+}

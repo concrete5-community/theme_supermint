@@ -1,0 +1,134 @@
+
+.area {
+
+// -- Color Area
+
+	&-primary {
+		.area-color(@primary-color; @primary-text-color);
+	}
+	&-secondary {
+		.area-color(@secondary-color; @secondary-text-color);
+	}
+	&-tertiary {
+		.area-color(@tertiary-color; @tertiary-text-color);
+	}
+	&-quaternary {
+		.area-color(@quaternary-color; @quaternary-text-color);
+	}
+	&-white {
+		.area-color(@white-color; @black-color);
+	}
+	&-black {
+		.area-color(@black-color; @white-color);
+	}
+	&-body {
+	  .area-color( @body-bg-color; @body-type-color);
+	  background-image: url(@body-bg-pattern-image); 			
+	}	
+
+// Spacing
+
+	&-space-s {
+		padding:@space-s;	
+	}
+	&-space-m {
+		padding:@space-m;	
+	}	
+	&-space-l {
+		padding:@space-xl;	
+	}	
+	&-space-xl {
+		padding:@space-xxl;	
+	}	
+}
+
+
+.area-color (@color; @contrast) {
+	background-color: @color;
+	p,li,quote,div:not(.void),i,
+	h1,h2,h3,h4,h5,h6,
+	input[type="submit"] {
+		color:@contrast;
+	}
+	h1 small,h2 small,h3 small,h4 small,h5 small,h6 small {
+		color:fade(@contrast,60%);	
+	}
+	hr {
+		background-color:fade(@contrast,50%);	
+	}
+	a, .lead strong {
+		// Choisi entre la couleur par defaut des liens ou la couleur contraste
+		color:contrast(@color, 
+			hsl(hue(@color),saturation(@color),lightness(@color)-30), 
+			hsl(hue(@color),saturation(@color),lightness(@color)+35)
+			);
+	}
+	// Accordion and other contents that need to loose her background
+	.content-inner {
+		background-color: transparent !important;
+	}
+}
+
+// -- Topics Area
+
+.topic {
+
+	&-get-in-touch {
+		.topics(get-in-touch);
+	}
+	&-idea {
+		.topics(idea);
+	}
+	&-help {
+		.topics(help);
+	}
+	&-config {
+		.topics(config);
+	}
+	&-news {
+		.topics(news);
+	}
+	&-conversation {
+		.topics(conversation);
+	}
+}
+
+.topics (@url) {
+
+  	@fullurl : %("../../images/area-topic/%a.png",@url);
+
+	background-image:url(@fullurl);
+	background-repeat:no-repeat;
+	background-position:right bottom;
+	background-size: contain;
+}
+
+.lateral-wide {
+	margin-left: -@lateral-nav-width;
+	.edit-mode & {
+		margin-left: 0;
+	}
+}
+
+
+// -- Pour eecuperer les classes
+.area-primary {
+	
+}
+.area-secondary {
+
+}
+.area-tertiary {
+
+}
+.area-quaternary {
+
+}
+.area-white {
+
+}
+.area-black {
+
+}
+
+

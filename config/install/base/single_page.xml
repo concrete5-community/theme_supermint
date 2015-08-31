@@ -1,0 +1,46 @@
+<concrete5-cif version="1.0">
+    <singlepages>
+        <page name="Supermint options" path="/dashboard/supermint_options" filename="/dashboard/supermint_options.php" pagetype="" description="Manage your Supermint Theme options" package="theme_supermint" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-cogs</value>
+                </attributekey>
+            </attributes>
+        </page>
+        <page name="Theme options" path="/dashboard/supermint_options/theme_options" filename="/dashboard/supermint_options/theme_options.php" pagetype="" description="" package="theme_supermint" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-cog</value>
+                </attributekey>
+            </attributes>
+        </page>        
+        <page name="Sliders" path="/dashboard/supermint_options/sliders" filename="/dashboard/supermint_options/sliders.php" pagetype="" description="" package="theme_supermint" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-th-large</value>
+                </attributekey>
+            </attributes>
+        </page>    
+        <page name="Fonts" path="/dashboard/supermint_options/fonts" filename="/dashboard/supermint_options/fonts.php" pagetype="" description="" package="theme_supermint" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-font</value>
+                </attributekey>
+            </attributes>
+        </page>        
+        <page name="Site Settings" path="/dashboard/supermint_options/site_settings" filename="/dashboard/supermint_options/site_settings.php" pagetype="" description="" package="theme_supermint" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-cog</value>
+                </attributekey>
+            </attributes>
+        </page>        
+        <page name="Presets" path="/dashboard/supermint_options/options_presets" filename="/dashboard/supermint_options/options_presets.php" pagetype="" description="" package="theme_supermint" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-th-list</value>
+                </attributekey>
+            </attributes>
+        </page>      
+    </singlepages>
+</concrete5-cif>

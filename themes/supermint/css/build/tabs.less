@@ -1,0 +1,93 @@
+.tabs-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: @space-ms;
+  float: left;
+  clear: both;
+}
+
+.tabs-menu li {
+    height: @space-ms;
+    line-height: @space-ms;
+    float: left;
+    margin-right: 3px;
+    background-color: @light-color;
+}
+
+.tabs-menu li.current {
+    position: relative;
+    background-color: @primary-color;
+    z-index: 5;
+    a {
+      color: @primary-text-color;
+    }
+}
+
+.tabs-menu li a {
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: none; 
+}
+
+.tab {
+    border: 1px solid @light-color;
+    background-color: @white-color;
+    float: left;
+    margin-bottom: 20px;
+    width: auto;
+}
+
+.tab-content {
+  display: none;
+  .inner {
+    padding: 20px;
+
+    p,li,quote,blockquote,div,
+    h1,h2,h3,h4,h5,h6 {
+      color: @black-color;
+    }
+  }
+}
+
+
+.sm-tabs {
+
+  // Default behavior
+  .tabs-mixin-color(@grey-color; @white-color; @light-color);
+
+  .element-primary & {
+    .tabs-mixin-color(@primary-color; @primary-text-color; @light-color);
+  }  // Customs Behavior 
+  .element-secondary & {
+    .tabs-mixin-color(@secondary-color; @secondary-text-color; @light-color);
+  }
+  .element-tertiary & {
+    .tabs-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
+  }
+  .element-quaternary & {
+    .tabs-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
+  }
+  .element-light & {
+    .tabs-mixin-color(@white-color; @black-color; @white-color);
+  } 
+
+
+}
+
+
+
+// -- Mixin -- \\
+.tabs-mixin-color (@color, @contrast, @light) {
+  .tabs-menu li {
+    a {
+      color: @color;
+    }
+    &.current {
+      background-color: @color;
+      a {
+        color: @contrast;
+      }
+    }
+  }
+}

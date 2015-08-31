@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+
+    <blocktypes>
+        <blocktype handle="pie_chart" package="theme_supermint"/>
+    </blocktypes>
+    
+	<systemcontenteditorsnippets>
+		<snippet handle="edit_site" name="Edit site Link" package="theme_supermint" activated="1"/>
+		<snippet handle="copyright" name="Date Copyright" package="theme_supermint" activated="1"/>
+	</systemcontenteditorsnippets>
+</concrete5-cif>

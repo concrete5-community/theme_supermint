@@ -1,0 +1,132 @@
+  // Figures
+  //
+  // We reset this here because previously Normalize had no `figure` margins. This
+  // ensures we don't break anyone's use of the element.
+
+  figure {
+    margin: 0;
+  }
+
+
+  // Images
+.ccm-page img {
+    vertical-align: middle;
+    display: block;
+    width: 100% \9; // Force IE10 and below to size SVG images correctly
+    max-width: 100%; // Part 1: Set a maximum relative to the parent
+    height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+
+  // Responsive images (ensure images don't scale beyond their parents)
+  &.img-responsive {
+
+  }
+
+  // Perfect circle
+  &.img-circle {
+    border-radius: 50%; // set radius in percents
+  }
+
+  &.img-thumbnail {
+    border:3px solid @primary-color;
+
+  }
+}
+
+img.framed {
+  margin-left: 4px;
+  background: @light-color;
+  padding: 4px;
+  border: 1px solid @white;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
+  z-index: 1;
+  transition: all 0.25s;
+  &:hover {
+    box-shadow: 0px 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.08) translateY(-5px);
+  }
+}
+
+img.edit-mode-thumb {
+  max-width: 60px;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  display: inline-block;
+}
+.img-responsive {
+  &, img {
+    max-width: 100%;
+  }
+}
+// -- Custom templates -- \\
+
+// Supermint Header
+
+.ccm-intro-block {
+  background-position: 50%;
+  background-size: cover;
+  position: relative;
+  height: 80vh;
+  .container {
+    z-index: 2;
+  }
+  h1,h3 {
+    text-align: center;
+    color:@white-color;
+  }
+  // -- height Management -- \\
+  .height-50 & {
+    height: 50vh;
+  }
+  .height-30 & {
+    height: 30vh;
+  }
+  .lateral-wide & {
+    h1,h3 {
+      margin-left: @lateral-nav-width;
+    }    
+  }
+}
+
+// -- Colored overlay -- \\
+.image-wrapper {
+  position: relative;
+
+  .black-smoked &:after,
+  .primary-smoked &:after,
+  .secondary-smoked &:after,
+  .white-smoked &:after,
+  .quaternary-smoked &:after
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    .transition(.3s);
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  .black-smoked &:after {
+    background-color: fade(@black-color, 60%);
+  }
+  .primary-smoked &:after {
+    background-color: fade(@primary-color, 60%);
+  }
+  .secondary-smoked &:after {
+    background-color: fade(@secondary-color, 60%);
+  }
+  .quaternary-smoked &:after {
+    background-color: fade(@quaternary-color, 60%);
+  }  
+  .white-smoked &:after {
+    background-color: fade(@white-color, 60%);
+  }
+}
+

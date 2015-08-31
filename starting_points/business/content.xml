@@ -1,0 +1,2285 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+  <attributekeys>
+        <attributekey handle="tags" name="Tags" package="" searchable="1" indexed="1" type="select" category="collection">
+      <type allow-multiple-values="1" display-order="display_asc" allow-other-values="1">
+        <options>
+          <option value="Lorem" is-end-user-added="1"/>
+          <option value="Ipsum" is-end-user-added="1"/>
+          <option value="Landscape" is-end-user-added="1"/>
+          <option value="Love" is-end-user-added="1"/>
+          <option value="Theme" is-end-user-added="1"/>
+          <option value="Beautiful work" is-end-user-added="1"/>
+          <option value="Picture" is-end-user-added="1"/>
+          <option value="Graphics" is-end-user-added="1"/>
+          <option value="Design" is-end-user-added="1"/>
+          <option value="Typography" is-end-user-added="1"/>
+          <option value="Folder" is-end-user-added="1"/>
+          <option value="Branding" is-end-user-added="1"/>
+        </options>
+      </type>
+    </attributekey>
+  </attributekeys>  
+  <pagetypes>
+    <pagetype name="Page" handle="page" package="" launch-in-composer="1" is-frequently-added="1">
+      <pagetemplates type="all" default="full"/>
+      <target handle="all" package=""/>
+      <composer>
+        <formlayout>
+          <set name="Basics" description="">
+            <control custom-template="" required="1" custom-label="Page Name" description="" type="core_page_property" handle="name"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="url_slug"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="page_template"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+          </set>
+          <set name="Content" description="">
+            <control custom-template="" custom-label="Body" description="" output-control-id="2jzTJ2eq" type="block" handle="content"/>
+          </set>
+        </formlayout>
+        <output>
+          <pagetemplate handle="full">
+            <page name="" path="" filename="" pagetype="page" template="full" user="admin" description="" package="">
+              <area name="Main">
+                <blocks>
+                  <block type="core_page_type_composer_control_output" name="" mc-block-id="eIfvUn6N">
+                    <control output-control-id="2jzTJ2eq"/>
+                  </block>
+                </blocks>
+              </area>
+              <area name="Header Right Local">
+                <blocks/>
+              </area>
+              <area name="Header Image">
+                <blocks/>
+              </area>
+              <area name="Header">
+                <blocks/>
+              </area>
+              <area name="Intro">
+                <blocks>                
+                  <block type="core_area_layout" name="" mc-block-id="1AtjtlCG">
+                    <arealayout type="theme-grid" columns="12">
+                      <columns>
+                        <column span="4" offset="0">
+                          <block type="page_attribute_display" name="" mc-block-id="yFEqlJnG">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[h3]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                        <column span="5" offset="0">
+                          <block type="page_attribute_display" name="" mc-block-id="BcBGGMFV">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageDescription]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[p]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                        <column span="3" offset="0">
+                          <block type="autonav" name="" custom-template="supermint_breadcrumb.php" mc-block-id="snsqJoJ6">
+                            <data table="btNavigation">
+                              <record>
+                                <orderBy><![CDATA[display_asc]]></orderBy>
+                                <displayPages><![CDATA[top]]></displayPages>
+                                <displayPagesCID/>
+                                <displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+                                <displaySubPages><![CDATA[relevant_breadcrumb]]></displaySubPages>
+                                <displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+                                <displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+                                <displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                      </columns>
+                    </arealayout>
+                  </block>                                   
+                </blocks>
+              </area>
+              <area name="Main - 1">
+                <blocks/>
+              </area>
+              <area name="Main Bottom">
+                <blocks/>
+              </area>
+            </page>
+          </pagetemplate>
+          <pagetemplate handle="left_sidebar">
+            <page name="" path="" filename="" pagetype="page" template="left_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="right_sidebar">
+            <page name="" path="" filename="" pagetype="page" template="right_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="wide">
+            <page name="" path="" filename="" pagetype="page" template="wide" user="admin" description="" package=""/>
+          </pagetemplate>
+        </output>
+      </composer>
+    </pagetype>
+    <pagetype name="Blog post" handle="blog_post" package="" launch-in-composer="1" is-frequently-added="1">
+      <pagetemplates type="all" default="right_sidebar"/>
+      <target handle="parent_page" package="" path="/blog"/>
+      <composer>
+        <formlayout>
+          <set name="Basics" description="Set all basic informations">
+            <control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="date_time"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
+          </set>
+          <set name="Pictures" description="Set pictures post">
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="page_background"/>
+          </set>
+          <set name="Content" description="">
+            <control custom-template="" custom-label="" description="" output-control-id="lHF6a4BE" type="block" handle="content"/>
+          </set>
+        </formlayout>
+        <output>
+          <pagetemplate handle="full">
+            <page name="" path="" filename="" pagetype="blog_post" template="full" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="left_sidebar">
+            <page name="" path="" filename="" pagetype="blog_post" template="left_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="right_sidebar">
+            <page name="" path="" filename="" pagetype="blog_post" template="right_sidebar" user="admin" description="" package="">
+              <attributes>
+                <attributekey handle="tags"/>
+              </attributes>
+              <area name="Header Right Local">
+                <blocks/>
+              </area>
+              <area name="Header Image">
+                <blocks/>
+              </area>
+              <area name="Header">
+                <blocks/>
+              </area>
+              <area name="Intro">
+                <blocks>
+                  <block type="core_area_layout" name="" mc-block-id="OVDYHB81">
+                    <arealayout type="theme-grid" columns="12">
+                      <columns>
+                        <column span="4" offset="0">
+                          <block type="page_attribute_display" name="" mc-block-id="xQB2wAgc">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[h3]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                        <column span="4" offset="0">
+                          <block type="page_attribute_display" name="" mc-block-id="w9X42wep">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageDescription]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[p]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                        <column span="4" offset="0">
+                          <block type="autonav" name="" custom-template="supermint_breadcrumb.php" mc-block-id="XQh4kTVc">
+                            <data table="btNavigation">
+                              <record>
+                                <orderBy><![CDATA[display_asc]]></orderBy>
+                                <displayPages><![CDATA[top]]></displayPages>
+                                <displayPagesCID/>
+                                <displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+                                <displaySubPages><![CDATA[relevant_breadcrumb]]></displaySubPages>
+                                <displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+                                <displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+                                <displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                      </columns>
+                    </arealayout>
+                  </block>
+                </blocks>
+              </area>
+              <area name="Main">
+                <blocks>
+                  <block type="core_area_layout" name="" mc-block-id="4skYpu07">
+                    <arealayout type="theme-grid" columns="12">
+                      <columns>
+                        <column span="6" offset="0">
+                          <block type="page_title" name="" custom-template="supermint_meta.php" mc-block-id="8YIRrW9x">
+                            <data table="btPageTitle">
+                              <record>
+                                <useCustomTitle><![CDATA[0]]></useCustomTitle>
+                                <titleText><![CDATA[[Page Title]]]></titleText>
+                                <formatting><![CDATA[h5]]></formatting>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                        <column span="6" offset="0">
+                          <block type="share_this_page" name="" custom-template="supermint_simple.php" mc-block-id="INfA8JsK">
+                            <data>
+                              <service>facebook</service>
+                              <service>twitter</service>
+                              <service>email</service>
+                            </data>
+                          </block>
+                        </column>
+                      </columns>
+                    </arealayout>
+                  </block>
+                  <block type="horizontal_rule" name="" mc-block-id="LInNo5fU"/>
+                  <block type="core_page_type_composer_control_output" name="" mc-block-id="9KfKG2FM">
+                    <control output-control-id="lHF6a4BE"/>
+                  </block>
+                  <block type="horizontal_rule" name="" mc-block-id="SPADcJ2P"/>
+                  <block type="next_previous" name="" custom-template="supermint_blog.php" mc-block-id="aQlb7HXy">
+                    <data table="btNextPrevious">
+                      <record>
+                        <nextLabel><![CDATA[Next]]></nextLabel>
+                        <previousLabel><![CDATA[Previous]]></previousLabel>
+                        <parentLabel><![CDATA[Up]]></parentLabel>
+                        <loopSequence><![CDATA[1]]></loopSequence>
+                        <excludeSystemPages><![CDATA[1]]></excludeSystemPages>
+                        <orderBy><![CDATA[display_asc]]></orderBy>
+                      </record>
+                    </data>
+                  </block>
+                </blocks>
+              </area>
+              <area name="Sidebar">
+                <blocks>
+                  <block type="content" name="" mc-block-id="GsSLmJ1z">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Tags</h4>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="tags" name="" mc-block-id="zxCbr5m5">
+                    <data table="btTags">
+                      <record>
+                        <title><![CDATA[]]></title>
+                        <targetCID>{ccm:export:page:/blog}</targetCID>
+                        <displayMode><![CDATA[page]]></displayMode>
+                        <cloudCount><![CDATA[0]]></cloudCount>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="content" name="" mc-block-id="pbCGI2DJ">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Archives</h4>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="date_navigation" name="" mc-block-id="i7mnVSTR">
+                    <data table="btDateNavigation">
+                      <record>
+                        <title><![CDATA[]]></title>
+                        <filterByParent><![CDATA[0]]></filterByParent>
+                        <redirectToResults><![CDATA[1]]></redirectToResults>
+                        <cParentID/>
+                        <cTargetID>{ccm:export:page:/blog}</cTargetID>
+                        <ptID>{ccm:export:pagetype:blog_post}</ptID>
+                      </record>
+                    </data>
+                  </block>
+                </blocks>
+              </area>
+              <area name="Sidebar Footer">
+                <blocks/>
+              </area>
+              <area name="Main Bottom">
+                <blocks/>
+              </area>
+            </page>
+          </pagetemplate>
+          <pagetemplate handle="wide">
+            <page name="" path="" filename="" pagetype="blog_post" template="wide" user="admin" description="" package=""/>
+          </pagetemplate>
+        </output>
+      </composer>
+    </pagetype>
+    <pagetype name="Work" handle="work" package="" launch-in-composer="1" is-frequently-added="1">
+      <pagetemplates type="all" default="full"/>
+      <target handle="parent_page" package="" path="/portfolio"/>
+      <composer>
+        <formlayout>
+          <set name="Basics" description="">
+            <control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="date_time"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
+          </set>
+          <set name="Images" description="">
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="page_background"/>
+            <control custom-template="" custom-label="" description="" output-control-id="991aBma9" type="block" handle="image"/>
+          </set>
+          <set name="Content" description="">
+            <control custom-template="" custom-label="" description="" output-control-id="4yGk1OmL" type="block" handle="content"/>
+          </set>
+        </formlayout>
+        <output>
+          <pagetemplate handle="full">
+            <page name="" path="" filename="" pagetype="work" template="full" user="admin" description="" package="">
+              <attributes>
+                <attributekey handle="tags"/>
+              </attributes>
+              <area name="Header Right Local">
+                <blocks/>
+              </area>
+              <area name="Header Image">
+                <blocks/>
+              </area>
+              <area name="Header">
+                <blocks>
+                  <block type="horizontal_rule" name="" mc-block-id="JqOLFGTr">
+                    <style>
+                      <customClass>space-m</customClass>
+                    </style>
+                  </block>                   
+                  <block type="core_area_layout" name="" mc-block-id="Ig0OG5eq">
+                    <arealayout type="theme-grid" columns="12">
+                      <columns>
+                        <column span="6" offset="0">
+                          <block type="page_attribute_display" name="">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[h2]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                        <column span="6" offset="0">
+                          <block type="page_attribute_display" name="">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageDescription]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[p]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                      </columns>
+                    </arealayout>
+                  </block>
+                  <block type="horizontal_rule" name="" mc-block-id="JqOLFGFR">
+                    <style>
+                      <customClass>space-s</customClass>
+                    </style>
+                  </block>                   
+                </blocks>
+              </area>
+              <area name="Intro">
+                <blocks/>
+              </area>
+              <area name="Main">
+                <blocks>
+                  <block type="core_page_type_composer_control_output" name="" mc-block-id="S4x7gSF5">
+                    <control output-control-id="991aBma9"/>
+                  </block>
+                  <block type="horizontal_rule" name="" mc-block-id="icPckMm5"/>
+                </blocks>
+              </area>
+              <area name="Main - 1">
+                <blocks>
+                  <block type="core_area_layout" name="" mc-block-id="XKp5talM">
+                    <arealayout type="theme-grid" columns="12">
+                      <columns>
+                        <column span="6" offset="0">
+                          <block type="page_attribute_display" name="">
+                            <data table="btPageAttributeDisplay">
+                              <record>
+                                <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                                <attributeTitleText><![CDATA[]]></attributeTitleText>
+                                <displayTag><![CDATA[h3]]></displayTag>
+                                <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                                <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                                <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                              </record>
+                            </data>
+                          </block>
+                          <block type="core_page_type_composer_control_output" name="" mc-block-id="SogyXmMX">
+                            <control output-control-id="4yGk1OmL"/>
+                          </block>
+                        </column>
+                        <column span="3" offset="3">
+                          <block type="page_title" name="" custom-template="supermint_meta.php" mc-block-id="ANnEYzep">
+                            <data table="btPageTitle">
+                              <record>
+                                <useCustomTitle><![CDATA[0]]></useCustomTitle>
+                                <titleText><![CDATA[[Page Title]]]></titleText>
+                                <formatting><![CDATA[h5]]></formatting>
+                              </record>
+                            </data>
+                          </block>
+                          <block type="horizontal_rule" name="" mc-block-id="hwRYLb0X"/>
+                          <block type="tags" name="" mc-block-id="7QLNGPGt">
+                            <data table="btTags">
+                              <record>
+                                <title><![CDATA[Tags]]></title>
+                                <targetCID>{ccm:export:page:/portfolio}</targetCID>
+                                <displayMode><![CDATA[page]]></displayMode>
+                                <cloudCount><![CDATA[0]]></cloudCount>
+                              </record>
+                            </data>
+                          </block>
+                        </column>
+                      </columns>
+                    </arealayout>
+                  </block>
+                  <block type="horizontal_rule" name="" mc-block-id="JqOL9SP0">
+                    <style>
+                      <customClass>space-l</customClass>
+                    </style>
+                  </block>
+                  <block type="next_previous" name="" custom-template="supermint_blog.php" mc-block-id="4O8tg88Q">
+                    <data table="btNextPrevious">
+                      <record>
+                        <nextLabel><![CDATA[Next]]></nextLabel>
+                        <previousLabel><![CDATA[Previous]]></previousLabel>
+                        <parentLabel><![CDATA[Up]]></parentLabel>
+                        <loopSequence><![CDATA[1]]></loopSequence>
+                        <excludeSystemPages><![CDATA[1]]></excludeSystemPages>
+                        <orderBy><![CDATA[display_asc]]></orderBy>
+                      </record>
+                    </data>
+                  </block>                  
+                </blocks>
+              </area>
+              <area name="Main Bottom">
+                <blocks/>
+              </area>
+            </page>
+          </pagetemplate>
+          <pagetemplate handle="left_sidebar">
+            <page name="" path="" filename="" pagetype="work" template="left_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="right_sidebar">
+            <page name="" path="" filename="" pagetype="work" template="right_sidebar" user="admin" description="" package=""/>
+          </pagetemplate>
+          <pagetemplate handle="wide">
+            <page name="" path="" filename="" pagetype="work" template="wide" user="admin" description="" package=""/>
+          </pagetemplate>
+        </output>
+      </composer>
+    </pagetype>
+  </pagetypes>
+  <stacks>
+    <stack name="Contact Us">
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h4>Meet us</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <strong>Aenean commodo ligula</strong> eget dolor. Aenean massa. </p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+          <block type="google_map" name="">
+            <data table="btGoogleMap">
+              <record>
+                <title><![CDATA[]]></title>
+                <location><![CDATA[Brittany, France]]></location>
+                <latitude><![CDATA[48.2020471]]></latitude>
+                <longitude><![CDATA[-2.93264350000004]]></longitude>
+                <zoom><![CDATA[14]]></zoom>
+                <width><![CDATA[100%]]></width>
+                <height><![CDATA[400px]]></height>
+                <scrollwheel><![CDATA[0]]></scrollwheel>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Footer 01" type="global_area">
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h4>Impress your audience with Supermint</h4><p>Clean, and stately aesthetic. From its <strong>stunning features</strong> and custom templates to the plethora of theme options, Supermint delights visually and functionally, giving you the power to customize your site with just a click of the mouse. And if Supermint’s numerous features, robust options, and arresting design weren’t enough, rest assured knowing that your theme is backed by <strong>Myconcretelab</strong> customer service.</p><p><br></p>]]></content>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Footer 02" type="global_area">
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h4>Last from blog</h4>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="page_list" name="" custom-template="supermint_recent_post.php">
+            <data table="btPageList">
+              <record>
+                <num><![CDATA[2]]></num>
+                <orderBy><![CDATA[display_asc]]></orderBy>
+                <cParentID/>
+                <cThis><![CDATA[0]]></cThis>
+                <useButtonForLink><![CDATA[0]]></useButtonForLink>
+                <buttonLinkText><![CDATA[]]></buttonLinkText>
+                <pageListTitle><![CDATA[]]></pageListTitle>
+                <filterByRelated><![CDATA[0]]></filterByRelated>
+                <filterByCustomTopic><![CDATA[0]]></filterByCustomTopic>
+                <relatedTopicAttributeKeyHandle><![CDATA[]]></relatedTopicAttributeKeyHandle>
+                <customTopicAttributeKeyHandle><![CDATA[]]></customTopicAttributeKeyHandle>
+                <customTopicTreeNodeID><![CDATA[0]]></customTopicTreeNodeID>
+                <includeName><![CDATA[1]]></includeName>
+                <includeDescription><![CDATA[1]]></includeDescription>
+                <includeDate><![CDATA[1]]></includeDate>
+                <includeAllDescendents><![CDATA[0]]></includeAllDescendents>
+                <paginate><![CDATA[0]]></paginate>
+                <displayAliases><![CDATA[0]]></displayAliases>
+                <enableExternalFiltering><![CDATA[0]]></enableExternalFiltering>
+                <ptID>{ccm:export:pagetype:blog_post}</ptID>
+                <pfID/>
+                <truncateSummaries><![CDATA[0]]></truncateSummaries>
+                <displayFeaturedOnly><![CDATA[0]]></displayFeaturedOnly>
+                <noResultsMessage><![CDATA[]]></noResultsMessage>
+                <displayThumbnail><![CDATA[1]]></displayThumbnail>
+                <truncateChars><![CDATA[0]]></truncateChars>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Footer 03" type="global_area">
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h4>Keep in touch</h4>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="feature" name="" custom-template="supermint_address.php">
+            <data table="btFeature">
+              <record>
+                <icon><![CDATA[location-arrow]]></icon>
+                <title><![CDATA[MyConcreteLab Inc.]]></title>
+                <paragraph><![CDATA[<p>Street with no name</p><p>566589 Dreamland</p>]]></paragraph>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+              </record>
+            </data>
+          </block>
+          <block type="feature" name="" custom-template="supermint_address.php">
+            <data table="btFeature">
+              <record>
+                <icon><![CDATA[phone]]></icon>
+                <title><![CDATA[]]></title>
+                <paragraph><![CDATA[<p>+25 (5) 56889 988556</p>]]></paragraph>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Footer 04" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer Contact" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer Legal" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Footer Navigation" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Header Navigation" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Header Right" type="global_area">
+      <area name="Main">
+        <blocks>
+          <block type="horizontal_rule" name=""/>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<ul class="nav custom-nav nav-horizontal-light nav-small nav-align-right">    <li><a href="#">Title 1</a></li>    <li><a href="#">Title 2</a></li>  </ul>]]></content>
+              </record>
+            </data>
+          </block>          
+          <block type="horizontal_rule" name=""/>
+          <block type="social_links" name="">    
+            <style>
+              <alignment>right</alignment>
+            </style>            
+            <link service="personal_website"/>
+            <link service="facebook"/>
+            <link service="twitter"/>
+            <link service="flickr"/>
+          </block>
+          <block type="horizontal_rule" name=""/>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Header Site Title" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Logo" type="global_area">
+      <area name="Main">
+        <blocks>
+          <block type="horizontal_rule" name=""/>          
+          <block type="image" name="">
+            <data table="btContentImage">
+              <record>
+                <fID>{ccm:export:file:80x90.png}</fID>
+                <fOnstateID/>
+                <maxWidth><![CDATA[0]]></maxWidth>
+                <maxHeight><![CDATA[0]]></maxHeight>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+                <altText><![CDATA[]]></altText>
+                <title><![CDATA[]]></title>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+        </blocks>
+      </area>
+    </stack>
+    <stack name="Responsive Navigation" type="global_area">
+      <area name="Main">
+        <blocks/>
+      </area>
+    </stack>
+    <stack name="Reviews">
+      <area name="Main">
+        <blocks>
+          <block type="testimonial" name="">
+            <data table="btTestimonial">
+              <record>
+                <fID>{ccm:export:file:400x400.png}</fID>
+                <name><![CDATA[The MOST POWERFUL THEME on the Marketplace — Hands Down]]></name>
+                <position><![CDATA[Dec 31, 2014]]></position>
+                <company><![CDATA[CharismaBusiness]]></company>
+                <companyURL><![CDATA[#]]></companyURL>
+                <paragraph><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.]]></paragraph>
+              </record>
+            </data>
+          </block>
+          <block type="testimonial" name="">
+            <data table="btTestimonial">
+              <record>
+                <fID>{ccm:export:file:400x400.png}</fID>
+                <name><![CDATA[Flexible and fun theme]]></name>
+                <position><![CDATA[Nov 3, 2014]]></position>
+                <company><![CDATA[tailtwister]]></company>
+                <companyURL><![CDATA[#]]></companyURL>
+                <paragraph><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.]]></paragraph>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </stack>
+  </stacks>
+  <pages>
+    <page name="Home" path="" filename="" pagetype="" template="wide" user="admin" description="" package="">
+      <attributes>
+        <attributekey handle="number_of_main_areas">
+          <value>
+            <option>3</option>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <style>
+          <customClass>area-primary area-space-m</customClass>
+        </style>
+        <blocks>
+          <block type="core_stack_display" name="" custom-template="supermint_carousel.php">
+            <style>
+              <customClass>1-column</customClass>
+            </style>
+            <stack><![CDATA[Reviews]]></stack>
+          </block>
+        </blocks>
+      </area>
+      <area name="Page Footer">
+        <blocks/>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks>
+          <block type="image_slider" name="" custom-template="supermint_simple.php">
+            <data table="btImageSlider">
+              <record>
+                <navigationType><![CDATA[0]]></navigationType>
+              </record>
+            </data>
+            <data table="btImageSliderEntries">
+              <record>
+                <id><![CDATA[1]]></id>
+                <cID><![CDATA[0]]></cID>
+                <fID>{ccm:export:file:1366-500.png}</fID>
+                <linkURL><![CDATA[]]></linkURL>
+                <internalLinkCID><![CDATA[0]]></internalLinkCID>
+                <title><![CDATA[The best user-friendliest concrete5 theme ever made]]></title>
+                <description><![CDATA[<p>Build beautiful website in no time and have fun in the same time</p>]]></description>
+                <sortOrder><![CDATA[0]]></sortOrder>
+              </record>
+              <record>
+                <id><![CDATA[2]]></id>
+                <cID><![CDATA[0]]></cID>
+                <fID>{ccm:export:file:1366-500.png}</fID>
+                <linkURL><![CDATA[]]></linkURL>
+                <internalLinkCID><![CDATA[0]]></internalLinkCID>
+                <title><![CDATA[ The last theme you will ever'need to buy]]></title>
+                <description><![CDATA[<p>Tons of variations and features, the last theme you will ever'need to buy</p>]]></description>
+                <sortOrder><![CDATA[1]]></sortOrder>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Header">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="4" offset="0">
+                  <block type="feature" name="" custom-template="supermint_box.php">
+                    <data table="btFeature">
+                      <record>
+                        <icon><![CDATA[bolt]]></icon>
+                        <title><![CDATA[Powerful options framework]]></title>
+                        <paragraph><![CDATA[<p>The Control You Desire, All Available At Your Fingertips Experience our user friendly interface loaded with options for everything you need and none of the extra bloat usually seen with such power.</p>]]></paragraph>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <internalLinkCID/>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <block type="feature" name="" custom-template="supermint_box.php">
+                    <data table="btFeature">
+                      <record>
+                        <icon><![CDATA[birthday-cake]]></icon>
+                        <title><![CDATA[Pretty Starting Point]]></title>
+                        <paragraph><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.</p>]]></paragraph>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <internalLinkCID/>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <block type="feature" name="" custom-template="supermint_box.php">
+                    <data table="btFeature">
+                      <record>
+                        <icon><![CDATA[archive]]></icon>
+                        <title><![CDATA[Tons of features]]></title>
+                        <paragraph><![CDATA[<p>Supermint contains tons of features : Tabs, accordions, clips, Custom Area Classes, Block's custom Templates, Options framework, and many ... many others</p><p><br></p>]]></paragraph>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <internalLinkCID/>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Intro">
+        <blocks/>
+      </area>
+      <area name="Main - 1">
+        <style>
+          <customClass>area-space-m</customClass>
+        </style>
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="5" offset="0">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h3>Super popup Button</h3><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="core_stack_display" name="" custom-template="supermint_popup_all.php">
+                    <stack><![CDATA[Contact Us]]></stack>
+                  </block>
+                </column>
+                <column span="6" offset="1">
+                  <block type="image" name="">
+                    <data table="btContentImage">
+                      <record>
+                        <fID>{ccm:export:file:400x400.png}</fID>
+                        <fOnstateID/>
+                        <maxWidth><![CDATA[0]]></maxWidth>
+                        <maxHeight><![CDATA[0]]></maxHeight>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <internalLinkCID/>
+                        <altText><![CDATA[]]></altText>
+                        <title><![CDATA[]]></title>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+      <area name="Footer 01">
+        <blocks/>
+      </area>
+      <area name="Footer 02">
+        <blocks/>
+      </area>
+      <area name="Footer 03">
+        <blocks/>
+      </area>
+      <area name="Main - 2">
+        <style>
+          <customClass>area-space-m area-tertiary</customClass>
+        </style>
+        <blocks>
+          <block type="feature" name="" custom-template="supermint_callout.php">
+            <data table="btFeature">
+              <record>
+                <icon><![CDATA[child]]></icon>
+                <title><![CDATA[do not wait and buy it now !]]></title>
+                <paragraph><![CDATA[<p>If you are interested in Supermint<br></p>]]></paragraph>
+                <externalLink><![CDATA[#]]></externalLink>
+                <internalLinkCID/>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main - 3">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Lorem Ipsum" path="/blog/lorem-ipsum" filename="" pagetype="blog_post" template="right_sidebar" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Lorem</option>
+            <option>Landscape</option>
+          </value>
+        </attributekey>
+        <attributekey handle="page_background">
+          <value>
+            <fID>{ccm:export:file:1366-768.png}</fID>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block mc-block-id="4skYpu07"/>
+          <block mc-block-id="LInNo5fU"/>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p>Lorem ipsum dolor sit amet,<strong> consectetuer adipiscing elit</strong>. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p><p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p><p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. <em>Aliquam lorem ante, dapibus in</em>, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p><blockquote>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</blockquote><p><span class="lead">Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero.</span></p><p>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla.</p><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris.</p><p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum.</p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="SPADcJ2P"/>
+          <block mc-block-id="aQlb7HXy"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block mc-block-id="OVDYHB81"/>
+        </blocks>
+      </area>
+      <area name="Sidebar">
+        <blocks>
+          <block mc-block-id="GsSLmJ1z"/>
+          <block mc-block-id="zxCbr5m5"/>
+          <block mc-block-id="pbCGI2DJ"/>
+          <block mc-block-id="i7mnVSTR"/>
+        </blocks>
+      </area>
+      <area name="Sidebar Footer">
+        <blocks/>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Awesome post" path="/blog/awesome-post" filename="" pagetype="blog_post" template="right_sidebar" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. " package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Landscape</option>
+            <option>Love</option>
+          </value>
+        </attributekey>
+        <attributekey handle="page_background">
+          <value>
+            <fID>{ccm:export:file:1366-768.png}</fID>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block mc-block-id="4skYpu07"/>
+          <block mc-block-id="LInNo5fU"/>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p><span class="lead"></span><span class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</span></p><p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p><p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p><p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p><blockquote>Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero.</blockquote><p>Fusce vulputate eleifend <span class="code">sapien</span>. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras <span class="code">ultricies</span> mi eu turpis hendrerit fringilla.</p><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris.</p><p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum.</p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="SPADcJ2P"/>
+          <block mc-block-id="aQlb7HXy"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block mc-block-id="OVDYHB81"/>
+        </blocks>
+      </area>
+      <area name="Sidebar">
+        <blocks>
+          <block mc-block-id="GsSLmJ1z"/>
+          <block mc-block-id="zxCbr5m5"/>
+          <block mc-block-id="pbCGI2DJ"/>
+          <block mc-block-id="i7mnVSTR"/>
+        </blocks>
+      </area>
+      <area name="Sidebar Footer">
+        <blocks/>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Beautifull theme" path="/blog/beautifull-theme" filename="" pagetype="blog_post" template="right_sidebar" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Love</option>
+            <option>Theme</option>
+          </value>
+        </attributekey>
+        <attributekey handle="page_background">
+          <value>
+            <fID>{ccm:export:file:1366-768.png}</fID>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block mc-block-id="4skYpu07"/>
+          <block mc-block-id="LInNo5fU"/>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p><p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p><p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p><p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.</p><p><span class="lead">Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero.</span></p><p>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla.</p><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris.</p><p>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum.</p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="SPADcJ2P"/>
+          <block mc-block-id="aQlb7HXy"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block mc-block-id="OVDYHB81"/>
+        </blocks>
+      </area>
+      <area name="Sidebar">
+        <blocks>
+          <block mc-block-id="GsSLmJ1z"/>
+          <block mc-block-id="zxCbr5m5"/>
+          <block mc-block-id="pbCGI2DJ"/>
+          <block mc-block-id="i7mnVSTR"/>
+        </blocks>
+      </area>
+      <area name="Sidebar Footer">
+        <blocks/>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="About us" path="/about-us" filename="" pagetype="page" template="full" user="admin" description="Who we are &amp; what we do" package="">
+      <attributes>
+        <attributekey handle="number_of_main_areas">
+          <value>
+            <option>3</option>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h1 style="text-align: center;">Skills backed by years of experience</h1><p style="text-align: center;"><span class="small"><span class="light">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. <br>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</span></span></p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="5" offset="0">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h3>Our Story</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Integer lorem quam, adipiscing condimentum</strong> tristique vel, eleifend sed turpis. Pellentesque cursus arcu id magna euismod in elementum purus molestie sed. Curabitur pellentesque massa eu nulla et consequat porttitor arcu porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis. Morbi ut arcu dolor. Maecenas id nulla nec nibh viverra magna eu lacinia ullamcorper, augue est.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="3" offset="1">
+                  <block type="pie_chart" name="">
+                    <data table="btPieChart">
+                      <record>
+                        <options><![CDATA[{"btID":"39","arHandle":"Main : 23","cID":"175","dragAreaBlockID":"167","value":"75","content":"Speed !","fontSize":"20","textColor":"#232729","barColor":"#1abc9c","track":"1","trackColor":"#f2f2f2","scale":"1","scaleColor":"#dfe0e0","lineCap":"round","lineWidth":"10","size":"200","rotate":"0","animate":"900","ccm-add-block-submit":"submit","uID":"1"}]]></options>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="3" offset="0">
+                  <block type="pie_chart" name="">
+                    <data table="btPieChart">
+                      <record>
+                        <options><![CDATA[{"btID":"39","arHandle":"Main : 24","cID":"175","dragAreaBlockID":"168","value":"86","content":"Friendly","fontSize":"20","textColor":"#232729","barColor":"#1abc9c","track":"1","trackColor":"#f2f2f2","scale":"1","scaleColor":"#dfe0e0","lineCap":"round","lineWidth":"10","size":"200","rotate":"0","animate":"1500","ccm-add-block-submit":"submit","uID":"1"}]]></options>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+          <block type="horizontal_rule" name="">
+            <style>
+              <backgroundColor/>
+              <backgroundRepeat>no-repeat</backgroundRepeat>
+              <borderWidth/>
+              <borderColor/>
+              <borderStyle/>
+              <borderRadius/>
+              <baseFontSize/>
+              <alignment/>
+              <textColor/>
+              <linkColor/>
+              <paddingTop/>
+              <paddingBottom/>
+              <paddingLeft/>
+              <paddingRight/>
+              <marginTop/>
+              <marginBottom/>
+              <marginLeft/>
+              <marginRight/>
+              <rotate/>
+              <boxShadowHorizontal/>
+              <boxShadowVertical/>
+              <boxShadowBlur/>
+              <boxShadowSpread/>
+              <boxShadowColor/>
+              <customClass>space-m</customClass>
+              <hideOnExtraSmallDevice/>
+              <hideOnSmallDevice/>
+              <hideOnMediumDevice/>
+              <hideOnLargeDevice/>
+            </style>
+          </block>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block mc-block-id="1AtjtlCG"/>
+        </blocks>
+      </area>
+      <area name="Main - 1">
+        <style>
+          <customClass>area-primary area-space-m</customClass>
+        </style>
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h1 style="text-align: center;">Why we <i class="fa fa-heart-o"></i>  what we do  </h1><hr class="space-m"><p><span class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis. Lorem ipsum dolor sit amet.  </span>  </p>]]></content>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <style>
+          <customClass>area-primary topic-help area-space-m</customClass>
+        </style>
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h1 style="text-align: center;">Got a question ?</h1><p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p><hr><p style="text-align: center;"><a href="http://localhost:8888/supermint3/index.php/pages/services-2#" class="button button-success button-flat button-big" target="_self">Ask the team</a>  </p>]]></content>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main - 2">
+        <blocks>
+          <block type="horizontal_rule" name="">
+            <style>
+              <backgroundColor/>
+              <backgroundRepeat>no-repeat</backgroundRepeat>
+              <borderWidth/>
+              <borderColor/>
+              <borderStyle/>
+              <borderRadius/>
+              <baseFontSize/>
+              <alignment/>
+              <textColor/>
+              <linkColor/>
+              <paddingTop/>
+              <paddingBottom/>
+              <paddingLeft/>
+              <paddingRight/>
+              <marginTop/>
+              <marginBottom/>
+              <marginLeft/>
+              <marginRight/>
+              <rotate/>
+              <boxShadowHorizontal/>
+              <boxShadowVertical/>
+              <boxShadowBlur/>
+              <boxShadowSpread/>
+              <boxShadowColor/>
+              <customClass>space-m</customClass>
+              <hideOnExtraSmallDevice/>
+              <hideOnSmallDevice/>
+              <hideOnMediumDevice/>
+              <hideOnLargeDevice/>
+            </style>
+          </block>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h3 style="text-align: center;">Let’s create your company’s growth strategy together!</h3><p style="text-align: center;">We are a team of dedicated professionals, ready to do what ever it takes to make your business grow.</p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="4" offset="0">
+                  <block type="testimonial" name="" custom-template="supermint_hover.php">
+                    <data table="btTestimonial">
+                      <record>
+                        <fID>{ccm:export:file:400x400.png}</fID>
+                        <name><![CDATA[Jane Doe]]></name>
+                        <position><![CDATA[Manager]]></position>
+                        <company><![CDATA[Myconcretelab]]></company>
+                        <companyURL><![CDATA[http://new.myconcretelab.com]]></companyURL>
+                        <paragraph><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.]]></paragraph>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <block type="testimonial" name="" custom-template="supermint_hover.php">
+                    <data table="btTestimonial">
+                      <record>
+                        <fID>{ccm:export:file:400x400.png}</fID>
+                        <name><![CDATA[Jane Doe]]></name>
+                        <position><![CDATA[Webdesign]]></position>
+                        <company><![CDATA[Myconcretelab]]></company>
+                        <companyURL><![CDATA[http://new.myconcretelab.com]]></companyURL>
+                        <paragraph><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.]]></paragraph>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <block type="testimonial" name="" custom-template="supermint_hover.php">
+                    <data table="btTestimonial">
+                      <record>
+                        <fID>{ccm:export:file:400x400.png}</fID>
+                        <name><![CDATA[Doe Doe]]></name>
+                        <position><![CDATA[Webdesign]]></position>
+                        <company><![CDATA[Myconcretelab]]></company>
+                        <companyURL><![CDATA[http://new.myconcretelab.com]]></companyURL>
+                        <paragraph><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.]]></paragraph>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main - 3">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Contact" path="/contact" filename="" pagetype="page" template="full" user="admin" description="Don't hesitate to reach out!" package="">
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h1>Don’t hesitate to reach out!</h1><div><span class="light">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</span></div><div><br></div>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block mc-block-id="1AtjtlCG"/>
+        </blocks>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="7" offset="0">
+                  <block type="form" name="">
+                    <data table="btForm">
+                      <record>
+                        <questionSetId><![CDATA[1439025594]]></questionSetId>
+                        <surveyName><![CDATA[Contact]]></surveyName>
+                        <submitText><![CDATA[Submit]]></submitText>
+                        <thankyouMsg><![CDATA[Thanks!]]></thankyouMsg>
+                        <notifyMeOnSubmission><![CDATA[0]]></notifyMeOnSubmission>
+                        <recipientEmail><![CDATA[]]></recipientEmail>
+                        <displayCaptcha><![CDATA[0]]></displayCaptcha>
+                        <redirectCID/>
+                        <addFilesToSet><![CDATA[0]]></addFilesToSet>
+                      </record>
+                    </data>
+                    <data table="btFormQuestions">
+                      <record>
+                        <qID><![CDATA[4]]></qID>
+                        <msqID><![CDATA[4]]></msqID>
+                        <questionSetId><![CDATA[1439025594]]></questionSetId>
+                        <question><![CDATA[Your Name]]></question>
+                        <inputType><![CDATA[field]]></inputType>
+                        <options><![CDATA[]]></options>
+                        <position><![CDATA[0]]></position>
+                        <width><![CDATA[50]]></width>
+                        <height><![CDATA[3]]></height>
+                        <defaultDate><![CDATA[]]></defaultDate>
+                        <required><![CDATA[0]]></required>
+                      </record>
+                      <record>
+                        <qID><![CDATA[5]]></qID>
+                        <msqID><![CDATA[5]]></msqID>
+                        <questionSetId><![CDATA[1439025594]]></questionSetId>
+                        <question><![CDATA[Your mail]]></question>
+                        <inputType><![CDATA[email]]></inputType>
+                        <options><![CDATA[a:1:{s:22:"send_notification_from";i:1;}]]></options>
+                        <position><![CDATA[0]]></position>
+                        <width><![CDATA[50]]></width>
+                        <height><![CDATA[3]]></height>
+                        <defaultDate><![CDATA[]]></defaultDate>
+                        <required><![CDATA[1]]></required>
+                      </record>
+                      <record>
+                        <qID><![CDATA[6]]></qID>
+                        <msqID><![CDATA[6]]></msqID>
+                        <questionSetId><![CDATA[1439025594]]></questionSetId>
+                        <question><![CDATA[Subject]]></question>
+                        <inputType><![CDATA[field]]></inputType>
+                        <options><![CDATA[]]></options>
+                        <position><![CDATA[0]]></position>
+                        <width><![CDATA[50]]></width>
+                        <height><![CDATA[3]]></height>
+                        <defaultDate><![CDATA[]]></defaultDate>
+                        <required><![CDATA[1]]></required>
+                      </record>
+                      <record>
+                        <qID><![CDATA[7]]></qID>
+                        <msqID><![CDATA[7]]></msqID>
+                        <questionSetId><![CDATA[1439025594]]></questionSetId>
+                        <question><![CDATA[Question]]></question>
+                        <inputType><![CDATA[text]]></inputType>
+                        <options><![CDATA[]]></options>
+                        <position><![CDATA[0]]></position>
+                        <width><![CDATA[50]]></width>
+                        <height><![CDATA[3]]></height>
+                        <defaultDate><![CDATA[]]></defaultDate>
+                        <required><![CDATA[1]]></required>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                 <column span="4" offset="1">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Don’t hesitate to reach out!  </h4>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="feature" name="" custom-template="supermint_address.php">
+                    <data table="btFeature">
+                      <record>
+                        <icon><![CDATA[location-arrow]]></icon>
+                        <title><![CDATA[MyConcreteLab Inc.]]></title>
+                        <paragraph><![CDATA[<p>Street with no name</p><p>565625 Dreamland</p>]]></paragraph>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <internalLinkCID/>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="feature" name="" custom-template="supermint_address.php">
+                    <data table="btFeature">
+                      <record>
+                        <icon><![CDATA[envelope-o]]></icon>
+                        <title><![CDATA[sales@myconcretelab.com]]></title>
+                        <paragraph><![CDATA[]]></paragraph>
+                        <externalLink><![CDATA[mailto:sales@myconcretelab.com]]></externalLink>
+                        <internalLinkCID/>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks>
+          <block type="horizontal_rule" name="">
+            <style>
+              <backgroundColor/>
+              <backgroundRepeat>no-repeat</backgroundRepeat>
+              <borderWidth/>
+              <borderColor/>
+              <borderStyle/>
+              <borderRadius/>
+              <baseFontSize/>
+              <alignment/>
+              <textColor/>
+              <linkColor/>
+              <paddingTop/>
+              <paddingBottom/>
+              <paddingLeft/>
+              <paddingRight/>
+              <marginTop/>
+              <marginBottom/>
+              <marginLeft/>
+              <marginRight/>
+              <rotate/>
+              <boxShadowHorizontal/>
+              <boxShadowVertical/>
+              <boxShadowBlur/>
+              <boxShadowSpread/>
+              <boxShadowColor/>
+              <customClass>space-m</customClass>
+              <hideOnExtraSmallDevice/>
+              <hideOnSmallDevice/>
+              <hideOnMediumDevice/>
+              <hideOnLargeDevice/>
+            </style>
+          </block>
+          <block type="google_map" name="">
+            <data table="btGoogleMap">
+              <record>
+                <title><![CDATA[Our Location]]></title>
+                <location><![CDATA[Portugal]]></location>
+                <latitude><![CDATA[39.39987199999999]]></latitude>
+                <longitude><![CDATA[-8.224454000000037]]></longitude>
+                <zoom><![CDATA[14]]></zoom>
+                <width><![CDATA[100%]]></width>
+                <height><![CDATA[400px]]></height>
+                <scrollwheel><![CDATA[0]]></scrollwheel>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </page>
+    <page name="Blog" path="/blog" filename="" pagetype="page" template="right_sidebar" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit." package="">
+      <attributes>
+        <attributekey handle="tags"/>
+        <attributekey handle="icon">
+          <value><![CDATA[fa-newspaper-o]]></value>
+        </attributekey>
+        <attributekey handle="exclude_subpages_from_nav">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p><span class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</span></p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+          <block type="page_list" name="">
+            <data table="btPageList">
+              <record>
+                <num><![CDATA[0]]></num>
+                <orderBy><![CDATA[display_asc]]></orderBy>
+                <cParentID/>
+                <cThis><![CDATA[0]]></cThis>
+                <useButtonForLink><![CDATA[0]]></useButtonForLink>
+                <buttonLinkText><![CDATA[]]></buttonLinkText>
+                <pageListTitle><![CDATA[]]></pageListTitle>
+                <filterByRelated><![CDATA[0]]></filterByRelated>
+                <filterByCustomTopic><![CDATA[0]]></filterByCustomTopic>
+                <relatedTopicAttributeKeyHandle><![CDATA[]]></relatedTopicAttributeKeyHandle>
+                <customTopicAttributeKeyHandle><![CDATA[]]></customTopicAttributeKeyHandle>
+                <customTopicTreeNodeID><![CDATA[0]]></customTopicTreeNodeID>
+                <includeName><![CDATA[1]]></includeName>
+                <includeDescription><![CDATA[1]]></includeDescription>
+                <includeDate><![CDATA[1]]></includeDate>
+                <includeAllDescendents><![CDATA[0]]></includeAllDescendents>
+                <paginate><![CDATA[0]]></paginate>
+                <displayAliases><![CDATA[0]]></displayAliases>
+                <enableExternalFiltering><![CDATA[1]]></enableExternalFiltering>
+                <ptID>{ccm:export:pagetype:blog_post}</ptID>
+                <pfID/>
+                <truncateSummaries><![CDATA[0]]></truncateSummaries>
+                <displayFeaturedOnly><![CDATA[0]]></displayFeaturedOnly>
+                <noResultsMessage><![CDATA[]]></noResultsMessage>
+                <displayThumbnail><![CDATA[1]]></displayThumbnail>
+                <truncateChars><![CDATA[0]]></truncateChars>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="4" offset="0">
+                  <block type="page_attribute_display" name="">
+                    <data table="btPageAttributeDisplay">
+                      <record>
+                        <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                        <attributeTitleText><![CDATA[]]></attributeTitleText>
+                        <displayTag><![CDATA[h3]]></displayTag>
+                        <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                        <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                        <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <block type="page_attribute_display" name="">
+                    <data table="btPageAttributeDisplay">
+                      <record>
+                        <attributeHandle><![CDATA[rpv_pageDescription]]></attributeHandle>
+                        <attributeTitleText><![CDATA[]]></attributeTitleText>
+                        <displayTag><![CDATA[p]]></displayTag>
+                        <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                        <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                        <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <block type="autonav" name="" custom-template="supermint_breadcrumb.php">
+                    <data table="btNavigation">
+                      <record>
+                        <orderBy><![CDATA[display_asc]]></orderBy>
+                        <displayPages><![CDATA[top]]></displayPages>
+                        <displayPagesCID/>
+                        <displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+                        <displaySubPages><![CDATA[relevant_breadcrumb]]></displaySubPages>
+                        <displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+                        <displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+                        <displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main - 1">
+        <blocks/>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+      <area name="Sidebar">
+        <blocks>
+          <block type="search" name="" custom-template="supermint.php">
+            <data table="btSearch">
+              <record>
+                <title><![CDATA[Search]]></title>
+                <buttonText><![CDATA[]]></buttonText>
+                <baseSearchPath><![CDATA[/blog]]></baseSearchPath>
+                <postTo_cID/>
+                <resultsURL><![CDATA[]]></resultsURL>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+          <block type="tags" name="">
+            <data table="btTags">
+              <record>
+                <title><![CDATA[Tags]]></title>
+                <targetCID>{ccm:export:page:/blog}</targetCID>
+                <displayMode><![CDATA[cloud]]></displayMode>
+                <cloudCount><![CDATA[0]]></cloudCount>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name=""/>
+          <block type="date_navigation" name="">
+            <data table="btDateNavigation">
+              <record>
+                <title><![CDATA[Archives]]></title>
+                <filterByParent><![CDATA[0]]></filterByParent>
+                <redirectToResults><![CDATA[0]]></redirectToResults>
+                <cParentID/>
+                <cTargetID/>
+                <ptID>{ccm:export:pagetype:blog_post}</ptID>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Sidebar Footer">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Graphic Design" path="/portfolio/graphic-design" filename="" pagetype="work" template="full" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit." package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Graphics</option>
+            <option>Design</option>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="image" name="">
+            <data table="btContentImage">
+              <record>
+                <fID>{ccm:export:file:1366-500.png}</fID>
+                <fOnstateID/>
+                <maxWidth><![CDATA[0]]></maxWidth>
+                <maxHeight><![CDATA[0]]></maxHeight>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+                <altText><![CDATA[]]></altText>
+                <title><![CDATA[]]></title>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="icPckMm5"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks>
+          <block mc-block-id="JqOLFGTr"/>
+          <block mc-block-id="Ig0OG5eq"/>
+          <block mc-block-id="JqOLFGFR"/>
+        </blocks>
+      </area>
+      <area name="Intro">
+        <blocks/>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="page_attribute_display" name="">
+                    <data table="btPageAttributeDisplay">
+                      <record>
+                        <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                        <attributeTitleText><![CDATA[]]></attributeTitleText>
+                        <displayTag><![CDATA[h3]]></displayTag>
+                        <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                        <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                        <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Impress your audience with Supermint</h4><p>Clean, and stately aesthetic. From its <strong>stunning features</strong> and custom templates to the plethora of theme options, Supermint delights visually and functionally, giving you the power to customize your site with just a click of the mouse. And if Supermint’s numerous features, robust options, and arresting design weren’t enough, rest assured knowing that your theme is backed by <strong>Myconcretelab</strong> customer service.</p><p><br></p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="3" offset="3">
+                  <block type="page_title" name="" custom-template="supermint_meta.php">
+                    <data table="btPageTitle">
+                      <record>
+                        <useCustomTitle><![CDATA[0]]></useCustomTitle>
+                        <titleText><![CDATA[[Page Title]]]></titleText>
+                        <formatting><![CDATA[h5]]></formatting>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                  <block type="tags" name="">
+                    <data table="btTags">
+                      <record>
+                        <title><![CDATA[Tags]]></title>
+                        <targetCID>{ccm:export:page:/portfolio}</targetCID>
+                        <displayMode><![CDATA[page]]></displayMode>
+                        <cloudCount><![CDATA[0]]></cloudCount>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+          <block mc-block-id="JqOL9SP0"/>
+          <block mc-block-id="4O8tg88Q"/>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Typo creation" path="/portfolio/typo-creation" filename="" pagetype="work" template="full" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit." package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Graphics</option>
+            <option>Typography</option>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="image" name="">
+            <data table="btContentImage">
+              <record>
+                <fID>{ccm:export:file:1366-500.png}</fID>
+                <fOnstateID/>
+                <maxWidth><![CDATA[0]]></maxWidth>
+                <maxHeight><![CDATA[0]]></maxHeight>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+                <altText><![CDATA[]]></altText>
+                <title><![CDATA[]]></title>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="icPckMm5"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks>
+          <block mc-block-id="JqOLFGTr"/>
+          <block mc-block-id="Ig0OG5eq"/>
+          <block mc-block-id="JqOLFGFR"/>
+        </blocks>
+      </area>
+      <area name="Intro">
+        <blocks/>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="page_attribute_display" name="">
+                    <data table="btPageAttributeDisplay">
+                      <record>
+                        <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                        <attributeTitleText><![CDATA[]]></attributeTitleText>
+                        <displayTag><![CDATA[h3]]></displayTag>
+                        <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                        <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                        <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Impress your audience with Supermint</h4><p>Clean, and stately aesthetic. From its <strong>stunning features</strong> and custom templates to the plethora of theme options, Supermint delights visually and functionally, giving you the power to customize your site with just a click of the mouse. And if Supermint’s numerous features, robust options, and arresting design weren’t enough, rest assured knowing that your theme is backed by <strong>Myconcretelab</strong> customer service.</p><p><br></p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="3" offset="3">
+                  <block type="page_title" name="" custom-template="supermint_meta.php">
+                    <data table="btPageTitle">
+                      <record>
+                        <useCustomTitle><![CDATA[0]]></useCustomTitle>
+                        <titleText><![CDATA[[Page Title]]]></titleText>
+                        <formatting><![CDATA[h5]]></formatting>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                  <block type="tags" name="">
+                    <data table="btTags">
+                      <record>
+                        <title><![CDATA[Tags]]></title>
+                        <targetCID>{ccm:export:page:/portfolio}</targetCID>
+                        <displayMode><![CDATA[page]]></displayMode>
+                        <cloudCount><![CDATA[0]]></cloudCount>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+          <block mc-block-id="JqOL9SP0"/>
+          <block mc-block-id="4O8tg88Q"/>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Folder Creation" path="/portfolio/folder-creation" filename="" pagetype="work" template="full" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit." package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Graphics</option>
+            <option>Design</option>
+            <option>Folder</option>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="image" name="">
+            <data table="btContentImage">
+              <record>
+                <fID>{ccm:export:file:1366-500.png}</fID>
+                <fOnstateID/>
+                <maxWidth><![CDATA[0]]></maxWidth>
+                <maxHeight><![CDATA[0]]></maxHeight>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+                <altText><![CDATA[]]></altText>
+                <title><![CDATA[]]></title>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="icPckMm5"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks>
+          <block mc-block-id="JqOLFGTr"/>
+          <block mc-block-id="Ig0OG5eq"/>
+          <block mc-block-id="JqOLFGFR"/>
+        </blocks>
+      </area>
+      <area name="Intro">
+        <blocks/>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="page_attribute_display" name="">
+                    <data table="btPageAttributeDisplay">
+                      <record>
+                        <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                        <attributeTitleText><![CDATA[]]></attributeTitleText>
+                        <displayTag><![CDATA[h3]]></displayTag>
+                        <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                        <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                        <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Impress your audience with Supermint</h4><p>Clean, and stately aesthetic. From its <strong>stunning features</strong> and custom templates to the plethora of theme options, Supermint delights visually and functionally, giving you the power to customize your site with just a click of the mouse. And if Supermint’s numerous features, robust options, and arresting design weren’t enough, rest assured knowing that your theme is backed by <strong>Myconcretelab</strong> customer service.</p><p><br></p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="3" offset="3">
+                  <block type="page_title" name="" custom-template="supermint_meta.php">
+                    <data table="btPageTitle">
+                      <record>
+                        <useCustomTitle><![CDATA[0]]></useCustomTitle>
+                        <titleText><![CDATA[[Page Title]]]></titleText>
+                        <formatting><![CDATA[h5]]></formatting>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                  <block type="tags" name="">
+                    <data table="btTags">
+                      <record>
+                        <title><![CDATA[Tags]]></title>
+                        <targetCID>{ccm:export:page:/portfolio}</targetCID>
+                        <displayMode><![CDATA[page]]></displayMode>
+                        <cloudCount><![CDATA[0]]></cloudCount>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+          <block mc-block-id="JqOL9SP0"/>
+          <block mc-block-id="4O8tg88Q"/>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Portfolio" path="/portfolio" filename="" pagetype="page" template="full" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." package="">
+      <attributes>
+        <attributekey handle="exclude_subpages_from_nav">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p><hr class="space-m"><h3>Last Works :</h3>]]></content>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks/>
+      </area>
+      <area name="Intro">
+        <blocks>
+          <block mc-block-id="1AtjtlCG"/>
+        </blocks>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="page_list" name="" custom-template="supermint_carousel_block.php">
+            <style>
+              <customClass>4-column</customClass>
+            </style>
+            <data table="btPageList">
+              <record>
+                <num><![CDATA[0]]></num>
+                <orderBy><![CDATA[display_asc]]></orderBy>
+                <cParentID/>
+                <cThis><![CDATA[0]]></cThis>
+                <useButtonForLink><![CDATA[0]]></useButtonForLink>
+                <buttonLinkText><![CDATA[]]></buttonLinkText>
+                <pageListTitle><![CDATA[]]></pageListTitle>
+                <filterByRelated><![CDATA[0]]></filterByRelated>
+                <filterByCustomTopic><![CDATA[0]]></filterByCustomTopic>
+                <relatedTopicAttributeKeyHandle><![CDATA[]]></relatedTopicAttributeKeyHandle>
+                <customTopicAttributeKeyHandle><![CDATA[]]></customTopicAttributeKeyHandle>
+                <customTopicTreeNodeID><![CDATA[0]]></customTopicTreeNodeID>
+                <includeName><![CDATA[1]]></includeName>
+                <includeDescription><![CDATA[1]]></includeDescription>
+                <includeDate><![CDATA[0]]></includeDate>
+                <includeAllDescendents><![CDATA[0]]></includeAllDescendents>
+                <paginate><![CDATA[0]]></paginate>
+                <displayAliases><![CDATA[0]]></displayAliases>
+                <enableExternalFiltering><![CDATA[0]]></enableExternalFiltering>
+                <ptID>{ccm:export:pagetype:work}</ptID>
+                <pfID/>
+                <truncateSummaries><![CDATA[0]]></truncateSummaries>
+                <displayFeaturedOnly><![CDATA[0]]></displayFeaturedOnly>
+                <noResultsMessage><![CDATA[]]></noResultsMessage>
+                <displayThumbnail><![CDATA[1]]></displayThumbnail>
+                <truncateChars><![CDATA[0]]></truncateChars>
+              </record>
+            </data>
+          </block>
+          <block type="horizontal_rule" name="">
+            <style>
+              <backgroundColor/>
+              <backgroundRepeat>no-repeat</backgroundRepeat>
+              <borderWidth/>
+              <borderColor/>
+              <borderStyle/>
+              <borderRadius/>
+              <baseFontSize/>
+              <alignment/>
+              <textColor/>
+              <linkColor/>
+              <paddingTop/>
+              <paddingBottom/>
+              <paddingLeft/>
+              <paddingRight/>
+              <marginTop/>
+              <marginBottom/>
+              <marginLeft/>
+              <marginRight/>
+              <rotate/>
+              <boxShadowHorizontal/>
+              <boxShadowVertical/>
+              <boxShadowBlur/>
+              <boxShadowSpread/>
+              <boxShadowColor/>
+              <customClass>space-l</customClass>
+              <hideOnExtraSmallDevice/>
+              <hideOnSmallDevice/>
+              <hideOnMediumDevice/>
+              <hideOnLargeDevice/>
+            </style>
+          </block>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<h2>All works  </h2>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="page_list" name="" custom-template="supermint_static_block.php">
+            <style>
+              <customClass>2-column</customClass>
+            </style>
+            <data table="btPageList">
+              <record>
+                <num><![CDATA[0]]></num>
+                <orderBy><![CDATA[display_asc]]></orderBy>
+                <cParentID>{ccm:export:page:/portfolio}</cParentID>
+                <cThis><![CDATA[1]]></cThis>
+                <useButtonForLink><![CDATA[0]]></useButtonForLink>
+                <buttonLinkText><![CDATA[]]></buttonLinkText>
+                <pageListTitle><![CDATA[]]></pageListTitle>
+                <filterByRelated><![CDATA[0]]></filterByRelated>
+                <filterByCustomTopic><![CDATA[0]]></filterByCustomTopic>
+                <relatedTopicAttributeKeyHandle><![CDATA[]]></relatedTopicAttributeKeyHandle>
+                <customTopicAttributeKeyHandle><![CDATA[]]></customTopicAttributeKeyHandle>
+                <customTopicTreeNodeID><![CDATA[0]]></customTopicTreeNodeID>
+                <includeName><![CDATA[1]]></includeName>
+                <includeDescription><![CDATA[1]]></includeDescription>
+                <includeDate><![CDATA[0]]></includeDate>
+                <includeAllDescendents><![CDATA[0]]></includeAllDescendents>
+                <paginate><![CDATA[0]]></paginate>
+                <displayAliases><![CDATA[0]]></displayAliases>
+                <enableExternalFiltering><![CDATA[1]]></enableExternalFiltering>
+                <ptID>{ccm:export:pagetype:work}</ptID>
+                <pfID/>
+                <truncateSummaries><![CDATA[0]]></truncateSummaries>
+                <displayFeaturedOnly><![CDATA[0]]></displayFeaturedOnly>
+                <noResultsMessage><![CDATA[]]></noResultsMessage>
+                <displayThumbnail><![CDATA[1]]></displayThumbnail>
+                <truncateChars><![CDATA[0]]></truncateChars>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+    <page name="Awesome theme" path="/portfolio/awesome-theme" filename="" pagetype="work" template="full" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " package="">
+      <attributes>
+        <attributekey handle="tags">
+          <value>
+            <option>Theme</option>
+            <option>Typography</option>
+          </value>
+        </attributekey>
+        <attributekey handle="thumbnail">
+          <value>
+            <fID>{ccm:export:file:400x400.png}</fID>
+          </value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="image" name="">
+            <data table="btContentImage">
+              <record>
+                <fID>{ccm:export:file:1366-500.png}</fID>
+                <fOnstateID/>
+                <maxWidth><![CDATA[0]]></maxWidth>
+                <maxHeight><![CDATA[0]]></maxHeight>
+                <externalLink><![CDATA[]]></externalLink>
+                <internalLinkCID/>
+                <altText><![CDATA[]]></altText>
+                <title><![CDATA[]]></title>
+              </record>
+            </data>
+          </block>
+          <block mc-block-id="icPckMm5"/>
+        </blocks>
+      </area>
+      <area name="Header Right Local">
+        <blocks/>
+      </area>
+      <area name="Header Image">
+        <blocks/>
+      </area>
+      <area name="Header">
+        <blocks>
+          <block mc-block-id="JqOLFGTr"/>
+          <block mc-block-id="Ig0OG5eq"/>
+          <block mc-block-id="JqOLFGFR"/>
+        </blocks>
+      </area>
+      <area name="Intro">
+        <blocks/>
+      </area>
+      <area name="Main - 1">
+        <blocks>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="page_attribute_display" name="">
+                    <data table="btPageAttributeDisplay">
+                      <record>
+                        <attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+                        <attributeTitleText><![CDATA[]]></attributeTitleText>
+                        <displayTag><![CDATA[h3]]></displayTag>
+                        <dateFormat><![CDATA[m/d/y h:i:a]]></dateFormat>
+                        <thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+                        <thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4>Impress your audience with Supermint</h4><p>Clean, and stately aesthetic. From its <strong>stunning features</strong> and custom templates to the plethora of theme options, Supermint delights visually and functionally, giving you the power to customize your site with just a click of the mouse. And if Supermint’s numerous features, robust options, and arresting design weren’t enough, rest assured knowing that your theme is backed by <strong>Myconcretelab</strong> customer service.</p><p><br></p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="3" offset="3">
+                  <block type="page_title" name="" custom-template="supermint_meta.php">
+                    <data table="btPageTitle">
+                      <record>
+                        <useCustomTitle><![CDATA[0]]></useCustomTitle>
+                        <titleText><![CDATA[[Page Title]]]></titleText>
+                        <formatting><![CDATA[h5]]></formatting>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                  <block type="tags" name="">
+                    <data table="btTags">
+                      <record>
+                        <title><![CDATA[Tags]]></title>
+                        <targetCID>{ccm:export:page:/portfolio}</targetCID>
+                        <displayMode><![CDATA[page]]></displayMode>
+                        <cloudCount><![CDATA[0]]></cloudCount>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+          <block mc-block-id="JqOL9SP0"/>
+          <block mc-block-id="4O8tg88Q"/>
+        </blocks>
+      </area>
+      <area name="Main Bottom">
+        <blocks/>
+      </area>
+    </page>
+  </pages>
+  <sociallinks>
+    <link service="facebook" url="https://www.facebook.com/myconcretelab"/>
+    <link service="flickr" url="https://www.flickr.com/photos/sebastienj/"/>
+    <link service="personal_website" url="http://new.myconcretelab.com/"/>
+    <link service="twitter" url="https://twitter.com/myconcretelab"/>
+  </sociallinks>  
+</concrete5-cif>

@@ -1,0 +1,416 @@
+/* -- Popup-me -- */
+
+.white-popup {
+  position: relative;
+  background: @white-color;
+  padding: 20px;
+  width:auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+/* -- Form in popup -- */
+
+.white-popup div.ccm-block-type-form div.form-group label.control-label {
+	font-weight: normal;
+}
+.white-popup span.text-muted.small {
+	font-size: 13px;
+	color: @primary-color;
+}
+
+/* -- Button for popup -- */
+
+a.mpf-inline.open-popup-link {
+	margin-bottom: @space-s
+}
+
+
+/* -- Page-list & Features -- */
+   // These block share same content -- */
+
+.icon-table {
+	background-color:@light-color;
+	width: 100%;
+	margin-bottom: 1px;
+	position: relative; 
+	.transition(0.25s); 
+	.perspective(1000);
+	&:hover {
+		box-shadow: 0px 0px 0px 5px fade(@black-color,10%);
+		.transform(scale(1.08)); 
+		z-index: 1; 
+	}	
+	td {
+		padding: @space-s;
+		&.i-icon {
+			width: 80px;
+			padding:8px 0 0 10px;
+			text-align: center;
+			vertical-align: middle;
+		}
+	}	
+	h3 {
+		margin:0;
+		text-transform: none;
+		color: @grey-color;
+		a {
+			color: @black-color;
+		}
+	}	
+	p {
+		margin: 0
+	}
+}
+
+/* -- Feature Block -- */
+
+/* img-box-hover */
+
+.icon-m i.fa {font-size: @space-m}
+.icon-l i.fa {font-size: @space-l}
+.icon-xl i.fa {font-size: @space-xl}
+.img-box-hover {
+  .icon-block,
+  .image-block {
+    width: @space-xl;
+    height: @space-xl;
+    margin: @space-s auto;
+    border-radius: 50%;
+    border: 3px solid @light-color;
+    text-align: center;
+    overflow: hidden;  
+    i {
+      margin-top: @space-xl/2-2.6rem;
+    }
+  	&.big {
+	    width: @space-xxl;
+	    height: @space-xxl;  		
+  	}    
+  }
+  .image-block {
+
+  }
+  .item {
+    .transition(background .5s);
+    
+    .inner {
+      	.transition(background .5s);
+      	background-color: @grey-color;
+      	padding-top: 1px;
+      	border-radius: 0 0 3px 3px;
+		overflow: hidden;
+    }
+    &:hover {
+      h4 {
+        .animation(moveFromBottom 400ms);
+      }
+      hr {
+        .animation(moveFromBottom 500ms);
+      }      span,p {
+        .animation(moveFromBottom 600ms); 
+      }
+      .icon-block, .image-block {
+        .animation(moveFromBottom 300ms); 
+      }
+      .inner {
+        background-color: @black-color;
+      }
+    }
+  }
+  
+  // light version
+
+	&-light {
+		.item {
+			.inner {
+				background-color: transparent;
+				padding: @space-s;
+				 * {
+				 	text-align: center;
+				 }
+			}
+			&:hover {
+		    	.inner {
+		        	background-color: fade(@black-color,5%);
+		      	}
+
+			}
+			h4 {
+				text-transform: uppercase !important;
+				font-weight: lighter;
+				margin-bottom: 0 !important;
+			    // display: inline-block; // Sinon c'est pas centré
+			    // border-bottom: 1px solid @grey-color;    
+				opacity: .6;
+			}
+			hr {
+				margin: 0 0 @space-xs 0;
+			}
+		}
+	}  
+}
+
+@-webkit-keyframes moveFromBottom {
+    from { -webkit-transform: translateY(150px);}
+    to {-webkit-transform: translateY(0);}
+}
+@-moz-keyframes moveFromBottom {
+    from {-moz-transform: translateY(150px);}
+    to {-moz-transform: translateY(0);}
+}
+@-ms-keyframes moveFromBottom {
+    from {-ms-transform: translateY(150px);}
+    to {-ms-transform: translateY(0);}
+}
+
+
+
+// -- Block button 
+
+.icooon-blk-button {
+	font-size: 24px;
+	height: 50px;
+	line-height: 50px;
+	padding: 10px 30.72px;
+}
+
+// -- Box
+
+.feature-box {
+	margin-bottom: 20px;
+}
+.feature-box_content_title {
+	position:relative;
+	margin:0 0 @space-s 0;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	font-size:@space-s
+}
+
+.feature-box_content {
+	position: relative;
+	padding:@space-m @space-s @space-s @space-s;
+	margin-top: 38px;
+	border-radius:3px;
+	box-shadow:0px 0px 1px 0px fade(@black-color,30%);
+	background: #fcfcfc;
+	text-align:center;
+}
+.feature-box_icon {
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	top:-26px;
+	margin:0 0 0 -28px;
+	font-size: 31px; /* Fixé pour tous les supports */
+}
+.feature-box_icon .fa-stack {
+	text-align: left;
+}
+.feature-box a.button {
+	margin-bottom: -40px;
+}
+
+// -- Callout
+
+.feature-callout {
+	padding: @space-m 0;	
+
+ 	h2 {
+		margin: @space-s 0;
+		text-align: center;
+		a {
+			margin-left: @space-m
+		}
+		i {
+			margin-right: @space-s;
+		}
+	}
+	p {
+		// Maintenant c'est un editeur enrichi qui produit le contenu,
+		// Il est donc englobé dans un paragraph qui ne nous arrange pas ici
+		display: inline-block;
+	}
+}
+
+// -- Tiny
+
+.feature-tiny i {
+	margin-right: @space-xxs;
+}
+.feature-tiny p {
+}
+
+// -- Address
+
+.feature-address {
+	td {
+		line-height: 1.2
+	}
+	margin-bottom: @space-xs;
+	.icon {
+		text-align: center;
+		border-bottom: 1px solid fade(@white-color,20%);
+		width: 20%;
+		i {
+	    	top: -5px;
+	    	position: relative;		
+		}
+	} 
+	&:last-child {
+		.icon {
+			border: none;
+		}
+	}
+}
+
+// -- tiny Box
+
+.feature-tinybox_content {
+	padding-top: 1px;
+	clear: both;
+}
+
+.feature-tinybox p {
+	margin: 0 0 0 60px;
+
+}
+.feature-tinybox_content_title {
+	position:relative;
+	margin: 14px 0 0 60px;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	font-size:16px
+}
+
+
+/* -- Clips -- */
+
+.left-right {
+	aside,article {
+		margin: 0;
+		width: 50%
+	}
+	aside {
+		padding-right: 7px;
+	}
+	article {
+		padding-left: 7px;
+	}
+	.redactor-box & aside > *,
+	.redactor-box & article > *,
+	{
+			min-height: 30px;
+			padding: 5px;
+			border: 1px dotted rgba(94, 237, 94,.5);
+	}	
+}
+
+
+/* Features + color classes */
+
+.block-primary {
+
+}
+.block-secondary {
+
+}
+.block-tertiary {
+
+}
+.block-quaternary {
+
+}
+.block-white {
+
+}
+.block-black {
+
+}
+
+/* Features + Area classes : */
+
+.area-primary {
+
+}
+.area-secondary {
+
+}
+.area-tertiary {
+
+}
+.area-quaternary {
+
+}
+.area-white {
+
+}
+.area-black {
+
+}
+
+// -- Form block -- \\
+div.ccm-block-type-form {
+  div.form-group {
+    label.control-label  {
+      font-weight: normal !important;
+      margin-bottom: @space-xs;
+    }
+    input, textarea {
+	    border: 1px solid fade(@grey-color, 50%);
+	    border-radius: 2px;    	
+    }
+  }
+  .btn {
+  	background: fade(@grey-color,50%);
+  	border: 0;
+  	padding: @space-xs @space-s;
+  	font-weight: normal;
+  }
+}
+
+// From the C5 block 'page-title'
+
+h1.page-title {
+  font-size: @space-ms;
+  margin-bottom: @space-xxs;
+}
+
+
+// .3DText(@color,@depth) {
+// 	/* @color: The base color for the text. (Range: 15% - 95% Brightness)  */
+// 	/* @depth: Height of the letters, (Range: 0.4x - 2.5x) */
+// 	font-weight:bold; // 3D Effect works best on fat text. Take this out and make it lean if you want.
+// 	color:@color; /* Sets the font color to the base @e. */
+// 	text-shadow: /* This is where the vertical stack and shadows get built, in a process described by top scientists as "magic" */
+// 		/* Hightlight 100% */
+// 		0 (@depth*0.01em) 0 lighten(@color,2.5%),
+		
+// 		/* Vertical Stack: 40% Shadow */
+// 		0 (@depth*0.02em) (@depth*0.01em) darken(@color,10%),
+		
+// 		/* Vertical Stack: 36% Shadow */
+// 		0 (@depth*0.03em) (@depth*0.02em) darken(@color,11%), /* 36% */
+		
+// 		/* Vertical Stack: 34% Shadow */
+// 		0 (@depth*0.04em) (@depth*0.02em) darken(@color,13%),
+		
+// 		/* Vertical Stack: 31% Shadow */
+// 		0 (@depth*0.06em) (@depth*0.01em) darken(@color,16%),
+		
+// 		/* Immediate Sharp Shadow */
+// 		0 (@depth*0.06em) (@depth*0.03em) rgba(0,0,0,.5),
+		
+// 		/* Sharp Top Shadow */
+// 		0 0 (@depth*0.05em) rgba(0,0,0,.2),
+		
+// 		/* Small Side Shadows */
+// 		0 (@depth*0.02em) (@depth*0.08em) rgba(0,0,0,.3),
+		
+// 		/* Main Bottom Shadow, Blurred */
+// 		0 (@depth*0.1em) (@depth*0.12em) rgba(0,0,0,.25),
+		
+// 		/* Large Diffused Bottom Shadow */
+// 		0 (@depth*0.2em) (@depth*0.20em) rgba(0,0,0,.15); 
+// 	}

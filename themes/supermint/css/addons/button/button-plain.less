@@ -1,0 +1,50 @@
+
+.box-shadow-plain(@blur: 0; @colour: #77C6DD) {
+	box-shadow: inset 0 1px @blur @colour;
+	-moz-box-shadow: inset 0 1px @blur @colour;
+	-webkit-box-shadow: inset 0 1px @blur @colour;
+}
+
+.button-colourGetter(@bg; @type; @text-color : @black-color)  when (@type = plain) {
+	@borderColor: hardlight(@bg, #555);
+	background-color: @bg;
+	border: solid 1px @borderColor;
+	box-shadow: inset 0 1px 0 hardlight(@bg, #bbb);
+    color: contrast(@bg, @text-color, @white-color,60%) !important;			
+
+	&:focus, &:hover {
+		box-shadow: inset 0 1px 0 hardlight(@bg, #959595);
+		background-color: saturate(@bg, 15%);
+	}
+
+	&.pressed, &:active {
+		box-shadow: inset 0 1px 2px hardlight(@bg, #606060);
+		background-color: saturate(@bg, 20%);
+	}
+
+	&.disabled {
+		background: hardlight(@bg, #999);
+		border-color: hardlight(@borderColor, #999);
+	}
+}
+
+.button-plain {
+	transition: all 0.3s linear;
+	font-weight: bold;
+	letter-spacing: 1px;
+
+	&:active {
+		outline: none;
+		transition-duration: 0.05s;
+	}
+
+	&.disabled {
+		transition-duration: 0;
+		box-shadow: none;
+		text-shadow: none;
+	}
+
+	.button-sizer() !important;
+	.button-colours(plain);
+	.button();
+}

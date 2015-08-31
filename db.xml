@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+  <table name="SupermintOptions">
+    <field name="pID" type="I"/>
+    <field name="option_key" type="C" size="255"/>
+    <field name="option_value" type="X"/>
+  </table>
+  <table name="SupermintOptionsPreset">
+    <field name="pID" type="I" size="10">
+      <KEY/>
+      <AUTOINCREMENT/>
+      <UNSIGNED/>
+    </field>
+    <field name="name" type="C" size="255"/>
+    <field name="active" type="L"/>
+  </table>
+</schema>

@@ -1,0 +1,130 @@
+#supermint-logo {
+  .st0 {
+    fill:@primary-color;
+  }
+}
+
+// TODO : Go on Typo
+.harmonize-width-heading {
+  line-height: 1 !important;
+}
+.vertical-align {
+  position:relative;
+  top: 50%;
+  .transform(translateY(-50%));
+}
+
+#shortcuts {
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.wide {
+  width:100%;
+}
+.slim_table {
+  background: white;
+  margin-bottom: 1.11111rem;
+  border: solid 1px #dddddd;
+} 
+.slim_table td {
+  display: table-cell;
+  line-height: 1rem;
+  padding: 0.5rem 0.55556rem;
+}
+.slim_table tr:nth-of-type(even) {
+  background: #f9f9f9;
+}
+
+.upp{
+  text-transform: uppercase;
+}
+
+.bld {
+  font-weight: bold;
+}
+
+.block {
+  display: block;
+}
+
+.writting {
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.mutted {
+  opacity: .7;
+}
+
+.right {
+  float: right;
+  margin-left: 12px;
+}
+
+.left, .alignleft {
+  float: left;
+  margin-right: 12px;
+}
+
+.space {
+  height: 40px;
+}
+
+.shadow {
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+}
+
+.lined {
+  min-height: 4px;
+  border-bottom: 1px solid fade(@black-color, 20%);
+  box-shadow: 0 2px 2px -2px fade(@light-color, 20%);  
+}
+
+// -- Padding Class -- \\
+
+.padding {
+  padding: @space-s;
+  &-space-xxs {padding: @space-xxs}
+  &-space-xs {padding: @space-xs}
+  &-space-s {padding: @space-s}
+  &-space-ms {padding: @space-ms}
+  &-space-m {padding: @space-m}
+  &-space-l {padding: @space-l}
+  &-space-xl {padding: @space-xl}
+  &-space-xxl {padding: @space-xxl}
+  &-zero {padding: 0}
+}
+// this is only used by ribbon
+.negative-margin-top {
+  &-space-xxs {margin-top: -(@space-xxs)-@space-xxs}
+  &-space-xs {margin-top: -(@space-xs)-@space-xxs}
+  &-space-s {margin-top: -(@space-s)-@space-xxs}
+  &-space-ms {margin-top: -(@space-ms)-@space-xxs}
+  &-space-m {margin-top: -(@space-m)-@space-xxs}
+  &-space-l {margin-top: -(@space-l)-@space-xxs}
+  &-space-xl {margin-top: -(@space-xl)-@space-xxs}
+  &-space-xxl {margin-top: -(@space-xxl)-@space-xxs}
+}
+.zero {
+  padding: 0;
+  margin: 0;
+  &, & ul {
+    list-style: none;
+  }
+}
+.double_space {
+  height: 64px;
+}
+
+.tiny-space {
+  height: 8px;
+}
+
+.clear, .space {
+  clear: both;
+}
+

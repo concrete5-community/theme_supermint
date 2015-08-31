@@ -1,0 +1,37 @@
+/*
+.stack {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  &:before, &:after {
+    content: "";
+    height: 98%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+  &:before {
+    background: #fafafa;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    left: -5px;
+    top: 4px;
+    transform: rotate(-2.5deg);
+  }
+  &:after {
+    background: #f6f6f6;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    right: -3px;
+    top: 1px;
+    transform: rotate(1.4deg);
+  }
+}
+*/
+.stack {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow:
+        0 1px 1px rgba(0,0,0,0.1), /* The top layer shadow */
+        0 10px 0 -5px #efefef, /* The second layer */
+        0 10px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
+        0 20px 0 -10px #eee, /* The third layer */
+        0 20px 1px -9px rgba(0,0,0,0.2); /* The third layer shadow */
+}

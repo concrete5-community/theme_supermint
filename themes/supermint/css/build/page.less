@@ -1,0 +1,163 @@
+/*--- Body ---*/
+
+html {
+  font-size: 10px;  // Pour tout calculer en rem
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-x: hidden; // C'est moche mais ça cache les page trop larges a cause du slick slider (bug qui n'est pas present sur le site de demo de slick..)
+}
+
+body  {
+  transition: 1s opacity;
+  background-color: @body-bg-color;
+  background-image: url(@body-bg-pattern-image); 
+  background-attachment: fixed;
+    margin: 0;  
+  // opacity: 0;
+}
+
+// Loaded body 
+
+body.loaded {
+  opacity: 1;
+}
+
+/* -- Boxed container (.ccm-page) -- */
+
+.ccm-page {
+  .edit-mode & {
+    padding-top: 0 !important;
+  }
+  &.with-lateral-nav {
+    margin-left: @lateral-nav-width;
+  }
+}
+
+.boxed-wrapper { // (.ccm-page.boxed-wrapper)
+  width: 1200px;
+  margin: 0 auto;
+  background-color: @boxed-bg-color;  
+  box-shadow: 0px 0px 5px 0px fade(@black-color,20%); 
+}
+
+
+/* --- Top Bar --- */
+// L'element qui contient le logo, le Header Right
+
+#top-bar {
+  background-color: @top-bar-bg-color;
+  position: relative;
+  a {
+    color: contrast(@top-bar-bg-color, @black-color, @white-color);
+  }
+}
+
+// #top { // Estce que c est encore utile ?
+//   position: relative;
+//   background-color: @quaternary-color;
+//   .inner {
+//     position: absolute;
+//     height: 41px;
+//     width: 100%;
+//   }
+// }
+
+#logo {
+  a {
+    margin: 15px 20px;
+  }
+  p {
+    color: @grey-color;
+  }
+}
+
+// -- Header -- \\
+
+// #header est l'area Header Image
+header#header {
+
+}
+// #sub-header est la partie en dessous du header, avec la grille activée
+#sub-header {
+  position: relative;
+  background-color: @sub-header-color;
+    box-shadow: 0 1px 3px fade(@black-color,10%);
+}
+
+// -- Intro -- \\
+
+#intro {
+  margin: @space-s 0;
+  .ccm-block-page-attribute-display-wrapper {
+    margin: 0;
+  }
+
+}
+
+// -- Sidebar -- \\ 
+
+.sidebar {
+  .sb-header, &.sb-header {
+    background-color: @light-color;
+  }
+  h5 {
+    margin: @space-xs 0;
+  }
+}
+
+// -- Content -- \\
+
+// -- Page-info (from page-title block) -- \\
+.page-meta {
+  color: @grey-color;
+}
+
+.share-this-page {
+  text-align: right;
+  a {
+    display: inline-block;
+    padding-left: @space-xs
+  }
+}
+
+// -- This style is used when content is wrapped into a white bg and thin bordrer --\\
+.page-content-style {
+  background-color: @content-bg-color;
+  border: 1px solid @light-color;
+}
+
+
+
+#bottom {
+  position: relative;
+  background-color: @primary-color;
+  h2, p, i {
+    color: #eee;
+  }
+}
+
+.main-footer {
+  background-color: @footer-bg-color;
+  padding-top: @space-s;
+  p, li, i, .page-list-recent h6, .page-list-recent small {
+    color: @footer-text-color;
+  }
+  h1, h2, h3, h4, h5, h6, strong {
+    color: @footer-h-color;
+  }
+  a {
+    color: @footer-link-color
+  }
+  hr {
+    background-color: @footer-divider-color;
+  }
+  .nav {
+    padding: 0;
+    li {
+      border-bottom: 1px solid fade(@footer-bg-color, 80%);
+      box-shadow: 0 2px 2px -2px fade(@light-color, 80%);
+
+    }
+  }
+}
+
+
