@@ -1,4 +1,4 @@
-# theme_supermint
+# Theme Supermint
 Theme Supermint for Concrete5.7
 
 # documentation 
