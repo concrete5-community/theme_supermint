@@ -28,7 +28,7 @@ $options = array(
         "id" => "display_top_bar_area",
         "default" => 0,
         "type" => "toggle"
-    ),    
+    ),
     array(
         "name" => t("Layout mode"),
         "desc" => t("Each page templates can be displayed in a wide or a Boxed format. Boxed format use the color 'boxed-background-color' as background"),
@@ -101,7 +101,7 @@ $options = array(
         'name' => t('Autonav'),
         "desc" => t('Options for the Built-in "Autonav" block'),
         'type' => 'subsection'
-    ),     
+    ),
     array(
         "name" => t("Display button"),
         "desc" => t('Display a link button on certain Feature block template'),
@@ -154,9 +154,9 @@ $options = array(
         "default" => 'dropdown',
         "options" => array(
             'slide' => t("Slide mode"),
-            'regular-top-nav' => t("Regular drop-down mode"),
-            'main-large-nav' => t('Wide drop-down mode'),
-            'lateral-regular' => t('Lateral mode')
+            'regular-top-nav' => t("Regular drop-down mode")//,
+            // 'main-large-nav' => t('Wide drop-down mode'),
+            // 'lateral-regular' => t('Lateral mode')
         ),
         "type" => "select"
     ),
@@ -187,7 +187,7 @@ $options = array(
         'name' => t('Dropdown mode'),
         "desc" => t('Options When the nav is in dropdown mode'),
         'type' => 'subsection'
-    ),         
+    ),
      array(
         "name" => t("Dropdown Width"),
         "desc" => t("Set width for dropdown in main navigation when it's on dropdown mode"),
@@ -203,7 +203,7 @@ $options = array(
         'name' => t('Dropdown multicolumns mode'),
         "desc" => t('Options When the nav is in dropdown mode and the attribute "Display multi-columns dropdown" is activated'),
         'type' => 'subsection'
-    ),      
+    ),
     array(
         "name" => t("Multicolumns position"),
         "desc" => t("Display multi-columns nav as full with or under parent"),
@@ -237,14 +237,14 @@ $options = array(
         'name' => t('Lateral mode'),
         "desc" => t('Options When the nav is diplayed on left'),
         'type' => 'subsection'
-    ),         
+    ),
     array(
         "name" => t("Use 'Alternate' Font style for navigation"),
         "desc" => t("If enabled this options take the alternate Font settings for navigation Items"),
         "id" => "use_alternate_on_lateral_nav",
         "default" => 0,
         "type" => "toggle"
-    ),    
+    ),
     // array(
     //     "name" => t("Header position"),
     //     "desc" => t("Choose to display the header from stack (named 'Lateral Navigation Header') in top or bottom"),
@@ -428,7 +428,7 @@ $options = array(
         "default" => "0",
         "type" => "range"
     ),
-    
+
     array(
         'name' => t('Footer'),
         "desc" => t('Options for the Footer section'),
@@ -441,7 +441,7 @@ $options = array(
         "default" => 1,
         "activated" => false,
         "type" => "toggle"
-    ),    
+    ),
     array(
         "name" => t("Footer column"),
         "desc" => t("How many column you want in the footer"),
@@ -483,7 +483,7 @@ $options = array(
         'name' => t('CSS transitions for popup'),
         "desc" => t('Here you can set transitions for popups'),
         'type' => 'subsection'
-    ),    
+    ),
     array(
         "name" => t("content at start"),
         "desc" => t("CSS only"),
@@ -509,7 +509,7 @@ $options = array(
         'name' => t('Button type for popup'),
         "desc" => t('Here you can set type of button for popup'),
         'type' => 'subsection'
-    ),     
+    ),
     array(
         "name" => t("Button type for popup'"),
         "desc" => t("Choose between three style of button"),
