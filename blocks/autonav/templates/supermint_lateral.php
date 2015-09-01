@@ -11,10 +11,9 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 
 $h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
 
-// Global Logo 
+// Global Logo
 
-
-// Pour les stacks 
+// Pour les stacks
 $c = Page::getCurrentPage();
 $cp = new Permissions($c);
 $canViewVersion = $cp->canViewPageVersions() ? 'ACTIVE' : null;
@@ -42,12 +41,12 @@ foreach ($navItems as $niKey => $ni) :
 		if ($relatedStack) :
 			$ni->stack = $relatedStack;
 		endif;
-	endif;	
+	endif;
 
 	if ($ni->stack):
 		$classes[]  = 'parent deeper stacker';
 	elseif ($ni->hasSubmenu) :
-		$classes[]  = 'parent deeper';				
+		$classes[]  = 'parent deeper';
 	endif;
 
 	if ($o->use_alternate_on_lateral_nav)
@@ -62,15 +61,16 @@ endforeach;
 
 ?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
 <div class="top-nav-lateral">
+	<div class="mobile-handle"><i class="fa fa-navicon"></i></div>
 	<div class="wrap">
 		<div class="top">
 			<div class="inner">
-				<?php if ($header = Stack::getByName('Lateral Navigation Header')): ?>					
+				<?php if ($header = Stack::getByName('Lateral Navigation Header')): ?>
 				<div class="nav-header"><?php $header->display() ?></div>
 				<?php elseif ($logo = Stack::getByName('Site Logo')): ?>
 				<div class="nav-logo"><?php $logo->display() ?></div>
 				<?php endif ?>
-					
+
 			</div><!-- .inner -->
 		</div><!-- .top -->
 		<div class="middle">
@@ -85,22 +85,22 @@ foreach ($navItems as $k=>$ni) :
         echo '<a href="' .   $ni->url . '" target="' . $ni->target . '" style="' . $ni->style . '" >' . ($o->first_level_nav_icon ? $ni->icon : '') . ' ' . $ni->name . '</a>';
 
         if ($ni->hasSubmenu) {
-            
+
 			if ($ni->stack) :
 				echo '<ul class="stack-lateral"><li><div class="stack-lateral-inner">';
 						$ni->stack->display();
-						echo '<hr>';				
+						echo '<hr>';
 				echo '</div></li>';
 			else :
 				echo '<ul>'; //opens a dropdown sub-menu
-			endif;         
+			endif;
         } else {
             echo '</li>'; //closes a nav item
             echo str_repeat('</ul></li>', $ni->subDepth); //closes dropdown sub-menu(s) and their top-level nav item(s)
         }
-	
+
 endforeach?>
-	
+
 					</ul>
 				</nav>
 			</div><!-- .cell -->
@@ -112,20 +112,17 @@ endforeach?>
 					$p = Page::getByID($o->display_searchbox);
 					if (is_object($p)) :
 				 ?>
-					
+
 					<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
 				   	   <input type="search" class="col-md-3" id="search-keywords" name="query" placeholder="&#xf002"/>
-					</form>	
-					<?php endif ?>		
+					</form>
+					<?php endif ?>
 				<?php endif ?>
-				
-				<?php if ($footer = Stack::getByName('Lateral Navigation Footer')): ?>					
+
+				<?php if ($footer = Stack::getByName('Lateral Navigation Footer')): ?>
 				<div class="nav-footer"><?php $footer->display() ?></div>
 				<?php endif ?>
-			</div><!-- .inner -->						
+			</div><!-- .inner -->
 		</div><!-- .bottom -->
 	</div><!-- .wrap -->
 </div><!-- .top-nav-lateral	 -->
-
-
-

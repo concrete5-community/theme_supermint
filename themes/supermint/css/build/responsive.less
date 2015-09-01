@@ -53,9 +53,9 @@
       display: none;
     }
   }
-  .main-large-nav > ul ul {
+  .top-large-nav > ul ul {
       width: 220px !important;
-  }  
+  }
   .stack-column {
     padding: 0 5px !important;
     li {
@@ -66,12 +66,24 @@
         }
       }
     }
-  }  
+  }
+  // Lateral Nav --\\
+
+  .top-nav-lateral {
+    .mobile-handle {
+      right: -@space-m;
+      opacity: 1;
+    }
+  }
+  .with-lateral-nav .ccm-page {
+    margin-left: 0;
+  }
 }
 
 /* Landscape phone to portrait tablet (100%) */
 @media (max-width: 767px) {
-
+  .hidden-mobile {display: none}
+  .screen-state {content: "phone"}
   .absolute-container {
     left: 0;
     margin-left: 0;
@@ -85,20 +97,37 @@
   .left, .alignleft, .right, .alignright {
     float: none;
   }
-  // -- main-nav -- \\ 
 
-  #header-nav {
+  // -- Navigation -- \\
+
+  .regular-top-nav {
     display: none;
   }
+  // Show  Mobile navigation
   .small-display-nav-bar   {
-    height: (@fixed-bar-height)-.1;  
+    height: (@fixed-bar-height)-.1;
+    .small-display-nav-bar-inner {
+      display: block;
+    }
   }
-  .small-display-nav-bar-inner {
-    display: block;
+  // Hide the top-large-nav
+  .top-large-nav {
+    display: none;
   }
-
+  // With the lateral navigation Style
+  .with-lateral-nav {
+    // Remove the margin on the body
+    .ccm-page {
+      margin-left: 0;
+    }
+    // Hidde the mobile nav if present
+    .small-display-nav-bar {
+      display: none;
+    }
+  }
 
   // -- Slider -- \\
+
   .caption-wrapper {
     h1 {
       font-size: 18px;
@@ -120,5 +149,5 @@
   #top {
     display: none
   }
-  
+
 }

@@ -5,11 +5,11 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 
 // $p = \Concrete\Core\Package\Package::getByHandle('theme_supermint');
 // $ci = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintInstaller($p);
-// $ci->importContentFile($p->getPackagePath() . '/config/install/base/attributes.xml');	
+// $ci->importContentFile($p->getPackagePath() . '/config/install/base/attributes.xml');
 
 ?>
 <!DOCTYPE html>
-<html>
+<html class="<?php  echo $o->navigation_style == 'lateral-regular' ? 'with-lateral-nav' : '' ?>">
 <head>
 <?php echo $html->css($view->getStylesheet('main.less')); ?>
 <!-- Start Concrete Header -->
@@ -31,11 +31,17 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 </head>
 <body id="supermint"  class="supermint <?php if ($c->isEditMode()) : ?>edit-mode<?php  endif ?>" <?php if ($c->isEditMode()) : ?>style="margin:0 !important;"<?php  endif ?>>
     <!-- Responsive Nav -->
+    <?php
+    $responsiveNav = new GlobalArea('Responsive Navigation');
+    $responsiveNav->load($c);
+    $display_responsiveNav = $responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode() ;
+    ?>
+    <?php if ($display_responsiveNav): ?>
+
+
     <div class="small-display-nav-bar">
-        <?php 
-        $a = new GlobalArea('Responsive Navigation');
-        $a->display();
-        ?>    
+        <?php $responsiveNav->display()?>
     </div>
+    <?php endif; ?>
     <!-- End Responsive Nav -->
-	<div class="<?php echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('layout_mode') != 'default' ? $c->getAttribute('layout_mode') : $o->layout_mode ?> <?php  echo $o->navigation_style == 'lateral-regular' ? 'with-lateral-nav' : '' ?>">
+	<div class="<?php echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('layout_mode') != 'default' ? $c->getAttribute('layout_mode') : $o->layout_mode ?>">

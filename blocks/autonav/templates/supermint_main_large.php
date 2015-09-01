@@ -138,7 +138,7 @@ foreach ($navItems as $niKey => $ni) :
 endforeach;
 
 ?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
-<div class="top_nav_mega-menu main-large-nav">
+<div class="top_nav_mega-menu top-large-nav">
 	<ul class="mega-menu mgm-class mgm-fade mgm-responsive nav container" >
 <?php
 foreach ($navItems as $k=>$ni) :

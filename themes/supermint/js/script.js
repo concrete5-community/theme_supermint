@@ -1,7 +1,7 @@
 var docWidth = document.documentElement.offsetWidth;
 
 // Afficher les element avec la classe .detect
-detectOnView();    
+detectOnView();
 
 $(document).ready(function(){
 
@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 // Le breadcrumb
 	$(".rcrumbs").rcrumbs();
-	
+
 // les sliders
 	 $('.slick-wrapper').each(function(){
 	 	var e = $(this);
@@ -53,20 +53,25 @@ $(document).ready(function(){
 		 e.slick($.extend(options,settings));
 	 });
 
-// Accordions 
+// Accordions
 	initializeAccordions();
 
 // Tabs
 	initializeTabs();
 
 // AUto hidding responsive nav bar
-	$('.small-display-nav-bar-inner, .main-large-nav').autoHidingNavbar();	
+	$('.small-display-nav-bar-inner, .top-large-nav').autoHidingNavbar();
+
+// Mobile behavior on lateral navigation
+	intitializeLateralMobile();
+
+
 
 // Happier text
 	var nodes = $('.harmonize-width-heading');
 	if (nodes.size()) nodes.harmonizeText();
 
-	
+
 // Magnific popup
 	$('.magnific-wrapper').each(function(){
 		var t = $(this);
@@ -79,15 +84,15 @@ $(document).ready(function(){
 	  		removalDelay: 500,
 			  gallery:{
 			    enabled:true
-			  }	  		
+			  }
 		})
-	});  
+	});
 
 	$(".open-popup-link").magnificPopup({
 		type:'inline',
-		midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.		
+		midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
 	  		mainClass: 'mfp-effect',
-	  		removalDelay: 500		
+	  		removalDelay: 500
 	});
 
 	$('.page-list-img-box-hover .inner').hover(function(){
@@ -95,14 +100,6 @@ $(document).ready(function(){
 	}, function(){
 		$(this).removeClass('area-primary');
 	})
-
-	// Ajouster la largeur des item de la navigation
-
-	
-	if ($('.main-large-nav ul').size()) {
-		var navItems = $('.main-large-nav > ul > li').not('.nav-logo');
-		navItems.css('width',100/navItems.size() + "%");		
-	}
 
 
 	 // Fixer le probleme des video sous le menu
@@ -116,20 +113,43 @@ $(document).ready(function(){
 		           }
 		          $(this).attr("src",url+char+"wmode=transparent");
 		      }
-	    });	 
+	    });
 	}
 });
 
- 
+
 window.onload = function() {$('body').addClass('loaded')};
 
+// -- Media Queries -- \\
 
-function is_int(value){ 
+enquire.register("screen and (max-width: 979px)", {
+
+    match : function() {
+			$('.top-nav-lateral').addClass('masked');
+			// On desactive les dropdown
+			$('.top-large-nav li.has-submenu').removeClass('mgm-drop');
+		},
+    unmatch : function() {
+			$('.top-nav-lateral').removeClass('masked');
+			$('.top-large-nav li.has-submenu').addClass('mgm-drop');
+		}
+
+});
+
+// -- Lateral responsive behavior -- \\
+function intitializeLateralMobile () {
+	$('.top-nav-lateral .mobile-handle').on('click',function(e){
+		$(this).parent().toggleClass('masked');
+	})
+}
+
+
+function is_int(value){
   if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
       return true;
-  } else { 
+  } else {
       return false;
-  } 
+  }
 }
 
 function initializeAccordions () {
@@ -137,16 +157,16 @@ function initializeAccordions () {
         var titles = $(this).find('.title');
 
         titles.not('.active').each(function(){$(this).next('.content').hide()});
-        
+
         titles.click(function(e){
             e.preventDefault();
             var title = $(this);
             var active = title.is('.active') ? true : false;
-            
+
             var accordion = title.parent().parent();
             accordion.find('.title.active').removeClass('active');
             accordion.find('.content.active').slideUp().removeClass('active');
-            
+
             if (active) return;
 
             title.addClass('active');
@@ -163,7 +183,7 @@ function initializeTabs () {
         var tab = $(this).attr("href");
         $(".tab-content", $(this).parent().parent().parent() ).not(tab).css("display", "none");
         $(tab).fadeIn();
-    });	
+    });
 }
 
 // -- Ajoute la classe 'view' sur les element '.detect' une fois qu'il arrive dans le viewport -- \\
@@ -204,9 +224,9 @@ function detectOnView () {
             triggerBttn.addClass('active');
         }
     }
-
     triggerBttn.on( 'click', toggleOverlay );
 })();
+
 
 /*
 	By Osvaldas Valutis, www.osvaldas.info

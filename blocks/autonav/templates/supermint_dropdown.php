@@ -13,10 +13,10 @@ $h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
 
 $navigationStyle = $o->navigation_style ? $o->navigation_style : "regular-top-nav";
 
-// Global Logo 
+// Global Logo
 $logo = Stack::getByName('Site Logo');
 
-// Pour les stacks 
+// Pour les stacks
 $c = Page::getCurrentPage();
 $cp = new Permissions($c);
 $canViewVersion = $cp->canViewPageVersions() ? 'ACTIVE' : null;
@@ -25,6 +25,7 @@ $canViewVersion = $cp->canViewPageVersions() ? 'ACTIVE' : null;
 // Peut être utile si il faut gagner de la performance..
 foreach ($navItems as $navItem) {
 	if ($navItem->level == 1) :
+		$cIDinLevel1[] = $navItem->cID;
 		$l1 = $navItem->cID;
 		$navItem->childrens = $navItem->cObj->getCollectionChildrenArray();
 	elseif ($navItem->level == 2 ) :
@@ -102,15 +103,19 @@ foreach ($navItems as $niKey => $ni) :
 			}
 		// C'est un dropdown normal
 		elseif ($ni->hasSubmenu) :
-			$classes[]  = 'mgm-drop mgm-levels';				
+			$classes[]  = 'mgm-drop mgm-levels';
 		endif;
+		// Si le style de nav est top-large-nav on divise la largeur par le nombre d'items
+		if ($navigationStyle == 'top-large-nav')
+			$style[] = 'width:' . 100 / count($cIDinLevel1) . '%';
+
 	endif;
 	$ni->classes = implode(" ", $classes);
 	$ni->style = implode(";", $style);
 endforeach;
 
 foreach ($navItems as $niKey => $ni) :
-	/* 
+	/*
 	 * Maintenant on imprime les sous menu dans une variable $ni->sub
 	 */
 
@@ -120,13 +125,13 @@ foreach ($navItems as $niKey => $ni) :
 		Loader::PackageElement("navigation/stack", 'theme_supermint', array(
 			'ni' => $ni,
 			'o' => $o
-		));							
+		));
 		$ni->sub = ob_get_clean();
-	// On charge le template 'drop'	
+	// On charge le template 'drop'
 	elseif ($ni->hasSubmenu && $ni->level == 1) :
 		$options = array(
 				'navItems'=> $navItems,
-				'niKey' => $niKey, 
+				'niKey' => $niKey,
 				'subNavItems' => $subNavItems,
 				'subsubNavItems' => $subsubNavItems,
 				'o' => $o
@@ -143,33 +148,31 @@ endforeach;
 
 ?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
 <div class="top_nav_mega-menu <?php echo $navigationStyle ?>">
-	<ul class="mega-menu mgm-class mgm-fade mgm-responsive  container" >
-		<?php if ($logo): ?>
-			<li class="nav-logo"><span><?php $logo->display() ?></span></li>
-		<?php endif ?>
+	<ul class="mega-menu mgm-class mgm-fade  container" >
+			<li class="nav-logo"><span><?php if ($logo) $logo->display(); ?></span></li>
 <?php
 foreach ($navItems as $k=>$ni) :
-	
+
 	if($ni->level != 1 ) continue;
-	
-	echo '<li class="' . $ni->classes . '">'; //opens a nav item
+
+	echo '<li class="' . $ni->classes . '" style="' . $ni->style . '">'; //opens a nav item
 	// L'url est remplacé par # si il y a un sous mennu
 	// C'est malheureusement la condition sine qua non pour que le menu fonctionne en mode mobile
-		echo '<a href="' .   $ni->url . '" target="' . $ni->target . '" style="' . $ni->style . '">' . ($o->first_level_nav_icon ? $ni->icon : '') . ' ' . $ni->name . '</a>';
-	
+		echo '<a href="' .   $ni->url . '" target="' . $ni->target . '">' . ($o->first_level_nav_icon ? $ni->icon : '') . ' ' . $ni->name . '</a>';
+
 	if($ni->sub) echo $ni->sub;
-	
+
 	echo '</li>';
-	
+
 	// Si le menu est selectionnŽ ou un de ses enfant
 	if ($ni->isCurrent || $ni->inPath) {
 		// On recupere lequel est selectionne ou enfant
 		$selected_item_index = $i;
 	}
 	$i ++;
-	
+
 endforeach?>
-	
+
 <?php
 if($o->display_searchbox) :
 	$p = Page::getByID($o->display_searchbox);
@@ -182,7 +185,7 @@ if($o->display_searchbox) :
 	   <!-- <input type="submit" id="search-go" name="go" value="go"/> -->
 	</form>
 	</li>
-	<?php endif ?>		
-<?php endif ?>		
+	<?php endif ?>
+<?php endif ?>
 	</ul>
 </div><!-- #top_nav -->

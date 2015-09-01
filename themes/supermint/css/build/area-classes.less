@@ -23,23 +23,23 @@
 	}
 	&-body {
 	  .area-color( @body-bg-color; @body-type-color);
-	  background-image: url(@body-bg-pattern-image); 			
-	}	
+	  background-image: url(@body-bg-pattern-image);
+	}
 
 // Spacing
 
 	&-space-s {
-		padding:@space-s;	
+		padding:@space-s;
 	}
 	&-space-m {
-		padding:@space-m;	
-	}	
+		padding:@space-m;
+	}
 	&-space-l {
-		padding:@space-xl;	
-	}	
+		padding:@space-xl;
+	}
 	&-space-xl {
-		padding:@space-xxl;	
-	}	
+		padding:@space-xxl;
+	}
 }
 
 
@@ -51,21 +51,24 @@
 		color:@contrast;
 	}
 	h1 small,h2 small,h3 small,h4 small,h5 small,h6 small {
-		color:fade(@contrast,60%);	
+		color:fade(@contrast,60%);
 	}
 	hr {
-		background-color:fade(@contrast,50%);	
+		background-color:fade(@contrast,50%);
 	}
 	a, .lead strong {
 		// Choisi entre la couleur par defaut des liens ou la couleur contraste
-		color:contrast(@color, 
-			hsl(hue(@color),saturation(@color),lightness(@color)-30), 
+		color:contrast(@color,
+			hsl(hue(@color),saturation(@color),lightness(@color)-30),
 			hsl(hue(@color),saturation(@color),lightness(@color)+35)
 			);
 	}
 	// Accordion and other contents that need to loose her background
 	.content-inner {
 		background-color: transparent !important;
+	}
+	.leaders::after {
+		background-image: radial-gradient(circle closest-side,fade(@contrast, 50%) 80%, transparent 10%);
 	}
 }
 
@@ -113,7 +116,7 @@
 
 // -- Pour eecuperer les classes
 .area-primary {
-	
+
 }
 .area-secondary {
 
@@ -130,5 +133,3 @@
 .area-black {
 
 }
-
-

@@ -119,28 +119,29 @@ class Controller extends Package  {
 
     public function registerAssets () {
  		$al = AssetList::getInstance();
- 		$al->register( 'javascript', 'boxnav', 'themes/supermint/js/jquery.boxnav.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'javascript', 'slick', 'themes/supermint/js/slick.min.js', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'javascript', 'fitvids', 'themes/supermint/js/jquery.fitvids.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'javascript', 'rcrumbs', 'themes/supermint/js/jquery.rcrumbs.min.js', array('version' => '1.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'javascript', 'nprogress', 'themes/supermint/js/nprogress.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'javascript', 'autohidingnavbar', 'themes/supermint/js/jquery.autohidingnavbar.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'javascript', 'supermint.script', 'themes/supermint/js/script.js', array('version' => '0.1.6', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
-   	$al->register( 'javascript', 'YTPlayer', 'themes/supermint/js/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
-		$al->register( 'javascript', 'modernizr.custom', 'themes/supermint/js/modernizr.custom.js', array('version' => '2.7.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
-		$al->register( 'javascript', 'transit', 'themes/supermint/js/jquery.transit.js', array('version' => '0.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
-    $al->register( 'javascript', 'isotope', 'themes/supermint/js/isotope.pkgd.min.js', array('version' => '2.1.1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
-    $al->register( 'javascript', 'wow', 'themes/supermint/js/wow.js', array('version' => '1.1.2', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
-    $al->register( 'javascript', 'happier-text', 'themes/supermint/js/fitter-happier-text.js', array('version' => '1', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'javascript', 'boxnav', 'themes/supermint/js/jquery.boxnav.js', array('version' => '1.0'), $this );
+ 		$al->register( 'javascript', 'slick', 'themes/supermint/js/slick.min.js', array('version' => '1.5.0'), $this );
+ 		$al->register( 'javascript', 'fitvids', 'themes/supermint/js/jquery.fitvids.js', array('version' => '1.0'), $this );
+ 		$al->register( 'javascript', 'rcrumbs', 'themes/supermint/js/jquery.rcrumbs.min.js', array('version' => '1.1'), $this );
+ 		$al->register( 'javascript', 'nprogress', 'themes/supermint/js/nprogress.js', array('version' => '0.1.6'), $this );
+ 		$al->register( 'javascript', 'autohidingnavbar', 'themes/supermint/js/jquery.autohidingnavbar.js', array('version' => '0.1.6'), $this );
+ 		$al->register( 'javascript', 'supermint.script', 'themes/supermint/js/script.js', array('version' => '0.1.6'), $this );
+   	$al->register( 'javascript', 'YTPlayer', 'themes/supermint/js/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
+		$al->register( 'javascript', 'modernizr.custom', 'themes/supermint/js/modernizr.custom.js', array('version' => '2.7.1'), $this );
+		$al->register( 'javascript', 'transit', 'themes/supermint/js/jquery.transit.js', array('version' => '0.1'), $this );
+    $al->register( 'javascript', 'isotope', 'themes/supermint/js/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
+    $al->register( 'javascript', 'wow', 'themes/supermint/js/wow.js', array('version' => '1.1.2'), $this );
+    $al->register( 'javascript', 'happier-text', 'themes/supermint/js/fitter-happier-text.js', array('version' => '1'), $this );
+		$al->register( 'javascript', 'enquire', 'themes/supermint/js/enquire.js', array('version' => '2.1.2'), $this );
 
- 		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'css', 'slick-theme', 'themes/supermint/css/addons/slick-theme.css', array('version' => '1.5.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
- 		$al->register( 'css', 'buttons', 'themes/supermint/css/addons/buttons.css', array('version' => '1.3.4', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
-		$al->register( 'css', 'bootsrap-custom', 'themes/supermint/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
-		$al->register( 'css', 'animate', 'themes/supermint/css/addons/animate.css', array('version' => '1', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
-		$al->register( 'css', 'mega-menu', 'themes/supermint/css/addons/mega-menu.css', array('version' => '1.1.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
-		$al->register( 'css', 'transit', 'themes/supermint/css/addons/jquery.transit.css', array('version' => '0.1', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this );
+ 		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
+ 		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0'), $this );
+ 		$al->register( 'css', 'slick-theme', 'themes/supermint/css/addons/slick-theme.css', array('version' => '1.5.0'), $this );
+ 		$al->register( 'css', 'buttons', 'themes/supermint/css/addons/buttons.css', array('version' => '1.3.4'), $this );
+		$al->register( 'css', 'bootsrap-custom', 'themes/supermint/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4'), $this );
+		$al->register( 'css', 'animate', 'themes/supermint/css/addons/animate.css', array('version' => '1'), $this );
+		$al->register( 'css', 'mega-menu', 'themes/supermint/css/addons/mega-menu.css', array('version' => '1.1.0'), $this );
+		$al->register( 'css', 'transit', 'themes/supermint/css/addons/jquery.transit.css', array('version' => '0.1'), $this );
 
 		// -- Redactor Plugins -- \\
 

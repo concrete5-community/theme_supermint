@@ -30,6 +30,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $this->requireAsset('javascript', 'transit');
         $this->requireAsset('javascript', 'isotope');
         $this->requireAsset('javascript', 'happier-text');
+        $this->requireAsset('javascript', 'enquire');
         $this->requireAsset('javascript', 'supermint.script');
 
         // $this->requireAsset('javascript', 'fontcolor');

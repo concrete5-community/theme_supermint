@@ -25,22 +25,25 @@
     .ccm-toolbar-visible & {
         top: 48px
     }
-    
-    // -- Animations 
-    
+    .edit-mode & {
+      top: 0;
+    }
+
+    // -- Animations
+
     .transition(top .4s @ease-speed);
-    
+
     &.navbar-hidden {
         top: -@fixed-bar-height;
     }
     span.nav-logo {
         display: inline-block;
         height: @fixed-bar-height;
-        overflow: hidden;  
+        overflow: hidden;
         svg {
             width: 100%;
             height: auto;
-        }      
+        }
     }
 }
 .overlay {
@@ -163,7 +166,7 @@
     left:0;
     border-radius:(@height-line / 2);
     .transition(all @transition-time);
-    
+
     &.line-1 {
       top:0;
     }
@@ -186,4 +189,3 @@
     }
   }
 }
-

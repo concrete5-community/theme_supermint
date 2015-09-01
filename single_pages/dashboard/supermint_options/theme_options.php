@@ -91,6 +91,12 @@ $options = array(
         ),
         "type" => "select"
     ),
+
+
+    // Blocks templates
+
+
+
     array(
         "name" => t("Blocks templates"),
         "desc" => t('In this section you find options to controls Block\'s custom template details'),
@@ -141,6 +147,13 @@ $options = array(
         "type" => "awesome",
         "default" => 'fa-chevron-circle-right'
     ),
+
+
+
+    // Navigation
+
+
+
     array(
         "name" => t("Supermint Navigation"),
         "desc" => t('This section display options common for the navigation\'s types'),
@@ -154,9 +167,9 @@ $options = array(
         "default" => 'dropdown',
         "options" => array(
             'slide' => t("Slide mode"),
-            'regular-top-nav' => t("Regular drop-down mode")//,
-            // 'main-large-nav' => t('Wide drop-down mode'),
-            // 'lateral-regular' => t('Lateral mode')
+            'regular-top-nav' => t("Regular drop-down mode"),
+            'top-large-nav' => t('Wide Large drop-down mode'),
+            'lateral-regular' => t('Lateral mode')
         ),
         "type" => "select"
     ),
@@ -245,19 +258,26 @@ $options = array(
         "default" => 0,
         "type" => "toggle"
     ),
-    // array(
-    //     "name" => t("Header position"),
-    //     "desc" => t("Choose to display the header from stack (named 'Lateral Navigation Header') in top or bottom"),
-    //     "id" => "header_position_on_lateral_nav",
-    //     "default" => 'top',
-    //     "options" => array(
-    //         'top' => t("Aligned on Top"),
-    //         'middle' => t("Aligned on Middle"),
-    //         'bottom' => t("Aligned on Bottom")
-    //     ),
-    //     "type" => "select"
-    // ),
-   array(
+    array(
+        'name' => t('Responsive full width mode'),
+        "desc" => t('Options When the nav showed on mobile'),
+        'type' => 'subsection'
+    ),
+    array(
+        "name" => t("Display the stack 'Site Logo' on the mobile nav"),
+        "desc" => t("If enabled the content of the stack will be displayed at left"),
+        "id" => "display_logo_mobile_nav",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+    array(
+        "name" => t("Display the regular Area Logo"),
+        "desc" => t("If disabled, the Logo will be hidden"),
+        "id" => "display_main_logo_on_mobile",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+    array(
         "name" => t("Mega menu options"),
         "desc" => t('Options when a parent page display a Stack as mega-menu'),
         "icon" => 'fa-th-list',

@@ -1,8 +1,8 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-
+$o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 $navItems = $controller->getNavItems();
-// Global Logo 
-$logo = Stack::getByName('Site Logo');
+// Global Logo
+if($o->display_logo_mobile_nav) $logo = Stack::getByName('Site Logo');
 
 foreach ($navItems as $ni) {
 	$classes = array();
@@ -35,7 +35,7 @@ foreach ($navItems as $ni) {
 		<nav>
 			<ul>
 				<li><a href="<?php echo Loader::helper('navigation')->getLinkToCollection(Page::getByID(1)) ?>"><i class="fa fa-home"></i>
-</a></li><?php 
+</a></li><?php
 foreach ($navItems as $ni) {
 
 	echo '<li class="' . $ni->classes . '">'; //opens a nav item

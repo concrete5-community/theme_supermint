@@ -5,7 +5,6 @@
         <pagetemplate icon="right_sidebar.png" name="Right Sidebar" handle="right_sidebar" package="theme_supermint" internal=""/>
         <pagetemplate icon="full.png" name="Full" handle="full" package="theme_supermint" internal=""/>
         <pagetemplate icon="full.png" name="Wide" handle="wide" package="theme_supermint" internal=""/>
-        <!-- Full wide is not yet documented & made for lateral nav-->
-        <!-- <pagetemplate icon="full.png" name="Full Wide" handle="full_wide" package="theme_supermint" internal=""/> -->
+        <pagetemplate icon="full.png" name="Full Wide" handle="full_wide" package="theme_supermint" internal=""/>
     </pagetemplates>
 </concrete5-cif>
