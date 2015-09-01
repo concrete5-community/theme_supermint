@@ -11,7 +11,7 @@
             <th><strong><?php  echo t("Default Selection"); ?></strong></th>
             <th><strong><?php  echo t("Delete"); ?></strong></th>
             <th><strong><?php  echo t("Export"); ?></strong></th>
-            
+
     <?php  foreach ($list as $k=>$p) :
             //$u = User::getByUserID($p['creator']);
         ?>
@@ -66,24 +66,24 @@
         </form>
         <div style="height:60px">&nbsp; </div>
 
-        <div class="section"><h3><?php echo t('Export a Preset') ?></h3></div>        
+        <div class="section"><h3><?php echo t('Export a Preset') ?></h3></div>
         <form enctype="multipart/form-data" action="<?php  echo $this->action('import_preset')?>" method="post">
         <table cellpadding="20" cellspacing="1" class="entry-form zebra-striped" style="background:rgb(221, 226, 231)">
             <tr>
                 <td style="width:50%">
                     <h2><?php echo t('Import a preset') ?></h2>
-                    <p><?php echo t('Preset can be imported and exported.') ?></p>                                
+                    <p><?php echo t('Preset can be imported and exported.') ?></p>
                 </td>
                 <td>
                         <input id="appendedInputButtons" name="userfile" type="file" title="<?php echo t('Pick a .mcl file') ?>">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="10000" />                    
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10000" />
                 </td>
                 <td>
                         <button class="btn btn-primary" type="submit" ><?php echo t('Load preset') ?></button>
                 </td>
             </tr>
         </table>
-         </form>                    
+         </form>
     </div>
 </div>
 
