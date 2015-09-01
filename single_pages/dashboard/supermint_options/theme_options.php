@@ -26,7 +26,7 @@ $options = array(
         "name" => t("Display Top Bar"),
         "desc" => t("Display zone with Logo Area, right Header content,.. Disable this for the Wide navigation style"),
         "id" => "display_top_bar_area",
-        "default" => 0,
+        "default" => 1,
         "type" => "toggle"
     ),
     array(
@@ -164,7 +164,7 @@ $options = array(
         "name" => t("Navigation Style"),
         "desc" => t("Choose the navigation style"),
         "id" => "navigation_style",
-        "default" => 'dropdown',
+        "default" => 'regular-top-nav',
         "options" => array(
             'slide' => t("Slide mode"),
             'regular-top-nav' => t("Regular drop-down mode"),
@@ -240,7 +240,7 @@ $options = array(
         "type" => "range"
     ),
     array(
-        "name" => t("Activate the breack by parent"),
+        "name" => t("Activate the break by parent"),
         "desc" => t("The number of columns is detreminated by the number of child page in second level"),
         "id" => "break_columns_on_child",
         "default" => 1,
@@ -267,12 +267,12 @@ $options = array(
         "name" => t("Display the stack 'Site Logo' on the mobile nav"),
         "desc" => t("If enabled the content of the stack will be displayed at left"),
         "id" => "display_logo_mobile_nav",
-        "default" => 0,
+        "default" => 1,
         "type" => "toggle"
     ),
     array(
-        "name" => t("Display the regular Area Logo"),
-        "desc" => t("If disabled, the Logo will be hidden"),
+        "name" => t("Display the regular Area Logo on Mobile"),
+        "desc" => t("If disabled, the Logo will be hidden when the mobile nav is shown"),
         "id" => "display_main_logo_on_mobile",
         "default" => 0,
         "type" => "toggle"
@@ -449,6 +449,10 @@ $options = array(
         "type" => "range"
     ),
 
+
+    // Footer
+
+
     array(
         'name' => t('Footer'),
         "desc" => t('Options for the Footer section'),
@@ -466,7 +470,7 @@ $options = array(
         "name" => t("Footer column"),
         "desc" => t("How many column you want in the footer"),
         "id" => "display_footer_column",
-        "default" => "half_three",
+        "default" => "half_two",
         "options" => array(
             1 => t("One"),
             2 => t("Two"),
@@ -567,7 +571,7 @@ $options = array(
         "name" => t("Activate iFrame z-index script"),
         "desc" => t("This script fix a iFrame z-index isue on certain condition."),
         "id" => "fix_iframe_zindex",
-        "default" => 1,
+        "default" => 0,
         "activated" => true,
         "type" => "toggle"
     ),
