@@ -35,11 +35,14 @@
 }
 
 // -- Row with no gap -- \\
-.row.no-gap {
+.row.no-gap,
+.ccm-custom-style-container.no-gap .row {
   margin-right:0;
   margin-left:0;
 }
-.row.no-gap > [class*='col-'] {
+.row.no-gap > [class*='col-'],
+.ccm-custom-style-container.no-gap .row  > [class*='col-']
+ {
   padding-right:0;
   padding-left:0;
 }

@@ -15,8 +15,11 @@
 .square(@size) {
   .size(@size; @size);
 }
-
-
+.reset-container {
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
+}
 // -- Container
 
 .container-fixed(@gutter: @grid-gutter-width) {
@@ -49,7 +52,7 @@
   // filter: ~"alpha(opacity=@{opacity-ie})";
 }
 
-// -- light color: 
+// -- light color:
 .light-color (@color; @bright : 95%) {
 	color: hsl(hue(@color),saturation(@color),@bright);
-} 
+}

@@ -86,11 +86,25 @@ img.edit-mode-thumb {
   .lateral-wide & {
     h1,h3 {
       margin-left: @lateral-nav-width;
-    }    
+    }
+  }
+  .into-columns & .container {
+    .reset-container();
+  }
+}
+
+// Supermint Hover
+
+.img-box-hover-light .image-wrapper {
+  background-size: cover;
+  // the smoked layer
+  &::after{
+    border-radius: 100%;
   }
 }
 
 // -- Colored overlay -- \\
+
 .image-wrapper {
   position: relative;
 
@@ -124,9 +138,8 @@ img.edit-mode-thumb {
   }
   .quaternary-smoked &:after {
     background-color: fade(@quaternary-color, 60%);
-  }  
+  }
   .white-smoked &:after {
     background-color: fade(@white-color, 60%);
   }
 }
-

@@ -25,6 +25,27 @@ a.mpf-inline.open-popup-link {
 	margin-bottom: @space-s
 }
 
+// -- Contentn Block -- \\
+
+.image-caption {
+  padding: @space-xs @space-s;
+  background-color: @light-color;
+  color: @grey-color;
+  font-size: @font-size-small;
+  p {
+    margin: 0
+  }
+}
+.image-caption-inside {
+  .image-caption();
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  right: 15px;
+  background-color: fade(@light-color,60%);
+  color: fade(@black-color,70%);
+  transform: translateY(-100%);
+}
 
 /* -- Page-list & Features -- */
    // These block share same content -- */

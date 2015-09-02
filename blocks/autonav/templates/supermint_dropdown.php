@@ -52,13 +52,14 @@ foreach ($navItems as $niKey => $ni) :
 	$classes = array();
 	$style = array();
 	$col_width = 230;
+
 	if ($ni->cObj->getAttribute('main_page_color'))
 		$style[] = 'border-bottom-color:' . $ni->cObj->getAttribute('main_page_color');
 
 	if ($ni->isCurrent || $ni->inPath)
 		$classes[] = 'active';
 
-	$ni->icon = $ni->cObj->getAttribute('icon') ? '<i class="fa ' . $ni->cObj->getAttribute('icon') . '"></i>' : '';
+	$ni->icon = ($ni->cObj->getAttribute('icon') && $o->first_level_nav_icon) ? '<i class="fa ' . $ni->cObj->getAttribute('icon') . '"></i>' : '';
 
 	if ($ni->hasSubmenu) {
 		$classes[] = 'has-submenu';
@@ -158,7 +159,7 @@ foreach ($navItems as $k=>$ni) :
 	echo '<li class="' . $ni->classes . '" style="' . $ni->style . '">'; //opens a nav item
 	// L'url est remplacé par # si il y a un sous mennu
 	// C'est malheureusement la condition sine qua non pour que le menu fonctionne en mode mobile
-		echo '<a href="' .   $ni->url . '" target="' . $ni->target . '">' . ($o->first_level_nav_icon ? $ni->icon : '') . ' ' . $ni->name . '</a>';
+		echo '<a href="' .   $ni->url . '" target="' . $ni->target . '">' . $ni->icon . ' ' . $ni->name . '</a>';
 
 	if($ni->sub) echo $ni->sub;
 

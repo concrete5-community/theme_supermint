@@ -68,15 +68,16 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         return array(
             // 'page_list' => array('simple'),
             'feature' => array('icon-m','icon-l','icon-xl'),
-            'content' => array('collapse-top-margin'),
+            'content' => array('image-caption','image-caption-inside','collapse-top-margin'),
             'autonav' => array('small-text-size'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','primary','secondary','tertiary','quaternary'),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
-            'image' => array('responsive','black-smoked','primary-smoked','secondary-smoked','quaternary-smoked', 'white-smoked','no-text','height-80','height-50','height-30'),
+            'image' => array('black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked','no-text','height-80','height-50','height-30','into-columns'),
             'image_slider' =>array_merge(array('into-columns','header-style-1','header-style-2'),$columnsClasses, $marginClasses),
             'page_attribute_display' => array('leaded','lighted'),
             'page_list' => array_merge($columnsClasses,$marginClasses),
-            'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light'),$columnsClasses)
+            'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light'),$columnsClasses),
+            'core_area_layout' => array('no-gap')
         );
     }
 

@@ -1,13 +1,12 @@
 /*
-.-. .-. .-. . . .-. .-. .-.     . .-. 
- |  |(  |-| |\| `-.  |   |      | `-. 
- '  ' ' ` ' ' ` `-' `-'  '  . `-' `-' 
- Copyright 2015 My Concrete Lab    
- Version 0.1                               
+.-. .-. .-. . . .-. .-. .-.     . .-.
+ |  |(  |-| |\| `-.  |   |      | `-.
+ '  ' ' ` ' ' ` `-' `-'  '  . `-' `-'
+ Copyright 2015 My Concrete Lab
+ Version 0.1
 */
 
 // this is only for IE8
-// TODO Bouger ceci au tout debut de la page
 if (!Object.create) {
     Object.create = function(proto, props) {
         if (typeof props !== "undefined") {
@@ -48,7 +47,7 @@ var Transit = {
 		this.isAnimating = false;
 		this.cntAnims = 0;
 		this.newClasses = '';
-		this.oldClasses = '';		
+		this.oldClasses = '';
 
 		// Events
 
@@ -114,7 +113,7 @@ var Transit = {
 
 		if( this.isAnimating ) return false;
 		this.isAnimating = true;
-		
+
 		this.currentSlideItem = $(this.items[ this.currentSlide ]);
 		// l(this.currentSlide);
 
@@ -125,7 +124,7 @@ var Transit = {
 			this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.itemsCount - 1;
 		}
 		else if (dir === parseInt(dir, 10)) {
-			this.currentSlide = dir;	
+			this.currentSlide = dir;
 		}
 
 		this.nextItem = $(this.items[ this.currentSlide ]);
@@ -144,7 +143,7 @@ var Transit = {
 
 		this.currentSlideItem.addClass( dir === 'next' ? 'navOutNext' : 'navOutPrev' );
 		this.nextItem.addClass(  dir === 'next' ? 'navInNext' : 'navInPrev' );
-	}, 
+	},
 	onEndAnimationCurrentItem : function(el, dir) {
 		el.off( this.animEndEventName ).removeClass( 'current' ).removeClass( dir === 'next' ? 'navOutNext' : 'navOutPrev' );
 		++this.cntAnims;
@@ -183,7 +182,7 @@ $(document).ready(function(){
       return this.each(function(){
         // Create a new transit object via the Prototypal Object.create
         var myTransit = Object.create(Transit);
-      
+
 
         // Run the initialization function of the transit
         myTransit.init(options, this); // `this` refers to the element

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeSupermint\Controller\Tools;
 
 use \Concrete\Core\Controller\Controller as RouteController;
@@ -11,11 +11,11 @@ use Page;
 use Config;
 use StdClass;
 
-/* -- TODO : Simplifier la recherche de contraste, sans passer par une couleur HEX et avec la maitrise du point de bascule */
+// TODO Simplifier la recherche de contraste, sans passer par une couleur HEX et avec la maitrise du point de bascule */
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
-class PresetColors extends RouteController {		
+class PresetColors extends RouteController {
 
 
     function getColors () {
@@ -35,14 +35,14 @@ class PresetColors extends RouteController {
         // On recupère le preset par defaut
         foreach ($presets as $preset) { if ($preset->isDefaultPreset()) $defaultPreset = $preset; }
 
-        $colorsObject = new stdClass();        
+        $colorsObject = new stdClass();
 
         // Si cette page a un style specifique
-        if ($c->hasPageThemeCustomizations()) 
+        if ($c->hasPageThemeCustomizations())
             $customStyleObject = $c->getCustomStyleObject();
         // Sinon, on prend le style du thème, global a plusieurs pages
-        else 
-            $customStyleObject = $pt->getThemeCustomStyleObject();        
+        else
+            $customStyleObject = $pt->getThemeCustomStyleObject();
 
         // Si on a pu recupérer le style
         if (is_object($customStyleObject)) {
@@ -54,7 +54,7 @@ class PresetColors extends RouteController {
             }
             // on recupère la liste de valeur du preset actif
             $valueList = $customStyleObject->getValueList();
-        // Sinon, on prend le preset par default    
+        // Sinon, on prend le preset par default
         } else {
             $selectedPreset = $defaultPreset;
             $valueList = $defaultPreset->getStyleValueList();
@@ -94,10 +94,10 @@ class PresetColors extends RouteController {
 
 
     function rgb2hex($rgbstring) {
-        
+
         $color = str_replace(array('rgb(', ')', ' '), '', $rgbstring);
-        $rgb = explode(',', $color);        
-        
+        $rgb = explode(',', $color);
+
         $hex = "#";
         $hex .= str_pad(dechex($rgb[0]), 2, "0", STR_PAD_LEFT);
         $hex .= str_pad(dechex($rgb[1]), 2, "0", STR_PAD_LEFT);
@@ -105,7 +105,7 @@ class PresetColors extends RouteController {
 
        return $hex; // colorsObjects the hex value including the number sign (#)
     }
-    
+
     function contrast ($hexcolor, $dark = '#000000', $light = '#FFFFFF') {
         return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;
     }

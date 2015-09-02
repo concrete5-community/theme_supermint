@@ -31,7 +31,7 @@ foreach ($navItems as $niKey => $ni) :
 	if ($ni->isCurrent || $ni->inPath)
 		$classes[] = 'active';
 
-	$ni->icon = ($ni->cObj->getAttribute('icon') && $o->display_icon_in_lateral_nav) ? '<i class="fa ' . $ni->cObj->getAttribute('icon') . '"></i>' : '';
+	$ni->icon = ($ni->cObj->getAttribute('icon') && $o->first_level_nav_icon) ? '<i class="fa ' . $ni->cObj->getAttribute('icon') . '"></i>' : '';
 
 
 	// Maintenant on va voir si il y a des bloc autorisé dans un stack relatif.
