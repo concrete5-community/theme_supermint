@@ -68,8 +68,8 @@ $(document).ready(function(){
 
 
 // Happier text
-	var nodes = $('.harmonize-width-heading');
-	if (nodes.size()) nodes.harmonizeText();
+	var nodes = $('.harmonize-width-heading li > a');
+	if (nodes.size()) nodes.harmonizeText().delay(3000).css('opacity',1);
 
 
 // Magnific popup

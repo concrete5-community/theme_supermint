@@ -29,7 +29,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $this->requireAsset('javascript', 'YTPlayer');
         $this->requireAsset('javascript', 'transit');
         $this->requireAsset('javascript', 'isotope');
-        $this->requireAsset('javascript', 'happier-text');
+        $this->requireAsset('javascript', 'harmonize-text');
         $this->requireAsset('javascript', 'enquire');
         $this->requireAsset('javascript', 'supermint.script');
 
@@ -72,7 +72,15 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
             'autonav' => array('small-text-size'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','primary','secondary','tertiary','quaternary'),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
-            'image' => array('black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked','no-text','height-80','height-50','height-30','into-columns'),
+                              // Smoked classes
+            'image' => array('black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked',
+                             'no-text',
+                              // Height classes
+                             'height-80','height-50','height-30',
+                             'into-columns',
+                             // Caption  classes
+                             'caption-inside','caption-hover',
+                             'caption-primary', 'caption-secondary', 'caption-tertiary', 'caption-quaternary'),
             'image_slider' =>array_merge(array('into-columns','header-style-1','header-style-2'),$columnsClasses, $marginClasses),
             'page_attribute_display' => array('leaded','lighted'),
             'page_list' => array_merge($columnsClasses,$marginClasses),

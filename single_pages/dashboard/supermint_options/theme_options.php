@@ -230,7 +230,7 @@ $options = array(
     ),
      array(
         "name" => t("Number of link per columns"),
-        "desc" => t("Tthis setting allow you to set the number of items by columns (only if the \"breack by parent\" (below)) is desactivated "),
+        "desc" => t("This setting allow you to set the number of items by columns (only if the \"breack by parent\" (below)) is desactivated "),
         "id" => "nav_multicolumns_item_per_column",
         "min" => "1",
         "max" => "40",
@@ -252,9 +252,42 @@ $options = array(
         'type' => 'subsection'
     ),
     array(
-        "name" => t("Use 'Alternate' Font style for navigation"),
-        "desc" => t("If enabled this options take the alternate Font settings for navigation Items"),
-        "id" => "use_alternate_on_lateral_nav",
+        "name" => t("Choose the font-family for links"),
+        "desc" => t("By choosing a element you select wich font (not size) to use for links in the navigation"),
+        "id" => "lateral_nav_element_font",
+        "default" => 'p',
+        "options" => array(
+            0 => t("Paragraph (default)"),
+            'alternate' => t("Alternate font-family"),
+            'h1' => t("H1 font-family"),
+            'h2' => t("H2 font-family"),
+            'h3' => t("H3 font-family"),
+            'h4' => t("H4 font-family"),
+            'h5' => t("H5 font-family"),
+            'h6' => t("H6 font-family")
+        ),
+        "type" => "select"
+    ),
+    array(
+       "name" => t("Font size for links items"),
+       "id" => "lateral_nav_element_size",
+       "min" => "10",
+       "max" => "25",
+       "step" => "1",
+       "unit" => 'px',
+       "default" => "14",
+       "type" => "range"
+   ),
+   array(
+       "name" => t("Make links uppercase"),
+       "id" => "lateral_nav_element_uppercase",
+       "default" => 0,
+       "type" => "toggle"
+   ),
+    array(
+        "name" => t("Activate the harmonize-text script"),
+        "desc" => t("This script try to harmonize title width to create a unique design. For now can display width smaller sometimes but always visible"),
+        "id" => "lateral_nav_element_harmonized",
         "default" => 0,
         "type" => "toggle"
     ),

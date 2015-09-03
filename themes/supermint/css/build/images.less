@@ -103,6 +103,25 @@ img.edit-mode-thumb {
   }
 }
 
+// Image caption
+
+.image-caption-wrapper {
+  position: relative;
+  .caption-inside & .image-caption{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  .caption-hover & .image-caption {
+    opacity: 0;
+    .transition(.3s);
+  }
+  .caption-hover &:hover .image-caption {
+    opacity: 1;
+  }
+}
+
 // -- Colored overlay -- \\
 
 .image-wrapper {

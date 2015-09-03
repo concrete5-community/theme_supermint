@@ -89,8 +89,8 @@ class Controller extends Package  {
         $o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
         $o->update_db();
         // All things
-		$this->installOrUpgrade($this);
-		parent::upgrade();
+				$this->installOrUpgrade($this);
+				parent::upgrade();
 	}
 
     public function on_start() {
@@ -135,7 +135,7 @@ class Controller extends Package  {
 		$al->register( 'javascript', 'transit', 'themes/supermint/js/jquery.transit.js', array('version' => '0.1'), $this );
     $al->register( 'javascript', 'isotope', 'themes/supermint/js/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
     $al->register( 'javascript', 'wow', 'themes/supermint/js/wow.js', array('version' => '1.1.2'), $this );
-    $al->register( 'javascript', 'happier-text', 'themes/supermint/js/fitter-happier-text.js', array('version' => '1'), $this );
+    $al->register( 'javascript', 'harmonize-text', 'themes/supermint/js/harmonize-text.js', array('version' => '1'), $this );
 		$al->register( 'javascript', 'enquire', 'themes/supermint/js/enquire.js', array('version' => '2.1.2'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );

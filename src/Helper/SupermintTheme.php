@@ -98,6 +98,7 @@ class SupermintTheme {
 			$classes = $style->getStyleSet()->getCustomClass();
 			// And get array with each classes : 0=>'first-class', 1=>'second-class'
 			$classesArray = explode(' ', $classes);
+			$styleObject->classesArray = $classesArray;
 
 			// get Columns number
 			preg_match("/(\d)-column/",$classes,$columns);
@@ -112,7 +113,7 @@ class SupermintTheme {
 			$styleObject->displayTitle = array_search('no-text',$classesArray) === false;
 		else :
 			$styleObject->columns = (int)$defaultColumns;
-			$styleObject->margin = (int)$defaultMargin;	
+			$styleObject->margin = (int)$defaultMargin;
 		endif;
 
 		return $styleObject;

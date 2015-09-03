@@ -25,11 +25,12 @@ a.mpf-inline.open-popup-link {
 	margin-bottom: @space-s
 }
 
-// -- Contentn Block -- \\
+// -- Content Block -- \\
 
+// Image caption is alsoused in image.less
 .image-caption {
   padding: @space-xs @space-s;
-  background-color: @light-color;
+  background-color: fade(@light-color,90%);
   color: @grey-color;
   font-size: @font-size-small;
   p {
@@ -43,8 +44,12 @@ a.mpf-inline.open-popup-link {
   left: 15px;
   right: 15px;
   background-color: fade(@light-color,60%);
-  color: fade(@black-color,70%);
+  color: fade(@black-color,90%);
   transform: translateY(-100%);
+  .edit-mode & {
+    position: relative;
+    transform: translateY(0);
+  }
 }
 
 /* -- Page-list & Features -- */

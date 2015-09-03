@@ -2,11 +2,6 @@
 $c = Page::getCurrentPage();
 // Les options
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-
-// $p = \Concrete\Core\Package\Package::getByHandle('theme_supermint');
-// $ci = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintInstaller($p);
-// $ci->importContentFile($p->getPackagePath() . '/config/install/base/attributes.xml');
-
 ?>
 <!DOCTYPE html>
 <html class="<?php  echo $o->navigation_style == 'lateral-regular' ? 'with-lateral-nav' : '' ?>">

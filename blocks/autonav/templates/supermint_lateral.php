@@ -49,9 +49,6 @@ foreach ($navItems as $niKey => $ni) :
 		$classes[]  = 'parent deeper';
 	endif;
 
-	if ($o->use_alternate_on_lateral_nav)
-		$classes[]  = 'alternate';
-
 	if ($o->harmonize_title_width_on_lateral_nav ) // Le resultat est assez décevant, trouver un autre script
 		$classes[] = 'harmonize-width-heading';
 
@@ -75,7 +72,7 @@ endforeach;
 		</div><!-- .top -->
 		<div class="middle">
 			<div class="cell">
-				<nav class="lateral-nav">
+				<nav class="lateral-nav <?php echo $o->lateral_nav_element_harmonized ? 'harmonize-width-heading' : ''?>">
 					<ul class="zero">
 
 <?php

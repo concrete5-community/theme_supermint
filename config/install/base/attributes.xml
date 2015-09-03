@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <concrete5-cif version="1.0">
-    
+
     <attributetypes>
         <attributetype handle="fileset" name="Fileset" package="theme_supermint">
             <categories>
@@ -23,7 +23,7 @@
             </categories>
         </attributetype>
     </attributetypes>
-    
+
     <attributekeys>
         <attributekey handle="page_backgrounds" name="Slide Background" package="theme_supermint" searchable="0" indexed="0" type="fileset" category="collection"/>
         <attributekey handle="page_background" name="Page Background" package="theme_supermint" searchable="1" indexed="1" type="image_file" category="collection"/>
@@ -40,10 +40,10 @@
                     <option value="Hidden" is-end-user-added="0"/>
                 </options>
             </type>
-        </attributekey>   
+        </attributekey>
         <attributekey handle="display_multi_columns_drop" name="Display multi-columns dropdown" package="" searchable="0" indexed="0" type="boolean" category="collection">
             <type checked=""/>
-        </attributekey>                    
+        </attributekey>
         <attributekey handle="number_of_main_areas" name="Number of main areas" package="theme_supermint" searchable="0" indexed="1" type="select" category="collection">
             <type allow-multiple-values="0" display-order="display_asc" allow-other-values="0">
                 <options>
@@ -55,7 +55,7 @@
                     <option value="7" is-end-user-added="0"/>
                 </options>
             </type>
-        </attributekey> 
+        </attributekey>
         <attributekey handle="number_of_wide_columns" name="Number of columns on Full Wide" package="theme_supermint" searchable="0" indexed="1" type="select" category="collection">
             <type allow-multiple-values="0" display-order="display_asc" allow-other-values="0">
                 <options>
@@ -66,7 +66,7 @@
                     <option value="6" is-end-user-added="0"/>
                 </options>
             </type>
-        </attributekey>    
+        </attributekey>
         <attributekey handle="layout_mode" name="Layout Mode" package="theme_supermint" searchable="0" indexed="1" type="select" category="collection">
             <type allow-multiple-values="0" display-order="display_asc" allow-other-values="0">
                 <options>
@@ -75,18 +75,20 @@
                     <option value="wide" is-end-user-added="0"/>
                 </options>
             </type>
-        </attributekey>      
+        </attributekey>
         <attributekey handle="review_occupation" name="Occupation" package="theme_supermint" searchable="1" indexed="1" type="text" category="collection"/>
         <attributekey handle="review_website" name="Office Website" package="theme_supermint" searchable="1" indexed="1" type="text" category="collection"/>
         <attributekey handle="review_website_url" name="Office Website URL" package="theme_supermint" searchable="1" indexed="1" type="text" category="collection"/>
         <attributekey handle="review_name" name="Name" package="theme_supermint" searchable="1" indexed="1" type="text" category="collection"/>
         <attributekey handle="ribbon_text" name="Text for the ribbon" package="theme_supermint" searchable="0" indexed="0" type="text" category="collection"/>
         <attributekey handle="exclude_subpages_from_nav" name="Exlude Subpages from navigation" package="" searchable="0" indexed="0" type="boolean" category="collection">
+        <attributekey handle="replace_link_with_first_in_nav" name="Replace Link with First in Nav" package="" searchable="0" indexed="0" type="boolean" category="collection">
+
             <type checked=""/>
-        </attributekey>            
-        
-        
-             
+        </attributekey>
+
+
+
     </attributekeys>
 
     <attributesets>
@@ -94,12 +96,12 @@
             <attributekey handle="thumbnail"/>
             <attributekey handle="main_page_color"/>
             <attributekey handle="icon"/>
-            <attributekey handle="layout_mode"/>                   
+            <attributekey handle="layout_mode"/>
             <attributekey handle="page_backgrounds"/>
             <attributekey handle="page_background"/>
             <attributekey handle="number_of_main_areas"/>
-            <attributekey handle="number_of_wide_columns"/>            
-            <attributekey handle="ribbon_text"/>     
+            <attributekey handle="number_of_wide_columns"/>
+            <attributekey handle="ribbon_text"/>
         </attributeset>
         <attributeset handle="supermint_navigation" name="Supermint Navigation" package="theme_supermint" locked="0" category="collection">
             <attributekey handle="supermint_navigation_type"/>
@@ -116,6 +118,7 @@
         </attributeset>
         <attributeset handle="navigation" category="collection">
             <attributekey handle="exclude_subpages_from_nav"/>
+            <attributekey handle="replace_link_with_first_in_nav"/>
         </attributeset>
     </attributesets>
 </concrete5-cif>
