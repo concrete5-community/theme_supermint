@@ -71,7 +71,11 @@ class Controller extends Package  {
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/attributes.xml');
-        $ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
+    $ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
+		if(version_compare(APP_VERSION, '5.7.4.2') === 1):
+			// We are 5.7.5+
+			$ci->importContentFile($this->getPackagePath() . '/config/install/base/systemcontenteditorsnippets.xml');
+		endif;
 	}
 
 	public function uninstall() {
