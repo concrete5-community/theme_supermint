@@ -196,6 +196,9 @@ $options = array(
         "default" => 1,
         "type" => "toggle"
     ),
+
+    // Dropdown mode
+
     array(
         'name' => t('Dropdown mode'),
         "desc" => t('Options When the nav is in dropdown mode'),
@@ -212,6 +215,9 @@ $options = array(
         "default" => "220",
         "type" => "range"
     ),
+
+    // multicolumns
+
     array(
         'name' => t('Dropdown multicolumns mode'),
         "desc" => t('Options When the nav is in dropdown mode and the attribute "Display multi-columns dropdown" is activated'),
@@ -246,6 +252,9 @@ $options = array(
         "default" => 1,
         "type" => "toggle"
     ),
+
+    // wide large
+
     array(
         'name' => t('Wide Large Dropdown mode'),
         "desc" => t('Options When the navigation style is is set on "Wide Large drop-down mode"'),
@@ -255,7 +264,7 @@ $options = array(
         "name" => t("Fix the navigation bar on top"),
         "desc" => t("If enabled, the nav bar will be fixed on top"),
         "id" => "wide_navbar_fixed",
-        "default" => 1,
+        "default" => 0,
         "type" => "toggle"
     ),
     array(
@@ -265,6 +274,22 @@ $options = array(
         "default" => 0,
         "type" => "toggle"
     ),
+    array(
+        "name" => t("Contains navigation width to the content width"),
+        "desc" => t("If enabled, it disable the full width feature and display navigation as large as the content"),
+        "id" => "wide_navbar_contained",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+    array(
+        "name" => t("Display the stack 'Site Logo' on left"),
+        "desc" => t("If enabled the content of the stack will be displayed on left"),
+        "id" => "wide_navbar_display_logo",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    // Lateral
+
     array(
         'name' => t('Lateral mode'),
         "desc" => t('Options When the nav is diplayed on left'),

@@ -1,12 +1,4 @@
 
-/* // 1. RESET STYLES */
-/* ################################################################ */
-ul.mega-menu a { text-decoration: none; text-align:left !important; text-transform: none; }
-/*.mega-menu li a { border:none !important}*/
-
-
-/* // 2. NAVIGATION BAR STYLES */
-/* ################################################################ */
 .mega-menu {
 	position: relative;
 	z-index: 500;
@@ -36,9 +28,9 @@ ul.mega-menu a { text-decoration: none; text-align:left !important; text-transfo
 }
 
 /* Nav Links */
-.mega-menu > li > a, 
-.mega-menu > li > span, 
-.mega-menu > li > span 
+.mega-menu > li > a,
+.mega-menu > li > span,
+.mega-menu > li > span
 {
 	position: relative;
 	z-index: 550;
@@ -74,10 +66,10 @@ ul.mega-menu a { text-decoration: none; text-align:left !important; text-transfo
 	height: 38px;
 }*/
 
-.mega-menu > li.mgm-drop:hover > a, 
+.mega-menu > li.mgm-drop:hover > a,
 .mega-menu > li.mgm-drop:hover > span,
 .mega-menu > li.mgm-drop > a.mgm-click,
-.mega-menu > li.mgm-drop > span.mgm-click 
+.mega-menu > li.mgm-drop > span.mgm-click
 { z-index: 650; }
 
 
@@ -95,21 +87,8 @@ ul.mega-menu a { text-decoration: none; text-align:left !important; text-transfo
 
 	opacity: 0;
 	overflow: hidden;
-	visibility: hidden;	
-}
+	visibility: hidden;
 
-.mega-menu > li.mgm-align-right > div {
-	left: auto;
-	right: -1px;
-}
-
-/* Transitions */
-.mgm-slide > li > div,
-.mgm-slide > li > ul,
-.mgm-slide > li > ul li > ul,
-.mgm-fade > li > div,
-.mgm-fade > li > ul,
-.mgm-fade > li > ul li > ul {
 	-webkit-transition: all .15s ease-in;
 	-moz-transition: all .15s ease-in;
 	-o-transition: all .15s ease-in;
@@ -117,23 +96,12 @@ ul.mega-menu a { text-decoration: none; text-align:left !important; text-transfo
 	transition: all .15s ease-in;
 }
 
-.mgm-slide > li > div,
-.mgm-slide > li > ul,
-.mgm-slide > li > ul li > ul { top: 100px; }
-
-.mgm-slide > li.mgm-drop:hover > div,
-.mgm-slide > li.mgm-drop:hover > ul,
-.mgm-slide > li > ul li.mgm-drop:hover > ul {
-	top: 37px;
-
-	opacity: 1;
-	overflow: visible;
-	visibility: visible;
+.mega-menu > li.mgm-align-right > div {
+	left: auto;
+	right: -1px;
 }
 
-.mgm-fade > li.mgm-drop:hover > div,
-.mgm-fade > li.mgm-drop:hover > ul,
-.mgm-fade > li > ul li.mgm-drop:hover > ul,
+
 .mega-menu > li.mgm-drop:hover > div,
 .mega-menu > li.mgm-drop:hover > ul,
 .mega-menu > li > ul li.mgm-drop:hover > ul {
@@ -151,8 +119,7 @@ ul.mega-menu a { text-decoration: none; text-align:left !important; text-transfo
 	width: 220px;
 }
 
-.mega-menu > li > ul li.mgm-drop:hover > ul,
-.mega-menu.mgm-fade > li > ul li.mgm-drop > ul { top: 0; border-radius:5px;}
+.mega-menu > li > ul li.mgm-drop:hover > ul { top: 0; border-radius:5px;}
 
 .mega-menu > li > ul li { position: relative; display:block !important; }
 

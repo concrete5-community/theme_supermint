@@ -14,7 +14,8 @@ $navigationStyle = $o->navigation_style ? $o->navigation_style : "regular-top-na
 $styleObject = $h->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);
 
 // Global Logo
-$logo = Stack::getByName('Site Logo');
+if ($o->wide_navbar_display_logo)
+	$logo = Stack::getByName('Site Logo');
 
 // Pour les stacks
 $c = Page::getCurrentPage();
@@ -99,8 +100,6 @@ foreach ($navItems as $niKey => $ni) :
 			// Ou alors on le place sous le menu supérieur
 			} else {
 				$classes[] = 'mgm-drop';
-				//$style[] = 'width:' . intval(200 * count($blocksOk)) . 'px';
-				// $ni->mega_menu_width = intval($col_width * count($ni->blocks)); // Je crois que ça ne sert plus
 			}
 		// C'est un dropdown normal
 		elseif ($ni->hasSubmenu) :
@@ -146,11 +145,10 @@ foreach ($navItems as $niKey => $ni) :
 	endif;
 
 endforeach;
-
-?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
+?>
 <div class="top_nav_mega-menu <?php echo $navigationStyle . ' ' . ($o->wide_navbar_fixed ? 'navbar-fixed' : '') . ($o->wide_navbar_colapse ? 'navbar-colapse' : '') ?>">
-	<?php if (in_array('contain-width',$styleObject->classesArray)): ?><div class="container"><?php endif ?>
-	<ul class="mega-menu mgm-class mgm-fade  container" >
+	<?php if ($o->wide_navbar_contained && $o->navigation_style == 'top-large-nav'): ?><div class="container"><?php endif ?>
+	<ul class="mega-menu" >
 			<li class="nav-logo"><span><?php if ($logo) $logo->display(); ?></span></li>
 <?php
 foreach ($navItems as $k=>$ni) :
@@ -158,9 +156,7 @@ foreach ($navItems as $k=>$ni) :
 	if($ni->level != 1 ) continue;
 
 	echo '<li class="' . $ni->classes . '" style="' . $ni->style . '">'; //opens a nav item
-	// L'url est remplacé par # si il y a un sous mennu
-	// C'est malheureusement la condition sine qua non pour que le menu fonctionne en mode mobile
-		echo '<a href="' .   $ni->url . '" target="' . $ni->target . '">' . $ni->icon . ' ' . $ni->name . '</a>';
+	echo '<a href="' .   $ni->url . '" target="' . $ni->target . '">' . $ni->icon . ' ' . $ni->name . '</a>';
 
 	if($ni->sub) echo $ni->sub;
 
@@ -173,22 +169,20 @@ foreach ($navItems as $k=>$ni) :
 	}
 	$i ++;
 
-endforeach?>
+endforeach;
 
-<?php
 if($o->display_searchbox) :
 	$p = Page::getByID($o->display_searchbox);
 	if (is_object($p)) :
- ?>
-	<li class="search-in-nav">
-	<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
-   	   <input type="search" class="col-md-3" id="search-keywords" name="query" placeholder="&#xf002"/>
 
-	   <!-- <input type="submit" id="search-go" name="go" value="go"/> -->
+	echo '<li class="search-in-nav">';
+	?>
+	<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
+   	   <input type="search" class="vertical-align" id="search-keywords" name="query" placeholder="&#xf002"/>
 	</form>
 	</li>
 	<?php endif ?>
 <?php endif ?>
 	</ul>
-<?php if (in_array('contain-width',$styleObject->classesArray)): ?></div><!-- container --><?php endif ?>
+<?php if ($o->wide_navbar_contained && $o->navigation_style == 'top-large-nav'): ?></div><!-- container --><?php endif ?>
 </div><!-- #top_nav -->
