@@ -81,14 +81,8 @@
         <attributekey handle="review_website_url" name="Office Website URL" package="theme_supermint" searchable="1" indexed="1" type="text" category="collection"/>
         <attributekey handle="review_name" name="Name" package="theme_supermint" searchable="1" indexed="1" type="text" category="collection"/>
         <attributekey handle="ribbon_text" name="Text for the ribbon" package="theme_supermint" searchable="0" indexed="0" type="text" category="collection"/>
-        <attributekey handle="exclude_subpages_from_nav" name="Exlude Subpages from navigation" package="" searchable="0" indexed="0" type="boolean" category="collection">
-        <attributekey handle="replace_link_with_first_in_nav" name="Replace Link with First in Nav" package="" searchable="0" indexed="0" type="boolean" category="collection">
-
-            <type checked=""/>
-        </attributekey>
-
-
-
+        <attributekey handle="exclude_subpages_from_nav" name="Exlude Subpages from navigation" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
+        <attributekey handle="replace_link_with_first_in_nav" name="Replace Link with First in Nav" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
     </attributekeys>
 
     <attributesets>

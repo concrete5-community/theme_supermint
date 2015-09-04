@@ -5,7 +5,7 @@
   /* background-image is moved to main.less because it needs to be in the theme root */
 
   .ccm-image-slider {
-  
+
     .rslides {
       li {
         max-height: @image-slider-max-height;
@@ -29,7 +29,7 @@
     .into-columns & {
       width: 100%;
     }
-    
+
     left: 50%;
     top: 50%;
     .transform(translate(-50%,50%)); // Ceci sera retabli a l'animation
@@ -41,7 +41,7 @@
       line-height: 1.1;
       text-shadow:0 0 3px fade(@black-color, 80%)
     }
-    
+
     .transition(all .4s @ease-speed);
 
   }
@@ -70,7 +70,7 @@
 
 }
 
-// -- Slider template for image-slider block -- // 
+// -- Slider template for image-slider block -- //
 
 .sm-image-slider {
   .content-inner {
@@ -81,16 +81,17 @@
     font-weight: 300;
     line-height: 1.1;
     text-shadow:0 0 3px fade(@black-color, 80%)
-  }  
+  }
 }
 
 // -- Transit Image slider -- //
 
-// Captions 
+// Captions
 
 .caption-wrapper {
   transition: all 0.1s ease;
   text-align: center;
+  z-index: 1;
 
   h1 {
     text-align: center;
@@ -102,7 +103,7 @@
 
     transition: all 0.2s ease;
     -webkit-transform: translateX(10%);
-    transform: translateX(10%);   
+    transform: translateX(10%);
     opacity: 0;
   }
   p {
@@ -112,22 +113,21 @@
     text-shadow:0 0 16px fade(@black-color, 80%);
     transition: all 0.2s ease;
     -webkit-transform: translateX(-10%);
-    transform: translateX(-10%);    
+    transform: translateX(-10%);
     opacity: 0;
-  }  
+  }
   .current & {
-    -webkit-transform: translateY(0%);
-    transform: translateY(0%);   
+
      h1 {
       -webkit-transform: translateX(0);
-      transform: translateX(0);   
+      transform: translateX(0);
       opacity: 1;
     }
      p {
       -webkit-transform: translateX(0);
-      transform: translateX(0);   
+      transform: translateX(0);
       opacity: 1;
-    }    
+    }
 
   }
 }
@@ -173,7 +173,7 @@
   background-color: @primary-color !important;
   &:hover {
       opacity: .8;
-  }  
+  }
   &.next {
     .transition(background .35s ease-in-out);
     right: 40px;

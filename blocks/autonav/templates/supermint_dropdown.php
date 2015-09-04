@@ -8,10 +8,10 @@ $prepare_start = microtime(true);
 $i = 0;
 // Les options
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-
 $h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
 
 $navigationStyle = $o->navigation_style ? $o->navigation_style : "regular-top-nav";
+$styleObject = $h->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);
 
 // Global Logo
 $logo = Stack::getByName('Site Logo');
@@ -148,7 +148,8 @@ foreach ($navItems as $niKey => $ni) :
 endforeach;
 
 ?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
-<div class="top_nav_mega-menu <?php echo $navigationStyle ?>">
+<div class="top_nav_mega-menu <?php echo $navigationStyle . ' ' . ($o->wide_navbar_fixed ? 'navbar-fixed' : '') . ($o->wide_navbar_colapse ? 'navbar-colapse' : '') ?>">
+	<?php if (in_array('contain-width',$styleObject->classesArray)): ?><div class="container"><?php endif ?>
 	<ul class="mega-menu mgm-class mgm-fade  container" >
 			<li class="nav-logo"><span><?php if ($logo) $logo->display(); ?></span></li>
 <?php
@@ -189,4 +190,5 @@ if($o->display_searchbox) :
 	<?php endif ?>
 <?php endif ?>
 	</ul>
+<?php if (in_array('contain-width',$styleObject->classesArray)): ?></div><!-- container --><?php endif ?>
 </div><!-- #top_nav -->

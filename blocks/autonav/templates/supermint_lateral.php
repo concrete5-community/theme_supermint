@@ -8,7 +8,6 @@ $prepare_start = microtime(true);
 $i = 0;
 // Les options
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-
 $h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
 
 // Global Logo

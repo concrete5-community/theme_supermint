@@ -247,6 +247,25 @@ $options = array(
         "type" => "toggle"
     ),
     array(
+        'name' => t('Wide Large Dropdown mode'),
+        "desc" => t('Options When the navigation style is is set on "Wide Large drop-down mode"'),
+        'type' => 'subsection'
+    ),
+    array(
+        "name" => t("Fix the navigation bar on top"),
+        "desc" => t("If enabled, the nav bar will be fixed on top"),
+        "id" => "wide_navbar_fixed",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
+        "name" => t("Remove the regular place take by the naigation"),
+        "desc" => t("This advanced option let to control when the auto-embed nav is set on off and we want to play with this navigation place."),
+        "id" => "wide_navbar_colapse",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+    array(
         'name' => t('Lateral mode'),
         "desc" => t('Options When the nav is diplayed on left'),
         'type' => 'subsection'

@@ -76,6 +76,7 @@ var Transit = {
 	_build: function(){
 		this.showNav();
 		this.setSliderHeight($(this.items[ this.currentSlide ]));
+    $(window).on('resize',$.proxy(this.setSliderHeight,this,$(this.items[ this.currentSlide ])));
 	},
 	getDots : function () {
 		if (this.options.dotsSelector)
@@ -105,6 +106,7 @@ var Transit = {
 		this.nav.show();
 	},
 	setSliderHeight : function (elem) {
+    console.log(elem);
 		this.itemsWrapper.add(elem).height(elem.find('img').height());
 	},
 	navigate : function ( dir,e ) {
@@ -126,6 +128,8 @@ var Transit = {
 		else if (dir === parseInt(dir, 10)) {
 			this.currentSlide = dir;
 		}
+
+
 
 		this.nextItem = $(this.items[ this.currentSlide ]);
 
@@ -161,6 +165,7 @@ var Transit = {
 			this.cntAnims = 0;
 		}
 	}
+
 };
 
 // Make sure Object.create is available in the browser (for our prototypal inheritance)

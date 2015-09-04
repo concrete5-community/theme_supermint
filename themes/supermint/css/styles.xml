@@ -20,6 +20,7 @@
         <style name="Boxed Background" variable="boxed-bg" type="color" />
         <!--  @content-bg style is used when content is wrapped into a white bg and thin bordrer -->
         <style name="Content Background" variable="content-bg" type="color" />
+        <style name="Top-bar Background" variable="top-bar-bg" type="color" />
         <style name="Sub Header" variable="sub-header-color" type="color" />
         <style name="Modal background" variable="modal-bg" type="color" />
         <style name="Text" variable="body-type" type="color" />
@@ -41,8 +42,8 @@
         <style name="Slider navigation links color" variable="nav-slide-a" type="color" />
         <style name="Slider navigation text color" variable="nav-slide-text" type="color" />
         <!-- ? -->
-        <style name="Lateral First level background" variable="lateral-nav-bg" type="color" />        
-        <style name="Lateral deeper level background" variable="lateral-nav-sub-bg" type="color" />        
+        <style name="Lateral First level background" variable="lateral-nav-bg" type="color" />
+        <style name="Lateral deeper level background" variable="lateral-nav-sub-bg" type="color" />
     </set>
     <set name="Headings">
         <style name="Heading 1" variable="h1" type="color" />
@@ -59,7 +60,7 @@
         <style name="Footer Link Color" variable="footer-link" type="color" />
         <style name="Footer text Color" variable="footer-text" type="color" />
         <style name="Footer titles Color" variable="footer-h" type="color" />
-        <style name="Section Divider Color" variable="footer-section-divider" type="color" />            
+        <style name="Section Divider Color" variable="footer-section-divider" type="color" />
     </set>
-    
+
 </styles>

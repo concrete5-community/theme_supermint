@@ -69,7 +69,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
             // 'page_list' => array('simple'),
             'feature' => array('icon-m','icon-l','icon-xl'),
             'content' => array('image-caption','image-caption-inside','collapse-top-margin'),
-            'autonav' => array('small-text-size'),
+            'autonav' => array('small-text-size','contain-width'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','primary','secondary','tertiary','quaternary'),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
                               // Smoked classes
@@ -81,7 +81,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
                              // Caption  classes
                              'caption-inside','caption-hover',
                              'caption-primary', 'caption-secondary', 'caption-tertiary', 'caption-quaternary'),
-            'image_slider' =>array_merge(array('into-columns','header-style-1','header-style-2'),$columnsClasses, $marginClasses),
+            'image_slider' =>array_merge(array('into-columns','black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked'),$columnsClasses, $marginClasses),
             'page_attribute_display' => array('leaded','lighted'),
             'page_list' => array_merge($columnsClasses,$marginClasses),
             'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light'),$columnsClasses),

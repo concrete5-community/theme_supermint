@@ -211,22 +211,32 @@
   display: table;
   width: 100%;
   height: @top-large-nav-height; // @top-nav-height-size + 20;
-  background: @nav-slide-bg-color;
+  background: @top-nav-bg-color;
   // Three state of the nav bar
   &.navbar-show > ul {top:0}
   .ccm-toolbar-visible & > ul{top: 49px}
   .edit-mode & > ul{position: relative}
   &.navbar-hidden > ul {top:-@top-large-nav-height}
-
-  & > ul {
+  &.navbar-fixed {
+    & > ul {
+      position: fixed;
+    }
+  }
+  &.navbar-colapse {
+    // On cache le conteneur
+    position: absolute;
+    height: 0;
+  }
+  & > ul,
+  & > .container > ul {
     display: table-row;
-    position: fixed;
+    position: relative;
     // top:0;
     z-index: 100;
     height: @top-large-nav-height;
     margin: 0;
     padding: 0;
-    background-color: @nav-slide-bg-color;
+    background-color:@top-nav-bg-color;
     .transition(.5s);
     & > li {
       display: table-cell;

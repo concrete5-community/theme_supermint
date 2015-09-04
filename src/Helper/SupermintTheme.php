@@ -93,7 +93,7 @@ class SupermintTheme {
 	function getClassSettingsObject ($block, $defaultColumns = 3, $defaultMargin = 10  ) {
 		$styleObject = new StdClass();
 
-		if (is_object($style = $block->getCustomStyle())) :
+		if (is_object($block) && is_object($style = $block->getCustomStyle())) :
 			// We get string as 'first-class second-class'
 			$classes = $style->getStyleSet()->getCustomClass();
 			// And get array with each classes : 0=>'first-class', 1=>'second-class'
@@ -114,6 +114,7 @@ class SupermintTheme {
 		else :
 			$styleObject->columns = (int)$defaultColumns;
 			$styleObject->margin = (int)$defaultMargin;
+			$styleObject->classesArray = array();
 		endif;
 
 		return $styleObject;
