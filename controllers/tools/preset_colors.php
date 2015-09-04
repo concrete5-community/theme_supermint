@@ -66,7 +66,8 @@ class PresetColors extends RouteController {
             $valueArray = $value->toLessVariablesArray();
             $k = array_keys($valueArray);
             $k = $k[0];
-            $variables[$k] = array_values($valueArray)[0];
+            $v = array_values($valueArray);
+            $variables[$k] = $v[0];
         endforeach;
 
         // Build color array
