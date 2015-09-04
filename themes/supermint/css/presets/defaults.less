@@ -57,14 +57,15 @@
 // -- Navigation -- \\
 
 	@top-nav-bg-color : 		@quaternary-color;
-	@top-nav-a-color : 			contrast(@top-nav-bg-color,@black-color,@white-color);
+	@top-nav-contrast : 		contrast(@top-nav-bg-color,@black-color,@white-color);
+	@top-nav-a-color : 			@top-nav-contrast;
 	@top-nav-darken : 			darken(@top-nav-bg-color, 10%);
 	@top-nav-bg-hover-color:	@top-nav-darken;
 	@top-nav-hover-a-color: 	@white-color;
 
-	@nav-slide-image : 			'../../images/patterns/fabric_of_squares_gray_for_dark.png';
+	@nav-slide-image : 				'../../images/patterns/fabric_of_squares_gray_for_dark.png';
 	@nav-slide-bg-color : 		@quaternary-color;
-	@nav-slide-contrast : 			contrast(@nav-slide-bg-color, @black-color, @white-color);
+	@nav-slide-contrast : 		contrast(@nav-slide-bg-color, @black-color, @white-color);
 	@nav-slide-a-color : 		@nav-slide-contrast;
 	@nav-slide-text-color : 	@nav-slide-contrast;
 
@@ -72,7 +73,8 @@
 	@fixed-bar-height : 		7.2rem;
 
 	@nav-dropdown-bg-color: 	@quaternary-color;
-	@nav-dropdown-a-color : 	contrast(@nav-dropdown-bg-color,@black-color,@white-color);
+	@nav-dropdown-contrast : 	contrast(@nav-dropdown-bg-color,@black-color,@white-color);
+	@nav-dropdown-a-color : 	@nav-dropdown-contrast;
 	@nav-megamenu-bg-color: 	@white-color;
 
 	@lateral-nav-bg-color : @quaternary-color;

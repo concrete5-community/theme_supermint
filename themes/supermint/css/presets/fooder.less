@@ -47,7 +47,7 @@
 // -- Global Page -- \\
 
 	@body-bg-color:             #f9f9f9;
-	@body-bg-pattern-image:     '../../images/patterns/noise.png'; 
+	@body-bg-pattern-image:     '../../images/patterns/noise.png';
 	@boxed-bg-color: 			#fff;
 	@content-bg-color: 			#f9f9f9;
 	@sub-header-color: 			#f9f9f9;
@@ -55,28 +55,30 @@
 
 // -- Navigation -- \\
 
-	@top-nav-bg-color : 		@quaternary-color;
-	@top-nav-a-color : 			@white-color;
-	@top-nav-darken : 			darken(@quaternary-color, 10%);
-	@top-nav-bg-hover-color:	@top-nav-darken;
-	@top-nav-hover-a-color: 	@white-color;
+@top-nav-bg-color : 		@quaternary-color;
+@top-nav-contrast : 		contrast(@top-nav-bg-color,@black-color,@white-color);
+@top-nav-a-color : 			@top-nav-contrast;
+@top-nav-darken : 			darken(@top-nav-bg-color, 10%);
+@top-nav-bg-hover-color:	@top-nav-darken;
+@top-nav-hover-a-color: 	@white-color;
 
-	@nav-slide-image : 			'../../images/patterns/fabric_of_squares_gray_for_dark.png';
-	@nav-slide-bg-color : 		@quaternary-color;
-	@nav-slide-contrast : 			contrast(@nav-slide-bg-color, @black-color, @white-color);
-	@nav-slide-a-color : 		@nav-slide-contrast;
-	@nav-slide-text-color : 	@nav-slide-contrast;
+@nav-slide-image : 				'../../images/patterns/fabric_of_squares_gray_for_dark.png';
+@nav-slide-bg-color : 		@quaternary-color;
+@nav-slide-contrast : 		contrast(@nav-slide-bg-color, @black-color, @white-color);
+@nav-slide-a-color : 		@nav-slide-contrast;
+@nav-slide-text-color : 	@nav-slide-contrast;
 
-	@top-nav-height-size: 		36px;
-	@fixed-bar-height : 		7.2rem;	
+@top-nav-height-size: 		36px;
+@fixed-bar-height : 		7.2rem;
 
-	@nav-dropdown-bg-color: 	@quaternary-color;
-	@nav-dropdown-a-color : 	@white-color;
-	@nav-megamenu-bg-color: 	@white-color;
+@nav-dropdown-bg-color: 	@quaternary-color;
+@nav-dropdown-contrast : 	contrast(@nav-dropdown-bg-color,@black-color,@white-color);
+@nav-dropdown-a-color : 	@nav-dropdown-contrast;
+@nav-megamenu-bg-color: 	@white-color;
 
-	@lateral-nav-bg-color : 	#F0F0F0;
-	@lateral-nav-sub-bg-color : @primary-color;
-	@lateral-nav-width : 300px;
+@lateral-nav-bg-color : @quaternary-color;
+@lateral-nav-sub-bg-color : @light-color;
+@lateral-nav-width : 300px;
 
 // -- Footer -- \\
 
@@ -107,7 +109,7 @@
 	@body-font-size 		: 14px;
 	@font-size-base 		: @body-font-size;
 	@line-height-base 		: 1.9;
-	@line-height-computed 	: floor((@font-size-base * @line-height-base)); // ~20px	
+	@line-height-computed 	: floor((@font-size-base * @line-height-base)); // ~20px
 	@font-size-large 		: 1.6rem;
 	@font-size-small 		: 1.2rem;
 	// links
@@ -131,7 +133,7 @@
 	@pre-border-color:  @light-color;
 
 	@code-color: 		#c7254e;
-	@code-bg:          	@light-color;	
+	@code-bg:          	@light-color;
 	@breadcrumb-separator:          "/";
 
 // -- Sizes ! -- \\
@@ -194,4 +196,3 @@
 // -- Heritage -- \\
 
 @white : @white-color;
-

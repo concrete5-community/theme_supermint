@@ -33,7 +33,7 @@ class Controller extends Package  {
 
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
-		protected $appVersionRequired = '5.7.3';
+		protected $appVersionRequired = '5.7.4';
 		protected $pkgVersion = '3.0.3';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
@@ -267,11 +267,9 @@ class Controller extends Package  {
 
 
             $pageTypes = PageType::getList();
-            foreach ($pageTypes as $ct) {
-                $ct->delete();
-			}
+            foreach ($pageTypes as $ct) $ct->delete();
 
-			$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
+						$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
 
             // Import Files
             if (is_dir($startingPointFolder . '/content_files')) {
