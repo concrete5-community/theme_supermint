@@ -97,7 +97,6 @@ class Controller extends Package  {
         $this->registerRoutes();
         $this->registerAssets();
         $this->registerEvents();
-
     }
 
     function registerEvents () {
@@ -105,18 +104,32 @@ class Controller extends Package  {
             'on_before_render',
             function($e) {
                 $session = \Core::make('session');
+								$c = Page::getCurrentPage();
                 // Register options into the session
 				        $options = ThemeSupermintOptions::get_options_from_active_preset_ID();
 								$session->set('supermint.options',$options);
 
                 // Register colors from active or default preset in the session
-                if (is_object( Page::getCurrentPage())) :
+                if (is_object($c)) :
                     $colors = PresetColors::GetColorsFromPage();
                     $session->set('supermint.colors',$colors);
                 endif;
 
-								$this->registerMenuItem();
+								if (!is_object($c)) return;
+								// Now we build the button
+								$pt = $c->getCollectionThemeObject();
+								if ($pt->getThemeHandle() != $this->themeHandle) return;
+								$status = t('Supermint Options');
+								$icon = 'toggle-on';
+								$ihm = Core::make('helper/concrete/ui/menu');
 
+								$ihm->addPageHeaderMenuItem('theme_supermint', 'theme_supermint',
+								    array(
+								        'label' => $status,
+								        'icon' => $icon,
+								        'position' => 'right',
+								        'href' => URL::to('/dashboard/supermint_options/theme_options')
+								    ));
             });
     }
 
@@ -222,26 +235,6 @@ class Controller extends Package  {
             '/ThemeSupermint/tools/get_awesome_icons',
             '\Concrete\Package\ThemeSupermint\Controller\Tools\AwesomeArray::getAwesomeArray'
         );
-    }
-
-    public function registerMenuItem () {
-			// First we check if Supermint is the activated theme
-			$pt = Page::getCurrentPage();
-			if (!is_object($c)) return;
-			$pt = $pt->getCollectionThemeObject();
-			if ($pt->getThemeHandle() != $this->themeHandle) return;
-			// Now we build the button
-			$status = t('Supermint Options');
-			$icon = 'toggle-on';
-			$ihm = Core::make('helper/concrete/ui/menu');
-
-			$ihm->addPageHeaderMenuItem('theme_supermint', 'theme_supermint',
-			    array(
-			        'label' => $status,
-			        'icon' => $icon,
-			        'position' => 'right',
-			        'href' => URL::to('/dashboard/supermint_options/theme_options')
-			    ));
     }
 
     public function swapContent($options) {
