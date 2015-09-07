@@ -34,7 +34,7 @@ class Controller extends Package  {
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
 		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.0.3.1';
+		protected $pkgVersion = '3.0.3.2';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
     protected $startingPoint;
@@ -297,7 +297,7 @@ class Controller extends Package  {
     }
 
     function setPresetAsDefault ($presetHandle) {
-        $outputError = true;
+        $outputError = false;
         $baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
         $pt = PageTheme::getByHandle($this->themeHandle);
         $preset = $pt->getThemeCustomizablePreset($presetHandle);
