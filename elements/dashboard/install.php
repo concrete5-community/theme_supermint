@@ -4,12 +4,12 @@ $spPath = 'packages/theme_supermint/starting_points';
 $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 ?>
 
-<div class="install_wrapper"> 
+<div class="install_wrapper">
 	<input type="hidden" name="spHandle" id="starting_point_handle" value="0">
 	<h3><?php  echo t('Choose the Starting Point');?></h3>
 	<p><?php  echo t('A starting point is a Complete site that will be installed on your server');?></p>
 	<div class="alert alert-danger" role="alert"><p><strong><?php echo ('Important :')?> </strong><?php echo t('To avoid any errors, ensure installing Starting Points on a newly created website without content.') ?></p></div>
-	
+
 	<div class="thumbnail-list clearfix" style="margin-top:20px;">
 		<div class="col starting_point active">
 			<img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=28&bg=dde2e7&txtclr=cccccc%26text%3Dnone&txt=No+Starting+Point&w=300&h=300"/>
@@ -21,11 +21,11 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 				</div>
 			</div>
 		</div>
-		<?php  
+		<?php
 		foreach ($spArray as $spHandle) :
-			if(	is_dir($spPath . '/' . $spHandle . '/content_files') 
-				&& 	file_exists($spPath . '/' . $spHandle . '/content.xml') 
-				&& 	file_exists($spPath . '/' . $spHandle . '/thumbnail.png') 
+			if(	is_dir($spPath . '/' . $spHandle . '/content_files')
+				&& 	file_exists($spPath . '/' . $spHandle . '/content.xml')
+				&& 	file_exists($spPath . '/' . $spHandle . '/thumbnail.png')
 				&& file_exists($spPath . '/' . $spHandle . '/description.txt')
 				) :
 				?>
@@ -33,17 +33,17 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 					<img class="img-responsive" src="<?php echo DIR_REL . '/' . $spPath . '/' . $spHandle . '/thumbnail.png';?>" />
 					<div class="info">
 						<div class="inner">
-							<h3><?php  echo ucwords(str_replace('_', ' ', $spHandle));?></h3>							
-							<p><?php  echo Core::make('helper/file')->getContents($spPath . '/' . $spHandle . '/description.txt');?></p>	
-							<div class="btn-group" role="group">						
+							<h3><?php  echo ucwords(str_replace('_', ' ', $spHandle));?></h3>
+							<p><?php  echo Core::make('helper/file')->getContents($spPath . '/' . $spHandle . '/description.txt');?></p>
+							<div class="btn-group" role="group">
 							 <a class="btn spPicker btn-primary" rel="<?php echo $spHandle ?>"><?php echo t('Choose ') . ucwords(str_replace('_', ' ', $spHandle))  ?></a>
 							 <a href="http://<?php echo $spHandle?>.supermint3.myconcretelab.com/" target="_blank" class="btn btn-default"><?php echo t('Live Preview') ?></a>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
-				<?php  
-			endif;	
+				<?php
+			endif;
 		endforeach;
 		?>
 	</div>
@@ -54,16 +54,16 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 	margin: 20px 0;
 }
 	.thumbnail-list {
-		margin-top: 20px;		
-	}	
+		margin-top: 20px;
+	}
 	.starting_point {
-		width: 300px;			
+		width: 300px;
 		max-width: 310px;
 		float: left;
 		position: relative;
 		overflow: hidden;
 		transition:.2s;
-	}	
+	}
 	.info {
 		top:300px;left: 0;right: 0;bottom:0;
 		position: absolute;
@@ -101,7 +101,7 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 	.starting_point.active {
 		border: 5px solid #428bca ;
 	}
-</style>	
+</style>
 	<script>
 	$(document).ready(function(){
 		$('.spPicker').on('click',function(e){
@@ -112,13 +112,13 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 				$(this).attr('rel')
 				);
 		})
-		
+
 		$('input[name=pkgDoFullContentSwap]:radio').on('click', function(){
 			if($(this).val() == 0) {
 				$('input[name=option][value="none"]:radio').prop('checked', true);
 			} else {
 				$('input[name=option]:eq(1)').prop('checked', true);
-			}		
+			}
 		});
 		function setSwapState (state,elem,stHandle) {
 			if(!state) {
@@ -133,5 +133,5 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 			elem.toggleClass('active');
 
 		}
-	});	
+	});
 	</script>
