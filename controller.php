@@ -60,7 +60,7 @@ class Controller extends Package  {
 		$o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
 		$o->install_db($this->startingPoint);
     // Elements installing
-        $this->installOrUpgrade($pkg);
+    $this->installOrUpgrade($pkg);
 
 	}
 
@@ -297,7 +297,7 @@ class Controller extends Package  {
     }
 
     function setPresetAsDefault ($presetHandle) {
-        $outputError = false;
+        $outputError = true;
         $baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
         $pt = PageTheme::getByHandle($this->themeHandle);
         $preset = $pt->getThemeCustomizablePreset($presetHandle);
