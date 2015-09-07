@@ -39,4 +39,4 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
     </div>
     <?php endif; ?>
     <!-- End Responsive Nav -->
-	<div class="<?php echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('layout_mode') != 'default' ? $c->getAttribute('layout_mode') : $o->layout_mode ?>">
+	<div class="<?php echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('layout_mode') != 'default' && $c->getAttribute('layout_mode') ? $c->getAttribute('layout_mode') : $o->layout_mode ?>">

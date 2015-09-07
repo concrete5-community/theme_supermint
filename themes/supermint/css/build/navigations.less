@@ -206,21 +206,22 @@
   }
 }
 
-@top-large-nav-height : 72px;
+@large-top-nav-height : 72px;
 
-.top-large-nav {
+.large-top-nav {
   display: table;
   width: 100%;
-  height: @top-large-nav-height; // @top-nav-height-size + 20;
+  height: @large-top-nav-height; // @top-nav-height-size + 20;
   background: @top-nav-bg-color;
   // Three state of the nav bar
   &.navbar-show > ul {top:0}
   .ccm-toolbar-visible & > ul{top: 49px}
   .edit-mode & > ul{position: relative}
-  &.navbar-hidden > ul {top:-@top-large-nav-height}
+  &.navbar-hidden > ul {top:-@large-top-nav-height}
   &.navbar-fixed {
     & > ul {
       position: fixed;
+      left: 0;
     }
   }
   &.navbar-colapse {
@@ -234,7 +235,7 @@
     position: relative;
     // top:0;
     z-index: 100;
-    height: @top-large-nav-height;
+    height: @large-top-nav-height;
     margin: 0;
     padding: 0;
     background-color:@top-nav-bg-color;
@@ -242,7 +243,7 @@
     & > li {
       display: table-cell;
       vertical-align: middle;
-      height: @top-large-nav-height;
+      height: @large-top-nav-height;
       .transition(.3s);
 
       & > a {
@@ -300,7 +301,7 @@
     ul,
     .multicolumn-pane,
     .stack-pane {
-      top: @top-large-nav-height !important;
+      top: @large-top-nav-height !important;
       // SPecial style
       box-shadow: none;
       border-radius: 0;

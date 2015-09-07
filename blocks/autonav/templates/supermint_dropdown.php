@@ -105,8 +105,8 @@ foreach ($navItems as $niKey => $ni) :
 		elseif ($ni->hasSubmenu) :
 			$classes[]  = 'mgm-drop mgm-levels';
 		endif;
-		// Si le style de nav est top-large-nav on divise la largeur par le nombre d'items
-		if ($navigationStyle == 'top-large-nav')
+		// Si le style de nav est large-top-nav on divise la largeur par le nombre d'items
+		if ($navigationStyle == 'large-top-nav')
 			$style[] = 'width:' . 100 / count($cIDinLevel1) . '%';
 
 	endif;
@@ -147,7 +147,7 @@ foreach ($navItems as $niKey => $ni) :
 endforeach;
 ?>
 <div class="top_nav_mega-menu <?php echo $navigationStyle . ' ' . ($o->wide_navbar_fixed ? 'navbar-fixed' : '') . ($o->wide_navbar_colapse ? 'navbar-colapse' : '') ?>">
-	<?php if ($o->wide_navbar_contained && $o->navigation_style == 'top-large-nav'): ?><div class="container"><?php endif ?>
+	<?php if ($o->wide_navbar_contained && $o->navigation_style == 'large-top-nav'): ?><div class="container"><?php endif ?>
 	<ul class="mega-menu" >
 			<li class="nav-logo"><span><?php if ($logo) $logo->display(); ?></span></li>
 <?php
@@ -184,5 +184,5 @@ if($o->display_searchbox) :
 	<?php endif ?>
 <?php endif ?>
 	</ul>
-<?php if ($o->wide_navbar_contained && $o->navigation_style == 'top-large-nav'): ?></div><!-- container --><?php endif ?>
+<?php if ($o->wide_navbar_contained && $o->navigation_style == 'large-top-nav'): ?></div><!-- container --><?php endif ?>
 </div><!-- #top_nav -->

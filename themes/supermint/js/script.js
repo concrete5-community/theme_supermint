@@ -60,7 +60,7 @@ $(document).ready(function(){
 	initializeTabs();
 
 // AUto hidding responsive nav bar
-	$('.small-display-nav-bar-inner, .top-large-nav').autoHidingNavbar();
+	$('.small-display-nav-bar-inner, .large-top-nav').autoHidingNavbar();
 
 // Mobile behavior on lateral navigation
 	intitializeLateralMobile();
@@ -127,11 +127,11 @@ enquire.register("screen and (max-width: 979px)", {
     match : function() {
 			$('.top-nav-lateral').addClass('masked');
 			// On desactive les dropdown
-			$('.top-large-nav li.has-submenu').removeClass('mgm-drop');
+			$('.large-top-nav li.has-submenu').removeClass('mgm-drop');
 		},
     unmatch : function() {
 			$('.top-nav-lateral').removeClass('masked');
-			$('.top-large-nav li.has-submenu').addClass('mgm-drop');
+			$('.large-top-nav li.has-submenu').addClass('mgm-drop');
 		}
 
 });

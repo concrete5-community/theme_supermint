@@ -168,7 +168,7 @@ $options = array(
         "options" => array(
             'slide' => t("Slide mode"),
             'regular-top-nav' => t("Regular drop-down mode"),
-            'top-large-nav' => t('Wide Large drop-down mode'),
+            'large-top-nav' => t('Wide Large drop-down mode'),
             'lateral-regular' => t('Lateral mode')
         ),
         "type" => "select"

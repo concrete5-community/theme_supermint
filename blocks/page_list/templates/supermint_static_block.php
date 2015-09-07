@@ -15,7 +15,7 @@ $column_class = $styleObject->columns > 3 ? 'col-md-' : 'col-sm-';
 if ($c->isEditMode()) : ?>
 	<?php $templateName = $controller->getBlockObject()->getBlockFilename() ?>
     <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
-        <div style="padding: 40px 0px 40px 0px"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' with ') . $styleObject->columns ?> </strong><?php echo  t(' disabled in edit mode.') ?></div>
+        <div style="padding: 40px 0px 40px 0px"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' with ') . $styleObject->columns . t(' columns') ?> </strong><?php echo  t(' disabled in edit mode.') ?></div>
     </div>
 <?php else : ?>
 
@@ -48,7 +48,7 @@ if ($c->isEditMode()) : ?>
 	        endif;
 	    endif;
 		?>
-		<?php if ($key%$styleObject->columns == 0) : ?><div class="row"><?php endif ?>
+		<?php if ($key%$styleObject->columns == 0) : ?><div class="row <?php echo in_array('no-gap', $styleObject->classesArray) ? 'no-gap' : '' ?>"><?php endif ?>
 		<div class="<?php echo $column_class . intval(12 / $styleObject->columns)?> item">
 			<div class="media-wrap">
 				<?php if ($imageTag) :  echo $imageTag ?>
@@ -73,12 +73,13 @@ if ($c->isEditMode()) : ?>
 				<div class="fill" style="width:<?php echo 1170 / $styleObject->columns ?>px; height:<?php echo intval ((1170 / $styleObject->columns)) / 1.4 ?>px; background-color:#efefef"></div>
 			<?php endif ?>
 			</div>
-            <?php if ($includeDate): ?>
-                <div class="meta">
-                	<small><i class="fa fa-calendar-o"></i> <?php echo $date?></small>
-                	<?php if($o->carousel_meta) : ?><small> <i class="fa fa-user"></i> <?php echo $original_author ?></small><?php endif ?>
-                </div>
-            <?php endif; ?>
+		<?php if ($includeEntryText): ?>
+    <?php if ($includeDate): ?>
+        <div class="meta">
+        	<small><i class="fa fa-calendar-o"></i> <?php echo $date?></small>
+        	<?php if($o->carousel_meta) : ?><small> <i class="fa fa-user"></i> <?php echo $original_author ?></small><?php endif ?>
+        </div>
+    <?php endif; ?>
 
 			<a href="<?php  echo $url ?>">
 				<div class="item-description">
@@ -86,7 +87,7 @@ if ($c->isEditMode()) : ?>
 					<?php if($includeDescription): ?><span><?php echo $description ?></span><?php endif ?>
 				</div>
 			</a>
-
+		<?php endif; ?>
 		</div>
 		<?php if ( $key%$styleObject->columns == ($styleObject->columns) - 1 || ($key == count($pages)-1) ) : ?></div><?php endif ?>
 	<?php  endforeach; ?>
