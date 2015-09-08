@@ -1,7 +1,7 @@
 
 .mega-menu {
 	position: relative;
-	z-index: 500;
+	z-index: 750;
 	clear: both;
 	width: 100%;
 	height: 36px;
@@ -70,7 +70,7 @@
 .mega-menu > li.mgm-drop:hover > span,
 .mega-menu > li.mgm-drop > a.mgm-click,
 .mega-menu > li.mgm-drop > span.mgm-click
-{ z-index: 650; }
+{ z-index: 750; }
 
 
 /* // 4. DROPDOWN */
@@ -79,7 +79,7 @@
 .mega-menu > li > ul,
 .mega-menu > li > ul li > ul {
 	position: absolute;
-	z-index: 600;
+	z-index: 750;
 	padding: 0;
 	top: 36px;
 	left: -1px;

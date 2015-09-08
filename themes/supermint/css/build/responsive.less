@@ -8,7 +8,7 @@
 .boxed-wrapper {
 
   @media (min-width: @screen-sm-min) {
-    width: @container-sm + 58;
+    width: 100%;
   }
   @media (min-width: @screen-md-min) {
     width: @container-md + 58;
@@ -59,6 +59,7 @@
   }
   .with-lateral-nav .ccm-page {
     margin-left: 0;
+    padding-top: @lateral-nav-width; // Pour laisser de la place au .mobile-handle
   }
 }
 
