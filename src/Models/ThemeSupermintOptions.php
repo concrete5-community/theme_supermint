@@ -101,7 +101,7 @@ class ThemeSupermintOptions extends Object
 
 	function save_preset($name, $based_on = false, $active = false, $returnID = false) {
 
-		Loader::db()->query("INSERT INTO SupermintOptionsPreset (name,active) VALUES (?,?)", array($name, $active));
+		Loader::db()->query("INSERT INTO SupermintOptionsPreset (name,active) VALUES (?,?)", array($name, $active ? 1 : 0));
 
 		if ($returnID) return  Loader::db()->Insert_ID();
 		if ($based_on) :
