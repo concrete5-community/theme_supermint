@@ -11,6 +11,7 @@ hr {
     height: 1px;
     margin: (@space-l / 2)-.1 auto (@space-l / 2) auto;  // 60px height
     background-color: @grey-color;
+    clear: both;
 
     &.primary{ background: @primary-color }
     &.secondary { background: @secondary-color }
@@ -30,15 +31,15 @@ hr {
     &.dotted, .dotted & {
          border-bottom-style:dotted;
     }
-    &.space-s, &.space-m, &.space-l, &.space-xl, 
+    &.space-s, &.space-m, &.space-l, &.space-xl,
     .space-s &, .space-m &, .space-l &, .space-xl & {
         background: none !important;
         margin: 0 !important;
         padding: 0 !important;
         &:after {display: none;}
     }
-    
-    &.space-s, .space-s & { height: @space-s}  
+
+    &.space-s, .space-s & { height: @space-s}
     &.space-m, .space-m & { height: @space-m }
     &.space-l, .space-l & { height: @space-l }
     &.space-xl, .space-xl & { height: @space-xl }

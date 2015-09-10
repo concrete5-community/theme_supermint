@@ -6,7 +6,7 @@
 /*------------ Media Queries -------------*/
 
 .boxed-wrapper {
-
+    width: 100%;
   @media (min-width: @screen-sm-min) {
     width: 100%;
   }
@@ -25,6 +25,9 @@
 }
 
 /* Portrait tablet to landscape and desktop */
+
+
+
 /*--- (CONTAINER width: 724px;)--*/
 @media (max-width: 979px) and (min-width: 768px) {
 
@@ -50,7 +53,6 @@
     }
   }
   // Lateral Nav --\\
-
   .top-nav-lateral {
     .mobile-handle {
       right: -@space-m;
@@ -64,6 +66,8 @@
 }
 
 /* Landscape phone to portrait tablet (100%) */
+
+
 @media (max-width: 767px) {
   .hidden-mobile {display: none}
   .screen-state {content: "phone"}
@@ -73,9 +77,7 @@
     width: 100%
   }
 
-  .mobile-placeholder-nav, #fixed-nav {
-    display: block
-  }
+
 
   .left, .alignleft, .right, .alignright {
     float: none;
@@ -83,27 +85,31 @@
 
   // -- Navigation -- \\
 
+  .mobile-placeholder-nav, #fixed-nav {
+    display: block
+  }
+
   .regular-top-nav {
     display: none;
   }
-  // Show  Mobile navigation
+// Show  Mobile navigation
   .small-display-nav-bar   {
     height: (@fixed-bar-height)-.1;
     .small-display-nav-bar-inner {
       display: block;
     }
   }
-  // Hide the large-top-nav
+// Hide the large-top-nav
   .large-top-nav {
     display: none;
   }
-  // With the lateral navigation Style
+// With the lateral navigation Style
   .with-lateral-nav {
-    // Remove the margin on the body
+// Remove the margin on the body
     .ccm-page {
       margin-left: 0;
     }
-    // Hidde the mobile nav if present
+// Hidde the mobile nav if present
     .small-display-nav-bar {
       display: none;
     }
@@ -128,9 +134,27 @@
 }
 
 /* Landscape phones and down */
+
+
 @media (max-width: 480px) {
   #top {
     display: none
   }
+  // -- Typo -- \\
 
+  .leaders {
+    small {
+      display: block;
+    }
+    &::after {
+      clear: both;
+    }
+  }
+
+  .image-caption-inside {
+    position: relative;
+    transform: translateY(0);
+    left: 0;
+    right: 0;
+  }
 }
