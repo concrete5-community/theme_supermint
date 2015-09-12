@@ -1,1 +1,20 @@
-3.0 - Update of Supermint for Concrete5.7+ 
+Ouups, you're right, the file have not bee updated. Too much enhancement to add !
+I will update this.
+
+3.0.3.3 - Last Fixes from Gumptech found's issues
+3.0.3.2 - Fix from Gumptech found's issues
+        - Fix Mysql error on install on some servers
+3.0.3.1 - Fix Navigations issues
+        - Fix for old PHP
+        - Add Portfolied Starting Point
+3.0.3 - Add options to navigation_style
+      - Navigations Enhancements
+      - Manage height on window resize for Transit slider
+      - Cleaning files
+3.0.2.2 - Fix Compatibility with 5.7.3
+3.0.2.1 - Lateral nav became responsive
+        - Logo management in responsive nav
+        - JS media queries with Enquiere
+3.0.2 - Add Lateral navigation
+3.0.1 - Fix from PRB
+3.0   - Update of Supermint for Concrete5.7+
