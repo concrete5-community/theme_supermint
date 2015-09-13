@@ -1,6 +1,7 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied."));
-$time_start = microtime(true);
-
+$session = \Core::make('session');
+$themeColors = $session->get('supermint.colors');
+// print_r($themeColors);
 
 ?>
 /*
@@ -43,6 +44,13 @@ h5,.h5 {<?=$h5->getStyleCss()?>;font-size:<?=$h5->fullsize?>px}
 h6,.h6 {<?=$h6->getStyleCss()?>;font-size:<?=$h6->fullsize?>px}
 
 /* -- Navigation -- */
+<?php if ($o->first_level_regular_flaterize): ?>
+	.regular-top-nav, .regular-top-nav > ul > li.active > a {background:<?php echo isset($themeColors->variables['top-nav-bg-color']) ? $themeColors->variables['top-nav-bg-color'] : $themeColors->colors['quaternary-color'] ?>}
+	.regular-top-nav > ul > li > a {text-shadow:none}
+	.regular-top-nav > ul > li:not(:last-child),
+	.regular-top-nav > ul li + li {	border:none}
+	.mgm-drop > ul, .multicolumn-pane, .regular-top-nav > ul > li.active > a {box-shadow:none}
+<?php endif ?>
 .l123 > li > a,
 .l12d li > a,
 li.mgm-multi-c-title a {
@@ -123,10 +131,3 @@ li.mgm-multi-c-title a {
 @media (max-width: 480px) {
 
 }
-
-/*<?php
-$time_end = microtime(true);
-$time = $time_end - $time_start;
-
-echo "CSS $time secondes\n";
- ?>*/

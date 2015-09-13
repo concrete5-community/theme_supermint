@@ -70,6 +70,8 @@ class PresetColors extends RouteController {
             $variables[$k] = $v[0];
         endforeach;
 
+        $colorsObject->variables = $variables;
+
         // Build color array
         foreach (self::getColorsVariablesName() as $color) :
             $colorsObject->colors[$color] = $variables[$color . '-color'];

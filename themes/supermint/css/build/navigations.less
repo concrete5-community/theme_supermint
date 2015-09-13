@@ -185,14 +185,11 @@
           background-color: darken(@top-nav-bg-color, 8%);
 
       }
-      &.active > a,
-      &.active > a:hover,
-      &.nav-selected > a,
-      &.nav-path-selected > a,
+      &.active > a
       {
           line-height: @top-nav-height-size - 3px;
           color:@top-nav-a-color;
-          background-color: darken(@top-nav-bg-color, 8%);
+          background-color: darken(@top-nav-bg-color, 5%);
           background-repeat: no-repeat;
           border-bottom: 3px solid @primary-color;
           .gradient(lighten(@top-nav-bg-color, 3%); darken(@top-nav-bg-color, 3%));
@@ -757,7 +754,6 @@
 .multicolumn-pane {
   padding: 0;
   background-color: @nav-dropdown-bg-color;
-  .gradient(lighten(@nav-dropdown-bg-color, 1%); darken(@nav-dropdown-bg-color, 2%));
   .box-shadow(0 0 5px fade(@black-color, 50%));
   border-radius: 0 0 5px 5px;
   border: 1px solid darken(@nav-dropdown-bg-color, 3%);

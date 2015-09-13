@@ -196,6 +196,12 @@ $options = array(
         "default" => 1,
         "type" => "toggle"
     ),
+    array(
+        "name" => t("Disable Gradient on first level nav and dropdowns"),
+        "id" => "first_level_regular_flaterize",
+        "default" => 0,
+        "type" => "toggle"
+    ),
 
     // Dropdown mode
 
@@ -288,6 +294,7 @@ $options = array(
         "default" => 1,
         "type" => "toggle"
     ),
+
     // Lateral
 
     array(
