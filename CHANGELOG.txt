@@ -1,16 +1,18 @@
-Ouups, you're right, the file have not bee updated. Too much enhancement to add !
-I will update this.
-
 3.0.3.3 - Last Fixes from Gumptech found's issues
-3.0.3.2 - Fix from Gumptech found's issues
+          * Boxed page are responsive now
+          * Fix lateral Navigations issues on mobile
+3.0.3.2 - Fix from Gumptech found's issues :
+          * Inside caption is outside in small screen
+          * Enhancement of .leaders on mobile
         - Fix Mysql error on install on some servers
-3.0.3.1 - Fix Navigations issues
+3.0.3.1 - Fix the z-index of the dropdown/slider nav
+        - Fix the magnify glass position
         - Fix for old PHP
         - Add Portfolied Starting Point
-3.0.3 - Add options to navigation_style
-      - Navigations Enhancements
-      - Manage height on window resize for Transit slider
-      - Cleaning files
+3.0.3   - Add options to navigation_style
+        - Navigations Enhancements
+        - Manage height on window resize for Transit slider
+        - Cleaning files
 3.0.2.2 - Fix Compatibility with 5.7.3
 3.0.2.1 - Lateral nav became responsive
         - Logo management in responsive nav
