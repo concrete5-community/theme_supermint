@@ -197,7 +197,8 @@ $options = array(
         "type" => "toggle"
     ),
     array(
-        "name" => t("Disable Gradient on first level nav and dropdowns"),
+        "name" => t("Make regular nav FLAT"),
+        "desc" => t('Once enabled, this options remove all gradient and shadow from the regular type navigation. Usefull for light colors'),
         "id" => "first_level_regular_flaterize",
         "default" => 0,
         "type" => "toggle"
@@ -570,7 +571,6 @@ $options = array(
         "desc" => t("If enabled, Block on footer will be Globals"),
         "id" => "footer_global",
         "default" => 1,
-        "activated" => false,
         "type" => "toggle"
     ),
     array(
@@ -581,6 +581,18 @@ $options = array(
         "type" => "textarea",
         "default" => '<span><i class="fa fa-magic"></i> Designed by <a href="http://www.myconcretelab.com/" rel="Concrete5 theme & addons" title="Concrete5 themes & addons by MyConcreteLab">MyConcreteLab</a></span><span class="powered-by"><i class="fa fa-cogs"></i> Powered by <a href="http://www.concrete5.org" title="concrete5 - open source content management system for PHP and MySQL">concrete5</a></span>'
     ),
+    array(
+        "name" => t("Disable Footer login links"),
+        "desc" => t("If enabled, you will not see login links in the footer"),
+        "id" => "disable_footer_login",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+
+
+    // Popup
+
+
     array(
         'name' => t('Popup'),
         "desc" => t(''),

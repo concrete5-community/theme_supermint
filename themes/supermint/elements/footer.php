@@ -31,6 +31,7 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
       			<span>&copy;&nbsp;<?php echo date('Y')?>&nbsp;<a href="<?php echo DIR_REL?>/"><?php echo Config::get('concrete.site')?></a>&nbsp;</span>
 				<?php echo $o->footer_credit ?>
 				<?php
+        if (!$o->disable_footer_login) :
 				$u = new User();
 				if ($u->isRegistered()) { ?>
 					<?php
@@ -44,6 +45,7 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 				<?php  } else { ?>
 					<span class="sign-in"><a href="<?php echo $this->url('/login')?>">&nbsp;<?php echo t('Sign In to Edit this Site')?></a></span>
 				<?php  } ?>
+      <?php endif ?>
       		</p>
       		<div class="space-s"></div>
       	</div>
