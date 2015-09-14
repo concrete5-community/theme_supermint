@@ -52,7 +52,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: fade(@primary-color,80%);
+    background: fade(@full-screen-nav-bg-color,90%);
     z-index: 1;
     overflow: scroll;
     nav {
@@ -74,10 +74,10 @@
             display: block;
             a {
                 position: relative;
-                font-size: 54px;
+                font-size: 20px;
                 font-weight: 300;
                 display: block;
-                color: fade(@primary-text-color,80%);
+                color: contrast(@full-screen-nav-bg-color, @black-color, @light-color);
                 .transition(color 0.2s);
                 &:hover {
                     color: @primary-text-color;
@@ -88,7 +88,7 @@
                     font-weight: 600;
                 }
                 & > a:before {
-                    .triangle-right(@space-s/2,fade(@primary-text-color,80%));
+                    .triangle-right(@space-xxs,fade(contrast(@full-screen-nav-bg-color, @black-color, @light-color),50%));
                     position: absolute;
                     left: -@space-s ;
                     top: 50%;

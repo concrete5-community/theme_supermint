@@ -343,6 +343,12 @@ $options = array(
         "default" => 0,
         "type" => "toggle"
     ),
+
+
+    // Full screen
+
+
+
     array(
         'name' => t('Responsive full width mode'),
         "desc" => t('Options When the nav showed on mobile'),
@@ -362,6 +368,23 @@ $options = array(
         "default" => 0,
         "type" => "toggle"
     ),
+    array(
+       "name" => t("Font size for links items"),
+       "id" => "full_screen_nav_font_size",
+       "min" => "10",
+       "max" => "50",
+       "step" => "1",
+       "unit" => 'px',
+       "default" => "20",
+       "type" => "range"
+   ),
+
+
+
+    // mega-menu
+
+
+
     array(
         "name" => t("Mega menu options"),
         "desc" => t('Options when a parent page display a Stack as mega-menu'),

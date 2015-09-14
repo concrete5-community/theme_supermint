@@ -34,7 +34,6 @@ foreach ($navItems as $ni) {
 	<div class="overlay overlay-contentscale">
 		<nav>
 			<ul>
-				<li><a href="<?php echo Loader::helper('navigation')->getLinkToCollection(Page::getByID(1)) ?>"><i class="fa fa-home"></i>
 </a></li><?php
 foreach ($navItems as $ni) {
 

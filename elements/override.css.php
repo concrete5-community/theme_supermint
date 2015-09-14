@@ -68,6 +68,10 @@ li.mgm-multi-c-title a {
 	<?php if ($o->lateral_nav_element_uppercase): ?>text-transform:uppercase;<?php endif; ?>
 	font-size:<?php echo $o->lateral_nav_element_size ?>px;
 }
+<?php if ($o->full_screen_nav_font_size) : ?>
+/* Full screen nav */
+.overlay ul li a {font-size:<?php echo $o->full_screen_nav_font_size?>px}
+<?php endif ?>
 
 
 <?php if ($o->disable_border_main) : ?>
