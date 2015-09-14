@@ -10,6 +10,7 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 <!-- Start Concrete Header -->
 <?php Loader::element('header_required'); ?>
 <!-- End Concrete Header -->
+<?php if (Loader::helper('concrete/ui')->showWhiteLabelMessage()) :?><style media="screen">body div#ccm-toolbar>ul>li#ccm-white-label-message{display: none !important}</style><?php endif ?>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
