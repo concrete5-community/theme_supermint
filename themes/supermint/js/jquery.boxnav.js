@@ -2,7 +2,7 @@
 
  (function($) {
 	var defaults = {
-		
+
 		autoClose: true,
 		slideSpeed : 300,
 		openSpeed : 300,
@@ -26,18 +26,18 @@
 
 	$.fn.boxNav = function(panesWrapperSelector, options){
 		if(this.length == 0 || !panesWrapperSelector) return this;
-		
+
 		// support mutltiple elements
 		if(this.length > 1){
 			this.each(function(){$(this).boxNav(panesWrapperSelector, options)});
-			
+
 			return this;
 		}
-		
+
 		// create a namespace to be used throughout the plugin
 		var nav = {};
 		// creer les objets
-		nav.panes = {}; 
+		nav.panes = {};
 		nav.active = {};
 		nav.active.onload = {};
 		nav.active.onload.pane = {};
@@ -62,8 +62,8 @@
 			// Les element actuelemnt selectionnés.
 			// A améliorer pour détecter ici qui est actif et a quel niveau
 			nav.active.onload.li = el.children('li.' + nav.settings.activeClass);
-			
-			// !! nav.active.onload.level =  
+
+			// !! nav.active.onload.level =
 			// l'index du menu de premier niveau selectionne
 			nav.active.onload.index = nav.active.onload.li.index(); // ?est ce que ça marche ?
 			// le niveau de la page active , sur base 0
@@ -81,7 +81,7 @@
 			// Une reference modifiable au mode demandé
 			nav.mode = nav.settings.mode;
 
-			// Si on est sur une page sans sous menu, ... ? Ancienne fonction 
+			// Si on est sur une page sans sous menu, ... ? Ancienne fonction
 			if ( nav.active.onload.pane.isEmpty  || nav.active.onload.index == 0 ) { // A tester
 				nav.settings.autoClose = true;
 			}
@@ -117,7 +117,7 @@
 			el.find('a').off().on(nav.mode == 'mobile' ? 'click' : nav.settings.eventName,onNavAction);
 			// la gestion du window resize
 			$(window).on('resize', resizeWindow);
-			// On ajoute la fermeture automatique du menu uniquement si le menu entier est 
+			// On ajoute la fermeture automatique du menu uniquement si le menu entier est
 			// wrappé dans un div
 			if (nav.settings.globalWrapperSelector)
 				$(nav.settings.globalWrapperSelector).on('mouseleave',onCursorLeaveNav);
@@ -128,7 +128,7 @@
 			var oldActiveIndex = nav.active.index;
 			// On envoi le li qui vient d'être activé
 			setActiveNav ($(e.currentTarget).parent('li'));
-			
+
 			// Si le panneau ne contient pas d'enfant On laisse le lien actif
 			if (!nav.active.pane.children().size())	return true;
 
@@ -139,7 +139,7 @@
 			    if (nav.active.index == oldActiveIndex && nav.settings.eventName != 'mouseenter') el.toggleNav();
 			    // On performe les actions necessaire pour le rendre visuelement actif
 			    else makeActive ();
-			} 
+			}
 			// le deuxieme click nous envoie vers l'url
 			if (nav.settings.doubleCLickAction == 'url') {
 				if (nav.active.index == oldActiveIndex && nav.settings.eventName != 'mouseenter') return true;
@@ -153,8 +153,8 @@
 		/**
 		 * Met a jour l'objet nav (menu + panneaux) grâce à un element li
 		 *
-		 * @param li (html element ou jQuery element) 
-		 *  - le li qui doit être activé 
+		 * @param li (html element ou jQuery element)
+		 *  - le li qui doit être activé
 		 */
 		var setActiveNav = function (li) {
 			// l'element nav.li
@@ -172,7 +172,7 @@
 		/**
 		 * Fonction compilant les action necessaire pour rendre un menu actif.
 		 *
-		 * @param li (html element or jQuery element) 
+		 * @param li (html element or jQuery element)
 		 *  - le li qui doit être activé (optionel si déjà ajuster avant l'appel de cette fonction)
 		 */
 		var makeActive = function (li) {
@@ -190,7 +190,7 @@
 		/**
 		 * fait glisser les pannaux à la place defini par la variable nav.active
 		 *
-		 * @param i (int) 
+		 * @param i (int)
 		 *  - l'index de l'element menu selectionner (optionel et utilisé que pour les fonctions publiques)
 		 */
 		var slidePanes = function (i) {
@@ -199,7 +199,7 @@
 
 			// Si on est en version mobile, on ouvre le page slide avec le menu dedans
 			if(typeof($.pageslide) == 'function' && nav.mode == 'mobile') {
-				
+
 				return;
 			}
 
@@ -214,18 +214,18 @@
 
 		/**
 		 * Place les pannaux à la bonen place (utilisé qu'une fois au chargement)
-		 */	
+		 */
 		 var placePanes = function () {
-			// Si on doit le placer sans attendre 
+			// Si on doit le placer sans attendre
 			// donc ds le futur, lors d'utilisation d'animation CSS, il faudra mettre le délai à 0
-		    nav.panes.slide.css({ 
+		    nav.panes.slide.css({
 		    	left: - nav.active.onload.index * ( getViewportWidth() + nav.settings.slideMargin ) + 'px'
-			});			
+			});
 		}
 
 		/**
 		 * Defini la largeur des colonnes
-		 */	
+		 */
 		var setColumnsWidth = function () {
 			// Si l'utilisateur ne veut pas qu'on touche à ses colonnes
 			if (!nav.settings.takeCareOfColumns) return;
@@ -252,7 +252,7 @@
 		/**
 		 * Quand le curseur quitte les pannaux
 		 *
-		 * @param e (evenement) 
+		 * @param e (evenement)
 		 *  - l'objet evenement de jQuery
 		 */
 		var onCursorLeaveNav = function (e) {
@@ -261,8 +261,8 @@
 			//if(!nav.opened) return;
 			setTimeout(
 				function(){
-					//log('time out'); 
-					makeActive(nav.active.onload.li); 
+					log('time out'); 
+					makeActive(nav.active.onload.li);
 					//parameter = null
 				}
 				,nav.settings.mouseLeaveActionDelay
@@ -271,18 +271,18 @@
 
 		/**
 		 * Retourne la largeur du viewport des panneaux
-		 */	
+		 */
 		var getViewportWidth = function () {
 			//  ça déconne grave
 			return nav.viewport.width();
 			// On retourne la largeur du menu suppérieur
 			//return el.width();
 		}
-		
+
 		/**
 		 * Met à jour les classes css du li de premier niveau
 		 *
-		 * @param el (jQuery DOM element) 
+		 * @param el (jQuery DOM element)
 		 *  - un objet jQuery representant le li à activer
 		 */
 		var toggleSelected = function (li) {
@@ -290,10 +290,10 @@
 			_li = li ? li : nav.active.li;
 			// On recherche les element avec class active
 			el.find('.' + nav.settings.activeClass).removeClass(nav.settings.activeClass);
-			// On ajoute la class que sur le li 
+			// On ajoute la class que sur le li
 
-			_li.addClass(nav.settings.activeClass);		    
-		}	
+			_li.addClass(nav.settings.activeClass);
+		}
 
 		var updatePanesWidth = function () {
 
@@ -341,11 +341,11 @@
 				// On retire la classe si elle existe ET si le mode demandé est 'regular' (sinon on laisse en mobile)
 				if (el.is('.' + nav.settings.mobileClass) && nav.settings.mode != 'mobile') el.add(nav.panes.wrapper).removeClass(nav.settings.mobileClass);
 				// On remeet le mode comme demandé dans les settings
-				//if (nav.mode == 'mobile') 
+				//if (nav.mode == 'mobile')
 				nav.mode = nav.settings.mode;
 			}
 		}
-		
+
 		// ------------------------------- //
 		// ----- Objet publique ------ //
 		// ------------------------------- //
@@ -354,7 +354,7 @@
 
 		$.boxNav.close = function () {
 			el.closeViewport();
-			makeActive(nav.active.onload.li); 
+			makeActive(nav.active.onload.li);
 		}
 
 		// ------------------------------- //
@@ -371,21 +371,21 @@
 
 		/**
 		 * Ferme le viewport si ouver et inversement
-		 */	
+		 */
 		 el.toggleNav = function () {
 			if (nav.opened) {
 				el.closeViewport(true);
 			} else {
 				el.updateViewportHeight();
-			}		 			 		
+			}
 		 }
 
 
 		/**
 		 * Ferme le viewport
-		 * @param forceClose (bool) 
-		 *  - Sert 
-		 */		
+		 * @param forceClose (bool)
+		 *  - Sert
+		 */
 		el.closeViewport = function (forceClose) {
 			if (!nav.opened || nav.working) return;
 			nav.working = true;
@@ -394,28 +394,28 @@
 		 	if (nav.mode == 'mobile') {
 		 		//nav.active.pane.find('a.close').remove();
 		 		$.pageslide.close();
-		 		nav.opened = false; 	
-		 		nav.working = false;		 	
+		 		nav.opened = false;
+		 		nav.working = false;
 		 	} else {
 				nav.viewport.stop(true).animate({height:0},nav.settings.closeSpeed,function(){
 					nav.working = false;
-					nav.opened = false; 
+					nav.opened = false;
 				});
 			}
 		}
 
 		/**
 		 * La methode publque de updateViewportHeight, plus lisible
-		 */		
+		 */
 		el.openViewport = function () {
 			el.updateViewportHeight()
 		}
 
 		/**
 		 * Met à jour la hauteur du viewport avec l'object nav.active
-		 * @param forceClose (bool) 
+		 * @param forceClose (bool)
 		 *  - Sert a garder la navigation ferlé au chargement, sur mobiles
-		 */		
+		 */
 		el.updateViewportHeight = function (forceClose) {
 			if (nav.working) return;
 			nav.working = true;
@@ -426,7 +426,7 @@
 		 		// Mais c'est pas viable car la souris DOIT quitter le #top pour aller sur le pageslide !!
 		 		//if(nav.opened) {nav.working = false; el.closeViewport(); return}
 				$.pageslide({ href: '#' + nav.active.pane.attr('id'), modal:true});
-				nav.opened = true; 	
+				nav.opened = true;
 		 		nav.working = false;
 		 	} else {
 				// Si le panneaux est vide (ou ne contient que &nbsp;) on le regle à zéro d'office
@@ -447,7 +447,7 @@
 		el.redrawNav = function(){
 			// On determine si il y a lieu de switcher en mode 'mobile'
 			toggleMobile ();
-			// On regarde si il faut mettre des colonnes ou pas 
+			// On regarde si il faut mettre des colonnes ou pas
 			setColumnsWidth();
 			// On adapte la largeur des pannaux
 			updatePanesWidth();

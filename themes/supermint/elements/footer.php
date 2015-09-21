@@ -70,7 +70,7 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 		closeSpeed : <?php echo $o->nav_close_speed ?>,
 		mouseLeaveActionDelay : <?php echo $o->nav_mouseleave_delay ?>,
 		mode : '<?php echo $o->force_mobile_nav ? 'mobile' : 'regular' ?>',
-		globalWrapperSelector:'#top',
+		globalWrapperSelector:'#header-nav',
 		openOnLoad : <?php echo $o->nav_open_on_load ? 'true' : 'false' ?>, // A regler depuis l'admin
 		eventName : '<?php echo $o->nav_event ?>',
 		doubleCLickAction : '<?php echo $o->nav_dbl_click_event ?>'
