@@ -1,10 +1,11 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
+$type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('file_manager_detail');
 
 $c = Page::getCurrentPage();
 if (is_object($f)) {
   $fv = $f->getVersion();
-  $path = $fv->getRelativePath();
-  
+  $thumbnailUrl = $f->getThumbnailURL($type->getBaseVersion());
+
     if ($maxWidth > 0 || $maxHeight > 0) {
         $im = Core::make('helper/image');
         $thumb = $im->getThumbnail(
@@ -28,7 +29,7 @@ if (is_object($f)) {
 <div class="img-box-hover img-box-hover-light" id="">
     <div class="item">
         <div class="inner">
-            <div class="image-block big image-wrapper" style="<?php if ($path) : ?>background-image:url(<?php echo $path ?>)<?php endif?>"></div>
+            <div class="image-block big image-wrapper" style="<?php if ($thumbnailUrl) : ?>background-image:url(<?php echo $thumbnailUrl ?>)<?php endif?>"></div>
             <?php if ($title) : ?><h4><?php echo $title ?></h4><hr><?php endif ?>
             <?php if ($desc) : ?><p class="paragraph"><?php echo $desc ?></p><?php endif ?>
             <?php if ($linkURL) : ?><a href="<?php echo $linkURL ?>" class="button-flat"><?php echo t('More') ?></a><?php endif ?>
