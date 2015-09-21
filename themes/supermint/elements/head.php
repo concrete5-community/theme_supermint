@@ -35,7 +35,7 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
     <?php if ($display_responsiveNav): ?>
 
 
-    <div class="small-display-nav-bar">
+    <div class="small-display-nav-bar inherit-ccm-page">
         <?php $responsiveNav->display()?>
     </div>
     <?php endif; ?>

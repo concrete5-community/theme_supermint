@@ -185,4 +185,4 @@ if($o->display_searchbox) :
 <?php endif ?>
 	</ul>
 <?php if ($o->wide_navbar_contained && $o->navigation_style == 'large-top-nav'): ?></div><!-- container --><?php endif ?>
-</div><!-- #top_nav -->
+</div><!-- .top_nav_mega-menu -->

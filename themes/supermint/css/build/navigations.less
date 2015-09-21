@@ -137,16 +137,18 @@
 
 .regular-top-nav {
   height: @top-nav-height-size;
-  border-top-color: darken(@top-nav-bg-color, 10%);
-  border-bottom:darken(@top-nav-bg-color, 20%);
   background: @top-nav-bg-color;
-  .gradient(lighten(@top-nav-bg-color, 1%); darken(@top-nav-bg-color, 8%));
   & > ul {
+    border-top-color: darken(@top-nav-bg-color, 10%);
+    border-bottom:darken(@top-nav-bg-color, 20%);
+    background: @top-nav-bg-color;
+    .gradient(lighten(@top-nav-bg-color, 1%); darken(@top-nav-bg-color, 8%));
+
     text-align: center;
     list-style: none;
     margin: 0 auto;
     padding:0;
-
+    .edit-mode & {z-index: 1}
     li + li {
       border-left: 1px solid fade(lighten(@top-nav-bg-color, 10%), 30%);
     }
@@ -203,6 +205,34 @@
   }
 }
 
+
+.large-top-nav,
+// Qaund la regular-nav est placlé dans la GlobalArea('Responsive Navigation') on lui concède les propriétés d'une navigation fixe.
+.regular-top-nav {
+  // C'est le UL qui doit etre positioné fixe afin que son conteneur garde la place dans le flux !
+  // mais pour que le conteneur soit positionné en dessous du UL,
+  &.navbar-fixed {
+    & > ul {
+      position: fixed;
+      left: 0;
+      .transition(.5s);
+    }
+    // Three state of the nav bar
+    &.navbar-show > ul {top:0}
+    .ccm-toolbar-visible & > ul{top: 49px}
+    .edit-mode & > ul{position: relative}
+    &.navbar-hidden > ul {top:-@large-top-nav-height}
+  }
+  &.navbar-colapse {
+    // On cache le conteneur
+    position: absolute;
+    height: 0;
+  }
+}
+// Je ne sais pas pourquoi la version regular ne support pas le top:49px
+.ccm-toolbar-visible .regular-top-nav.navbar-fixed > ul{top:0}
+
+
 @large-top-nav-height : 72px;
 
 .large-top-nav {
@@ -210,22 +240,7 @@
   width: 100%;
   height: @large-top-nav-height; // @top-nav-height-size + 20;
   background: @top-nav-bg-color;
-  // Three state of the nav bar
-  &.navbar-show > ul {top:0}
-  .ccm-toolbar-visible & > ul{top: 49px}
-  .edit-mode & > ul{position: relative}
-  &.navbar-hidden > ul {top:-@large-top-nav-height}
-  &.navbar-fixed {
-    & > ul {
-      position: fixed;
-      left: 0;
-    }
-  }
-  &.navbar-colapse {
-    // On cache le conteneur
-    position: absolute;
-    height: 0;
-  }
+
   & > ul,
   & > .container > ul {
     display: table-row;
@@ -236,7 +251,7 @@
     margin: 0;
     padding: 0;
     background-color:@top-nav-bg-color;
-    .transition(.5s);
+
     & > li {
       display: table-cell;
       vertical-align: middle;

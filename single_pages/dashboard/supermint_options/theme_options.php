@@ -168,7 +168,7 @@ $options = array(
         "options" => array(
             'slide' => t("Slide mode"),
             'regular-top-nav' => t("Regular drop-down mode"),
-            'large-top-nav' => t('Wide Large drop-down mode'),
+            'large-top-nav' => t('Large drop-down mode'),
             'lateral-regular' => t('Lateral mode')
         ),
         "type" => "select"
@@ -210,6 +210,13 @@ $options = array(
         'name' => t('Dropdown mode'),
         "desc" => t('Options When the nav is in dropdown mode'),
         'type' => 'subsection'
+    ),
+    array(
+        "name" => t("Fix the navigation bar on top"),
+        "desc" => t("If enabled, the nav bar will be fixed on top. You will need to disable the auto-embeding of navigation and placing the autonav block into the 'Responsive Navigation' Area"),
+        "id" => "wide_navbar_fixed",
+        "default" => 0,
+        "type" => "toggle"
     ),
      array(
         "name" => t("Dropdown Width"),
@@ -260,19 +267,12 @@ $options = array(
         "type" => "toggle"
     ),
 
-    // wide large
+    // Large
 
     array(
-        'name' => t('Wide Large Dropdown mode'),
+        'name' => t('Large Dropdown mode'),
         "desc" => t('Options When the navigation style is is set on "Wide Large drop-down mode"'),
         'type' => 'subsection'
-    ),
-    array(
-        "name" => t("Fix the navigation bar on top"),
-        "desc" => t("If enabled, the nav bar will be fixed on top"),
-        "id" => "wide_navbar_fixed",
-        "default" => 0,
-        "type" => "toggle"
     ),
     array(
         "name" => t("Remove the regular place take by the naigation"),

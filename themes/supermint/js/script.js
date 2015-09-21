@@ -60,12 +60,10 @@ $(document).ready(function(){
 	initializeTabs();
 
 // AUto hidding responsive nav bar
-	$('.small-display-nav-bar-inner, .large-top-nav').autoHidingNavbar();
+	$('.small-display-nav-bar-inner, .large-top-nav, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();
 
 // Mobile behavior on lateral navigation
 	intitializeLateralMobile();
-
-
 
 // Happier text
 	var nodes = $('.harmonize-width-heading li > a');
