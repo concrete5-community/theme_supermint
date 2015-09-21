@@ -41,13 +41,13 @@ foreach ($navItems as $ni) {
 
 	$classes = array();
 	$style = array();
-	
+
 	$ni->style = $ni->cObj->getAttribute('main_page_color') ? ' style="border-bottom-color:' . $ni->cObj->getAttribute('main_page_color') . '"' : '';
 
 	/* ---- STACKS -------
 	 * On teste si il y a un stack *
 	 * Le stack doit etre nomé de la manière suivnate *
-	 * mega_menu_{cID}	
+	 * mega_menu_{cID}
 	 */
 
 	if($ni->level == 1)	{
@@ -58,8 +58,8 @@ foreach ($navItems as $ni) {
 			if (!$p->canRead()) $relatedStack = false;
 		}
 	} else {
-		$relatedStack = false;	
-	} 
+		$relatedStack = false;
+	}
 
 	if ($relatedStack) {
 		$blocksOk = array();
@@ -67,9 +67,9 @@ foreach ($navItems as $ni) {
 		foreach($blocks as $b) {
 			$bp = new Permissions($b);
 			if ($bp->canRead()) {
-				$blocksOk[] = $b;		
+				$blocksOk[] = $b;
 			}
-		}		
+		}
 		if(count($blocksOk)) :
 			$ni->blocks = $blocksOk;
 		endif;
@@ -85,7 +85,7 @@ foreach ($navItems as $ni) {
 		//class for the first item in each menu section (first top-level item, and first item of each dropdown sub-menu)
 		$classes[] = 'nav-first';
 	}
-	
+
 	if ($ni->isLast) {
 		//class for the last item in each menu section (last top-level item, and last item of each dropdown sub-menu)
 		$classes[] = 'nav-last';
@@ -101,21 +101,21 @@ foreach ($navItems as $ni) {
 ?>
 		<!-- template supermint.php - prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
 		<div class="regular-top-nav">
-			<ul class="nav nav_tabs">
+			<ul class="nav_tabs">
 
 <?php
 foreach ($navItems as $k=>$ni) {
-	
+
 	if($ni->level != 1 ) continue;
 	// Verifier si cet evitement est utile :
 	// if ($ni->cObj->vObj->cvHandle == 'search') continue;
-	
+
 	echo '<li class="' . $ni->classes . '">'; //opens a nav item
-	
+
 	echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . $ni->classes . '"' . $ni->style . '>' . ($o->first_level_nav_icon ? $ni->icon : '') . ' ' . $ni->name . '</a>';
-	
+
 	echo '</li>';
-	
+
 	// Si le menu est selectionne ou un de ses enfant
 	if ($ni->isCurrent || $ni->inPath) {
 		// On recupere lequel est selectionne ou enfant
@@ -127,15 +127,14 @@ foreach ($navItems as $k=>$ni) {
 	if($o->display_searchbox) :
 		$p = Page::getByID($o->display_searchbox);
 		if (is_object($p)) :
+		echo '<li class="search-in-nav">';
 		?>
-	<li>
-	<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
-	   <input type="search" class="col-md-3" id="search-keywords" name="query" placeholder="&#xf002"/>
-	   <!-- <input type="submit" id="search-go" name="go" value="go"/> -->
-	</form>
-	</li>
-		<?php endif ?>		
-	<?php endif ?>	
+		<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
+	   	   <input type="search" class="vertical-align" id="search-keywords" name="query" placeholder="&#xf002"/>
+		</form>
+		</li>
+		<?php endif ?>
+	<?php endif ?>
    </ul>
 	</div>
 	<div class="container">
@@ -156,28 +155,28 @@ foreach ($navItems as $k=>$ni) {
 						Loader::PackageElement("navigation/stack", 'theme_supermint', array(
 							'ni' => $ni,
 							'o' => $o
-						));										
+						));
 						$j++;
 					// Sinon, Si il y a des enfants, on charge le template demandé par l'atrribut
 					elseif ($ni->hasSubmenu && $ni->level == 1) :
 						switch($ni->cObj->getAttribute('supermint_navigation_type')) {
 							case 'Type 1 (L1-2 w desc)':
-								$type = 'type1';				
+								$type = 'type1';
 								break;
 							case 'Type 2 (L1-2-3)':
-								$type = 'type2';				
+								$type = 'type2';
 								break;
 							case 'Type 3 (L1-2)':
-								$type = 'type3';				
+								$type = 'type3';
 								break;
 							case 'Hidden':
-								$type = false;				
+								$type = false;
 								break;
 							default :
 								$type = 'type1';
 						}
 						if ($type) Loader::PackageElement("navigation/$type", 'theme_supermint', array(
-							'ni' => $ni, 
+							'ni' => $ni,
 							'subNavItems' => $subNavItems,
 							'subsubNavItems' =>$subsubNavItems,
 							'j' => $j,
@@ -186,14 +185,14 @@ foreach ($navItems as $k=>$ni) {
 
 						$j++;
 
-					// On a rien a afficher, donc panneau vide	
+					// On a rien a afficher, donc panneau vide
 					elseif ($ni->level == 1) :
 						echo "\n<div class='empty_pane nav-pane'> <!-- pane-$j  -->\n";
-						echo '&nbsp;'; // The pane is empty	
+						echo '&nbsp;'; // The pane is empty
 						echo "\n</div> <!-- /pane-$j -->\n";
 						$j++;
 					endif;
-					
+
 				}
 				?>
 			</div><!-- .nav-panes -->
@@ -202,7 +201,7 @@ foreach ($navItems as $k=>$ni) {
 	</div> <!-- .row -->
 </div> <!-- .container -->
 
-<?php 
+<?php
 $time_end = microtime(true);
 $time = $time_end - $time_start;
 ?>
