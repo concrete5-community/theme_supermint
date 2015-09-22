@@ -1,3 +1,13 @@
+3.1     - Introduction of Mmenu with new custom template
+          * Move Mmenu-theme to less
+        - Move all JS files in root
+        - Navigation improvement.
+          * Regular drop-down can be also fixed.
+          * Fix The regular nav that can’t be edited (z-index)
+          * Change some words in theme options page.
+          * Fix the mouseOut on navslide
+          * Fix the search form position in nav
+        - Add thumbnail type to blocks/image/templates/supermint_hover.
 3.0.4   - Update full screen nav
           * Remove the home icon
           * Add a option for font size
