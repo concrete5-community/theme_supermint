@@ -19,6 +19,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $this->requireAsset('javascript', 'backstretch');
         $this->requireAsset('javascript', 'bootstrap/alert');
 
+        $this->requireAsset('javascript', 'mmenu');
         $this->requireAsset('javascript', 'boxnav');
         $this->requireAsset('javascript', 'modernizr.custom');
         $this->requireAsset('javascript', 'wow');
@@ -38,7 +39,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $this->requireAsset('css', 'font-awesome');
         $this->requireAsset('css', 'YTPlayer');
         $this->requireAsset('css', 'slick');
-        // $this->requireAsset('css', 'hint');
+        $this->requireAsset('css', 'mmenu');
         $this->requireAsset('css', 'bootsrap-custom');
         $this->requireAsset('css', 'mega-menu');
         $this->requireAsset('css', 'transit');

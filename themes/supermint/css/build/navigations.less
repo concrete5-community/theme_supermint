@@ -666,6 +666,23 @@
   }
 }
 
+// mmenu
+
+#mmenu{
+  .ccm-toolbar-visible & {
+    top: @fixed-bar-height+4.9;
+  }
+
+  &:not( .mm-menu ) {
+   display: none;
+  }
+  font-size:14px;
+}
+.mm-menu li .fa {
+  margin: 0 20px 0 5px;
+  font-size: 16px;
+  width: 12px;
+}
 /* --- Nav Panes --- */
 
 #header-nav,

@@ -76,6 +76,20 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 		doubleCLickAction : '<?php echo $o->nav_dbl_click_event ?>'
 	}
 	<?php endif ?>
+  var mmenuSettings = {
+    // options
+     extensions: <?php echo '["theme-' . ($o->mmenu_theme ? $o->mmenu_theme : 'light') .'"';
+                 echo $o->mmenu_shadow ? ',"pageshadow"' : '';
+                 echo $o->mmenu_iconbar ? ',"iconbar"' : '';
+                 echo '],'
+                 ?>
+     offCanvas: {
+               position:"<?php echo $o->mmenu_position ? $o->mmenu_position : 'left'?>"
+              //  zposition : "front"
+            }
+  <?php echo ($o->mmenu_position == 'bottom' OR $o->mmenu_position == 'top') ? ',autoHeight: true' : ''?>
+  };
+
 	var THEME_PATH = '<?php  echo $this->getThemePath()?>';
 	var FONT_DETAILS_TOOLS_URL = "<?php echo URL::to('/ThemeSupermint/tools/font_details'); ?>";
 	var FIX_IFRAME_ZINDEX = <?php echo $o->fix_iframe_zindex ? 'true' : 'false' ?>;

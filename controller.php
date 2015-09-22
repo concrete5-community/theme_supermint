@@ -135,6 +135,8 @@ class Controller extends Package  {
 
     public function registerAssets () {
  		$al = AssetList::getInstance();
+
+		$al->register( 'javascript', 'mmenu', 'js/build/jquery.mmenu.min.all.js', array('version' => '5.4.2'), $this );
  		$al->register( 'javascript', 'boxnav', 'js/build/jquery.boxnav.js', array('version' => '1.0'), $this );
  		$al->register( 'javascript', 'slick', 'js/build/slick.min.js', array('version' => '1.5.0'), $this );
  		$al->register( 'javascript', 'fitvids', 'js/build/jquery.fitvids.js', array('version' => '1.0'), $this );
@@ -159,6 +161,7 @@ class Controller extends Package  {
 		$al->register( 'css', 'animate', 'themes/supermint/css/addons/animate.css', array('version' => '1'), $this );
 		$al->register( 'css', 'mega-menu', 'themes/supermint/css/addons/mega-menu.css', array('version' => '1.1.0'), $this );
 		$al->register( 'css', 'transit', 'themes/supermint/css/addons/jquery.transit.css', array('version' => '0.1'), $this );
+		$al->register( 'css', 'mmenu', 'themes/supermint/css/addons/jquery.mmenu.all.css', array('version' => '5.4.2'), $this );
 
 		// -- Redactor Plugins -- \\
 

@@ -380,6 +380,59 @@ $options = array(
    ),
 
 
+  // Responsive Lateral nav
+
+   array(
+       'name' => t('Responsive Lateral Nav (mmenu)'),
+       "desc" => t('Options the autonav template is "Surpemint  Mmenu"'),
+       'type' => 'subsection'
+   ),
+   array(
+       "name" => t("Choose the theme"),
+       "desc" => t("By choosing a element you select wich font (not size) to use for links in the navigation"),
+       "id" => "mmenu_theme",
+       "default" => 'light',
+       "options" => array(
+           'light' => t("Light gray background"),
+           'dark' => t("Dark gray background"),
+           'white' => t("White background"),
+           'black' => t("Black background")
+       ),
+       "type" => "select"
+   ),
+   array(
+       "name" => t("Choose the Position"),
+       "desc" => t("By default, the menu will always slide the page out to the right but you can change it."),
+       "id" => "mmenu_position",
+       "default" => 'right',
+       "options" => array(
+          //  'top' => t("Top"),
+          //  'bottom' => t("Bottom"),
+           'left' => t("Left"),
+           'right' => t("Right")
+       ),
+       "type" => "select"
+   ),
+   array(
+       "name" => t("Pane shadow"),
+       "desc" => t("Enable If you want the page to have a shadow to emphasize it's in front of the menu"),
+       "id" => "mmenu_shadow",
+       "default" => 0,
+       "type" => "toggle"
+   ),
+   array(
+       "name" => t("Display Icon"),
+       "id" => "mmenu_display_icon",
+       "default" => 0,
+       "type" => "toggle"
+   ),
+  //  array(
+  //      "name" => t("Use iconbar"),
+  //      "desc" => t("Enable If you want a small part of the menu to always be visible (most commonly when 'display Icon' is enabled)"),
+  //      "id" => "mmenu_iconbar",
+  //      "default" => 0,
+  //      "type" => "toggle"
+  //  ),
 
     // mega-menu
 

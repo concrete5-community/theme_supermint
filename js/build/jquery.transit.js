@@ -106,18 +106,15 @@ var Transit = {
 		this.nav.show();
 	},
 	setSliderHeight : function (elem) {
-    console.log(elem);
 		this.itemsWrapper.add(elem).height(elem.find('img').height());
 	},
 	navigate : function ( dir,e ) {
 		e.preventDefault();
-		l(dir)
 
 		if( this.isAnimating ) return false;
 		this.isAnimating = true;
 
 		this.currentSlideItem = $(this.items[ this.currentSlide ]);
-		// l(this.currentSlide);
 
 		if( dir === 'next' ) {
 			this.currentSlide = this.currentSlide < this.itemsCount - 1 ? this.currentSlide + 1 : 0;

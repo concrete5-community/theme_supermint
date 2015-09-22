@@ -1,4 +1,5 @@
 var docWidth = document.documentElement.offsetWidth;
+var mmenu = false;
 
 // Afficher les element avec la classe .detect
 detectOnView();
@@ -61,6 +62,20 @@ $(document).ready(function(){
 
 // AUto hidding responsive nav bar
 	$('.small-display-nav-bar-inner, .large-top-nav, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();
+
+// Mmenu
+	if($("#mmenu").size()) {
+		$("#mmenu").mmenu(mmenuSettings,  {
+		    // configuration
+		    offCanvas: {
+		      pageSelector:'.ccm-page'
+		      // menuWrapperSelector:'.small-display-nav-bar'
+		    }
+		  });
+		mmenu = $("#mmenu").data( "mmenu" );
+		mmenu.bind( "opened", function() {$('#hamburger-icon').addClass('active')});
+		mmenu.bind( "closing", function() {$('#hamburger-icon').removeClass('active')});
+	}
 
 // Mobile behavior on lateral navigation
 	intitializeLateralMobile();
@@ -211,7 +226,22 @@ function detectOnView () {
         overlay = $( '.overlay' ),
         closeBttn = $( 'button.overlay-close' );
     function toggleOverlay() {
-        if( overlay.is('.open' ) ) {
+
+			// Mmenu mode
+			// Si le mmenu a été inité, on aporte les changement sur lui
+			if (typeof mmenu == 'object') {
+				if($("#mmenu").is(".mm-opened")) {
+					mmenu.close();
+					// triggerBttn.removeClass('active');
+				} else {
+					mmenu.open();
+					// triggerBttn.addClass('active');
+				}
+
+				// Full screen mode
+
+			} else {
+				if( overlay.is('.open' ) ) {
             overlay.removeClass('open' );
             container.removeClass('overlay-open' );
             triggerBttn.removeClass('active');
@@ -221,6 +251,7 @@ function detectOnView () {
             container.addClass('overlay-open' );
             triggerBttn.addClass('active');
         }
+			}
     }
     triggerBttn.on( 'click', toggleOverlay );
 })();
