@@ -3,4 +3,11 @@
     <blocktypes>
         <blocktype handle="pie_chart" package="theme_supermint"/>
     </blocktypes>
+    <stacks>
+      <stack name="Site Logo">
+        <area name="Main">
+          <blocks/>
+        </area>
+      </stack>
+    </stacks>
 </concrete5-cif>

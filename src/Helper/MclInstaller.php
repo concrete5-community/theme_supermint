@@ -8,6 +8,7 @@ use SinglePage;
 use PageType;
 use BlockType;
 use Block;
+use Stack;
 use PageTheme;
 use Loader;
 use Core;
@@ -48,6 +49,7 @@ class MclInstaller
     protected function doImport($sx)
     {
         $this->importSinglePage($sx);
+        $this->importStacksStructure($sx);
         $this->importBlockTypes($sx);
         $this->importBlockTypeSets($sx);
         $this->importAttributeCategories($sx);
@@ -58,6 +60,7 @@ class MclInstaller
         $this->importPageTemplates($sx);
         $this->importFileImportantThumbnailTypes($sx);
         $this->importSystemContentEditorSnippets($sx);
+        $this->importStacksContent($sx);
     }
 
     protected function getPackageObject()
@@ -80,6 +83,18 @@ class MclInstaller
         }
     }
 
+    protected function importStacksStructure(\SimpleXMLElement $sx)
+    {
+        if (isset($sx->stacks)) {
+            foreach ($sx->stacks->stack as $p) {
+                $tack = Stack::getByName($p['name']);
+                if (!is_object($stack)) :
+                  $type = isset($p['type']) ? Stack::mapImportTextToType($p['type']) : 0 ;
+                  Stack::addStack($p['name'], $type);
+                endif;
+            }
+        }
+    }
 
     protected function importPageTemplates(\SimpleXMLElement $sx)
     {
@@ -108,7 +123,7 @@ class MclInstaller
                 if (is_object($pkg)) {
                     if (!BlockType::getByHandle((string) $bt['handle']))
                         BlockType::installBlockTypeFromPackage((string) $bt['handle'], $pkg);
-                } 
+                }
             }
         }
     }
@@ -159,7 +174,7 @@ class MclInstaller
             foreach ($sx->thumbnailtypes->thumbnailtype as $l) {
                 $thumbtype = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle((string) $l['handle']);
                 if (is_object($thumbtype)) continue;
-                
+
                 $type = new \Concrete\Core\File\Image\Thumbnail\Type\Type();
                 $type->setName((string) $l['name']);
                 $type->setHandle((string) $l['handle']);
@@ -172,7 +187,7 @@ class MclInstaller
             }
         }
     }
-    
+
 
     protected function importAttributeCategories(\SimpleXMLElement $sx)
     {
@@ -203,7 +218,7 @@ class MclInstaller
 
                 $akID = $db->GetOne( "SELECT ak.akID FROM AttributeKeys ak INNER JOIN AttributeKeyCategories akc ON ak.akCategoryID = akc.akCategoryID  WHERE ak.akHandle = ? AND akc.akCategoryHandle = ?", array($ak['handle'],  $akc->getAttributeKeyCategoryHandle()));
 
-                if(!$akID) 
+                if(!$akID)
                     call_user_func(array($c1, 'import'), $ak);
                     // ISSUE : This create tha attribute but this one is not loadable for now, i think from a cache issue.
                     // It is impossible to retrieve the attribute to embed in a set for example.
@@ -216,8 +231,8 @@ class MclInstaller
                     if (count($row)) :
                         $new_akID = $row['akID'];
                         // We need to change the value 'akIsAutoCreated' for file attribute otherwise it is not available in the file properties
-                        if ($ak['category'] == 'file') 
-                            $db->Execute('UPDATE AttributeKeys SET akIsAutoCreated = 0 WHERE AttributeKeys.akID = ?',array($new_akID));                        
+                        if ($ak['category'] == 'file')
+                            $db->Execute('UPDATE AttributeKeys SET akIsAutoCreated = 0 WHERE AttributeKeys.akID = ?',array($new_akID));
                         $this->installedAk[$row['akHandle']] = $new_akID;
                     endif;
             }
@@ -244,7 +259,7 @@ class MclInstaller
                             $do = $db->GetOne('select max(displayOrder) from AttributeSetKeys where asID = ?', array($set->getAttributeSetID()));
                             $do++;
                             $db->Execute('insert into AttributeSetKeys (asID, akID, displayOrder) values (?, ?, ?)', array($set->getAttributeSetID(), $akID, $do));
-                        }                   
+                        }
                     } else {
                         $ak = $akc->getAttributeKeyByHandle((string)$ask['handle']);
                         if (is_object($ak)) {
@@ -264,8 +279,8 @@ class MclInstaller
                 $scs = SystemContentEditorSnippet::getByHandle($th['handle']);
                 if (is_object($scs)) continue;
                 $scs = SystemContentEditorSnippet::add($th['handle'], $th['name'], $pkg);
-                $scs->activate();                
-            
+                $scs->activate();
+
             }
         }
     }
