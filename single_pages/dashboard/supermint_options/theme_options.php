@@ -394,7 +394,7 @@ $options = array(
        "default" => 'light',
        "options" => array(
            'light' => t("Light gray background"),
-           'dark' => t("Dark gray background"),
+           'dark' => t("Quaternary background"),
            'white' => t("White background"),
            'black' => t("Black background")
        ),
@@ -404,7 +404,7 @@ $options = array(
        "name" => t("Choose the Position"),
        "desc" => t("By default, the menu will always slide the page out to the right but you can change it."),
        "id" => "mmenu_position",
-       "default" => 'right',
+       "default" => 'left',
        "options" => array(
           //  'top' => t("Top"),
           //  'bottom' => t("Bottom"),

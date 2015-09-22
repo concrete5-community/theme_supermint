@@ -1,0 +1,279 @@
+// Regular Theme
+
+.mm-menu {
+  background: @light-color;
+  border-color: fade(@black-color,10%);
+  color: fade(@black-color,70%);
+  & .mm-navbar > *,
+  & .mm-navbar a {
+    color: fade(@black-color,30%);
+  }
+  & .mm-navbar .mm-btn:before, & .mm-navbar .mm-btn:after {
+    border-color: fade(@black-color,30%);
+  }
+  & .mm-listview {
+    border-color: fade(@black-color,10%);
+  }
+  & .mm-listview > li .mm-next:after,
+  & .mm-listview > li .mm-arrow:after {
+    border-color: fade(@black-color,30%);
+  }
+  & .mm-listview > li a:not(.mm-next) {
+    -webkit-tap-highlight-color: fade(@white-color, 50%);
+    tap-highlight-color: fade(@white-color, 50%);
+  }
+  & .mm-listview > li.mm-selected > a:not(.mm-next),
+  & .mm-listview > li.mm-selected > span {
+    background: fade(@white-color, 50%);
+  }
+  &.mm-vertical .mm-listview > li.mm-opened > a.mm-next,
+  &.mm-vertical .mm-listview > li.mm-opened > .mm-panel,
+  & .mm-listview > li.mm-opened.mm-vertical > a.mm-next,
+  & .mm-listview > li.mm-opened.mm-vertical > .mm-panel {
+    background: fade(@black-color,50%);
+  }
+  & .mm-divider {
+    background: fade(@black-color,50%);
+  }
+}
+
+
+// Dark (get from Quaternary)
+
+.mm-menu.mm-theme-dark {
+  background: @quaternary-color;
+  border-color: darken(@quaternary-color,5%);
+  color: fade(@quaternary-text-color, 80%);
+  & .mm-navbar > *,
+  & .mm-navbar a {
+    color: fade(@quaternary-text-color, 40%);
+  }
+  & .mm-navbar .mm-btn:before,
+  & .mm-navbar .mm-btn:after {
+    border-color: fade(@quaternary-text-color, 40%);
+  }
+  & .mm-listview {
+    border-color: fade(@black-color,150%);
+  }
+  & .mm-listview > li .mm-next:after,
+  & .mm-listview > li .mm-arrow:after {
+    border-color: fade(@quaternary-text-color, 40%);
+  }
+  & .mm-listview > li a:not(.mm-next) {
+    -webkit-tap-highlight-color: fade(@quaternary-color,10%);
+    tap-highlight-color: fade(@quaternary-color,10%);
+  }
+  & .mm-listview > li.mm-selected > a:not(.mm-next),
+  & .mm-listview > li.mm-selected > span {
+    background: fade(@quaternary-color,10%);
+  }
+  &.mm-vertical .mm-listview > li.mm-opened > a.mm-next,
+  &.mm-vertical .mm-listview > li.mm-opened > .mm-panel,
+  & .mm-listview > li.mm-opened.mm-vertical > a.mm-next,
+  & .mm-listview > li.mm-opened.mm-vertical > .mm-panel {
+    background: fade(@quaternary-text-color, 050%);
+  }
+  & .mm-divider {
+    background: fade(@quaternary-text-color, 050%);
+  }
+
+  & label.mm-check:before {
+    border-color: fade(@quaternary-text-color, 80%);
+  }
+
+  & em.mm-counter {
+    color: fade(@quaternary-text-color, 40%);
+  }
+
+  & .mm-fixeddivider span {
+    background: fade(@quaternary-text-color, 050%);
+  }
+
+  .mm-menu.mm-pageshadow.mm-theme-dark:after {
+    box-shadow: 0 0 20px fade(@quaternary-color,50%);
+  }
+
+  & .mm-search input {
+    background: fade(@quaternary-text-color, 30%);
+    color: fade(@quaternary-text-color, 80%);
+  }
+  & .mm-noresultsmsg {
+    color: fade(@quaternary-text-color, 40%);
+  }
+
+  & .mm-indexer a {
+    color: fade(@quaternary-text-color, 40%);
+  }
+
+  & label.mm-toggle {
+    background: fade(@quaternary-color,150%);
+  }
+  & label.mm-toggle:before {
+    background: #333333;
+  }
+  & input.mm-toggle:checked ~ label.mm-toggle {
+    background: @success-color;
+  }
+}
+
+
+// Theme Whte
+
+
+.mm-menu.mm-theme-white  {
+  background: @white-color;
+  border-color: fade(@black-color,10%);
+  color: fade(@black-color,60%);
+
+  & .mm-navbar > *,
+  & .mm-navbar a {
+    color: fade(@black-color,30%);
+  }
+  & .mm-navbar .mm-btn:before, & .mm-navbar .mm-btn:after {
+    border-color: fade(@black-color,30%);
+  }
+  & .mm-listview {
+    border-color: fade(@black-color,10%);
+  }
+  & .mm-listview > li .mm-next:after,
+  & .mm-listview > li .mm-arrow:after {
+    border-color: fade(@black-color,30%);
+  }
+  & .mm-listview > li a:not(.mm-next) {
+    -webkit-tap-highlight-color: fade(@black-color,5%);
+    tap-highlight-color: fade(@black-color,5%);
+  }
+  & .mm-listview > li.mm-selected > a:not(.mm-next),
+  & .mm-listview > li.mm-selected > span {
+    background: fade(@black-color,5%);
+  }
+  &.mm-vertical .mm-listview > li.mm-opened > a.mm-next,
+  &.mm-vertical .mm-listview > li.mm-opened > .mm-panel,
+  & .mm-listview > li.mm-opened.mm-vertical > a.mm-next,
+  & .mm-listview > li.mm-opened.mm-vertical > .mm-panel {
+    background: fade(@black-color,3%);
+  }
+  & .mm-divider {
+    background: fade(@black-color,3%);
+  }
+
+  & label.mm-check:before {
+    border-color: fade(@black-color,60%);
+  }
+
+  & em.mm-counter {
+    color: fade(@black-color,30%);
+  }
+
+  & .mm-fixeddivider span {
+    background: fade(@black-color,3%);
+  }
+
+  .mm-menu.mm-pageshadow.mm-theme-white:after {
+    box-shadow: 0 0 10px fade(@black-color,20%);
+  }
+
+  & .mm-search input {
+    background: fade(@black-color,5%);
+    color: fade(@black-color,60%);
+  }
+  & .mm-noresultsmsg {
+    color: fade(@black-color,30%);
+  }
+
+  & .mm-indexer a {
+    color: fade(@black-color,30%);
+  }
+
+  & label.mm-toggle {
+    background: fade(@black-color,10%);
+  }
+    & label.mm-toggle:before {
+      background: white;
+    }
+  & input.mm-toggle:checked ~ label.mm-toggle {
+    background: @success-color;
+  }
+}
+
+
+// Theme Dark
+
+
+
+.mm-menu.mm-theme-black  {
+  background: @black-color;
+  border-color: fade(@white-color, 20%);
+  color: fade(@white-color, 60%);
+
+  & .mm-navbar > *,
+  & .mm-navbar a {
+    color: fade(@white-color, 40%);
+  }
+  & .mm-navbar .mm-btn:before, & .mm-navbar .mm-btn:after {
+    border-color: fade(@white-color, 40%);
+  }
+  & .mm-listview {
+    border-color: fade(@white-color, 20%);
+  }
+  & .mm-listview > li .mm-next:after,
+  & .mm-listview > li .mm-arrow:after {
+    border-color: fade(@white-color, 40%);
+  }
+  & .mm-listview > li a:not(.mm-next) {
+    -webkit-tap-highlight-color: fade(@white-color, 30%);
+    tap-highlight-color: fade(@white-color, 30%);
+  }
+  & .mm-listview > li.mm-selected > a:not(.mm-next),
+  & .mm-listview > li.mm-selected > span {
+    background: fade(@white-color, 30%);
+  }
+  &.mm-vertical .mm-listview > li.mm-opened > a.mm-next,
+  &.mm-vertical .mm-listview > li.mm-opened > .mm-panel,
+  & .mm-listview > li.mm-opened.mm-vertical > a.mm-next,
+  & .mm-listview > li.mm-opened.mm-vertical > .mm-panel {
+    background: fade(@white-color, 20%);
+  }
+  & .mm-divider {
+    background: fade(@white-color, 20%);
+  }
+
+  & label.mm-check:before {
+    border-color: fade(@white-color, 60%);
+  }
+
+  & em.mm-counter {
+    color: fade(@white-color, 40%);
+  }
+
+  & .mm-fixeddivider span {
+    background: fade(@white-color, 20%);
+  }
+
+  .mm-menu.mm-pageshadow.mm-theme-black:after {
+    content: none;
+    display: none;
+  }
+
+  & .mm-search input {
+    background: fade(@white-color, 30%);
+    color: fade(@white-color, 60%);
+  }
+  & .mm-noresultsmsg {
+    color: fade(@white-color, 40%);
+  }
+
+  & .mm-indexer a {
+    color: fade(@white-color, 40%);
+  }
+
+  & label.mm-toggle {
+    background: fade(@white-color, 20%);
+  }
+    & label.mm-toggle:before {
+      background: @black-color
+    }
+  & input.mm-toggle:checked ~ label.mm-toggle {
+    background: @success-color;
+  }
+}
