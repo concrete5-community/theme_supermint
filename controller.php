@@ -135,21 +135,21 @@ class Controller extends Package  {
 
     public function registerAssets () {
  		$al = AssetList::getInstance();
- 		$al->register( 'javascript', 'boxnav', 'themes/supermint/js/jquery.boxnav.js', array('version' => '1.0'), $this );
- 		$al->register( 'javascript', 'slick', 'themes/supermint/js/slick.min.js', array('version' => '1.5.0'), $this );
- 		$al->register( 'javascript', 'fitvids', 'themes/supermint/js/jquery.fitvids.js', array('version' => '1.0'), $this );
- 		$al->register( 'javascript', 'rcrumbs', 'themes/supermint/js/jquery.rcrumbs.min.js', array('version' => '1.1'), $this );
- 		$al->register( 'javascript', 'nprogress', 'themes/supermint/js/nprogress.js', array('version' => '0.1.6'), $this );
- 		$al->register( 'javascript', 'autohidingnavbar', 'themes/supermint/js/jquery.autohidingnavbar.js', array('version' => '0.1.6'), $this );
- 		$al->register( 'javascript', 'supermint.script', 'themes/supermint/js/script.js', array('version' => '0.1.6'), $this );
-   	$al->register( 'javascript', 'YTPlayer', 'themes/supermint/js/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
-		$al->register( 'javascript', 'modernizr.custom', 'themes/supermint/js/modernizr.custom.js', array('version' => '2.7.1'), $this );
-		$al->register( 'javascript', 'transit', 'themes/supermint/js/jquery.transit.js', array('version' => '0.1'), $this );
-    $al->register( 'javascript', 'isotope', 'themes/supermint/js/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
-    $al->register( 'javascript', 'wow', 'themes/supermint/js/wow.js', array('version' => '1.1.2'), $this );
-    $al->register( 'javascript', 'harmonize-text', 'themes/supermint/js/harmonize-text.js', array('version' => '1'), $this );
-		$al->register( 'javascript', 'enquire', 'themes/supermint/js/enquire.js', array('version' => '2.1.2'), $this );
-		$al->register( 'javascript', 'twitterFetcher', 'themes/supermint/js/twitterFetcher_min.js', array('version' => '12'), $this );
+ 		$al->register( 'javascript', 'boxnav', 'js/build/jquery.boxnav.js', array('version' => '1.0'), $this );
+ 		$al->register( 'javascript', 'slick', 'js/build/slick.min.js', array('version' => '1.5.0'), $this );
+ 		$al->register( 'javascript', 'fitvids', 'js/build/jquery.fitvids.js', array('version' => '1.0'), $this );
+ 		$al->register( 'javascript', 'rcrumbs', 'js/build/jquery.rcrumbs.min.js', array('version' => '1.1'), $this );
+ 		$al->register( 'javascript', 'nprogress', 'js/build/nprogress.js', array('version' => '0.1.6'), $this );
+ 		$al->register( 'javascript', 'autohidingnavbar', 'js/build/jquery.autohidingnavbar.js', array('version' => '0.1.6'), $this );
+ 		$al->register( 'javascript', 'supermint.script', 'js/build/script.js', array('version' => '0.1.6'), $this );
+   	$al->register( 'javascript', 'YTPlayer', 'js/build/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
+		$al->register( 'javascript', 'modernizr.custom', 'js/build/modernizr.custom.js', array('version' => '2.7.1'), $this );
+		$al->register( 'javascript', 'transit', 'js/build/jquery.transit.js', array('version' => '0.1'), $this );
+    $al->register( 'javascript', 'isotope', 'js/build/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
+    $al->register( 'javascript', 'wow', 'js/build/wow.js', array('version' => '1.1.2'), $this );
+    $al->register( 'javascript', 'harmonize-text', 'js/build/harmonize-text.js', array('version' => '1'), $this );
+		$al->register( 'javascript', 'enquire', 'js/build/enquire.js', array('version' => '2.1.2'), $this );
+		$al->register( 'javascript', 'twitterFetcher', 'js/build/twitterFetcher_min.js', array('version' => '12'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
  		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0'), $this );
