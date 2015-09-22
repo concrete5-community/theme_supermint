@@ -1,5 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$c = Page::getCurrentPage();
+$t =  $c->getCollectionThemeObject();
 $styleObject = $t->getClassSettingsObject($b);
 
 if (is_object($f)) :

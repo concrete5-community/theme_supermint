@@ -1,9 +1,10 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$c = Page::getCurrentPage();
+$t =  $c->getCollectionThemeObject();
 $styleObject = $t->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);?>
 
 <div class="image-caption-wrapper">
-<?php $c = Page::getCurrentPage();
+<?php 
 if (is_object($f)) {
     if ($maxWidth > 0 || $maxHeight > 0) {
         $im = Core::make('helper/image');

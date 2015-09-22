@@ -2,16 +2,16 @@
 
 // Cette requete peut prendre plus d'une demi seconde !
 $navItems = $controller->getNavItems();
-
+$c = Page::getCurrentPage();
 $time_start = microtime(true);
 $prepare_start = microtime(true);
 $i = 0;
 // Les options
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$t =  $c->getCollectionThemeObject();
 
 $navigationStyle = $o->navigation_style ? $o->navigation_style : "regular-top-nav";
-$styleObject = $h->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);
+$styleObject = $t->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);
 
 // Global Logo
 if ($o->wide_navbar_display_logo)
