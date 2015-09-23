@@ -34,7 +34,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $this->requireAsset('javascript', 'autohidingnavbar');
         $this->requireAsset('javascript', 'YTPlayer');
         $this->requireAsset('javascript', 'transit');
+        $this->requireAsset('javascript', 'imageloaded');
         $this->requireAsset('javascript', 'isotope');
+        $this->requireAsset('javascript', 'element-masonry');
         $this->requireAsset('javascript', 'harmonize-text');
         $this->requireAsset('javascript', 'enquire');
         $this->requireAsset('javascript', 'supermint.script');

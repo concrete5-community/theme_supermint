@@ -2,12 +2,13 @@
 /*
 stdClass Object
 (
-    [fileTags] => Array
+    [pageTags] => Array
         (
             [169] => Array
                 (
-                    [value] => Masonry
-                    [handle] => masonry
+                    [0] => navigation
+                    [1] => jquery
+                    [2] => masonry
                 )
 
         )
@@ -20,14 +21,16 @@ stdClass Object
         )
 
 )
-*/?>
-<!-- <pre><?php print_r($tagsObject)?></pre> -->
-<?php
-	if (count($tagsObject->tags) && true ) : ?>
-		<ul class="filter-set" data-filter="filter" id="filter-set-<?php echo $bID?>">
-		  <li><a href="#show-all" data-option-value="*" class="selected rounded"><?php echo t('show all')?></a></li>
-		  <?php foreach ($tagsObject->tags as $handle => $tag): ?>
-		  <li><a class="" href="#<?php echo $handle?>" data-filter=".<?php echo $handle ?>"><?php echo $tag?></a></li>
-		  <?php endforeach ?>
-		</ul>
-	<?php endif ?>
+*/
+if (count($tagsObject->tags) && $o->isotope_display_tags ) :
+	// All is in echo to preserve the no-spce for display:inline-block
+	echo '<ul class="filter-set zero hlist" data-filter="filter" id="filter-set-' . $bID . '">';
+	  echo '<li><a href="#show-all" data-option-value="*" class="button-flat button-primary">' . t('show all') .'</a></li>';
+	  foreach ($tagsObject->tags as $handle => $tag):
+	  echo '<li><a class="button-flat" href="#' . $handle . '" data-filter=".' . $handle . '">' . $tag . '</a></li>';
+	endforeach;
+	if($o->isotope_display_search):
+		echo '<li class="search-filter-wrapper"><input type="text" class="search-filter" id="quicksearch-' . $bID . '" placeholder="' . t('Search on Title') . '" /></li>';
+	endif;
+	echo '</ul>';
+endif;?>

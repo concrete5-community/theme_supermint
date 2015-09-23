@@ -20,14 +20,9 @@ if ($c->isEditMode()) : ?>
     </div>
 <?php else :
 
-
 ?>
-
-<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID))?>
-
-
-	<div class="ccm-page-list page-list-block page-list-block-static page-list-masonry img-box-hover" id="page-list-img-box-hover-<?php echo $bID?>">
-		<!-- <div class="row"> -->
+<?php if($o->isotope_display_search || $$o->isotope_display_tags && count($tagsObject->tags)) : Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID)); endif?>
+<div class="ccm-page-list page-list-block page-list-block-static page-list-masonry img-box-hover" id="page-list-img-box-hover-<?php echo $bID?>" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
 	<?php  foreach ($pages as $key => $page):
 
 		// Prepare data for each page being listed...
@@ -43,7 +38,7 @@ if ($c->isEditMode()) : ?>
 		$description = $th->entities($description);
 		endif;
 		$icon = $page->getAttribute('icon') ? $page->getAttribute('icon') : 'fa-dot';
-  		?>
+  	?>
 		<div class="<?php echo $column_class . intval(12 / $styleObject->columns)?> item masonry-item <?php echo $tags ?>">
 			<div class="inner">
 				<a href="<?php echo $url ?>" target="<?php echo $target ?>">
@@ -64,23 +59,10 @@ if ($c->isEditMode()) : ?>
 	        </div>
 		</div>
 	<?php  endforeach; ?>
-	<!--</div><!-- .row -->
-
-</div><!-- end .ccm-page-list .row-->
+</div><!-- end .ccm-page-list-->
 <div class="ccm-pagination">
 	<?php if ($showPagination): ?>
 	    <?php echo $pagination;?>
 	<?php endif; ?>
 </div>
-<script>
-	$(document).ready(function () {
-		$('#page-list-img-box-hover-<?php echo $bID?>').isotope({
-		  itemSelector: '.item',
-		  percentPosition: true,
-		  masonry: {
-		    columnWidth: '.<?php echo $column_class . intval(12 / $styleObject->columns)?>'
-		  }
-		})
-	});
-</script>
 <?php endif ?>
