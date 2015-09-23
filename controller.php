@@ -118,7 +118,7 @@ class Controller extends Package  {
 								if (!is_object($c)) return;
 								// Now we build the button
 								$pt = $c->getCollectionThemeObject();
-								if ($pt->getThemeHandle() != $this->themeHandle) return;
+								if ($pt->getThemeHandle() != 'supermint') return;
 								$status = t('Supermint Options');
 								$icon = 'toggle-on';
 								$ihm = Core::make('helper/concrete/ui/menu');
