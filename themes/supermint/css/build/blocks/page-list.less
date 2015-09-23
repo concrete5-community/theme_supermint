@@ -308,7 +308,7 @@ ul.filter-set {
 
 // -- With no Gap -- \\
 
-.ccm-page-list-no-gap {
+.ccm-page-list-hover {
   .item:hover {
     img {
       .blur(1px);
@@ -322,6 +322,17 @@ ul.filter-set {
       color: @white-color;
       text-shadow:0 0 3px fade(@black-color, 50%);
       opacity:1;
+    }
+    .vertical-align {
+      left: 0;
+      right: 0;
+      top:0;
+      padding: @space-xs;
+      transform: translateY(0%);
+      .transition(.3s);
+    }
+    &:hover .vertical-align {
+      transform: translateY(-50%);
     }
   }
   .meta {

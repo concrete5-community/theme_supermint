@@ -21,17 +21,18 @@ if ($c->isEditMode()) : ?>
 <?php else :
 
 ?>
-<?php if($o->isotope_display_search || $$o->isotope_display_tags && count($tagsObject->tags)) : Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID)); endif?>
+<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID))?>
 <div class="ccm-page-list page-list-block page-list-block-static page-list-masonry img-box-hover" id="page-list-img-box-hover-<?php echo $bID?>" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
 	<?php  foreach ($pages as $key => $page):
 
 		// Prepare data for each page being listed...
-		$title = $th->entities($page->getCollectionName());
-		$url = $nh->getLinkToCollection($page);
+		$externalLink = $page->getAttribute('external_link');
+		$url = $externalLink ? $externalLink : $nh->getLinkToCollection($page);
 		$target = ($page->getCollectionPointerExternalLink() != '' && $page->openCollectionPointerExternalLinkInNewWindow()) ? '_blank' : $page->getAttribute('nav_target');
 		$target = empty($target) ? '_self' : $target;
 		$tags = isset($tagsObject->pageTags[$page->getCollectionID()]) ? implode(' ',$tagsObject->pageTags[$page->getCollectionID()]) : '';
-
+		$title =  $th->entities($page->getCollectionName());
+		
 		if ($includeDescription):
 		$description = $page->getCollectionDescription();
 		$description = $controller->truncateSummaries ? $th->wordSafeShortText($description, $controller->truncateChars) : $description;
@@ -44,7 +45,6 @@ if ($c->isEditMode()) : ?>
 				<a href="<?php echo $url ?>" target="<?php echo $target ?>">
 					<div class="icon-block">
 						<i class="fa <?php echo $icon ?> fa-inverse fa-3x"></i>
-
 					</div>
 					<div class="item-description">
 						<h4><?php echo $title ?></h4>
