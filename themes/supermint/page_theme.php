@@ -91,7 +91,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
                              'caption-primary', 'caption-secondary', 'caption-tertiary', 'caption-quaternary'),
             'image_slider' =>array_merge(array('into-columns','black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked'),$columnsClasses, $marginClasses),
             'page_attribute_display' => array('leaded','lighted'),
-            'page_list' => array_merge($columnsClasses,$marginClasses, array('no-gap')),
+            'page_list' => array_merge($columnsClasses,$marginClasses, array('no-gap','tag-sorting','keyword-sorting')),
             'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light'),$columnsClasses),
             'core_area_layout' => array('no-gap')
         );

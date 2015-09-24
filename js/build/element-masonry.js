@@ -38,8 +38,8 @@ $(document).ready(function(){
 
     function searchFilter(e) {
         var input = $(e.currentTarget);
-        var gallery = input.next('.page-list-masonry');
-        console.log(gallery);
+        var gallery = input.parent().parent().next('.page-list-masonry');
+        // console.log(gallery);
         // return;
         var qsRegex = new RegExp(input.val(), 'gi');
         gallery.isotope({
@@ -48,23 +48,4 @@ $(document).ready(function(){
             }
         });
     }
-
-    // debounce so filtering doesn't happen every millisecond
-    function debounce( fn, threshold ) {
-      console.log(fn,threshold,test);
-      var timeout;
-      return function debounced() {
-        if ( timeout ) {
-          clearTimeout( timeout );
-        }
-        function delayed() {
-          fn();
-          timeout = null;
-        }
-        timeout = setTimeout( delayed, threshold || 100 );
-      }
-    }
-
-
-
 });

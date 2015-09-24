@@ -12,17 +12,18 @@ $tagsObject = $pageTheme->getPageTags($pages);
 if ($includeName || $includeDescription || $useButtonForLink) $includeEntryText = true; else $includeEntryText = false;
 $styleObject = $t->getClassSettingsObject($b);
 $column_class = $styleObject->columns > 3 ? 'col-md-' : 'col-sm-';
+$gap = !(in_array('no-gap',$styleObject->classesArray));
 
 if ($c->isEditMode()) : ?>
 	<?php $templateName = $controller->getBlockObject()->getBlockFilename() ?>
     <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
-				<div style="padding: 40px 0px 40px 0px"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' with ') . $styleObject->columns ?> </strong><?php echo  t(' disabled in edit mode.') ?></div>
+				<p style="padding: 40px 0px 40px 0px;"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . '</strong>' . t(' with ') .  $styleObject->columns . t(' columns and ') . ($gap ? t(' regular Gap ') : t('no Gap ')) . t(' disabled in edit mode.') ?></p>
     </div>
 <?php else :
 
 ?>
-<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID))?>
-<div class="ccm-page-list page-list-block page-list-block-static page-list-masonry img-box-hover" id="page-list-img-box-hover-<?php echo $bID?>" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
+<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID,'styleObject'=>$styleObject))?>
+<div class="ccm-page-list page-list-block page-list-block-static page-list-masonry img-box-hover row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" id="page-list-img-box-hover-<?php echo $bID?>" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
 	<?php  foreach ($pages as $key => $page):
 
 		// Prepare data for each page being listed...
@@ -32,7 +33,7 @@ if ($c->isEditMode()) : ?>
 		$target = empty($target) ? '_self' : $target;
 		$tags = isset($tagsObject->pageTags[$page->getCollectionID()]) ? implode(' ',$tagsObject->pageTags[$page->getCollectionID()]) : '';
 		$title =  $th->entities($page->getCollectionName());
-		
+
 		if ($includeDescription):
 		$description = $page->getCollectionDescription();
 		$description = $controller->truncateSummaries ? $th->wordSafeShortText($description, $controller->truncateChars) : $description;

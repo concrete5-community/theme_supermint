@@ -1,27 +1,30 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
-$o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 $pageTheme = $c->getCollectionThemeObject();
+$o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
+$t =  $c->getCollectionThemeObject();
 $rssUrl = $showRss ? $controller->getRssUrl($b) : '';
 $th = Loader::helper('text');
 $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('tiny');
 $tagsObject = $pageTheme->getPageTags($pages);
 
 if ($includeName || $includeDescription || $useButtonForLink) $includeEntryText = true; else $includeEntryText = false;
-$styleObject = $pageTheme->getClassSettingsObject($b);
+$styleObject = $t->getClassSettingsObject($b);
 $column_class = $styleObject->columns > 3 ? 'col-md-' : 'col-sm-';
+$gap = !(in_array('no-gap',$styleObject->classesArray));
 
 if ($c->isEditMode()) : ?>
 	<?php $templateName = $controller->getBlockObject()->getBlockFilename() ?>
     <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
-			<p style="padding: 40px 0px 40px 0px; color:#999 !important"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' with ') . $styleObject->columns . t(' columns and ') . $styleObject->margin . t('px margin')?> </strong><?php echo  t(' disabled in edit mode.') ?></p>
+				<p style="padding: 40px 0px 40px 0px;"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . '</strong>' . t(' with ') .  $styleObject->columns . t(' columns and ') . ($gap ? t(' regular Gap ') : t('no Gap ')) . t(' disabled in edit mode.') ?></p>
     </div>
 <?php else :
 
 ?>
-<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID))?>
-<div class="ccm-page-list ccm-page-list-no-gap page-list-masonry" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
+
+<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID,'styleObject'=>$styleObject))?>
+<div class="ccm-page-list page-list-masonry row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
 
 	<?php  foreach ($pages as $page):
 
@@ -66,7 +69,7 @@ if ($c->isEditMode()) : ?>
           <?php endif; ?>
 					<?php if ($includeName): ?><h4><?php echo $title ?></h4><?php endif ?>
 					<?php if ($includeDescription): ?><p><?php  echo $description ?></p><?php endif ?>
-		      <?php if ($useButtonForLink): ?><a href="<?php echo $url?>" class="button button-flat"><?php echo $buttonLinkText?></a><?php endif ?>
+		      <?php if ($useButtonForLink): ?><a href="<?php echo $url?>" class="button-primary button-flat button-tiny"><?php echo $buttonLinkText?></a><?php endif ?>
 				</div>
 			</div>
 			<?php endif ?>
