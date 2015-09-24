@@ -11,7 +11,7 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 
 // Reglage ecommerce
 $pc = array();
-$h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$t =  $c->getCollectionThemeObject();
 $pc = array();
 
 // $n est un tableau represantant toutes les cID,

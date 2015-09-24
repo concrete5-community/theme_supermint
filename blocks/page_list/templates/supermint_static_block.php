@@ -1,26 +1,28 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
+$pageTheme = $c->getCollectionThemeObject();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$t =  $c->getCollectionThemeObject();
 $rssUrl = $showRss ? $controller->getRssUrl($b) : '';
 $th = Loader::helper('text');
 $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('tiny');
+$tagsObject = $pageTheme->getPageTags($pages);
 
 if ($includeName || $includeDescription || $useButtonForLink) $includeEntryText = true; else $includeEntryText = false;
 $styleObject = $t->getClassSettingsObject($b);
 $column_class = $styleObject->columns > 3 ? 'col-md-' : 'col-sm-';
-
+$gap = !(in_array('no-gap',$styleObject->classesArray));
 
 if ($c->isEditMode()) : ?>
 	<?php $templateName = $controller->getBlockObject()->getBlockFilename() ?>
     <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
-        <div style="padding: 40px 0px 40px 0px"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' with ') . $styleObject->columns . t(' columns') ?> </strong><?php echo  t(' disabled in edit mode.') ?></div>
+				<p style="padding: 40px 0px 40px 0px;"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . '</strong>' . t(' with ') .  $styleObject->columns . t(' columns and ') . ($gap ? t(' regular Gap ') : t('no Gap ')) . t(' disabled in edit mode.') ?></p>
     </div>
-<?php else : ?>
+<?php else :?>
 
-
-	<div class="ccm-page-list page-list-block page-list-block-static magnific-wrapper" data-delegate=".popup">
+	<?php Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID,'styleObject'=>$styleObject))?>
+	<div class="ccm-page-list page-list-block page-list-block-static magnific-wrapper page-list-masonry row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" data-delegate=".popup" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
 
 	<?php  foreach ($pages as $key => $page):
 
@@ -29,7 +31,7 @@ if ($c->isEditMode()) : ?>
 		$url = $nh->getLinkToCollection($page);
 		$target = ($page->getCollectionPointerExternalLink() != '' && $page->openCollectionPointerExternalLinkInNewWindow()) ? '_blank' : $page->getAttribute('nav_target');
 		$target = empty($target) ? '_self' : $target;
-
+		$tags = isset($tagsObject->pageTags[$page->getCollectionID()]) ? implode(' ',$tagsObject->pageTags[$page->getCollectionID()]) : '';
 		if ($includeDescription):
 		$description = $page->getCollectionDescription();
 		$description = $controller->truncateSummaries ? $th->wordSafeShortText($description, $controller->truncateChars) : $description;
@@ -48,8 +50,8 @@ if ($c->isEditMode()) : ?>
 	        endif;
 	    endif;
 		?>
-		<?php if ($key%$styleObject->columns == 0) : ?><div class="row <?php echo in_array('no-gap', $styleObject->classesArray) ? 'no-gap' : '' ?>"><?php endif ?>
-		<div class="<?php echo $column_class . intval(12 / $styleObject->columns)?> item">
+
+		<div class="<?php echo $column_class . intval(12 / $styleObject->columns)?> item masonry-item <?php echo $tags ?>">
 			<div class="media-wrap">
 				<?php if ($imageTag) :  echo $imageTag ?>
 				<!-- <div class="mediaholder"> -->
@@ -89,7 +91,6 @@ if ($c->isEditMode()) : ?>
 			</a>
 		<?php endif; ?>
 		</div>
-		<?php if ( $key%$styleObject->columns == ($styleObject->columns) - 1 || ($key == count($pages)-1) ) : ?></div><?php endif ?>
 	<?php  endforeach; ?>
 
 </div><!-- end .ccm-page-list .row-->

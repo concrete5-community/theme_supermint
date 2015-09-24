@@ -2,7 +2,7 @@
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$t =  $c->getCollectionThemeObject();
 $rssUrl = $showRss ? $controller->getRssUrl($b) : '';
 $th = Loader::helper('text');
 $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('tiny');
@@ -38,12 +38,15 @@ $options->prevArrow = '<span class="slick-prev-on"><i class="fa fa-angle-left"><
 // --- Here stop options for columns ---- //
 ?>
 
-<div class="ccm-page-list slick-wrapper ccm-page-list-no-gap img-box-hover-light img-box-hover" data-slick='<?php echo json_encode($options) ?>' id="slick-wrapper-<?php echo $bID?>">
+<div class="ccm-page-list slick-wrapper ccm-page-list-hover" data-slick='<?php echo json_encode($options) ?>' id="slick-wrapper-<?php echo $bID?>">
 
 	<?php  foreach ($pages as $page):
 
 		$pair = $key % 2 == 1 ? 'pair' : 'impair';
-		$url = $nh->getLinkToCollection($page);
+
+		$externalLink = $page->getAttribute('external_link');
+		$url = $externalLink ? $externalLink : $nh->getLinkToCollection($page);
+
 		$title_text =  $th->entities($page->getCollectionName());
 		$title = $useButtonForLink ? "<a href=\"$url\" target=\"$target\">$title_text</a>" : $title_text;
 
@@ -76,6 +79,7 @@ $options->prevArrow = '<span class="slick-prev-on"><i class="fa fa-angle-left"><
 			<?php if ($imageTag) : echo $imageTag;  endif ?>
 			<?php if ($includeEntryText): ?>
 			<div class="info">
+				<div class="vertical-align">
 	            <?php if ($includeDate): ?>
                 <div class="meta">
                 	<small><i class="fa fa-calendar-o"></i> <?php echo $date?></small>
@@ -84,7 +88,8 @@ $options->prevArrow = '<span class="slick-prev-on"><i class="fa fa-angle-left"><
 	            <?php endif; ?>
 				<?php if ($includeName): ?><h4><?php echo $title ?></h4><?php endif ?>
 				<?php if ($includeDescription): ?><p><?php  echo $description ?></p><?php endif ?>
-	            <?php if ($useButtonForLink): ?><a href="<?php echo $url?>" class="button button-flat"><?php echo $buttonLinkText?></a><?php endif ?>
+	      <?php if ($useButtonForLink): ?><a href="<?php echo $url?>" class="button button-flat"><?php echo $buttonLinkText?></a><?php endif ?>
+				</div>
 			</div>
 			<?php endif ?>
 			<?php if (!$useButtonForLink): ?></a><?php endif ?>

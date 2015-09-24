@@ -1,9 +1,9 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
 
 use Concrete\Core\Block\View\BlockView;
-$o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
 $c = Page::getCurrentPage();
+$o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
+$t =  $c->getCollectionThemeObject();
 $cp = new Permissions($c);
 
 if ($includeName || $includeDescription || $useButtonForLink) $includeEntryText = true; else $includeEntryText = false;

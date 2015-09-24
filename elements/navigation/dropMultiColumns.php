@@ -1,5 +1,6 @@
 <?php  defined('C5_EXECUTE') or die(_("Access Denied."));
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$c = Page::getCurrentPage();
+$t =  $c->getCollectionThemeObject();
 
 
 echo "\n<!-- Start Multi columns dropdown -->\n";?>
@@ -16,7 +17,7 @@ foreach ($layout as $key => $element) :
 	echo '<div class="' . $span . ' stack-column">';
 	echo '<ul class="mgm-multi-c-column">';
 	foreach ($element as $nikey => $ni) :
-		echo '<li class="' . $ni->classes . ( $ni->hasSubmenu ? ' mgm-multi-c-title' : '' ) . '">'; 
+		echo '<li class="' . $ni->classes . ( $ni->hasSubmenu ? ' mgm-multi-c-title' : '' ) . '">';
 		echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . $ni->classes . '">'  . $ni->icon . ' ' . $ni->name . '</a>';
 		echo '</li>'; //closes a nav item
 	endforeach;
@@ -24,5 +25,5 @@ foreach ($layout as $key => $element) :
 endforeach?>
 	</div><!-- row -->
 </div><!-- stack-pane -->
-<?php 
+<?php
  ?>

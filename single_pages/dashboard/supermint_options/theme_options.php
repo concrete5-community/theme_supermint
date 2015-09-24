@@ -104,15 +104,22 @@ $options = array(
         "type" => "section"
     ),
     array(
-        'name' => t('Autonav'),
+        'name' => t('Page List'),
         "desc" => t('Options for the Built-in "Autonav" block'),
         'type' => 'subsection'
     ),
     array(
-        "name" => t("Display button"),
-        "desc" => t('Display a link button on certain Feature block template'),
-        "id" => "autonav_horizontal_icon",
-        "default" => 0,
+        "name" => t("Display tag filtering"),
+        "desc" => t('Display tag filtering on templates that support this feature'),
+        "id" => "isotope_display_tags",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
+        "name" => t("Display Keyword filtering"),
+        "desc" => t('Display keyword filtering on templates that support this feature'),
+        "id" => "isotope_display_search",
+        "default" => 1,
         "type" => "toggle"
     ),
     array(
@@ -146,6 +153,12 @@ $options = array(
         "id" => "default_nav_block_icon",
         "type" => "awesome",
         "default" => 'fa-chevron-circle-right'
+    ),
+    array(
+        "name" => t("Display icon on Horizontal template"),
+        "id" => "autonav_horizontal_icon",
+        "default" => 0,
+        "type" => "toggle"
     ),
 
 

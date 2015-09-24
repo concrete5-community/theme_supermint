@@ -2,7 +2,7 @@
 $navigationTypeText = ($navigationType == 0) ? 'arrows' : 'pages';
 $c = Page::getCurrentPage();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$t = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+$t =  $c->getCollectionThemeObject();
 $styleObject = $t->getClassSettingsObject($b,$o->image_slider_slidesToShow,$o->image_slider_margin);
 
 if ($c->isEditMode()) :

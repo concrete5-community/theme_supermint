@@ -18,7 +18,7 @@ class OverrideCss extends RouteController {
 		if ($_GET['pID']) $o = ThemeSupermintOptions::get_options_from_preset_ID($_GET['pID']);
 		else $o = ThemeSupermintOptions::get();
 		$option_object = new ThemeSupermintOptions();
-		$h = new \Concrete\Package\ThemeSupermint\Src\Helper\SupermintTheme();
+		$t =  $c->getCollectionThemeObject();
 
 		// CSS things
 		$bodypattern = $o->bg_body_custom ? $o->bg_body_custom : $o->bg_body_pattern;

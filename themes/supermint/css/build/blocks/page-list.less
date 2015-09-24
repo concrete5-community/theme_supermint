@@ -26,6 +26,38 @@
 
 .page-list-masonry {
   margin-left: -15px;
+  // .transition(height .3s);
+  .masonry-item {
+
+  }
+  &.with-gap {
+    .masonry-item {
+      margin-bottom: @space-s;
+    }
+    .info {
+      left: 15px; right: 15px;
+    }
+  }
+  &.no-gap {
+
+  }
+  .vertical-align {
+    left:@space-s;
+    right: @space-s;
+  }
+}
+ul.filter-set {
+  margin-bottom: @space-s;
+  li {
+    margin-right: @space-xxs;
+    &.search-filter-wrapper {
+      float: right;
+      input {
+        font-weight: 300;
+      }
+    }
+  }
+
 }
 
 .ccm-page-list {
@@ -48,14 +80,34 @@
   position: absolute;
   top:0;right: 0;bottom: 0;left: 0;
   padding: @space-s;
-  background-color: fade(@light-color, 80%);
+  background-color: fade(@light-color, 90%);
+  text-align: center;
   // Basic animation
   opacity: 0;
   .transition(.3s);
   &:hover {
     opacity: 1;
   }
-
+  p {
+    font-size: @font-size-small;
+    margin-bottom: @space-s;
+    // line-height:
+  }
+  h4{
+    position: relative;
+    padding-bottom: @space-xs;
+    margin-bottom: @space-xs;
+    &:after {
+      content:"";
+      position: absolute;
+      width: @space-s;
+      height: 2px;
+      background-color: @black-color;
+      bottom: 0;
+      left: 50%;
+      margin-left: -@space-s/2;
+    }
+    }
 }
 
 /*--------------- @- Default Built-in page-list ---------------*/
@@ -295,7 +347,7 @@
 
 // -- With no Gap -- \\
 
-.ccm-page-list-no-gap {
+.ccm-page-list-hover {
   .item:hover {
     img {
       .blur(1px);
@@ -309,6 +361,17 @@
       color: @white-color;
       text-shadow:0 0 3px fade(@black-color, 50%);
       opacity:1;
+    }
+    .vertical-align {
+      left: 0;
+      right: 0;
+      top:0;
+      padding: @space-xs;
+      transform: translateY(0%);
+      .transition(.3s);
+    }
+    &:hover .vertical-align {
+      transform: translateY(-50%);
     }
   }
   .meta {

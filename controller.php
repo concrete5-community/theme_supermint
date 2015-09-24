@@ -49,10 +49,10 @@ class Controller extends Package  {
 
 	public function install($data = array()) {
 
-        $this->startingPoint = $data['spHandle'];
+    $this->startingPoint = $data['spHandle'];
 
-        if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0')
-            throw new \Exception(t('You must choose a Starting point to Swap all content'));
+    if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0')
+        throw new \Exception(t('You must choose a Starting point to Swap all content'));
 
 		$pkg = parent::install();
 
@@ -147,11 +147,13 @@ class Controller extends Package  {
    	$al->register( 'javascript', 'YTPlayer', 'js/build/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
 		$al->register( 'javascript', 'modernizr.custom', 'js/build/modernizr.custom.js', array('version' => '2.7.1'), $this );
 		$al->register( 'javascript', 'transit', 'js/build/jquery.transit.js', array('version' => '0.1'), $this );
+		$al->register( 'javascript', 'imageloaded', 'js/build/imageloaded.js', array('version' => '2.1.1'), $this );
     $al->register( 'javascript', 'isotope', 'js/build/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
     $al->register( 'javascript', 'wow', 'js/build/wow.js', array('version' => '1.1.2'), $this );
     $al->register( 'javascript', 'harmonize-text', 'js/build/harmonize-text.js', array('version' => '1'), $this );
 		$al->register( 'javascript', 'enquire', 'js/build/enquire.js', array('version' => '2.1.2'), $this );
 		$al->register( 'javascript', 'twitterFetcher', 'js/build/twitterFetcher_min.js', array('version' => '12'), $this );
+		$al->register( 'javascript', 'element-masonry', 'js/build/element-masonry.js', array('version' => '1'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
  		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0'), $this );
