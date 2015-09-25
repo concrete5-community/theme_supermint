@@ -1,3 +1,17 @@
+3.2     - Activate the clips on install
+        - Fix the First level Border bottom default color of a selected top nav” where nothing happens when we choose a color
+        - Now « Site Logo » display blocks from left to right in mobile top-bar
+        - Add different Stack to installation.
+        - Add search field into mobile nav
+        - New documentation & demo pages
+        - Add sorting to page list templates
+        - Install new attribute : external_link
+        - Moving Supermint Helper Controller to page_theme controller
+        - Add a get tags function for pages
+        - Add a package Element for sortable page links
+        - Add javascript to sort by tags & keywords
+        - Add style to tags & keyword input
+        - Fix error on $this on non-object context
 3.1     - Introduction of Mmenu with new custom template
           * Move Mmenu-theme to less
         - Move all JS files in root
