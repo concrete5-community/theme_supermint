@@ -208,7 +208,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     		if ($page->getAttribute('tags')) :
 
     				$v = array($page->getCollectionID(), $page->getVersionID(), $ak->getAttributeKeyID());
-    				$avID = $db->GetOne("SELECT avID FROM collectionAttributeValues WHERE cID = ? AND cvID = ? AND akID = ?", $v);
+    				$avID = $db->GetOne("SELECT avID FROM CollectionAttributeValues WHERE cID = ? AND cvID = ? AND akID = ?", $v);
     				if (!$avID) continue;
 
     				$query = $db->GetAll("
