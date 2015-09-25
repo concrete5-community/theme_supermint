@@ -44,9 +44,14 @@
         display: inline-block;
         height: @fixed-bar-height;
         overflow: hidden;
+        margin-right: @space-s;
         svg {
             width: 100%;
             height: auto;
+        }
+        & > * {
+            display: inline-block;
+            margin-right: 5px;
         }
     }
     .searchbox {

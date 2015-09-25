@@ -9,5 +9,16 @@
           <blocks/>
         </area>
       </stack>
+      <stack name="Lateral Navigation Header">
+        <area name="Main">
+          <blocks/>
+        </area>
+      </stack>
+      <stack name="Lateral Navigation Footer">
+        <area name="Main">
+          <blocks/>
+        </area>
+      </stack>
+
     </stacks>
 </concrete5-cif>
