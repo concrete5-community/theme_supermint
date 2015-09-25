@@ -25,6 +25,7 @@ use Concrete\Core\Backup\ContentImporter;
 use FileList;
 use PageList;
 use StackList;
+use Config;
 use Concrete\Core\StyleCustomizer\Style\ValueList;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -59,6 +60,12 @@ class Controller extends Package  {
 	// Theme options
 		$o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
 		$o->install_db($this->startingPoint);
+
+	// Setting up the editor clips
+		$plugins = Config::get('concrete.editor.plugins.selected');
+		$p = is_array($plugins) ? $plugins : array();
+		$plugins = array_unique(array_merge(array('themefontcolor','themeclips'),$p));
+		Config::save('concrete.editor.plugins.selected', $plugins);
     // Elements installing
     $this->installOrUpgrade($pkg);
 
