@@ -195,7 +195,28 @@ mark {
 button, input, optgroup, select, textarea {
   color: @black-color;
 }
-
+input[type="text"],
+input[type="search"]  {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px fade(@black-color,20%);
+  transition: border 0.3s;
+  &:focus {
+    outline: none;
+  }
+  &:focus,
+  &.focus {
+    border-bottom: solid 2px fade(@black-color,50%);
+  }
+}
 
 // Icons color
 

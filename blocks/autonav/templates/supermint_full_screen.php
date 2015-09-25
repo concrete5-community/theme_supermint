@@ -31,6 +31,16 @@ foreach ($navItems as $ni) {
 	  <span class="line line-2"></span>
 	  <span class="line line-3"></span>
 	</a>
+<?php  if($o->display_searchbox) :
+		$p = Page::getByID($o->display_searchbox);
+		if (is_object($p)) :	?>
+	<div class="searchbox">
+		<form action="<?php echo Loader::helper('navigation')->getCollectionURL($p)?>">
+	   	<input type="search" class="vertical-align" name="query" placeholder="<?php echo t('Search')?>"/>
+		</form>
+	</div>
+	<?php endif ?>
+<?php endif ?>
 	<div class="overlay overlay-contentscale">
 		<nav>
 			<ul>

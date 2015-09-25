@@ -39,6 +39,16 @@ echo '<a id="hamburger-icon" href="#mmenu" title="Menu">
 	  		<span class="line line-2"></span>
 	  		<span class="line line-3"></span>
 		</a>';
+		if($o->display_searchbox) :
+				$p = Page::getByID($o->display_searchbox);
+				if (is_object($p)) :
+					echo '<div class="searchbox">';
+						echo '<form action="' . Loader::helper('navigation')->getCollectionURL($p) . '">';
+							echo '<input type="search" class="vertical-align" name="query" placeholder="' . t('Search') . '"/>';
+						echo '</form>';
+					echo '</div>';
+			endif;
+		endif;
 echo '</div>';
 
 if (count($navItems) > 0) :

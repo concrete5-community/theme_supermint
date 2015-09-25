@@ -49,6 +49,19 @@
             height: auto;
         }
     }
+    .searchbox {
+      position: absolute;
+      right: @space-xl+@space-s+1;
+      top: (@fixed-bar-height/2);
+      input {
+        width:@space-xl;
+        font-size: 12px;
+        background-color: fade(@primary-text-color,80%);
+        &:focus {
+          background-color: @primary-text-color;
+        }
+      }
+    }
 }
 .overlay {
     position: fixed;

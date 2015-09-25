@@ -75,6 +75,11 @@ $(document).ready(function(){
 		mmenu = $("#mmenu").data( "mmenu" );
 		mmenu.bind( "opened", function() {$('#hamburger-icon').addClass('active')});
 		mmenu.bind( "closing", function() {$('#hamburger-icon').removeClass('active')});
+		$("#mmenu .mm-search input").keyup(function(e){
+		    if(e.keyCode == 13){
+		        window.location.href = SEARCH_URL + '?query=' + $(this).val();
+		    }
+		});
 	}
 
 // Mobile behavior on lateral navigation

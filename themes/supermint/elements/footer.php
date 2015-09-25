@@ -1,8 +1,8 @@
 <?php   defined('C5_EXECUTE') or die(_("Access Denied."));
-$t =  $c->getCollectionThemeObject();
+$pageTheme =  $c->getCollectionThemeObject();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 if($o->display_footer) :
-$footer = $t->get_footer_geometry($o->display_footer_column);
+$footer = $pageTheme->get_footer_geometry($o->display_footer_column);
 ?>
 <footer class="main-footer">
 <div class="container">
@@ -52,6 +52,7 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
       </div>
   </div>
 </footer>
+
 <?php endif ?>
 </div>
 
@@ -78,6 +79,12 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 	<?php endif ?>
   var mmenuSettings = {
     // options
+    <?php if($o->display_searchbox && false) :	$searchPage = Page::getByID($o->display_searchbox);	if (is_object($searchPage)) : $searchURL = URL::to($searchPage); ?>
+    searchfield:{
+        add: true,
+        search: false
+    },
+    <?php endif; endif ?>
      extensions: <?php echo '["theme-' . ($o->mmenu_theme ? $o->mmenu_theme : 'light') .'"';
                  echo $o->mmenu_shadow ? ',"pageshadow"' : '';
                  echo $o->mmenu_iconbar ? ',"iconbar"' : '';
@@ -93,6 +100,9 @@ $footer = $t->get_footer_geometry($o->display_footer_column);
 	var THEME_PATH = '<?php  echo $this->getThemePath()?>';
 	var FONT_DETAILS_TOOLS_URL = "<?php echo URL::to('/ThemeSupermint/tools/font_details'); ?>";
 	var FIX_IFRAME_ZINDEX = <?php echo $o->fix_iframe_zindex ? 'true' : 'false' ?>;
+  <?php if ($searchURL) : ?>
+  var SEARCH_URL = "<?php echo $searchURL?>";
+  <?php endif ?>
 </script>
 
 </body>
