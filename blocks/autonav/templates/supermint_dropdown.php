@@ -78,6 +78,7 @@ foreach ($navItems as $niKey => $ni) :
 		// Si oui on les definis dans $ni->blocks
 		// On essaie avec le nom
 		$relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionHandle(), 'RECENT');
+		if (!$relatedStack) $relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionID(), 'RECENT');
 		if ($relatedStack) :
 			$ax = Area::get($relatedStack, STACKS_AREA_NAME);
 			$axp = new Permissions($ax);

@@ -37,6 +37,7 @@ foreach ($navItems as $niKey => $ni) :
 	// Si oui on les definis dans $ni->blocks
 	if ($ni->level == 1) :
 		$relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionHandle(), 'RECENT');
+		if (!$relatedStack) $relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionID(), 'RECENT');
 		if ($relatedStack) :
 			$ni->stack = $relatedStack;
 		endif;

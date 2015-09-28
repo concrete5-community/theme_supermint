@@ -54,6 +54,7 @@ foreach ($navItems as $ni) {
 	if($ni->level == 1)	{
 		// On essaie avec le nom
 		$relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionHandle(), 'RECENT');
+		if (!$relatedStack) $relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionID(), 'RECENT');
 		if ($relatedStack) {
 			$p = new Permissions($relatedStack);
 			if (!$p->canRead()) $relatedStack = false;
