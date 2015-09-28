@@ -19,7 +19,7 @@ class PresetColors extends RouteController {
 
 
     function getColors () {
-        $session = new \Symfony\Component\HttpFoundation\Session\Session();
+        $session = \Core::make('session');
         $colorsObject = $session->get('supermint.colors');
         echo json_encode($colorsObject);
     }

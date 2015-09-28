@@ -32,7 +32,7 @@ class ThemeSupermintOptions extends Object
 	}
 
 	static function get () {
-		$session = new \Symfony\Component\HttpFoundation\Session\Session();
+		$session = \Core::make('session');
 		return $session->get('supermint.options');
 	}
 

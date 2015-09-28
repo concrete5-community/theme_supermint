@@ -1,5 +1,6 @@
 <?php  defined('C5_EXECUTE') or die(_("Access Denied."));
 
+$c = Page::getCurrentPage();
 // Cette requete peut prendre plus d'une demi seconde !
 $navItems = $controller->getNavItems();
 

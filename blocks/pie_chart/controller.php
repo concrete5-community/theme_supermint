@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeSuperMint\Block\PieChart;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -13,7 +13,7 @@ class Controller extends BlockController {
 	protected $btTable = "btPieChart";
 	protected $btInterfaceWidth = "600";
 	protected $btInterfaceHeight = "500";
-    protected $btDefaultSet = 'multimedia';	
+    protected $btDefaultSet = 'multimedia';
 
 
 	public function getBlockTypeName() {
@@ -24,7 +24,7 @@ class Controller extends BlockController {
 		return t('Render simple pie charts for single values. ');
 	}
 
-	
+
 	public function add () {
 		$this->setAssetEdit();
 
@@ -33,28 +33,28 @@ class Controller extends BlockController {
 		$this->setAssetEdit();
 	}
 
-    function getOptionsObject ()  { 
+    function getOptionsObject ()  {
         // Cette fonction retourne un objet option
         // SI le block n'existe pas encore, ces options sont préréglées
         // Si il existe on transfome la chaine de charactère en json
-        if (!$this->bID) :	
-        	$session = new \Symfony\Component\HttpFoundation\Session\Session();
+        if (!$this->bID) :
+        	$session = \Core::make('session');
         	$colors = $session->get('supermint.colors',$colors);
 
         	$options = new StdClass();
 			$options->value = 75;
 			$options->content = '75%';
 			$options->fontSize = 20;
-			$options->textColor = (isset($colors->colors['black']) && $colors->colors['black']) ? $this->rgb2hex($colors->colors['black']) : '#000000';	
+			$options->textColor = (isset($colors->colors['black']) && $colors->colors['black']) ? $this->rgb2hex($colors->colors['black']) : '#000000';
 			$options->barColor = (isset($colors->colors['primary']) && $colors->colors['primary']) ? $this->rgb2hex($colors->colors['primary']) : '#18aedf';
 			$options->trackColor = '#f2f2f2';
 			$options->scaleColor = '#dfe0e0';
 			$options->lineCap = 'butt';
 			$options->lineWidth = 3;
 			$options->rotate = 0;
-			$options->animate = 0;		
-			$options->size = 200;		
-			$options->track = 1;		
+			$options->animate = 0;
+			$options->size = 200;
+			$options->track = 1;
 			$options->scale = 1;
         else:
             $options = json_decode($this->options);
@@ -65,20 +65,20 @@ class Controller extends BlockController {
             // end legacy
         endif;
 
-        return $options ; 
+        return $options ;
 
-    }	
+    }
 
     public function setAssetEdit () {
 		$this->requireAsset('core/colorpicker');
 		$this->requireAsset('css', 'font-awesome');
 		$this->set('pageSelector', Loader::helper('form/page_selector'));
-		$this->set('options', $this->getOptionsObject());  
+		$this->set('options', $this->getOptionsObject());
     }
-	
+
 	public function view () {
 		// var_dump($this->getOptionsObject());
-        $this->set('options', $this->getOptionsObject());  
+        $this->set('options', $this->getOptionsObject());
 
 	}
 
@@ -93,10 +93,10 @@ class Controller extends BlockController {
 		$this->set ($tool_name, 'to be defined by route ?');
 	}
     function rgb2hex($rgbstring) {
-        
+
         $color = str_replace(array('rgb(', ')', ' '), '', $rgbstring);
-        $rgb = explode(',', $color);        
-        
+        $rgb = explode(',', $color);
+
         $hex = "#";
         $hex .= str_pad(dechex($rgb[0]), 2, "0", STR_PAD_LEFT);
         $hex .= str_pad(dechex($rgb[1]), 2, "0", STR_PAD_LEFT);
@@ -119,10 +119,10 @@ class Controller extends BlockController {
         	$blockNode->data->record->options)));
         if (is_object($options->options))
         	$options = $options->options;
-        
+
         $args = array('options' => $options);
 
         return $args;
-    }	
+    }
 
 }
