@@ -1,3 +1,5 @@
+3.2.1   - Fix PHP 5.3 error on Session
+        - Fix sliding nav autonav template Fatal error
 3.2     - Activate the clips on install
         - Fix the First level Border bottom default color of a selected top nav” where nothing happens when we choose a color
         - Now « Site Logo » display blocks from left to right in mobile top-bar
