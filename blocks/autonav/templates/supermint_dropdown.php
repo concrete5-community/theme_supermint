@@ -10,7 +10,7 @@ $i = 0;
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 $t =  $c->getCollectionThemeObject();
 
-$navigationStyle = $o->navigation_style ? $o->navigation_style : "regular-top-nav";
+$navigationStyle = ($o->navigation_style == 'regular-top-nav' || $o->navigation_style == "large-top-nav") ? $o->navigation_style : "regular-top-nav";
 $styleObject = $t->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);
 
 // Global Logo
