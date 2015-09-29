@@ -1,3 +1,10 @@
+3.2.2   - Add a color options for all icon from feature block
+        - Add the capability to override icon color with custom class eg : icon-color-ffff33
+        - Improve icon custom class for sizing icon
+        - Add color option for Mega-menu on dropdown
+        - Add mega-menu named by page parent ID
+        - Add helper function for custom classes
+        - Fix the unstyled regular/large nav when another style is set on the theme option
 3.2.1   - Fix PHP 5.3 error on Session
         - Fix sliding nav autonav template Fatal error
 3.2     - Activate the clips on install
