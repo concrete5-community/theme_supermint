@@ -45,7 +45,8 @@ h6,.h6 {<?=$h6->getStyleCss()?>;font-size:<?=$h6->fullsize?>px}
 
 /* -- Navigation -- */
 <?php if ($o->first_level_regular_flaterize): ?>
-	.regular-top-nav, .regular-top-nav > ul > li.active > a {background:<?php echo isset($themeColors->variables['top-nav-bg-color']) ? $themeColors->variables['top-nav-bg-color'] : $themeColors->colors['quaternary-color'] ?>}
+	/* Make Regular nav Flat */
+	.regular-top-nav, .regular-top-nav > ul, .regular-top-nav > ul > li.active > a {background:<?php echo isset($themeColors->variables['top-nav-bg-color']) ? $themeColors->variables['top-nav-bg-color'] : $themeColors->variables['quaternary-color'] ?>}
 	.regular-top-nav > ul > li > a {text-shadow:none}
 	.regular-top-nav > ul > li:not(:last-child),
 	.regular-top-nav > ul li + li {	border:none}
