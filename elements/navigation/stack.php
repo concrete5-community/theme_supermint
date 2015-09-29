@@ -26,7 +26,7 @@ foreach ($ni->blocks as $n => $block) :
 		$layout['columns'][$k][] = $bv;
 	endif;
 endforeach?>
-<div class='nav-pane stack-pane absolute-container' style="padding:20px; <?php if(!$o->full_width_mega) : ?>width:<?php echo (intval(count($layout['columns']) * $o->mega_columns_width)) ?>px<?php endif ?>">
+<div class='nav-pane stack-pane <?php echo $classes ?>' style="padding:20px; <?php if(!$o->full_width_mega) : ?>width:<?php echo (intval(count($layout['columns']) * $o->mega_columns_width)) ?>px<?php endif ?>">
 
 <?php
 

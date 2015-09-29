@@ -52,28 +52,18 @@ foreach ($navItems as $ni) {
 	 */
 
 	if($ni->level == 1)	{
+		// Maintenant on va voir si il y a des bloc autorisé dans un stack relatif.
+		// Si oui on les definis dans $ni->blocks
 		// On essaie avec le nom
 		$relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionHandle(), 'RECENT');
 		if (!$relatedStack) $relatedStack = Stack::getByName('mega_menu_' . $ni->cObj->getCollectionID(), 'RECENT');
-		if ($relatedStack) {
-			$p = new Permissions($relatedStack);
-			if (!$p->canRead()) $relatedStack = false;
-		}
-	} else {
-		$relatedStack = false;
-	}
-
-	if ($relatedStack) {
-		$blocksOk = array();
-		$blocks = $relatedStack->getBlocks();
-		foreach($blocks as $b) {
-			$bp = new Permissions($b);
-			if ($bp->canRead()) {
-				$blocksOk[] = $b;
+		if ($relatedStack) :
+			$ax = Area::get($relatedStack, STACKS_AREA_NAME);
+			$axp = new Permissions($ax);
+			if ($axp->canRead()) {
+		    $ax->disableControls();
+				$ni->blocks  = $ax->getAreaBlocksArray();
 			}
-		}
-		if(count($blocksOk)) :
-			$ni->blocks = $blocksOk;
 		endif;
 	}
 
@@ -81,7 +71,6 @@ foreach ($navItems as $ni) {
 		//class for the page currently being viewed
 		$classes[] = 'active';
 	}
-
 
 	if ($ni->isFirst) {
 		//class for the first item in each menu section (first top-level item, and first item of each dropdown sub-menu)
@@ -109,8 +98,6 @@ foreach ($navItems as $ni) {
 foreach ($navItems as $k=>$ni) {
 
 	if($ni->level != 1 ) continue;
-	// Verifier si cet evitement est utile :
-	// if ($ni->cObj->vObj->cvHandle == 'search') continue;
 
 	echo '<li class="' . $ni->classes . '">'; //opens a nav item
 
@@ -139,6 +126,7 @@ foreach ($navItems as $k=>$ni) {
 	<?php endif ?>
    </ul>
 	</div>
+
 	<div class="container">
 		<div class="row">
 			<!-- panes -->
@@ -156,7 +144,8 @@ foreach ($navItems as $k=>$ni) {
 						<?php
 						Loader::PackageElement("navigation/stack", 'theme_supermint', array(
 							'ni' => $ni,
-							'o' => $o
+							'o' => $o,
+							'classes' => ''
 						));
 						$j++;
 					// Sinon, Si il y a des enfants, on charge le template demandé par l'atrribut

@@ -258,12 +258,9 @@
 		var onCursorLeaveNav = function (e) {
 			// Si le panneau est fermé ou le mode mobile, on ignore
 			if(!nav.opened || nav.mode == 'mobile') return;
-			//if(!nav.opened) return;
 			setTimeout(
 				function(){
-					log('time out'); 
 					makeActive(nav.active.onload.li);
-					//parameter = null
 				}
 				,nav.settings.mouseLeaveActionDelay
 			);
@@ -273,10 +270,7 @@
 		 * Retourne la largeur du viewport des panneaux
 		 */
 		var getViewportWidth = function () {
-			//  ça déconne grave
 			return nav.viewport.width();
-			// On retourne la largeur du menu suppérieur
-			//return el.width();
 		}
 
 		/**

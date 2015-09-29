@@ -25,6 +25,7 @@
         <style name="Modal background" variable="modal-bg" type="color" />
         <style name="Text" variable="body-type" type="color" />
         <style name="Link" variable="link" type="color" />
+        <style name="Feature Icons" variable="feature-icon" type="color" />
     </set>
     <set name="Navigation">
         <!-- Navigation top bar -->
@@ -36,6 +37,7 @@
         <style name="First level Navigation height" variable="top-nav-height" type="size" />
         <!-- Dropdown -->
         <style name="Dropdown background color" variable="nav-dropdown-bg" type="color" />
+        <style name="Dropdown Megamenu background color" variable="nav-megamenu-bg" type="color" />
         <style name="Dropdown links color" variable="nav-dropdown-a" type="color" />
         <!-- Slider navigation -->
         <style name="Slider navigation background color" variable="nav-slide-bg" type="color" />

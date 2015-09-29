@@ -75,7 +75,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 
         return array(
             // 'page_list' => array('simple'),
-            'feature' => array('icon-m','icon-l','icon-xl'),
+            'feature' => array('icon-size-m','icon-size-l','icon-size-xl'),
             'content' => array('image-caption','image-caption-inside','collapse-top-margin'),
             'autonav' => array('small-text-size','contain-width'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','primary','secondary','tertiary','quaternary'),
@@ -301,6 +301,16 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 			return $layout;
 		endif;
 	}
+  function getClassSettings ($block,$prefix) {
+    $styleObject = new StdClass();
+    if (is_object($block) && is_object($style = $block->getCustomStyle())) :
+			$classes = $style->getStyleSet()->getCustomClass();
+			$classesArray = explode(' ', $classes);
+			$styleObject->classesArray = $classesArray;
+      preg_match('/' . $prefix . '-(\w+)/',$classes,$found);
+      return isset($found[1]) ? $found[1] : false;
+    endif;
+  }
 
 	function getClassSettingsObject ($block, $defaultColumns = 3, $defaultMargin = 10  ) {
 		$styleObject = new StdClass();
@@ -332,6 +342,10 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 		return $styleObject;
 
 	}
+
+  function contrast ($hexcolor, $dark = '#000000', $light = '#FFFFFF') {
+      return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;
+  }
 
 
 

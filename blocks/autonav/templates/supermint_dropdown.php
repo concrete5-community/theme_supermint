@@ -125,7 +125,8 @@ foreach ($navItems as $niKey => $ni) :
 		ob_start();
 		Loader::PackageElement("navigation/stack", 'theme_supermint', array(
 			'ni' => $ni,
-			'o' => $o
+			'o' => $o,
+			'classes' => 'absolute-container'
 		));
 		$ni->sub = ob_get_clean();
 	// On charge le template 'drop'

@@ -93,9 +93,13 @@ a.mpf-inline.open-popup-link {
 
 /* img-box-hover */
 
-.icon-m i.fa {font-size: @space-m}
-.icon-l i.fa {font-size: @space-l}
-.icon-xl i.fa {font-size: @space-xl}
+.icon-size-m .icon-sizeable > i.fa, .icon-size-m.fa-stack {font-size: @space-m}
+.icon-size-l .icon-sizeable > i.fa, .icon-size-l.fa-stack {font-size: @space-l}
+.icon-size-xl .icon-sizeable > i.fa, .icon-size-xl.fa-stack {font-size: @space-xl}
+
+.fa-colored {color:@feature-icon-color}
+.fa-contrast {color:contrast(@feature-icon-color,@white-color,@black-color)}
+
 .img-box-hover {
   .icon-block,
   .image-block {
@@ -222,6 +226,15 @@ a.mpf-inline.open-popup-link {
 	box-shadow:0px 0px 1px 0px fade(@black-color,30%);
 	background: #fcfcfc;
 	text-align:center;
+  &.icon-size-m {
+    padding-top:@space-l;
+  }
+  &.icon-size-l {
+    padding-top:@space-l+1;
+  }
+  &.icon-size-xl {
+    padding-top:@space-xl;
+  }
 }
 .feature-box_icon {
 	position: absolute;
@@ -230,6 +243,18 @@ a.mpf-inline.open-popup-link {
 	top:-26px;
 	margin:0 0 0 -28px;
 	font-size: 31px; /* Fixé pour tous les supports */
+  .icon-size-m > &{
+    top:-@space-m;
+    margin-left:-@space-m;
+  }
+  .icon-size-l > &{
+    top:-@space-l;
+    margin-left:-@space-l;
+  }
+  .icon-size-xl > & {
+    top:-@space-xl;
+    margin-left:-@space-xl;
+  }
 }
 .feature-box_icon .fa-stack {
 	text-align: left;
