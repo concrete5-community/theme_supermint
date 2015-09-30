@@ -1,8 +1,8 @@
 # Theme Supermint
 Theme Supermint for Concrete5.7
 
-# documentation 
-https://docs.google.com/document/d/18ecGM6-KLP1lYawHuIUkph2Bw5PY8I3Z-dEdCzkdO2I/edit
+# Public Documentation
+http://supermint3.myconcretelab.com/documentation/get-started
 
-**Les ressources d'exemples**
-http://themes.semicolonweb.com/html/canvas/demo-construction.php#
+# Private Documentation 
+https://docs.google.com/document/d/18ecGM6-KLP1lYawHuIUkph2Bw5PY8I3Z-dEdCzkdO2I/edit
