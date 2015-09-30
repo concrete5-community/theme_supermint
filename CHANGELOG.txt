@@ -1,3 +1,5 @@
+3.2.2.1 - Chmod the base.mcl
+        - Fix flat navigation gone
 3.2.2   - Add a color options for all icon from feature block
         - Add the capability to override icon color with custom class eg : icon-color-ffff33
         - Improve icon custom class for sizing icon
