@@ -41,9 +41,7 @@
                 </options>
             </type>
         </attributekey>
-        <attributekey handle="display_multi_columns_drop" name="Display multi-columns dropdown" package="" searchable="0" indexed="0" type="boolean" category="collection">
-            <type checked=""/>
-        </attributekey>
+        <attributekey handle="display_multi_columns_drop" name="Display multi-columns dropdown" package="" searchable="0" indexed="0" type="boolean" category="collection"><type checked=""/></attributekey>
         <attributekey handle="number_of_main_areas" name="Number of main areas" package="theme_supermint" searchable="0" indexed="1" type="select" category="collection">
             <type allow-multiple-values="0" display-order="display_asc" allow-other-values="0">
                 <options>
@@ -115,7 +113,7 @@
         <attributeset handle="navigation" category="collection">
             <attributekey handle="exclude_subpages_from_nav"/>
             <attributekey handle="replace_link_with_first_in_nav"/>
-            <attributekey handle="external_link"/>            
+            <attributekey handle="external_link"/>
         </attributeset>
     </attributesets>
 </concrete5-cif>

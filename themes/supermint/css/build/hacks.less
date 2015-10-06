@@ -1,4 +1,5 @@
 /* ---- C5 Fix ---- */
+
 .ccm-ui {
     font-weight: normal;
 }
@@ -15,8 +16,8 @@ div.ccm-area-footer div.ccm-area-footer-handle i {
 div.ccm-panel-content ul.nav li {
 	text-transform: none;
 }
-.ui-dialog-content h2, 
-.ccm-blockEditPane h4, 
+.ui-dialog-content h2,
+.ccm-blockEditPane h4,
 .ccm-blockEditPane h3,
 .ccm-block-field-group h1,
 .ccm-block-field-group h2,
@@ -40,4 +41,11 @@ div.ccm-panel-content ul.nav li {
 
 *.ccm-content-editor-snippet {
 	color: #999 !important;
+}
+
+// -- IE10+ fix -- \\
+@media screen and (-ms-high-contrast:active), (-ms-high-contrast:none) {
+    .slick-dots li.slick-active a { background: @primary-color}
+    .slick-dots li.slick-active a:after,
+    .slick-dots li.slick-active a:before {display:none}
 }
