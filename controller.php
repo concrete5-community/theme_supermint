@@ -236,7 +236,7 @@ class Controller extends Package  {
             '\Concrete\Package\ThemeSupermint\Controller\Tools\FontsTools::getFontURLAjax'
         );
         Route::register(
-            '/ThemeSupermint/tools/override.css',
+            '/ThemeSupermint/tools/override',
             '\Concrete\Package\ThemeSupermint\Controller\Tools\OverrideCss::render'
         );
         Route::register(
