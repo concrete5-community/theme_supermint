@@ -21,7 +21,7 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 <link rel="stylesheet" href="<?php echo Concrete\Package\ThemeSupermint\Controller\Tools\FontsTools::getFontsURL() ?>" id="css-fonts" type="text/css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <?php if($o->responsive) : ?>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php endif ?>
 <!-- Theme Supermint V<?php echo Package::getByHandle('theme_supermint')->getPackageVersion() ?> // Theme preset ID : <?php echo $o->pID ?> -->
 </head>
