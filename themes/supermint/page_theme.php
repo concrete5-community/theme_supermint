@@ -308,7 +308,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 			$classesArray = explode(' ', $classes);
 			$styleObject->classesArray = $classesArray;
       preg_match('/' . $prefix . '-(\w+)/',$classes,$found);
-      return isset($found[1]) ? $found[1] : false;
+      return isset($found[1]) ? (int)$found[1] : false;
     endif;
   }
 
