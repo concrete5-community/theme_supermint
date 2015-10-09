@@ -38,6 +38,7 @@
         <!-- Dropdown -->
         <style name="Dropdown background color" variable="nav-dropdown-bg" type="color" />
         <style name="Dropdown Megamenu background color" variable="nav-megamenu-bg" type="color" />
+        <style name="Dropdown Megamenu text color" variable="nav-megamenu-text" type="color" />
         <style name="Dropdown links color" variable="nav-dropdown-a" type="color" />
         <!-- Slider navigation -->
         <style name="Slider navigation background color" variable="nav-slide-bg" type="color" />

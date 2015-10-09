@@ -691,11 +691,17 @@
 }
 /* --- Nav Panes --- */
 
-#header-nav,
+// #header-nav,
 .stack-pane {
   position: relative;
   background-image:url(@nav-slide-image);
-  background-color: @nav-slide-bg-color;
+  background-color: @nav-megamenu-bg-color;
+  p,li,h1,h2,h3,h4,h5,h6,i,a {
+    color: @nav-megamenu-text-color;
+  }
+  a {
+    opacity: .8;
+  }
 }
 
 .submenu_panes li, .nav {
