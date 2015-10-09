@@ -149,7 +149,7 @@
     margin: 0 auto;
     padding:0;
     .edit-mode & {z-index: 1}
-    li + li {
+    & > li + li {
       border-left: 1px solid fade(lighten(@top-nav-bg-color, 10%), 30%);
     }
     & > li {
@@ -202,6 +202,13 @@
   }
   .nav-logo {
     display: none;
+  }
+  .nav-pane {
+    li a i {
+      margin-right: 0; // Pour qu'il soit caché par le texte et ensuite animé
+      opacity: 1;
+      // transition: opacity 0.25s;
+    }
   }
 }
 
@@ -489,7 +496,6 @@
       content: "";
       display: table;
   }
-
   & > ul {
 
     & li {
@@ -728,6 +734,17 @@
   clear: both;
   margin: 0;
   border: 0;
+  .stack-pane {
+    float: left;
+    display: block;
+    width: 920px;
+    a {
+      color: @nav-slide-a-color;
+    }
+    p,li,h1,h2,h3,h4,h5,h6,i {
+      color: @nav-slide-text-color;
+    }
+  }
 }
 
 .nav-pane {

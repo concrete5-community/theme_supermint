@@ -52,7 +52,10 @@ body.loaded {
     color: contrast(@top-bar-bg-color, @black-color, @white-color);
   }
 }
-
+.full-top-bar {
+  // Pour empecher que le dernier element pousse la barre de nav vers le bas.
+  padding-bottom: 1px;
+}
 // #top { // Estce que c est encore utile ?
 //   position: relative;
 //   background-color: @quaternary-color;

@@ -22,11 +22,13 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 					</div> <!-- .row -->
 				</div> <!-- .container -->
 				<?php if ($o->display_top_area) : ?>
+					<div class="full-top-bar">
 				<?php
 				   $ga = new Area('Top Bar');
 				   $a->enableGridContainer();
 				   $ga->display($c);
 				?>
+				</div>
 				<?php endif ?>
 			</div> <!-- .top-bar -->
 		<?php endif ?>
