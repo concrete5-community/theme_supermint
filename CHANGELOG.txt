@@ -1,3 +1,8 @@
+3.2.3   - Fix the top-bar-full-with gap when element with margin in inserted
+        - Fix the inherit of navigation style in stack panes
+        - Fix override links error that appear on certain servers
+        - Fix dots colors in IE10+
+        - Update readme.md
 3.2.2.1 - Chmod the base.mcl
         - Fix flat navigation gone
 3.2.2   - Add a color options for all icon from feature block

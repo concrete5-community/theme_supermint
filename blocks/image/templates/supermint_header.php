@@ -8,7 +8,7 @@ if (is_object($f)) :
     $path = $fv->getRelativePath();
     if ($styleObject->displayTitle) :
 	    $title = $title ? $title : $f->getTitle();
-	    $desc = $altText ? $altText : $f->getDescription('description');
+	    $desc = $altText ? $altText : $f->getDescription();
 	endif;
 endif;
 $height = $this->controller->maxHeight;
