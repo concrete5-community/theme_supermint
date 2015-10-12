@@ -165,7 +165,6 @@ class Controller extends Package  {
  		$al->register( 'css', 'YTPlayer', 'themes/supermint/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
  		$al->register( 'css', 'slick', 'themes/supermint/css/addons/slick.css', array('version' => '1.5.0'), $this );
  		$al->register( 'css', 'slick-theme', 'themes/supermint/css/addons/slick-theme.css', array('version' => '1.5.0'), $this );
- 		$al->register( 'css', 'buttons', 'themes/supermint/css/addons/buttons.css', array('version' => '1.3.4'), $this );
 		$al->register( 'css', 'bootsrap-custom', 'themes/supermint/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4'), $this );
 		$al->register( 'css', 'animate', 'themes/supermint/css/addons/animate.css', array('version' => '1'), $this );
 		$al->register( 'css', 'mega-menu', 'themes/supermint/css/addons/mega-menu.css', array('version' => '1.1.0'), $this );
