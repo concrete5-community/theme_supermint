@@ -2,15 +2,15 @@
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
-$o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$t =  $c->getCollectionThemeObject();
+$o = $pageTheme->getOptions();
+$tagsObject = $pageTheme->getPageTags($pages);
+
 $rssUrl = $showRss ? $controller->getRssUrl($b) : '';
 $th = Loader::helper('text');
 $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('tiny');
-$tagsObject = $pageTheme->getPageTags($pages);
 
 if ($includeName || $includeDescription || $useButtonForLink) $includeEntryText = true; else $includeEntryText = false;
-$styleObject = $t->getClassSettingsObject($b);
+$styleObject = $pageTheme->getClassSettingsObject($b);
 $column_class = $styleObject->columns > 3 ? 'col-md-' : 'col-sm-';
 $gap = !(in_array('no-gap',$styleObject->classesArray));
 
