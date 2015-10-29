@@ -19,7 +19,7 @@
         </options>
       </type>
     </attributekey>
-  </attributekeys>  
+  </attributekeys>
   <pagetypes>
     <pagetype name="Page" handle="page" package="" launch-in-composer="1" is-frequently-added="1">
       <pagetemplates type="all" default="full"/>
@@ -57,7 +57,7 @@
                 <blocks/>
               </area>
               <area name="Intro">
-                <blocks>                
+                <blocks>
                   <block type="core_area_layout" name="" mc-block-id="1AtjtlCG">
                     <arealayout type="theme-grid" columns="12">
                       <columns>
@@ -107,7 +107,7 @@
                         </column>
                       </columns>
                     </arealayout>
-                  </block>                                   
+                  </block>
                 </blocks>
               </area>
               <area name="Main - 1">
@@ -363,7 +363,7 @@
                     <style>
                       <customClass>space-m</customClass>
                     </style>
-                  </block>                   
+                  </block>
                   <block type="core_area_layout" name="" mc-block-id="Ig0OG5eq">
                     <arealayout type="theme-grid" columns="12">
                       <columns>
@@ -402,7 +402,7 @@
                     <style>
                       <customClass>space-s</customClass>
                     </style>
-                  </block>                   
+                  </block>
                 </blocks>
               </area>
               <area name="Intro">
@@ -479,7 +479,7 @@
                         <orderBy><![CDATA[display_asc]]></orderBy>
                       </record>
                     </data>
-                  </block>                  
+                  </block>
                 </blocks>
               </area>
               <area name="Main Bottom">
@@ -657,12 +657,12 @@
                 <content><![CDATA[<ul class="nav custom-nav nav-horizontal-light nav-small nav-align-right">    <li><a href="#">Title 1</a></li>    <li><a href="#">Title 2</a></li>  </ul>]]></content>
               </record>
             </data>
-          </block>          
+          </block>
           <block type="horizontal_rule" name=""/>
-          <block type="social_links" name="">    
+          <block type="social_links" name="">
             <style>
               <alignment>right</alignment>
-            </style>            
+            </style>
             <link service="personal_website"/>
             <link service="facebook"/>
             <link service="twitter"/>
@@ -680,7 +680,7 @@
     <stack name="Logo" type="global_area">
       <area name="Main">
         <blocks>
-          <block type="horizontal_rule" name=""/>          
+          <block type="horizontal_rule" name=""/>
           <block type="image" name="">
             <data table="btContentImage">
               <record>
@@ -701,7 +701,22 @@
     </stack>
     <stack name="Responsive Navigation" type="global_area">
       <area name="Main">
-        <blocks/>
+        <blocks>
+          <block type="autonav" name="" custom-template="supermint_mmenu.php">
+            <data table="btNavigation">
+              <record>
+                <orderBy><![CDATA[display_asc]]></orderBy>
+                <displayPages><![CDATA[top]]></displayPages>
+                <displayPagesCID/>
+                <displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+                <displaySubPages><![CDATA[all]]></displaySubPages>
+                <displaySubPageLevels><![CDATA[all]]></displaySubPageLevels>
+                <displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+                <displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+              </record>
+            </data>
+          </block>
+        </blocks>
       </area>
     </stack>
     <stack name="Reviews">
@@ -2281,5 +2296,5 @@
     <link service="flickr" url="https://www.flickr.com/photos/sebastienj/"/>
     <link service="personal_website" url="http://new.myconcretelab.com/"/>
     <link service="twitter" url="https://twitter.com/myconcretelab"/>
-  </sociallinks>  
+  </sociallinks>
 </concrete5-cif>

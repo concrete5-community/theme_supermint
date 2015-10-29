@@ -749,7 +749,22 @@
     </stack>
     <stack name="Responsive Navigation" type="global_area">
       <area name="Main">
-        <blocks/>
+        <blocks>
+          <block type="autonav" name="" custom-template="supermint_mmenu.php">
+            <data table="btNavigation">
+              <record>
+                <orderBy><![CDATA[display_asc]]></orderBy>
+                <displayPages><![CDATA[top]]></displayPages>
+                <displayPagesCID/>
+                <displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+                <displaySubPages><![CDATA[all]]></displaySubPages>
+                <displaySubPageLevels><![CDATA[all]]></displaySubPageLevels>
+                <displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+                <displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+              </record>
+            </data>
+          </block>
+        </blocks>
       </area>
     </stack>
     <stack name="Reviews">
