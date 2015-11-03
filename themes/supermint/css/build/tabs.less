@@ -27,7 +27,7 @@
 .tabs-menu li a {
     padding: 10px;
     text-transform: uppercase;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .tab {
@@ -36,19 +36,20 @@
     float: left;
     margin-bottom: 20px;
     width: auto;
-}
+    .tab-content {
+      display: none;
+      .inner {
+        padding: 20px;
 
-.tab-content {
-  display: none;
-  .inner {
-    padding: 20px;
-
-    p,li,quote,blockquote,div,
-    h1,h2,h3,h4,h5,h6 {
-      color: @black-color;
+        p,li,quote,blockquote,div,
+        h1,h2,h3,h4,h5,h6 {
+          color: @black-color;
+        }
+      }
     }
-  }
 }
+
+
 
 
 .sm-tabs {
@@ -58,7 +59,7 @@
 
   .element-primary & {
     .tabs-mixin-color(@primary-color; @primary-text-color; @light-color);
-  }  // Customs Behavior 
+  }  // Customs Behavior
   .element-secondary & {
     .tabs-mixin-color(@secondary-color; @secondary-text-color; @light-color);
   }
@@ -70,7 +71,7 @@
   }
   .element-light & {
     .tabs-mixin-color(@white-color; @black-color; @white-color);
-  } 
+  }
 
 
 }

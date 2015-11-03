@@ -152,7 +152,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     public function getThemeResponsiveImageMap()
     {
         return array(
-            'large' => '900px',
+            'large' => '1500px',
             'medium' => '768px',
             'small' => '0'
         );
