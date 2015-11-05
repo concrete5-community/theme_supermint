@@ -2449,9 +2449,6 @@
             <fID>{ccm:export:file:1366-768.png}</fID>
           </value>
         </attributekey>
-        <attributekey handle="supermint_theme_preset_options">
-          <value><![CDATA[4]]></value>
-        </attributekey>
         <attributekey handle="number_of_main_areas">
           <value>
             <option>3</option>

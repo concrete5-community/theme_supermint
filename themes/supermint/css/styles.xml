@@ -49,7 +49,7 @@
         <style name="Lateral deeper level background" variable="lateral-nav-sub-bg" type="color" />
         <!-- Full screen Nav -->
         <style name="Full Screen navigation background" variable="full-screen-nav-bg" type="color" />
-
+        <style name="Responsive Top bar background" variable="fixed-bar-bg" type="color" />
     </set>
     <set name="Headings">
         <style name="Heading 1" variable="h1" type="color" />
