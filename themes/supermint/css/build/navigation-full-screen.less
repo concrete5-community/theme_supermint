@@ -1,7 +1,4 @@
 
-
-
-
 .small-display-nav-bar   {
     .edit-mode & {
       padding-top: 49px;
@@ -20,6 +17,7 @@
     width: 100%;
     top:0px;
     background-color: @primary-color;
+    text-align: right;
 
     .edit-mode & {
         display: block;
@@ -42,6 +40,7 @@
     }
     span.nav-logo {
         display: inline-block;
+        float: left;
         height: @fixed-bar-height;
         overflow: hidden;
         margin-right: @space-s;
@@ -55,10 +54,15 @@
         }
     }
     .searchbox {
-      position: absolute;
-      right: @space-xl+@space-s+1;
-      top: (@fixed-bar-height/2);
+      position: relative;
+      display: inline-block;
+      z-index: 2;
+      text-align: left;
+      margin-right: @space-s;
+      // right: @space-xl+@space-s+1;
+      // top: (@fixed-bar-height/2);
       input {
+
         width:@space-xl;
         font-size: 12px;
         background-color: fade(@primary-text-color,80%);
@@ -172,8 +176,7 @@
   height:@height-icon;
   position:relative;
   display:inline-block;
-  margin: 10px ;
-  margin-top:(@fixed-bar-height/2)-1;
+  margin-right: @space-s;
   z-index: 2;
   vertical-align: top;
   &:focus {

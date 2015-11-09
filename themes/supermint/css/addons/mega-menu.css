@@ -17,7 +17,6 @@
 .mega-menu > li {
 	position: relative;
 	@include inline-block;
-	height: 36px;
 }
 
 .mega-menu > li.mgm-full-width { position: static; }
@@ -81,7 +80,6 @@
 	position: absolute;
 	z-index: 750;
 	padding: 0;
-	top: 36px;
 	left: -1px;
 	text-align:left;
 

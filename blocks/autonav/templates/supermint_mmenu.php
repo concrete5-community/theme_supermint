@@ -33,18 +33,18 @@ if ($logo):
 	echo '<span class="nav-logo">';
 	$logo->display();
 	echo '</span>';
+	echo '<a id="hamburger-icon" class="vertical-align" href="#mmenu" title="Menu">
+					<span class="line line-1"></span>
+					<span class="line line-2"></span>
+					<span class="line line-3"></span>
+			</a>';
 endif;
-echo '<a id="hamburger-icon" href="#mmenu" title="Menu">
-				<span class="line line-1"></span>
-	  		<span class="line line-2"></span>
-	  		<span class="line line-3"></span>
-		</a>';
-		if($o->display_searchbox) :
+		if($o->display_searchbox && $o->display_searchbox_mobile) :
 				$p = Page::getByID($o->display_searchbox);
 				if (is_object($p)) :
-					echo '<div class="searchbox">';
+					echo '<div class="searchbox vertical-align">';
 						echo '<form action="' . Loader::helper('navigation')->getCollectionURL($p) . '">';
-							echo '<input type="search" class="vertical-align" name="query" placeholder="' . t('Search') . '"/>';
+							echo '<input type="search" name="query" placeholder="' . t('Search') . '"/>';
 						echo '</form>';
 					echo '</div>';
 			endif;

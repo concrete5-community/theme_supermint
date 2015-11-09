@@ -13,10 +13,16 @@ $this->inc('elements/intro.php');
         <div class="<?php echo $span_main ?>">
             <div class="page-content-style padding-<?php echo $o->content_padding ?>">
                 <?php $this->inc('elements/ribbon.php') ?>
-                <?php $this->inc('elements/multiple_area.php',array('c'=>$c,'area_name'=>'Main','AreaGridMaximumColumns' => 12, 'attribute_handle'=>'number_of_main_areas'));  ?>		         
+                <?php $this->inc('elements/multiple_area.php',array('c'=>$c,'area_name'=>'Main','AreaGridMaximumColumns' => 12, 'attribute_handle'=>'number_of_main_areas'));  ?>
             </div>
         </div>
         <div class="<?php echo $span_sidebar ?> <?php echo $sidebar_offset ?> sidebar" id="rigth-sidebar">
+            <div class="sb-head">
+                <?php
+                $a = new Area('Sidebar Header');
+                $a->display($c);
+                ?>
+            </div>
             <div class="sb-header padding-<?php echo $o->sidebar_padding?>">
                 <?php
                 $a = new Area('Sidebar');

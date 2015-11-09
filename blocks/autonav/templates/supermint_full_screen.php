@@ -21,31 +21,33 @@ foreach ($navItems as $ni) {
 	$ni->classes = implode(" ", $classes);
 }
 
+echo '<div class="small-display-nav-bar-inner Fixed">';
+if ($logo):
+	echo '<span class="nav-logo">';
+	$logo->display();
+	echo '</span>';
+endif;
+		if($o->display_searchbox) :
+				$p = Page::getByID($o->display_searchbox);
+				if (is_object($p)) :
+					echo '<div class="searchbox">';
+						echo '<form action="' . Loader::helper('navigation')->getCollectionURL($p) . '">';
+							echo '<input type="search" name="query" placeholder="' . t('Search') . '"/>';
+						echo '</form>';
+					echo '</div>';
+			endif;
+		endif;
+		echo '<a id="hamburger-icon" href="#mmenu" title="Menu">
+						<span class="line line-1"></span>
+			  		<span class="line line-2"></span>
+			  		<span class="line line-3"></span>
+				</a>';
+echo '</div>';
 ?>
-<div class="small-display-nav-bar-inner">
-<?php if ($logo): ?>
-	<span class="nav-logo"><?php $logo->display() ?></span>
-<?php endif ?>
-	<a id="hamburger-icon" href="#" title="Menu">
-	  <span class="line line-1"></span>
-	  <span class="line line-2"></span>
-	  <span class="line line-3"></span>
-	</a>
-<?php  if($o->display_searchbox) :
-		$p = Page::getByID($o->display_searchbox);
-		if (is_object($p)) :	?>
-	<div class="searchbox">
-		<form action="<?php echo Loader::helper('navigation')->getCollectionURL($p)?>">
-	   	<input type="search" class="vertical-align" name="query" placeholder="<?php echo t('Search')?>"/>
-		</form>
-	</div>
-	<?php endif ?>
-<?php endif ?>
-	<div class="overlay overlay-contentscale">
+<div class="overlay overlay-contentscale">
 		<nav>
 			<ul>
-</a></li><?php
-foreach ($navItems as $ni) {
+<?php foreach ($navItems as $ni) {
 
 	echo '<li class="' . $ni->classes . '">'; //opens a nav item
 	$name = (isset($translate) && $translate == true) ? t($ni->name) : $ni->name;
