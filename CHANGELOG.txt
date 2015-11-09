@@ -1,3 +1,10 @@
+3.2.4   - Add imageLoaded to Transit.
+        - Move hamburger & search to the right. close #44
+        - Add Sidebar Header Area.
+        - Add « image-center » custom class for image-block. close #45
+        - Fix second level position when the height of the main nav is customized.
+        - Add a rescue font list file for google fonts.
+        - Add a option to enable/disable search input in mobile version.
 3.2.3   - Fix the top-bar-full-with gap when element with margin in inserted
         - Fix the inherit of navigation style in stack panes
         - Fix override links error that appear on certain servers
