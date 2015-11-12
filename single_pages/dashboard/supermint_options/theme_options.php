@@ -203,6 +203,12 @@ $options = array(
         "type" => "page"
     ),
     array(
+        "name" => t("Display search input in the mobile version"),
+        "id" => "display_searchbox_mobile",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
         "name" => t("Display icon on first level if available"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",

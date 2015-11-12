@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeSupermint\Src\Helper;
 use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Loader;
@@ -42,7 +42,7 @@ class BaseOptionsGenerator {
             if ($rule instanceof Less_Tree_Rule) {
             	// $v = $rule->value->value[0]->value[0]->value;
             	// if(is_string($v)) {
-            	// 	$unicode =  (strpos($v, '\\') === 0) ? str_replace('\\', '&#x', $v) : '';            		
+            	// 	$unicode =  (strpos($v, '\\') === 0) ? str_replace('\\', '&#x', $v) : '';
             	// }
                 if (strpos($rule->name, '@fa-var') === 0) {
                     $name = str_replace('@fa-var-', 'fa-', $rule->name);
@@ -51,10 +51,10 @@ class BaseOptionsGenerator {
             }
         }
         // die();
-        return $icons;        
-    } 
+        return $icons;
+    }
 
-	/* --- INPUTS --- */	
+	/* --- INPUTS --- */
 
 	function text($item) {
 		extract($this->option_atts(array(
@@ -65,11 +65,11 @@ class BaseOptionsGenerator {
 			"class"=> "",
 		), $item));
 		$class = $class?' class="'.$class.'"':'';
-		
+
 		echo "<input type='text' name='$id' size='$size' value='$value' class='$class' />";
 
 	}
-	
+
 	function textarea($item) {
 		extract($this->option_atts(array(
 			"id" => "",
@@ -80,10 +80,10 @@ class BaseOptionsGenerator {
 			"class"=> "code",
 		), $item));
 		$class = $class?' class="'.$class.'"':'';
-		
+
 		echo "<textarea name='$id' id='$id' cols='$cols' rows='$rows' class='$class' style='width:100%; font-family: Monaco, monospace;'>$value</textarea>";
 	}
-	
+
 	function select($item) {
 		extract($this->option_atts(array(
 			"id" => "",
@@ -94,8 +94,8 @@ class BaseOptionsGenerator {
 			"options" => array(),
 			"class"=> "",
 		), $item));
-	
-		echo $this->form->select($id,$options,$value);		
+
+		echo $this->form->select($id,$options,$value);
 	}
 
 	function range($item) {
@@ -111,7 +111,7 @@ class BaseOptionsGenerator {
 		// echo '<input type="range" min="0" max="10" step="1" value="0">'
 		echo '<div class="ui-slider-wrapper"><div id="ui-slider-' . $id . '" data-rel="' . $id . '" class="ui-slider"';
 		// echo '<div class="range-input-wrap" ><input name="' . $id . '" id="' . $id . '" type="range" value="'.$value;
-		
+
 		if (!is_null($min)) {
 			echo ' data-min="' . $min .'"';
 		}
@@ -123,15 +123,15 @@ class BaseOptionsGenerator {
 		}
 		echo '></div>';
 		echo '<div class="mesure"><input type="text" name="' . $id . '" id="' . $id . '" value="' . $value . '" class="ui-slider-input" readonly />';
-		
+
 		if (!is_null($unit)) {
 			echo '<span class="unit">' . $unit . '</span>';
 		}
 		echo '</div>';
 		echo '</div>';
-		
-	}	
-	
+
+	}
+
 	/**
 	 * displays a color input
 	 */
@@ -143,13 +143,13 @@ class BaseOptionsGenerator {
 			"size" => "10",
 			"class" => "",
 		), $item));
-		
+
 		$class = $class?' class="'.$class.'"':'';
-		
+
 		echo '<div class="color-input-wrap"><input'.$class.' name="' . $id . '" id="' . $id . '" type="color" data-hex="true" size="' . $size . '" value="' . $value . '" /></div>';
-		
+
 	}
-	
+
 	/**
 	 * displays a toggle button
 	 */
@@ -159,14 +159,14 @@ class BaseOptionsGenerator {
 			"default" => "",
 			"value" => null,
 		), $item));
-		
+
 		echo '<div class="toggle-wrapper"><div class="toggle ' . ($value ? 'toggle-on' : '') . '">
 				<input type="radio" class="on" name="' . $id . '" value="1" ' . ($value ? 'checked="checked" ' : '') . '>
 				<input type="radio" class="off" name="' . $id . '" value="0" ' . (!$value ? 'checked="checked" ' : '') . '>
 				<div class="toggle-text-off">OFF</div>
 				<div class="toggle-button"></div>
 				<div class="toggle-text-on">ON</div>
-			</div></div>';		
+			</div></div>';
 	}
 
 	function awesome($item) {
@@ -176,7 +176,7 @@ class BaseOptionsGenerator {
 			"value" => null,
 		), $item));
 		if (count($this->awesome)):
-			
+
 			echo "<select name=\"$id\" class=\"chosenicon\">";
 			foreach ($this->awesome as $handle => $name) :
 					echo "<option value=\"$handle\" data-icon=\"$handle\"" . ($value == $handle ? ' selected ' : '') . ">$name</option>";
@@ -187,7 +187,7 @@ class BaseOptionsGenerator {
 			echo t('No Icons found.');
 		endif;
 	}
-	
+
 	/**
 	 * displays a page selector
 	 */
@@ -197,10 +197,10 @@ class BaseOptionsGenerator {
 			"value" => false,
 			"quick"=> false
 		), $item));
-			
+
 		$sph = Core::make('helper/form/page_selector');
 		if ($quick) :
-			echo  $sph->quickSelect($id, $value); // prints out the home page and makes it selectable.		
+			echo  $sph->quickSelect($id, $value); // prints out the home page and makes it selectable.
 		else :
 			echo  $sph->selectPage($id, $value); // prints out the home page and makes it selectable.
 		endif;
@@ -218,13 +218,13 @@ class BaseOptionsGenerator {
 		// var_dump($value); die();
 		$value = ($value && $value > 0) ?  File::getByID($value) : false ;
 
-			
+
 		$al = Core::make('helper/concrete/asset_library');
 
 		if (!$filetype) :
-			echo  $al->file($id, $id, $name, $value); 		
+			echo  $al->file($id, $id, $name, $value);
 		else :
-			echo  $al->$filetype($id, $id, $name, $value); 	
+			echo  $al->$filetype($id, $id, $name, $value);
 		endif;
 	}
 
@@ -240,12 +240,12 @@ class BaseOptionsGenerator {
 			"value" => "",
 			"variantType" => "multiple",
 		), $item));
-		
+
 		$options =  ThemeSupermintOptions::get_options_from_preset_ID($this->pID);
-		$fontList = Config::get('mcl.supermint.googlefonts');
+		$fontList = json_decode(Core::make('helper/file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
 		if (!$fontList) :
-			$fontList = json_decode(Core::make('helper/file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
-			Config::set('mcl.supermint.googlefonts',$fontList);
+			// Si nous n'avaons pas pu recurérer le fichier, on charge celui prechargé.
+			$fontList = json_decode(Core::make('helper/file')->getContents(__DIR__ . '/../../js/webfonts.json'));
 		endif;
 		if (!$fontList)	echo '<p>' . t('Sorry we can\'t connect to Google Fonts, perhaps you are not connected to Internet ?') . '<p>';
 		// Il n'y a pas encore de gestion d'erreur
@@ -255,9 +255,9 @@ class BaseOptionsGenerator {
 		 * p_subset
 		 * p_font
 		 * p_variants
-		 * 
+		 *
 		*/
-		
+
 		$fontName = $id . '_font';
 		$subsetName = $id . '_subset';
 		$variantName = $id . '_variants';
@@ -265,9 +265,9 @@ class BaseOptionsGenerator {
 		// La police choisie pour ce preset (si il y en a une)
 		$choose = str_replace('+', ' ', $options->$fontName);
 		$choose = ($choose === '0' || $choose == '') ? str_replace('+', ' ', $default) : $choose;
-		
+
 		$selected_variants = explode(',', $options->$variantName);
-		$selected_subsets = explode(',', $options->$subsetName);	
+		$selected_subsets = explode(',', $options->$subsetName);
 		$default_variant = 	$options->$defaultVariantName ? $options->$defaultVariantName : false;
 		// Si rien n'a encore été seleciotnné
 		if (! $options->$variantName ) $selected_variants[0] = 'regular';
@@ -287,10 +287,10 @@ class BaseOptionsGenerator {
 			if ($selected) {
 				$variants = $fontObj->variants;
 				$subsets = $fontObj->subsets;
-			} 
+			}
 			echo '<option value="' . str_replace(' ', '+', $fontObj->family) . '" ' . $selected . '>' . $fontObj->family . '</option>';
 		endforeach;
-		echo '</select>';		
+		echo '</select>';
 		echo '</td>';
 		echo '<td class="font-input" data-type="' . $function . '">';
 
@@ -305,11 +305,11 @@ class BaseOptionsGenerator {
 				// La police choisie
 				'font' => $choose,
 				// Les tableaux des options disponibles
-				'variants' => $variants, 
+				'variants' => $variants,
 				'subsets' => $subsets,
 				// LE nom des inputs
 				'subsetName' => $subsetName,
-				'variantName' => $variantName, 
+				'variantName' => $variantName,
 				// Les options selectionee
 				'selected_subsets' => $selected_subsets,
 				'selected_variants' => $selected_variants,
@@ -319,7 +319,7 @@ class BaseOptionsGenerator {
 		echo '</div>';
 	echo '</td></tr>';
 	}
-	
+
 	function option_atts ($pairs, $atts){
 		$atts = (array)$atts;
 		$out = array();
@@ -332,4 +332,3 @@ class BaseOptionsGenerator {
 		return $out;
 	}
 }
-

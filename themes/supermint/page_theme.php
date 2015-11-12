@@ -81,10 +81,14 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','primary','secondary','tertiary','quaternary'),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
                               // Smoked classes
-            'image' => array('black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked',
+            'image' => array('image-center',
+                              // Colored classes
+                             'black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked',
+                             // Don't display title and desc overlay on some templates
                              'no-text',
                               // Height classes
                              'height-80','height-50','height-30',
+                             // Cancel the container width to display the block into small area.
                              'into-columns',
                              // Caption  classes
                              'caption-inside','caption-hover',

@@ -178,6 +178,7 @@ var Transit = {
 
 $(document).ready(function(){
   // Start a plugin
+
   $.fn.transit = function(options) {
     // Don't act on absent elements -via Paul Irish's advice
     if ( this.length && Modernizr.csstransitions) {
@@ -194,7 +195,10 @@ $(document).ready(function(){
       });
     }
   };
-  $(".transit").transit();
+  $('#container').imagesLoaded( function() {
+    $(".transit").transit();
+  });
+
 });
 
 
