@@ -16,7 +16,6 @@
       text-indent: 15px;
       opacity: 1;
     }
-
     &.nav-path-selected {
       background-color: @link-color;
       // padding-left: @space-xs;
@@ -352,6 +351,7 @@
     height: 100%;
     input {
       outline: none;
+      padding: 3px;
       &::-webkit-search-decoration, &::-webkit-search-cancel-button {
         display: none;
         /* remove the search and cancel icon */
@@ -360,8 +360,7 @@
         // Reset
         -webkit-appearance: textfield;
         -webkit-box-sizing: content-box;
-        // font-family: inherit;
-        font-family: 'FontAwesome';
+
         // design
         float:left;
         height: 15px;
@@ -372,41 +371,26 @@
         color: #fff;
         border-color: transparent;
         text-indent: 4px;
-        // background: #fff url(http://i.imm.io/Q0Jo.png) no-repeat 2px center;
         cursor: pointer;
-        -webkit-border-radius: 10em;
-        -moz-border-radius: 10em;
+
+        background-image: url(../../images/magnifier.svg);
+        background-position: 5px center;
+        background-size: 12px 12px;
+        background-repeat: no-repeat;
+
         border-radius: 10em;
-        -webkit-transition: all .5s;
-        -moz-transition: all .5s;
-        transition: all .5s;
+        .transition (all .5s);
         box-shadow:none;
         &:focus {
           width: 130px;
           padding-left: 32px;
           color: #000;
           cursor: auto;
-          &::-webkit-input-placeholder {
-             color: @white-color;
-          }
-
-          &:-moz-placeholder { /* Firefox 18- */
-             color: @white-color;
-          }
-
-          &::-moz-placeholder {  /* Firefox 19+ */
-             color: @white-color;
-          }
-
-          &:-ms-input-placeholder {
-             color: @white-color;
-          }
         }
       }
     }
   }
 }
-
 // -- top-nav-lateral -- \\
 
 @lateral-nav-first-level-contrast : contrast(@lateral-nav-bg-color, @black-color, @white-color);

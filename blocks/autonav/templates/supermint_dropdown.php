@@ -180,7 +180,7 @@ if($o->display_searchbox) :
 	echo '<li class="search-in-nav">';
 	?>
 	<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
-   	   <input type="search" class="vertical-align" id="search-keywords" name="query" placeholder="&#xf002"/>
+   	   <input type="search" class="vertical-align" id="search-keywords" name="query" />
 	</form>
 	</li>
 	<?php endif ?>
