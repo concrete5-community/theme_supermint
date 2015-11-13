@@ -65,6 +65,10 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         return t('A very clean and responsive theme for Concrete5');
     }
 
+    public function getOptions() {
+      return ThemeSupermintOptions::get();
+    }
+
     public function getThemeBlockClasses()
     {
 

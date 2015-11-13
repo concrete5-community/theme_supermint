@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var cookies = Cookies.get();
 	/*** Preset select ***/
 	$('#preset_id').change(function() {
-		$('#preset_to_edit').submit();	
+		$('#preset_to_edit').submit();
 	});
 
 	// -- Les panes -- //
@@ -12,8 +12,8 @@ $(document).ready(function() {
 		if (anchor.size()) {
 			changePane(anchor);
 			paneLoaded = true;
-		}		
-	} 
+		}
+	}
 	// Si aucun pane à été chargé, on charge le premier
 	if (!paneLoaded) {
 		$('.mcl-options-body:first-child').show().addClass('active');
@@ -23,24 +23,31 @@ $(document).ready(function() {
 
 		changePane($(this),e);
 	})
-	
+
 	// -- Les Toggles -- \\
 
 	$('.toggle').on('click', function(e){
 		var t = $(this);
 	    t.toggleClass("toggle-on");
-	    t.find('input[type=radio]').attr("checked", false);
-	    if (t.is('.toggle-on')) {
-	    	t.find('.on').attr("checked", true);	
-	    } else {
-	    	t.find('.off').attr("checked", true);		    	
-	    }
+		 t.find('input[type=radio]').each(function(){
+			 if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+				 $(this).prop("checked", !$(this).attr("checked"));
+			 } else {
+			 		$(this).attr("checked", !$(this).attr("checked"));
+				}
+		 });
+	    // t.find('input[type=radio]').attr("checked", false);
+	    // if (t.is('.toggle-on')) {
+	    // 	t.find('.on').attr("checked", true);
+	    // } else {
+	    // 	t.find('.off').attr("checked", true);
+	    // }
 	    e.preventDefault();
 	});
 
 
 	// -- Les Sliders jQuery UI -- \\
-	
+
 	$('.ui-slider').each(function (i) {
 		var t = $(this);
 		var input = $("#" + t.data('rel'));
@@ -56,15 +63,15 @@ $(document).ready(function() {
 	})
 
 	$('.tochosen').chosen();
-	
+
 	// --  Font management -- \\
 
 	$('.font_selector').chosen({width: "95%"}).change(function(e,i) {
-		
-		var t = $(this); 
+
+		var t = $(this);
 		var id = t.attr('id');
 		var val = t.val();
-		
+
 		if (!val) return;
 
 		var container = t.parent().parent().parent().find('#' + id + '_details_wrapper');
@@ -94,7 +101,7 @@ $(document).ready(function() {
 		var html = '';
 		for (var i = 0, len = values.length; i < len; ++i) {
 		    html += '<option value="' + values[i] + '">' + values[i] + '</option>';
-		}                   
+		}
 		selected.html(html).parent().show();
 	});
 

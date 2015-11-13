@@ -34,14 +34,13 @@ $small = new \Concrete\Package\ThemeSupermint\Src\Models\SupermintFont('small');
 
 body, p {
 	<?=$p->getStyleCss()?>
-	/* font-size:<?=$p->normalsize/10?>rem; */
 }
-h1,.h1 {<?=$h1->getStyleCss()?>;font-size:<?=$h1->fullsize?>px}
-h2,.h2 {<?=$h2->getStyleCss()?>;font-size:<?=$h2->fullsize?>px}
-h3,.h3 {<?=$h3->getStyleCss()?>;font-size:<?=$h3->fullsize?>px}
-h4,.h4 {<?=$h4->getStyleCss()?>;font-size:<?=$h4->fullsize?>px}
-h5,.h5 {<?=$h5->getStyleCss()?>;font-size:<?=$h5->fullsize?>px}
-h6,.h6 {<?=$h6->getStyleCss()?>;font-size:<?=$h6->fullsize?>px}
+h1,.h1 {<?=$h1->getStyleCss()?> 	font-size:<?=$h1->fullsize?>px}
+h2,.h2 {<?=$h2->getStyleCss()?> 	font-size:<?=$h2->fullsize?>px}
+h3,.h3 {<?=$h3->getStyleCss()?> 	font-size:<?=$h3->fullsize?>px}
+h4,.h4 {<?=$h4->getStyleCss()?> 	font-size:<?=$h4->fullsize?>px}
+h5,.h5 {<?=$h5->getStyleCss()?> 	font-size:<?=$h5->fullsize?>px}
+h6,.h6 {<?=$h6->getStyleCss()?> 	font-size:<?=$h6->fullsize?>px}
 
 /* -- Navigation -- */
 <?php if ($o->first_level_regular_flaterize): ?>
