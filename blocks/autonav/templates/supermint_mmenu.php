@@ -33,11 +33,11 @@ if ($logo):
 	echo '<span class="nav-logo">';
 	$logo->display();
 	echo '</span>';
-	echo '<a id="hamburger-icon" class="vertical-align" href="#mmenu" title="Menu">
+	echo '<button id="hamburger-icon" class="vertical-align" href="#mmenu" title="Menu">
 					<span class="line line-1"></span>
 					<span class="line line-2"></span>
 					<span class="line line-3"></span>
-			</a>';
+			</button>';
 endif;
 		if($o->display_searchbox && $o->display_searchbox_mobile) :
 				$p = Page::getByID($o->display_searchbox);
