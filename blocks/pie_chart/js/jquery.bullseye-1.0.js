@@ -1,13 +1,4 @@
-﻿/*!
-* jQuery Bullseye v1.0
-* http://pixeltango.com
-*
-* Copyright 2010, Mickel Andersson
-* Dual licensed under the MIT or GPL Version 2 licenses.
-*
-* Date: Fri Aug 31 19:09:11 2010 +0100
-*/
-jQuery.fn.bullseye = function (settings, viewport) {
+﻿jQuery.fn.bullseye = function (settings, viewport) {
     settings = jQuery.extend({
         offsetTop: 0,
         offsetHeight: 0,
@@ -22,7 +13,7 @@ jQuery.fn.bullseye = function (settings, viewport) {
             $viewport = $(viewport == null ? window : viewport);
 
         var magic = function () {
-            var 
+            var
                 elementWidth = $element.outerWidth(),
                 elementHeight = $element.outerHeight() + settings.offsetHeight,
                 viewportWidth = $viewport.width(),
@@ -55,7 +46,7 @@ jQuery.fn.bullseye = function (settings, viewport) {
             }
             // Evaluate if the target is inside the viewport
             if (
-                (scrollBottom < y1 || (scrollTop > y2)) 
+                (scrollBottom < y1 || (scrollTop > y2))
             )
                 outsideViewport();
             else
