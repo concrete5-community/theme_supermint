@@ -6,6 +6,10 @@ detectOnView();
 
 $(document).ready(function(){
 
+	isDashboard = $('#ccm-dashboard-page').size();
+	noScript = $('.no-script').size();
+	if (isDashboard || noScript ) return;
+
 	if (typeof(navigationOptions) == "object")
 		$('.nav_tabs').boxNav('.submenu_panes',navigationOptions);
 
