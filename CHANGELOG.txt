@@ -1,3 +1,4 @@
+3.2.5.1 - Disable JS in dashboard pages
 3.2.5   - Fix options that doesn’t save in firefox
         - Fix the getOption error on page list Supermint Hover template
         - Fix css error
