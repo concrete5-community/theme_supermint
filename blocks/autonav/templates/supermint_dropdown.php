@@ -148,7 +148,7 @@ foreach ($navItems as $niKey => $ni) :
 
 endforeach;
 ?>
-<div class="top_nav_mega-menu <?php echo $navigationStyle . ' ' . ($o->wide_navbar_fixed ? 'navbar-fixed' : '') . ($o->wide_navbar_colapse ? 'navbar-colapse' : '') ?>">
+<div class="top_nav_mega-menu <?php echo $navigationStyle . ' ' . ($o->wide_navbar_fixed ? 'navbar-fixed ' : '') . ($o->wide_navbar_colapse ? 'navbar-colapse ' : '') . ($o->auto_hidde_top_bar ? 'auto-hidde-top-bar ' : '')  ?>">
 	<?php if ($o->wide_navbar_contained && $o->navigation_style == 'large-top-nav'): ?><div class="container"><?php endif ?>
 	<ul class="mega-menu" >
 			<li class="nav-logo"><span><?php if ($logo) $logo->display(); ?></span></li>

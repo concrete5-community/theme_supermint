@@ -65,7 +65,7 @@ $(document).ready(function(){
 	initializeTabs();
 
 // AUto hidding responsive nav bar
-	$('.small-display-nav-bar-inner, .large-top-nav, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();
+	$('.auto-hidde-top-bar').autoHidingNavbar();
 
 // Mmenu
 	if($("#mmenu").size()) {

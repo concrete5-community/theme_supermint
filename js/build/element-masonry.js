@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  isDashboard = $('#ccm-dashboard-page').size();
+	noScript = $('.no-script').size();
+	if (isDashboard || noScript ) return;
+  
     var $win = $(window),
         $containers = $(".page-list-masonry"),
         // quick search regex

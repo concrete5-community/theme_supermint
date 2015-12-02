@@ -209,6 +209,13 @@ $options = array(
         "type" => "toggle"
     ),
     array(
+        "name" => t("Auto hidde Mobile bar"),
+        "desc" => t("If enabled, the small toolbar is hidde during scroll."),
+        "id" => "auto_hidde_top_bar",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+    array(
         "name" => t("Display icon on first level if available"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",

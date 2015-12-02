@@ -21,7 +21,7 @@ foreach ($navItems as $ni) {
 	$ni->classes = implode(" ", $classes);
 }
 
-echo '<div class="small-display-nav-bar-inner Fixed">';
+echo '<div class="' . ( $o->auto_hidde_top_bar ? 'auto-hidde-top-bar ' : '') . 'small-display-nav-bar-inner Fixed">';
 if ($logo):
 	echo '<span class="nav-logo">';
 	$logo->display();
