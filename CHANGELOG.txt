@@ -1,3 +1,5 @@
+3.2.5.3 - fix JS in Satck page
+        - Display bullet in list when composer mode
 3.2.5.2 - Add a option for auto-bidding mobile nav
         - Now google fonts use secure http
         - fix js error on stacks (imageLoaded)
