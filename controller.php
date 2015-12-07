@@ -35,7 +35,7 @@ class Controller extends Package  {
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
 		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.2.5.4';
+		protected $pkgVersion = '3.3';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
     protected $startingPoint;
@@ -100,7 +100,13 @@ class Controller extends Package  {
 				parent::upgrade();
 	}
 
-    public function on_start() {
+	public function upgradeCoreData() {
+		if ($this->pkgVersion < '3.3') :
+			$this->upgradePageListTemplates();
+		endif;
+		parent::upgradeCoreData();
+	}
+  public function on_start() {
         $this->registerRoutes();
         $this->registerAssets();
         $this->registerEvents();
@@ -335,4 +341,36 @@ class Controller extends Package  {
         $pt->setCustomStyleObject($vl, $preset);
     }
 
+		function upgradePageListTemplates () {
+			$list = new \Concrete\Core\Page\PageList();
+			$pages = $list->getResults();
+			foreach ($pages as $key => $c) {
+			  $areas = \Concrete\Core\Area\Area::getListOnPage($c);
+			  foreach ($areas as $area) {
+			    $blocks = $area->getAreaBlocksArray();
+			    foreach ($blocks as $block) {
+			      if ($block->getBlockTypeHandle() == 'page_list') {
+			        $templateName = $block->getBlockFilename();
+			        echo $templateName;
+			        echo "<br/><br/>";
+			        preg_match("/supermint_(\w+)_(\w+)\.php/",$templateName,$matches);
+			        if (count($matches)) {
+			          if ($matches[1] == 'carousel') {
+			            $style = $block->getCustomStyle(true);
+			            if (is_object($style)) {
+			              $ss = $style->getStyleSet();
+			              $classes = $ss->getCustomClass();
+			              if (strpos('is_carousel',$classes) === false) {
+			                $ss->setCustomClass($classes . ' is_carousel');
+			                $ss->save();
+			                $block->updateBlockInformation(array('bFilename' => 'supermint_' . $matches[2] . '.php'));
+			              }
+			            }
+			          }
+			        }
+			      }
+			    }
+			  }
+			}
+		}
 }
