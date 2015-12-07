@@ -229,6 +229,17 @@ $options = array(
         "default" => 0,
         "type" => "toggle"
     ),
+    array(
+       "name" => t("Items spacing"),
+       "desc" => t("Set horizontal space between each nav items on regular nav"),
+       "id" => "nav_item_spacing",
+       "min" => "1",
+       "max" => "80",
+       "step" => "1",
+       "unit" => 'px',
+       "default" => "20",
+       "type" => "range"
+   ),
 
     // Dropdown mode
 
