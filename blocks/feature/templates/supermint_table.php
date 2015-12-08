@@ -8,7 +8,8 @@ $color = $color ? "color:#$color" : '';
 $title = $linkURL ? ('<a href="' . $linkURL . '">' . h($title) . '</a>') : h($title);
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 ?>
-<table class="icon-table">
+<div class="feature-box full">
+<table>
 	<tr>
 		<td class="i-icon icon-sizeable">
 			<i class="fa fa-<?php echo $icon?> fa-colored" <?php echo $color ? "style='$color'" : ''; ?>></i>
@@ -24,3 +25,4 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 		<?php endif ?>
 	</tr>
 </table>
+</div>

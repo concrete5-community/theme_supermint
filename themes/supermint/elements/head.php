@@ -33,8 +33,6 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
     $display_responsiveNav = $responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode() ;
     ?>
     <?php if ($display_responsiveNav): ?>
-
-
     <div class="<?php echo $o->auto_hidde_top_bar ? 'auto-hidde-top-bar' : ''?> small-display-nav-bar inherit-ccm-page">
         <?php $responsiveNav->display()?>
     </div>

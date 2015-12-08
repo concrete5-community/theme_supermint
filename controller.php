@@ -355,22 +355,24 @@ class Controller extends Package  {
 			        echo "<br/><br/>";
 			        preg_match("/supermint_(\w+)_(\w+)\.php/",$templateName,$matches);
 			        if (count($matches)) {
-			          if ($matches[1] == 'carousel') {
-			            $style = $block->getCustomStyle(true);
-			            if (is_object($style)) {
-			              $ss = $style->getStyleSet();
-			              $classes = $ss->getCustomClass();
-			              if (strpos('is_carousel',$classes) === false) {
-			                $ss->setCustomClass($classes . ' is_carousel');
-			                $ss->save();
-			                $block->updateBlockInformation(array('bFilename' => 'supermint_' . $matches[2] . '.php'));
-			              }
-			            }
-			          }
+			          if ($matches[1] == 'carousel') $this->setBlockClass('is_carousel',$matches[2]);
+								if ($matches[1] == 'static' && $matches[2] == 'block') $this->setBlockClass('',$matches[2]);
 			        }
 			      }
 			    }
 			  }
+			}
+		}
+		function setBlockClass ($class,$name) {
+			$style = $block->getCustomStyle(true);
+			if (is_object($style)) {
+				$ss = $style->getStyleSet();
+				$classes = $ss->getCustomClass();
+				if ($class && strpos($class,$classes) === false) {
+					$ss->setCustomClass($classes . ' is_carousel');
+					$ss->save();
+					$block->updateBlockInformation(array('bFilename' => 'supermint_' . $name . '.php'));
+				}
 			}
 		}
 }

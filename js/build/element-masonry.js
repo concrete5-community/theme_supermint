@@ -2,9 +2,9 @@ $(document).ready(function(){
   isDashboard = $('#ccm-dashboard-page').size();
 	noScript = $('.no-script').size();
 	if (isDashboard || noScript ) return;
-  
+
     var $win = $(window),
-        $containers = $(".page-list-masonry"),
+        $containers = $(".masonry-wrapper"),
         // quick search regex
         qsRegex = false,
         activeButtonClass = "button-primary";

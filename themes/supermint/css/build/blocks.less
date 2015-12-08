@@ -55,38 +55,44 @@ a.mpf-inline.open-popup-link {
 /* -- Page-list & Features -- */
    // These block share same content -- */
 
-.icon-table {
-	background-color:@light-color;
-	width: 100%;
-	margin-bottom: 1px;
-	position: relative;
-	.transition(0.25s);
-	.perspective(1000);
-	&:hover {
-		box-shadow: 0px 0px 0px 5px fade(@black-color,10%);
-		.transform(scale(1.08));
-		z-index: 1;
-	}
-	td {
-		padding: @space-s;
-		&.i-icon {
-			width: 80px;
-			padding:8px 0 0 10px;
-			text-align: center;
-			vertical-align: middle;
-		}
-	}
-	h3 {
-		margin:0;
-		text-transform: none;
-		color: @grey-color;
-		a {
-			color: @black-color;
-		}
-	}
-	p {
-		margin: 0
-	}
+.feature-box {
+  &.full {
+    table {
+      width: 100%;
+    }
+  }
+  table {
+  	background-color:@light-color;
+  	margin-bottom: 1px;
+  	position: relative;
+  	.transition(0.25s);
+  	.perspective(1000);
+  	&:hover {
+  		box-shadow: 0px 0px 0px 5px fade(@black-color,10%);
+  		.transform(scale(1.08));
+  		z-index: 1;
+  	}
+  	td {
+  		padding: @space-s;
+  		&.i-icon {
+  			width: 80px;
+  			padding:8px 0 0 10px;
+  			text-align: center;
+  			vertical-align: middle;
+  		}
+  	}
+  	h3 {
+  		margin:0;
+  		text-transform: none;
+  		color: @grey-color;
+  		a {
+  			color: @black-color;
+  		}
+  	}
+  	p {
+  		margin: 0
+  	}
+  }
 }
 
 /* -- Feature Block -- */
@@ -207,9 +213,6 @@ a.mpf-inline.open-popup-link {
 
 // -- Box
 
-.feature-box {
-	margin-bottom: 20px;
-}
 .feature-box_content_title {
 	position:relative;
 	margin:0 0 @space-s 0;
