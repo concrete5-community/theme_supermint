@@ -79,7 +79,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $blocks_classes = array('block-primary', 'block-secondary', 'block-tertiary', 'block-quaternary');
         $columns = $margin = array();
         for ($i=1; $i < 7; $i++) $columnsClasses[] = "$i-column";
-        for ($i=0; $i < 40; $i+=10) $marginClasses[] =  "carousel-margin-{$i}px";
 
         return array(
             // 'page_list' => array('simple'),
@@ -113,7 +112,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
               								// Layout
               								'no-gap'
                             )),
-            'image_slider' =>array_merge(array('into-columns','black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked'),$columnsClasses, $marginClasses),
+            'image_slider' =>array_merge(array('into-columns','black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked'),$columnsClasses),
             'page_attribute_display' => array('leaded','lighted'),
             'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','open-0','open-1','open-2'),$columnsClasses),
             'core_area_layout' => array('no-gap')
@@ -419,7 +418,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     $displayPopup = (in_array('popup-link',$styleObject->classesArray)) || ($options['forcePopup']);
     $isCarousel = in_array('is-carousel',$styleObject->classesArray);
     $isMasonry = in_array('is-masonry',$styleObject->classesArray) && !$isCarousel;
-    $isStaticGrid = (!$isMasonry && !$isCarousel) || $styleObject->columns === 1;
+    $isStaticGrid = !$isMasonry && !$isCarousel;
 
     // Theme related
     $vars['o'] = $o = $this->getOptions();
@@ -459,7 +458,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     if ($isCarousel) 	$wrapperClasses[] = 'slick-wrapper ';
     if ($isMasonry) 	$wrapperClasses[] = 'masonry-wrapper';
     $wrapperClasses[] = 'wrapper-'. $styleObject->columns . '-column';
-    $wrapperClasses[] = 'row';
+    // $wrapperClasses[] = 'row';
     $wrapperClasses[] = (in_array('no-gap',$styleObject->classesArray)) ? 'no-gap' : 'with-gap';
     // Wrapper attributes
     $wrapperAtrtribute[] = 'data-bid="' . $b->getBlockID() . '"';

@@ -14,7 +14,7 @@ if (!$c->isEditMode()) :
           	<?php if($o->carousel_meta) : ?><small> <i class="fa fa-user"></i> <?php echo $original_author ?></small><?php endif ?>
           </div>
       <?php endif; ?>
-			<?php if ($includeName): ?><p class="p-title upp bld"><?php  echo $title ?></p><?php echo endif ?>
+			<?php if ($includeName): ?><p class="p-title upp bld"><?php  echo $title ?></p><?php endif ?>
 			<?php if ($includeDescription): ?><p><?php  echo $description ?></p><?php endif ?>
       <?php if ($useButtonForLink): ?><div class=""><a href="<?php echo $link?>" class="button button-flat"><?php echo $buttonLinkText?></a></div><?php endif; ?>
 			<?php echo $popup ?>

@@ -17,6 +17,7 @@ use Core;
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Concrete\Package\ThemeSupermint\Src\Helper\MclInstaller;
+use Concrete\Package\ThemeSupermint\Src\Helper\Upgrade;
 use Concrete\Package\ThemeSupermint\Controller\Tools\PresetColors;
 use Concrete\Core\Editor\Plugin;
 use PageType;
@@ -101,9 +102,8 @@ class Controller extends Package  {
 	}
 
 	public function upgradeCoreData() {
-		if ($this->pkgVersion < '3.3') :
-			$this->upgradePageListTemplates();
-		endif;
+		$u = new Upgrade($this);
+		$u->upgrade($this, $this->pkgVersion );
 		parent::upgradeCoreData();
 	}
   public function on_start() {
@@ -340,39 +340,4 @@ class Controller extends Package  {
         $vl->save();
         $pt->setCustomStyleObject($vl, $preset);
     }
-
-		function upgradePageListTemplates () {
-			$list = new \Concrete\Core\Page\PageList();
-			$pages = $list->getResults();
-			foreach ($pages as $key => $c) {
-			  $areas = \Concrete\Core\Area\Area::getListOnPage($c);
-			  foreach ($areas as $area) {
-			    $blocks = $area->getAreaBlocksArray();
-			    foreach ($blocks as $block) {
-			      if ($block->getBlockTypeHandle() == 'page_list') {
-			        $templateName = $block->getBlockFilename();
-			        echo $templateName;
-			        echo "<br/><br/>";
-			        preg_match("/supermint_(\w+)_(\w+)\.php/",$templateName,$matches);
-			        if (count($matches)) {
-			          if ($matches[1] == 'carousel') $this->setBlockClass('is_carousel',$matches[2]);
-								if ($matches[1] == 'static' && $matches[2] == 'block') $this->setBlockClass('',$matches[2]);
-			        }
-			      }
-			    }
-			  }
-			}
-		}
-		function setBlockClass ($class,$name) {
-			$style = $block->getCustomStyle(true);
-			if (is_object($style)) {
-				$ss = $style->getStyleSet();
-				$classes = $ss->getCustomClass();
-				if ($class && strpos($class,$classes) === false) {
-					$ss->setCustomClass($classes . ' is_carousel');
-					$ss->save();
-					$block->updateBlockInformation(array('bFilename' => 'supermint_' . $name . '.php'));
-				}
-			}
-		}
 }

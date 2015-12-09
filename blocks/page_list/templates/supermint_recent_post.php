@@ -11,7 +11,7 @@ if (!$c->isEditMode()) :
 			<a href="<?php  echo $url ?>">
 				<div class="photo" style="background-image:url(<?php echo $thumbnailUrl ?>)">
 				</div>
-				<div class="desc">
+				<div class="desc ">
 					<h6><?php echo $title ?></h6>
 					<?php if ($includeDate): ?><small class="light"><i class="fa fa-calendar-o"></i> <?php echo $date ?></small><?php endif ?>
 				</div>

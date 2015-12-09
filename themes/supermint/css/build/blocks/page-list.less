@@ -158,10 +158,16 @@ ul.filter-set {
 
 
 .page-list-recent-post {
+  .row {
+    margin-top: 0 !important;
+  }
+
   li {
     margin-bottom: @space-xs;
-    position: relative;
-
+    .inner {
+      margin-right: -15px; // TO resolve the "col-sm" padding
+      position: relative;
+    }
     &:hover {
       .photo {
         width: 100%;

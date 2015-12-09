@@ -1,19 +1,13 @@
-<?php 
+<?php
 defined('C5_EXECUTE') or die("Access Denied.");
 $rssUrl = $showRss ? $controller->getRssUrl($b) : '';
 $th = Loader::helper('text');
 $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('tiny');
-
 $columns_number = 2;
-
-
 ?>
-
 <div class="ccm-page-list-testimonial">
-
 	<?php  foreach ($pages as $key => $page):
-
-		// Prepare data for each page being listed...
+	// Prepare data for each page being listed...
 		$title = $th->entities($page->getCollectionName());
 		$url = $nh->getLinkToCollection($page);
 		$target = ($page->getCollectionPointerExternalLink() != '' && $page->openCollectionPointerExternalLinkInNewWindow()) ? '_blank' : $page->getAttribute('nav_target');
@@ -21,7 +15,7 @@ $columns_number = 2;
 		if ($includeDescription):
 		$description = $page->getCollectionDescription();
 		$description = $controller->truncateSummaries ? $th->wordSafeShortText($description, $controller->truncateChars) : $description;
-		$description = $th->entities($description);	
+		$description = $th->entities($description);
 		endif;
         if ($displayThumbnail) :
 	        $img_att = $page->getAttribute('thumbnail');
@@ -29,18 +23,16 @@ $columns_number = 2;
 	        	$img = Core::make('html/image', array($img_att, true));
 	        	$imageTag = $img->getTag();
 	        	$big = $img_att->getRelativePath();
-	        endif;	
+	        endif;
 	    endif;
 		$occupation = $page->getAttribute('review_occupation');
 		$web = $page->getAttribute('review_website');
 		$webUrl = $page->getAttribute('review_website_url');
 		$author = $page->getAttribute('review_name');
 		$original_author = Page::getByID($page->getCollectionID(), 1)->getVersionObject()->getVersionAuthorUserName();
-		
+
 		//Other useful page data...
 		$date = date('F j, Y', strtotime($page->getCollectionDatePublic()));
-		//$last_edited_by = $page->getVersionObject()->getVersionAuthorUserName();
-		
 		
 		?>
 		<?php if ($key%$columns_number == 0) : ?><div class="row"><?php endif ?>
@@ -56,22 +48,22 @@ $columns_number = 2;
 						<i class="icon-quote-left icon-large pull-left"></i>
 						<?php echo $description ?>
 						<i class="icon-quote-right icon-large pull-right"></i>
-					</p>				
+					</p>
 					<?php endif ?>
 					<?php if ($author) : ?><p class="alternate zero"><?php  echo $author ?></p> <?php endif ?>
 					<p class="">
 					<?php if ($occupation) : ?><span><?php  echo $occupation ?></span> <?php endif ?>
 					<?php if ($web) : ?><a href="<?php echo $webUrl ?>"><?php  echo $web ?></a><?php endif ?>
 					</p>
-						
-				</div>			
+
+				</div>
 				<div class="clear"></div>
 				<!-- <a class="button button-flat" href="<?php  echo $url ?>" target="<?php  echo $target ?>"><?php  echo t('Read more..') ?> <i class="icon-arrow-right"></i></a> -->
 			</div>
 		</div>
 		<?php if ( $key%$columns_number == ($columns_number) - 1 || ($key == count($pages)-1) ) : ?></div><?php endif ?>
 	<?php  endforeach; ?>
- 
+
 
 	<?php  if ($showRss): ?>
 		<div class="ccm-page-list-rss-icon">
@@ -81,5 +73,5 @@ $columns_number = 2;
 	<?php  endif; ?>
 	<?php if ($showPagination): ?>
 	    <?php echo $pagination;?>
-	<?php endif; ?> 
+	<?php endif; ?>
 </div><!-- end .ccm-page-list -->
