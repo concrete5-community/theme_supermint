@@ -1,10 +1,14 @@
 <?php
 namespace Concrete\Package\ThemeSupermint\Theme\Supermint;
+
+use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Concrete\Core\Area\Layout\Preset\Provider\ThemeProviderInterface;
 use stdClass;
-use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Package;
 use Loader;
+use Core;
+use Page;
+use Request;
 use CollectionAttributeKey;
 
 defined('C5_EXECUTE') or die('Access Denied.');
@@ -75,7 +79,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
         $blocks_classes = array('block-primary', 'block-secondary', 'block-tertiary', 'block-quaternary');
         $columns = $margin = array();
         for ($i=1; $i < 7; $i++) $columnsClasses[] = "$i-column";
-        for ($i=0; $i < 40; $i+=10) $marginClasses[] =  "carousel-margin-{$i}px";
 
         return array(
             // 'page_list' => array('simple'),
@@ -97,9 +100,20 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
                              // Caption  classes
                              'caption-inside','caption-hover',
                              'caption-primary', 'caption-secondary', 'caption-tertiary', 'caption-quaternary'),
-            'image_slider' =>array_merge(array('into-columns','black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked'),$columnsClasses, $marginClasses),
+            'page_list' => array_merge(
+                            $columnsClasses,
+                            array(
+                              // page-list type
+              								'is-masonry','is-carousel',
+              								// Sorting
+              								'tag-sorting','keyword-sorting',
+              								// Popup result
+              								'popup-link',
+              								// Layout
+              								'no-gap'
+                            )),
+            'image_slider' =>array_merge(array('into-columns','black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked'),$columnsClasses),
             'page_attribute_display' => array('leaded','lighted'),
-            'page_list' => array_merge($columnsClasses,$marginClasses, array('no-gap','tag-sorting','keyword-sorting')),
             'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','open-0','open-1','open-2'),$columnsClasses),
             'core_area_layout' => array('no-gap')
         );
@@ -230,6 +244,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     				foreach($query as $opt) {
     						$handle = preg_replace('/\s*/', '', strtolower($opt['value']));
     						$tagsObject->pageTags[$page->getCollectionID()][] =  $handle ;
+                $tagsObject->pageTagsName[$page->getCollectionID()][] =  $opt['value'];
     						$tagsObject->tags[$handle] = $opt['value'];
     				}
     		endif ;
@@ -350,6 +365,229 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 		return $styleObject;
 
 	}
+
+  function getPageListVariables ($b,$controller,$pages,$options = array()) {
+    $options = array_merge(array(
+                      'type' => 'tiny',
+                      'wrapperTag' => 'div',
+                      'itemTag' => 'div',
+                      'AddInnerDiv' => true,
+                      'topicAttributeKeyHandle' => 'project_topics',
+                      'alternativeDateAttributeHandle' => 'date',
+                      'hideEditMode' => true,
+                      'user' => false,
+                      'topics' => false,
+                      'forcePopup' => false,
+                      'slider' => false,
+                      'additionalWrapperClasses' => array(),
+                      'additionalItemClasses' => array()),
+                      $options);
+
+    /*
+      Les carousels sont activé par une classe "is-carousel"
+        => Ajout de la classe 'slick-wrapper' sur le wrapper
+        => Ajout des options slick sous forme Ajax et en temps qu'attribut data du wrapper
+      Le masonry est activé par la classe 'is-masonry' , sauf si carousel.
+        => Le wrapper contient la classe "masonry-wrapper"
+        => Le wrapper contient l'attribut data-gridsizer avec la classe des colonnes
+        -- Si pas masonery
+          => ajout d'un div.row tous les X
+      Les filtre de tags sont activé par une classe "tag-sorting"
+        => géré par elements/sortable.php
+      Les filtre keywords sont activé par une classe "keywords-sorting"
+        => géré par elements/sortable.php
+      Le nombre de colonnes pas column-x
+      L'absence de marge par "no-gap"
+      L'affichage en popup est activé par la classe "popup-link" ou par l'option 'forcePopup'
+
+      Chaque page liste a un wrapper qui portera le nom du fichier en temps que classe
+    */
+
+    $vars = array();
+    $c = Page::getCurrentPage();
+    $nh = Loader::helper('navigation');
+    $vars['th'] = $th = Loader::helper('text');
+    $vars['dh'] = $dh = Core::make('helper/date');
+    $request = Request::getInstance();
+    $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle($options['type']);
+
+    $styleObject = $this->getClassSettingsObject($b);
+    $tagsObject = $this->getPageTags($pages);
+
+    $displayUser = true;
+    $displaytopics = $options['topics'];
+    $displayPopup = (in_array('popup-link',$styleObject->classesArray)) || ($options['forcePopup']);
+    $isCarousel = in_array('is-carousel',$styleObject->classesArray);
+    $isMasonry = in_array('is-masonry',$styleObject->classesArray) && !$isCarousel;
+    $isStaticGrid = !$isMasonry && !$isCarousel;
+
+    // Theme related
+    $vars['o'] = $o = $this->getOptions();
+    $vars['tagsObject'] = $tagsObject;
+    $vars['styleObject'] = $styleObject;
+    $vars['$masonryWrapperAttributes'] = 'data-gridsizer=".' . $vars['column_class'] . '" data-bid="' . $b->getBlockID() . '"';
+    $vars['gap'] = (in_array('no-gap',$styleObject->classesArray)) ? 'no-gap' : 'with-gap';
+    $vars['column_class'] = ($styleObject->columns > 3 ? 'col-md-' : 'col-sm-') . intval(12 / $styleObject->columns);
+    // carousels
+    if ($isCarousel) :
+      $slick = new StdClass();
+      $slick->slidesToShow = $styleObject->columns;
+      $slick->slidesToScroll = $styleObject->columns;
+      $slick->margin = $styleObject->margin;
+      $slick->dots = (bool)$o->carousel_dots;
+      $slick->arrows = (bool)$o->carousel_arrows;
+      $slick->infinite = (bool)$o->carousel_infinite;
+      $slick->speed = (int)$o->carousel_speed;
+      $slick->centerMode = (bool)$o->carousel_centerMode;
+      $slick->variableWidth = (bool)$o->carousel_variableWidth;
+      $slick->adaptiveHeight = (bool)$o->carousel_adaptiveHeight;
+      $slick->autoplay = (bool)$o->carousel_autoplay;
+      $slick->autoplaySpeed = (int)$o->carousel_autoplaySpeed;
+      $vars['slick'] = $slick;
+    endif;
+
+    /***** Block related ****/
+    $templateName = $b->getBlockFilename();
+    $blockTypeHandle = str_replace('_', '-', $b->getBlockTypeHandle());
+    $templateCleanName = str_replace('_', '-', substr(substr( $templateName, 0, strlen( $templateName ) -4 ),10)); // Retire le '.php' et 'supermint_'
+    $vars['includeEntryText'] = ($controller->includeName || $controller->includeDescription || $controller->useButtonForLink) ? true :false;
+
+    // Wrapper classes
+    $wrapperClasses[] = 'ccm-' . $blockTypeHandle; // ccm-page-list
+    $wrapperClasses[] =  $blockTypeHandle . '-' . $templateCleanName; //-> page-list-portfolio
+    $wrapperClasses[] = $templateCleanName; // -> portfolio
+    if ($isCarousel) 	$wrapperClasses[] = 'slick-wrapper ';
+    if ($isMasonry) 	$wrapperClasses[] = 'masonry-wrapper';
+    $wrapperClasses[] = 'wrapper-'. $styleObject->columns . '-column';
+    // $wrapperClasses[] = 'row';
+    $wrapperClasses[] = (in_array('no-gap',$styleObject->classesArray)) ? 'no-gap' : 'with-gap';
+    // Wrapper attributes
+    $wrapperAtrtribute[] = 'data-bid="' . $b->getBlockID() . '"';
+    if ($isMasonry) $wrapperAtrtribute[] = 'data-gridsizer=".' . $vars['column_class'] . '"';
+    if ($isCarousel) $wrapperAtrtribute[] = 'data-slick=\'' . json_encode($slick) . '\'';
+    // Finally, wrapper html
+    $vars['wrapperOpenTag'] = '<' . $options['wrapperTag'] . ' class="' . implode(' ', array_merge($wrapperClasses,$options['additionalWrapperClasses'])) . '" ' . implode(' ', $wrapperAtrtribute) . '>';
+    $vars['wrapperCloseTag'] = '</' . $options['wrapperTag'] . '><!-- end .' . $blockTypeHandle . '-' . $templateCleanName . ' -->';
+    // Item classes
+    if(!$isCarousel) $itemClasses[] = $vars['column_class'];
+    $itemClasses[] = 'item';
+    if ($isMasonry) $itemClasses[] = 'masonry-item';
+    // itemTag
+    $itemAttributes = array();
+    if($isCarousel) $itemAttributes[] = (in_array('no-gap',$styleObject->classesArray) ? '' : 'style="margin:0 15px"');
+
+    /*****  Page related -- *****/
+
+    foreach ($pages as $key => $page):
+      $page->mclDetails = array();
+      $externalLink = $page->getAttribute('external_link');
+      $page->mclDetails['url'] = $externalLink ? $externalLink : $nh->getLinkToCollection($page);
+      $page->mclDetails['popupClassLauncher'] = '';
+      $page->mclDetails['render'] = false;
+      $page->mclDetails['popup'] = false;
+
+      // Popup
+      if ($page->getPageTemplateHandle() == 'one_page_details' && $displayPopup):
+        $v = $page->mclDetails['v'] = $page->getController()->getViewObject();
+        $page->isPopup = true;
+        $page->mclDetails['url'] = "#mcl-popup-{$page->getCollectionID()}";
+        $page->mclDetails['popupClassLauncher'] = 'open-popup-link';
+        $request->setCurrentPage($page);
+        $page->mclDetails['render'] = $v->render("one_page_details");
+        $page->mclDetails['popup'] = '<div class="white-popup mfp-hide large-popup" id="mcl-popup-' . $page->getCollectionID() .'">' . $page->mclDetails['render'] . '</div>';
+        $request->setCurrentPage($c);
+      endif;
+
+      // target
+      $target = ($page->getCollectionPointerExternalLink() != '' && $page->openCollectionPointerExternalLinkInNewWindow()) ? '_blank' : $page->getAttribute('nav_target');
+      $target = empty($target) ? '_self' : $target;
+      $page->mclDetails['target'] = $target;
+      $page->mclDetails['link'] = 'href="' . $page->mclDetails['url'] . '"' . ' target="' . $page->mclDetails['target'] . '"';
+      $page->mclDetails['to'] = $page->mclDetails['link'] . ' class="' . $page->mclDetails['popupClassLauncher'] . '"';
+
+      // title
+      $title_text =  $th->entities($page->getCollectionName());
+      $page->mclDetails['title'] = $controller->useButtonForLink ? $title_text : ('<a ' . $page->mclDetails['to'] . '>' . $title_text . '</a>') ;
+      $page->mclDetails['name'] = $title_text;
+
+      // date
+      $eventDate = $page->getAttribute($options['alternativeDateAttributeHandle']);
+      $page->mclDetails['date'] =  $eventDate ? $dh->formatDate($eventDate) : date('M / d / Y',strtotime($page->getCollectionDatePublic()));
+      $page->mclDetails['rawdate'] =  $eventDate ? $dh->formatDate($eventDate) : strtotime($page->getCollectionDatePublic());
+
+      // user
+      if ($displayUser) $page->mclDetails['original_author'] = Page::getByID($page->getCollectionID(), 1)->getVersionObject()->getVersionAuthorUserName();
+
+      // tags
+      $tagsArray = $tagsObject->pageTags[$page->getCollectionID()];
+      $page->mclDetails['tagsArray'] = $tagsObject->pageTagsName[$page->getCollectionID()] ? $tagsObject->pageTagsName[$page->getCollectionID()] : array();
+
+      // topics
+      if ($displaytopics) $page->mclDetails['topics'] = $page->getAttribute($options['topicAttributeKeyHandle']);
+
+      // description
+      if ($controller->includeDescription):
+        $description = $page->getCollectionDescription();
+        $description = $controller->truncateSummaries ? $th->wordSafeShortText($description, $controller->truncateChars) : $description;
+        $page->mclDetails['description'] = $th->entities($description);
+      endif;
+
+      // Icon
+      $page->mclDetails['icon'] = $page->getAttribute('icon') ? "<i class=\"fa {$page->getAttribute('icon')}\"></i>" : false;
+
+      // Thumbnail
+      if ($controller->displayThumbnail) :
+        $img_att = $page->getAttribute('thumbnail');
+        if (is_object($img_att)) :
+          $img = Core::make('html/image', array($img_att, true));
+          $page->mclDetails['imageTag'] = $img->getTag();
+          $page->mclDetails['thumbnailUrl'] = ($type != NULL) ? $img_att->getThumbnailURL($type->getBaseVersion()) : false;
+          $page->mclDetails['imageUrl'] = $img_att->getURL();
+        else :
+          $page->mclDetails['imageTag'] = $page->mclDetails['thumbnailUrl'] = false;
+        endif;
+      endif;
+
+      // Item classes
+      $itemClassesTemp = $itemClasses;
+      $itemClassesTemp[] = $key % 2 == 1 ? 'pair' : 'impair';
+      $itemClassesTemp[] = $tagsArray ? implode(' ',$tagsArray) : '';
+      // Item tag
+      $page->mclDetails['itemOpenTag'] = (($key%$styleObject->columns == 0 && $isStaticGrid) ? '<div class="row">' : '') . '<' . $options['itemTag'] . ' class="' .implode(' ',  array_merge($itemClassesTemp,$options['additionalItemClasses'])) . '" ' . implode(' ', $itemAttributes) . '>' . ($options['AddInnerDiv'] ? '<div class="inner">' : '');
+      $page->mclDetails['itemCloseTag'] = ($options['AddInnerDiv'] ? '</div>' : '') . '</' . $options['itemTag'] . '>' . (($key%$styleObject->columns == ($styleObject->columns) - 1 || ($key == count($fIDs)-1)) && $isStaticGrid ? '</div><!-- .row -->' : '');
+
+    endforeach;
+    if ($c->isEditMode() && $options['hideEditMode']) :
+        echo '<div class="ccm-edit-mode-disabled-item">';
+        echo '<p style="padding: 40px 0px 40px 0px;">' .
+          '[ ' . $blockTypeHandle . ' ] ' .
+          '<strong>' .
+          ucwords($templateCleanName) .
+          ($isCarousel ? t(' carousel') : '') .
+          ($isMasonry ? t(' masonry') : '') .
+          ($isStaticGrid ? t(' static grid') : '') .
+          '</strong>' .
+          t(' with ') .
+          $styleObject->columns .
+          t(' columns and ') .
+          (!(in_array('no-gap',$styleObject->classesArray)) ? t(' regular Gap ') : t('no Gap ')) .
+          t(' disabled in edit mode.') .
+          '</p>';
+        echo '</div>';
+    endif;
+
+    if ($controller->pageListTitle):
+      echo '<div class="page-list-header">';
+      echo '<h3>' . $controller->pageListTitle . '</h3>';
+      echo '</div>';
+    endif;
+
+    if (!$c->isEditMode() && $isMasonry)
+      Loader::PackageElement("page_list/sortable", 'theme_supermint', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$b->getBlockID(),'styleObject'=>$styleObject));
+
+    return $vars;
+
+  }
 
   function contrast ($hexcolor, $dark = '#000000', $light = '#FFFFFF') {
       return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;

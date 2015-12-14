@@ -1,57 +1,25 @@
-<?php 
+<?php
 defined('C5_EXECUTE') or die("Access Denied.");
-
-$rssUrl = $showRss ? $controller->getRssUrl($b) : '';
-$th = Loader::helper('text');
-$type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('file_manager_detail');
-?>
-
-
-<div class="ccm-page-list page-list-block page-list-recent">
-	<ul class="zero">
-	<?php  foreach ($pages as $key => $page):
-
-		// Prepare data for each page being listed...
-		$title = $th->entities($page->getCollectionName());
-		$url = $nh->getLinkToCollection($page);
-		$target = ($page->getCollectionPointerExternalLink() != '' && $page->openCollectionPointerExternalLinkInNewWindow()) ? '_blank' : $page->getAttribute('nav_target');
-		$target = empty($target) ? '_self' : $target;
-		
-		if ($includeDescription):
-		$description = $page->getCollectionDescription();
-		$description = $controller->truncateSummaries ? $th->wordSafeShortText($description, $controller->truncateChars) : $description;
-		$description = $th->entities($description);	
-		endif;
-
-        $date = date('M d, Y',strtotime($page->getCollectionDatePublic()));
-        $original_author = Page::getByID($page->getCollectionID(), 1)->getVersionObject()->getVersionAuthorUserName();
-
-        if ($displayThumbnail) :
-	        $img_att = $page->getAttribute('thumbnail');
-	        if (is_object($img_att)) :
-	        	$thumbnailUrl = $img_att->getThumbnailURL($type->getBaseVersion());
-	        	$img = Core::make('html/image', array($img_att, true));
-	        	$imageTag = $img->getTag();
-	        endif;	
-	    endif;
-		?>
-		
-		<li class="post">
+$c = Page::getCurrentPage();
+$pageTheme = $c->getCollectionThemeObject();
+extract ($pageTheme->getPageListVariables($b,$controller,$pages,array('itemTag'=>'li','additionalItemClasses'=> array('post'))));
+if (!$c->isEditMode()) :
+  echo $wrapperOpenTag;
+	echo '<ul class="zero">';
+  foreach ($pages as $key => $page): extract($page->mclDetails);
+  	echo $itemOpenTag;?>
 			<a href="<?php  echo $url ?>">
 				<div class="photo" style="background-image:url(<?php echo $thumbnailUrl ?>)">
 				</div>
-				<div class="desc">
+				<div class="desc ">
 					<h6><?php echo $title ?></h6>
 					<?php if ($includeDate): ?><small class="light"><i class="fa fa-calendar-o"></i> <?php echo $date ?></small><?php endif ?>
 				</div>
 			</a>
-		</li>		
-		
-	<?php  endforeach; ?>
+			<?php echo $popup ?>
+		<?php echo $itemCloseTag ?>
+	<?php  endforeach ?>
 	</ul>
-</div><!-- end .ccm-page-list .row-->
-<div class="ccm-pagination">
-	<?php if ($showPagination): ?>
-	    <?php echo $pagination;?>
-	<?php endif; ?>		
-</div>
+	<?php echo $wrapperCloseTag ?>
+	<?php Loader::PackageElement("page_list/utils", 'theme_anitya', array('b'=>$b,'controller' => $controller,'pages'=>$pages))?>
+<?php  endif ?>

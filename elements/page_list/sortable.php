@@ -1,27 +1,4 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-/*
-stdClass Object
-(
-    [pageTags] => Array
-        (
-            [169] => Array
-                (
-                    [0] => navigation
-                    [1] => jquery
-                    [2] => masonry
-                )
-
-        )
-
-    [tags] => Array
-        (
-            [navigation] => navigation
-            [jquery] => jQuery
-            [masonry] => Masonry
-        )
-
-)
-*/
 if (count($tagsObject->tags) && (in_array('tag-sorting',$styleObject->classesArray) || in_array('keyword-sorting',$styleObject->classesArray)) ) :
 	// All is in echo to preserve the no-spce for display:inline-block
 	echo '<ul class="filter-set zero hlist clearfix" data-filter="filter" id="filter-set-' . $bID . '">';

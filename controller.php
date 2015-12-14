@@ -17,6 +17,7 @@ use Core;
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Concrete\Package\ThemeSupermint\Src\Helper\MclInstaller;
+use Concrete\Package\ThemeSupermint\Src\Helper\Upgrade;
 use Concrete\Package\ThemeSupermint\Controller\Tools\PresetColors;
 use Concrete\Core\Editor\Plugin;
 use PageType;
@@ -35,7 +36,7 @@ class Controller extends Package  {
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
 		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.2.5.5';
+		protected $pkgVersion = '3.3';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
     protected $startingPoint;
@@ -100,7 +101,12 @@ class Controller extends Package  {
 				parent::upgrade();
 	}
 
-    public function on_start() {
+	public function upgradeCoreData() {
+		$u = new Upgrade($this);
+		$u->upgrade($this, $this->pkgVersion );
+		parent::upgradeCoreData();
+	}
+  public function on_start() {
         $this->registerRoutes();
         $this->registerAssets();
         $this->registerEvents();
@@ -334,5 +340,4 @@ class Controller extends Package  {
         $vl->save();
         $pt->setCustomStyleObject($vl, $preset);
     }
-
 }
