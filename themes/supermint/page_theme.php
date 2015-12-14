@@ -244,6 +244,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     				foreach($query as $opt) {
     						$handle = preg_replace('/\s*/', '', strtolower($opt['value']));
     						$tagsObject->pageTags[$page->getCollectionID()][] =  $handle ;
+                $tagsObject->pageTagsName[$page->getCollectionID()][] =  $opt['value'];
     						$tagsObject->tags[$handle] = $opt['value'];
     				}
     		endif ;
@@ -413,7 +414,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     $styleObject = $this->getClassSettingsObject($b);
     $tagsObject = $this->getPageTags($pages);
 
-    $displayUser = $options['user'];
+    $displayUser = true;
     $displaytopics = $options['topics'];
     $displayPopup = (in_array('popup-link',$styleObject->classesArray)) || ($options['forcePopup']);
     $isCarousel = in_array('is-carousel',$styleObject->classesArray);
@@ -519,7 +520,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 
       // tags
       $tagsArray = $tagsObject->pageTags[$page->getCollectionID()];
-      $page->mclDetails['tagsArray'] = $tagsArray ? $tagsArray : array();
+      $page->mclDetails['tagsArray'] = $tagsObject->pageTagsName[$page->getCollectionID()] ? $tagsObject->pageTagsName[$page->getCollectionID()] : array();
 
       // topics
       if ($displaytopics) $page->mclDetails['topics'] = $page->getAttribute($options['topicAttributeKeyHandle']);
@@ -541,6 +542,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
           $img = Core::make('html/image', array($img_att, true));
           $page->mclDetails['imageTag'] = $img->getTag();
           $page->mclDetails['thumbnailUrl'] = ($type != NULL) ? $img_att->getThumbnailURL($type->getBaseVersion()) : false;
+          $page->mclDetails['imageUrl'] = $img_att->getURL();
         else :
           $page->mclDetails['imageTag'] = $page->mclDetails['thumbnailUrl'] = false;
         endif;

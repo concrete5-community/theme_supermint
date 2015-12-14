@@ -2,7 +2,7 @@
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
-extract ($pageTheme->getPageListVariables($b,$controller,$pages));
+extract ($pageTheme->getPageListVariables($b,$controller,$pages,array('user'=>true)));
 if (!$c->isEditMode()) :
   echo $wrapperOpenTag;
   foreach ($pages as $key => $page): extract($page->mclDetails);
@@ -10,13 +10,13 @@ if (!$c->isEditMode()) :
 			<div class="media-wrap">
 				<?php if ($imageTag) :  echo $imageTag ?>
 				<div class="hovercover">
-					<a href="<?php  echo $url ?>" class="" title="<?php echo $title ?>" target="<?php  echo $target ?>">
+					<a <?php echo $to ?>>
 						<span class="fa-stack icon-stack p-link">
 						  <i class="fa fa-circle fa-stack-2x icon-circle icon-stack-base"></i>
 						  <i class="fa-stack-1x fa-inverse fa fa-link icon-light"></i>
 						</span>
 					</a>
-					<a href="<?php echo $big ?>" class="popup" title="<?php echo $title ?>">
+					<a href="<?php echo $imageUrl ?>" class="popup" title="<?php echo $name ?>">
 						<span class="fa-stack icon-stack i-link">
 						  <i class="fa fa-circle fa-stack-2x icon-circle icon-stack-base"></i>
 						  <i class="fa-stack-1x fa-inverse fa fa-picture-o icon-light"></i>

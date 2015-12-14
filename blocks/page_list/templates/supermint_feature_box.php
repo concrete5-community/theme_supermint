@@ -2,11 +2,12 @@
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
-extract ($pageTheme->getPageListVariables($b,$controller,$pages,array('itemTag'=>'table', 'AddInnerDiv' => false)));
+extract ($pageTheme->getPageListVariables($b,$controller,$pages));
 if (!$c->isEditMode()) :
   echo $wrapperOpenTag;
   foreach ($pages as $key => $page): extract($page->mclDetails);
   	echo $itemOpenTag;?>
+    <table class="feature-box">
 			<tr>
 				<td class="i-icon">
 					<?php echo $icon?>
@@ -22,6 +23,7 @@ if (!$c->isEditMode()) :
 				</td>
 				<?php endif ?>
 			</tr>
+      </table>
 		<?php echo $itemCloseTag ?>
 	<?php  endforeach ?>
 	<?php echo $wrapperCloseTag ?>

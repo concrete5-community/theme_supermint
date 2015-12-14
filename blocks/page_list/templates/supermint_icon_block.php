@@ -2,7 +2,7 @@
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
-extract ($pageTheme->getPageListVariables($b,$controller,$pages));
+extract ($pageTheme->getPageListVariables($b,$controller,$pages,array('additionalWrapperClasses'=>array('page-list-block'))));
 if (!$c->isEditMode()) :
   echo $wrapperOpenTag;
   foreach ($pages as $key => $page): extract($page->mclDetails);
