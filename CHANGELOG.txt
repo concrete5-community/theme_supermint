@@ -1,3 +1,5 @@
+3.3     - New page-list template management
+        - Add Upgrade class
 3.2.5.5 - fix mmenu that don't display hamburger
 3.2.5.4 - Add option to manage horizontal space between navigation items
 3.2.5.3 - fix JS in Satck page

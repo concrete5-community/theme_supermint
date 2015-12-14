@@ -8,7 +8,6 @@ defined('C5_EXECUTE') or die("Access Denied.");
 
 class Upgrade {
 
-
   function upgrade ($pkg,$version) {
     if ($version < '3.3') :
 			$this->upgradePageListTemplates();
