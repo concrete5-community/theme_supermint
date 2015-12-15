@@ -1,3 +1,6 @@
+3.3.1   - Fix update error
+        - Update starting point with new page-list template
+        - Fix no-gap issues & row counting
 3.3     - New page-list template management
         - Add Upgrade class
 3.2.5.5 - fix mmenu that don't display hamburger
