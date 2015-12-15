@@ -2,14 +2,14 @@
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
-extract ($pageTheme->getPageListVariables($b,$controller,$pages,array('user'=>true)));
+extract ($pageTheme->getPageListVariables($b,$controller,$pages));
 if (!$c->isEditMode()) :
   echo $wrapperOpenTag;
   foreach ($pages as $key => $page): extract($page->mclDetails);
   	echo $itemOpenTag;?>
 			<div class="media-wrap">
 				<?php if ($imageTag) :  echo $imageTag ?>
-				<div class="hovercover">
+				<div class="hovercover magnific-wrapper" data-delegate=".popup">
 					<a <?php echo $to ?>>
 						<span class="fa-stack icon-stack p-link">
 						  <i class="fa fa-circle fa-stack-2x icon-circle icon-stack-base"></i>
@@ -34,7 +34,6 @@ if (!$c->isEditMode()) :
         	<?php if($o->carousel_meta) : ?><small> <i class="fa fa-user"></i> <?php echo $original_author ?></small><?php endif ?>
         </div>
     <?php endif; ?>
-
 			<a <?php echo $to ?>>
 				<div class="item-description">
 					<?php  if ($includeName): ?><p><?php  echo $title ?></p><?php  endif ?>

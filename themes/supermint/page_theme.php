@@ -553,8 +553,8 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
       $itemClassesTemp[] = $key % 2 == 1 ? 'pair' : 'impair';
       $itemClassesTemp[] = $tagsArray ? implode(' ',$tagsArray) : '';
       // Item tag
-      $page->mclDetails['itemOpenTag'] = (($key%$styleObject->columns == 0 && $isStaticGrid) ? '<div class="row">' : '') . '<' . $options['itemTag'] . ' class="' .implode(' ',  array_merge($itemClassesTemp,$options['additionalItemClasses'])) . '" ' . implode(' ', $itemAttributes) . '>' . ($options['AddInnerDiv'] ? '<div class="inner">' : '');
-      $page->mclDetails['itemCloseTag'] = ($options['AddInnerDiv'] ? '</div>' : '') . '</' . $options['itemTag'] . '>' . (($key%$styleObject->columns == ($styleObject->columns) - 1 || ($key == count($fIDs)-1)) && $isStaticGrid ? '</div><!-- .row -->' : '');
+      $page->mclDetails['itemOpenTag'] = (($key%$styleObject->columns == 0 && $isStaticGrid) ? '<div class="row' . (in_array('no-gap',$styleObject->classesArray) ? ' no-gap' : '') . '">' : '') . '<' . $options['itemTag'] . ' class="' .implode(' ',  array_merge($itemClassesTemp,$options['additionalItemClasses'])) . '" ' . implode(' ', $itemAttributes) . '>' . ($options['AddInnerDiv'] ? '<div class="inner">' : '');
+      $page->mclDetails['itemCloseTag'] = ($options['AddInnerDiv'] ? '</div>' : '') . '</' . $options['itemTag'] . '>' . (($key%$styleObject->columns == ($styleObject->columns) - 1 || ($key == count($pages)-1)) && $isStaticGrid ? '</div><!-- .row -->' : '');
 
     endforeach;
     if ($c->isEditMode() && $options['hideEditMode']) :

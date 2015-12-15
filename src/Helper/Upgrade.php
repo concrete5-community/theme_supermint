@@ -40,11 +40,13 @@ class Upgrade {
     $style = $block->getCustomStyle(true);
     if (is_object($style)) {
       $ss = $style->getStyleSet();
-      $classes = $ss->getCustomClass();
-      $classes = $classes ? $classes : '';
-      if ($class && strpos($classes,$class) === false) {
-        $ss->setCustomClass($classes . ' ' . $class);
-        $ss->save();
+      if (is_object($ss)) {
+        $classes = $ss->getCustomClass();
+        $classes = $classes ? $classes : '';
+        if ($class && strpos($classes,$class) === false) {
+          $ss->setCustomClass($classes . ' ' . $class);
+          $ss->save();
+        }
       }
       if ($name) $block->updateBlockInformation(array('bFilename' => 'supermint_' . $name . '.php'));
     }

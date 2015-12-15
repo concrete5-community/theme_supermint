@@ -553,6 +553,9 @@
             </data>
           </block>
           <block type="page_list" name="" custom-template="supermint_recent_post.php">
+            <style>
+              <customClass>1-column</customClass>
+            </style>
             <data table="btPageList">
               <record>
                 <num><![CDATA[2]]></num>
@@ -2066,9 +2069,9 @@
       </area>
       <area name="Main - 1">
         <blocks>
-          <block type="page_list" name="" custom-template="supermint_carousel_block.php">
+          <block type="page_list" name="" custom-template="supermint_block.php">
             <style>
-              <customClass>4-column</customClass>
+              <customClass>4-column is-carousel</customClass>
             </style>
             <data table="btPageList">
               <record>
@@ -2141,9 +2144,9 @@
               </record>
             </data>
           </block>
-          <block type="page_list" name="" custom-template="supermint_static_block.php">
+          <block type="page_list" name="" custom-template="supermint_block.php">
             <style>
-              <customClass>2-column</customClass>
+              <customClass>2-column is-masonry</customClass>
             </style>
             <data table="btPageList">
               <record>
