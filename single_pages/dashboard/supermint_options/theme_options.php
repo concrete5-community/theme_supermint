@@ -30,6 +30,19 @@ $options = array(
         "type" => "toggle"
     ),
     array(
+        "name" => t("Top Bar width size"),
+        "desc" => t('Add or remove a column for logo in the top-bar'),
+        "id" => "logo_col_size",
+        "default" => 8,
+        "options" => array(
+            9 => t("Large"),
+            8 => t("Normal"),
+            7 => t("thin")
+        ),
+        "type" => "select"
+    ),
+
+    array(
         "name" => t("Layout mode"),
         "desc" => t("Each page templates can be displayed in a wide or a Boxed format. Boxed format use the color 'boxed-background-color' as background"),
         "id" => "layout_mode",
