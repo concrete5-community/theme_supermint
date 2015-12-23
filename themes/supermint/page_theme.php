@@ -588,6 +588,11 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     return $vars;
 
   }
+  function nl2p($string)  {
+      $paragraphs = '';
+      foreach (explode("\n", $string) as $line) if (trim($line)) $paragraphs .= '<p>' . $line . '</p>';
+      return $paragraphs;
+  }
 
   function contrast ($hexcolor, $dark = '#000000', $light = '#FFFFFF') {
       return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;

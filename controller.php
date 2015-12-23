@@ -36,7 +36,7 @@ class Controller extends Package  {
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
 		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.3.1.2';
+		protected $pkgVersion = '3.3.1.3';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
     protected $startingPoint;
