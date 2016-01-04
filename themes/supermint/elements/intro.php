@@ -4,7 +4,7 @@ $c = Page::getCurrentPage();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 $intro = new Area('Intro');
 $intro->load($c);
-$display_intro = $intro->getTotalBlocksInAreaEditMode () > 0 || $intro->getTotalBlocksInArea() > 0 || $c->isEditMode() ; 
+$display_intro = $intro->getTotalBlocksInArea() > 0 || $c->isEditMode() ; // Peut etre ajouter un test pour les page-type
 if ($display_intro) :
 ?>
 <section id="intro">
@@ -12,7 +12,7 @@ if ($display_intro) :
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-content-style padding-<?php echo $o->content_padding ?>">
-			    <?php 
+			    <?php
 					$a = new Area("Intro");
 		            $a->setAreaGridMaximumColumns(12);
 					$a->display($c);
