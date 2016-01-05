@@ -30,6 +30,19 @@ $options = array(
         "type" => "toggle"
     ),
     array(
+        "name" => t("Top Bar width size"),
+        "desc" => t('Add or remove a column for logo in the top-bar'),
+        "id" => "logo_col_size",
+        "default" => 8,
+        "options" => array(
+            9 => t("Large"),
+            8 => t("Normal"),
+            7 => t("thin")
+        ),
+        "type" => "select"
+    ),
+
+    array(
         "name" => t("Layout mode"),
         "desc" => t("Each page templates can be displayed in a wide or a Boxed format. Boxed format use the color 'boxed-background-color' as background"),
         "id" => "layout_mode",
@@ -209,6 +222,13 @@ $options = array(
         "type" => "toggle"
     ),
     array(
+        "name" => t("Auto hidde Mobile bar"),
+        "desc" => t("If enabled, the small toolbar is hidde during scroll."),
+        "id" => "auto_hidde_top_bar",
+        "default" => 0,
+        "type" => "toggle"
+    ),
+    array(
         "name" => t("Display icon on first level if available"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",
@@ -222,6 +242,17 @@ $options = array(
         "default" => 0,
         "type" => "toggle"
     ),
+    array(
+       "name" => t("Items spacing"),
+       "desc" => t("Set horizontal space between each nav items on regular nav"),
+       "id" => "nav_item_spacing",
+       "min" => "1",
+       "max" => "80",
+       "step" => "1",
+       "unit" => 'px',
+       "default" => "20",
+       "type" => "range"
+   ),
 
     // Dropdown mode
 

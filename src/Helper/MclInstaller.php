@@ -1,5 +1,8 @@
 <?php
 namespace Concrete\Package\ThemeSupermint\Src\Helper;
+
+use Concrete\Core\Backup\ContentImporter;
+
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 use Page;
@@ -21,7 +24,7 @@ use \Concrete\Core\Attribute\Type as AttributeType;
 use \Concrete\Core\Attribute\Key\Category as AttributeKeyCategory;
 use Concrete\Core\Editor\Snippet as SystemContentEditorSnippet;
 
-class MclInstaller
+class MclInstaller extends ContentImporter
 {
 
     protected static $mcBlockIDs = array();
@@ -57,12 +60,22 @@ class MclInstaller
         $this->importAttributes($sx);
         $this->importAttributeSets($sx);
         $this->importThemes($sx);
-        $this->importPageTemplates($sx);
         $this->importFileImportantThumbnailTypes($sx);
         $this->importSystemContentEditorSnippets($sx);
+
+        $this->importPageTemplates($sx);
+        $this->importPageTypesBase($sx);
+        $this->importPageStructure($sx);
+        $this->importPageFeeds($sx);
+        $this->importPageTypeTargets($sx);
+        $this->importPageTypeDefaults($sx);
+        $this->importSinglePageContent($sx);
+        $this->importStacksContent($sx);
+        $this->importPageContent($sx);
+
     }
 
-    protected function getPackageObject()
+    protected function getMclPackage()
     {
         return $this->pkg;
     }
@@ -72,7 +85,7 @@ class MclInstaller
 
         if (isset($sx->singlepages)) {
             foreach ($sx->singlepages->page as $p) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $sP = Page::getByPath($p['path']);
                 if (!is_object($sP) || $sP->isError()) {
                     $sP = SinglePage::add($p['path'],$pkg);
@@ -86,7 +99,7 @@ class MclInstaller
     {
         if (isset($sx->stacks)) {
             foreach ($sx->stacks->stack as $p) {
-                $tack = Stack::getByName($p['name']);
+                $stack = Stack::getByName($p['name']);
                 if (!is_object($stack)) :
                   $type = isset($p['type']) ? Stack::mapImportTextToType($p['type']) : 0 ;
                   Stack::addStack($p['name'], $type);
@@ -100,7 +113,7 @@ class MclInstaller
     {
         if (isset($sx->pagetemplates)) {
             foreach ($sx->pagetemplates->pagetemplate as $pt) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $ptt = PageTemplate::getByHandle($pt['handle']);
                 if (!is_object($ptt)) {
                     $ptt = PageTemplate::add(
@@ -119,7 +132,7 @@ class MclInstaller
     {
         if (isset($sx->blocktypes)) {
             foreach ($sx->blocktypes->blocktype as $bt) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 if (is_object($pkg)) {
                     if (!BlockType::getByHandle((string) $bt['handle']))
                         BlockType::installBlockTypeFromPackage((string) $bt['handle'], $pkg);
@@ -132,7 +145,7 @@ class MclInstaller
     {
         if (isset($sx->attributetypes)) {
             foreach ($sx->attributetypes->attributetype as $at) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $name = $at['name'];
                 if (!$name) {
                     $name = Loader::helper('text')->unhandle($at['handle']);
@@ -155,7 +168,7 @@ class MclInstaller
     {
         if (isset($sx->themes)) {
             foreach ($sx->themes->theme as $th) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $pThemeHandle = (string)$th['handle'];
                 $pt = PageTheme::getByHandle($pThemeHandle);
                 if (!is_object($pt)) {
@@ -193,7 +206,7 @@ class MclInstaller
     {
         if (isset($sx->attributecategories)) {
             foreach ($sx->attributecategories->category as $akc) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $akx = AttributeKeyCategory::getByHandle($akc['handle']);
                 if (!is_object($akx)) {
                     $akx = AttributeKeyCategory::add($akc['handle'], $akc['allow-sets'], $pkg);
@@ -209,7 +222,7 @@ class MclInstaller
             foreach ($sx->attributekeys->attributekey as $ak) {
 
                 $akc = AttributeKeyCategory::getByHandle($ak['category']);
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $type = AttributeType::getByHandle($ak['type']);
                 $txt = Loader::helper('text');
                 $c1 = '\\Concrete\\Core\\Attribute\\Key\\' . $txt->camelcase(
@@ -247,7 +260,7 @@ class MclInstaller
                 $set = \Concrete\Core\Attribute\Set::getByHandle((string) $as['handle']); // Ici il faudrait que l'on charge un set relatif a uen categorie, au sinon, les set ne peuvent pas avoir les meme handle suivant les catégories
                 $akc = AttributeKeyCategory::getByHandle($as['category']);
                 if (!is_object($set)) {
-                    $pkg = $this->getPackageObject();
+                    $pkg = $this->getMclPackage();
                     $set = $akc->addSet((string)$as['handle'], (string)$as['name'], $pkg, $as['locked']);
                 }
                 // var_dump($akc);
@@ -275,7 +288,7 @@ class MclInstaller
     {
         if (isset($sx->systemcontenteditorsnippets)) {
             foreach ($sx->systemcontenteditorsnippets->snippet as $th) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $scs = SystemContentEditorSnippet::getByHandle($th['handle']);
                 if (is_object($scs)) continue;
                 $scs = SystemContentEditorSnippet::add($th['handle'], $th['name'], $pkg);
@@ -289,7 +302,7 @@ class MclInstaller
     {
         if (isset($sx->blocktypesets)) {
             foreach ($sx->blocktypesets->blocktypeset as $bts) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $set = BlockTypeSet::getByHandle((string)$bts['handle']);
                 if (!is_object($set)) {
                     $set = BlockTypeSet::add((string)$bts['handle'], (string)$bts['name'], $pkg);

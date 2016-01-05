@@ -1,11 +1,11 @@
-<?php 
+<?php
 defined('C5_EXECUTE') or die("Access Denied.");
 $title = $linkURL ? ('<a href="' . $linkURL . '">' . h($title) . '</a>') : h($title);
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 
 ?>
-
-<table class="icon-table">
+<div class="feature-box full">
+<table>
 	<tr>
 		<td class="i-icon">
 			<i class="fa fa-<?php echo $icon?>"></i>
@@ -16,10 +16,9 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 		</td>
 		<?php if ($linkURL) : ?>
 		<td style="text-align:right">
-			<a href="<?php echo $linkURL ?>" class="button button-flat-primary" target="_blank"><?php echo $o->feature_link_text ?></a>			
+			<a href="<?php echo $linkURL ?>" class="button button-flat-primary" target="_blank"><?php echo $o->feature_link_text ?></a>
 		</td>
 		<?php endif ?>
 	</tr>
-
 </table>
-
+</div>

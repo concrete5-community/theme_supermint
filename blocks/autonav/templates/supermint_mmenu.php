@@ -28,17 +28,26 @@ foreach ($navItems as $ni) {
 	*/
 	$ni->classes = implode(" ", $classes);
 }
-echo '<div class="small-display-nav-bar-inner Fixed">';
+echo '<div class="' . ( $o->auto_hidde_top_bar ? 'auto-hidde-top-bar ' : '') . 'small-display-nav-bar-inner Fixed">';
 if ($logo):
 	echo '<span class="nav-logo">';
 	$logo->display();
 	echo '</span>';
+<<<<<<< HEAD
 	echo '<button id="hamburger-icon" class="vertical-align" href="#mmenu" title="Menu">
 					<span class="line line-1"></span>
 					<span class="line line-2"></span>
 					<span class="line line-3"></span>
 			</button>';
 endif;
+=======
+endif;
+	echo '<a id="hamburger-icon" class="vertical-align" href="#mmenu" title="Menu">
+					<span class="line line-1"></span>
+					<span class="line line-2"></span>
+					<span class="line line-3"></span>
+			</a>';
+>>>>>>> origin/master
 		if($o->display_searchbox && $o->display_searchbox_mobile) :
 				$p = Page::getByID($o->display_searchbox);
 				if (is_object($p)) :

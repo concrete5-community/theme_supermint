@@ -171,7 +171,6 @@
         .transition(.1s ease-out);
         //.transition-property(background-color, line-height);
         display: block;
-        padding: 0 20px;
         line-height: @top-nav-height-size;
         color: @top-nav-a-color;
         text-decoration: none;
@@ -255,7 +254,7 @@
     display: table-row;
     position: relative;
     // top:0;
-    z-index: 100;
+    z-index: 460; // Au dessus du simple slider 
     height: @large-top-nav-height;
     margin: 0;
     padding: 0;
@@ -678,7 +677,11 @@
 }
 /* --- Nav Panes --- */
 
-// #header-nav,
+ #header-nav {
+   // Le fond pour la navigation glissante
+   background-color: @nav-slide-bg-color;
+
+ }
 .stack-pane {
   position: relative;
   background-image:url(@nav-slide-image);

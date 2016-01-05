@@ -1,3 +1,19 @@
+3.3.1.3 - Fix Error when two FAQ black live in the same page
+3.3.1.2 - Add a option to manage logo area width
+3.3.1.1 - Fix utils package name
+3.3.1   - Fix update error
+        - Update starting point with new page-list template
+        - Fix no-gap issues & row counting
+3.3     - New page-list template management
+        - Add Upgrade class
+3.2.5.5 - fix mmenu that don't display hamburger
+3.2.5.4 - Add option to manage horizontal space between navigation items
+3.2.5.3 - fix JS in Satck page
+        - Display bullet in list when composer mode
+3.2.5.2 - Add a option for auto-bidding mobile nav
+        - Now google fonts use secure http
+        - fix js error on stacks (imageLoaded)
+3.2.5.1 - Disable JS in dashboard pages
 3.2.5   - Fix options that doesn’t save in firefox
         - Fix the getOption error on page list Supermint Hover template
         - Fix css error
@@ -21,7 +37,7 @@
         - Add color option for Mega-menu on dropdown
         - Add mega-menu named by page parent ID
         - Add helper function for custom classes
-        - Fix the unstyled regular/large nav when another style is set on the theme option
+        - Fix the un-styled regular/large nav when another style is set on the theme option
 3.2.1   - Fix PHP 5.3 error on Session
         - Fix sliding nav autonav template Fatal error
 3.2     - Activate the clips on install

@@ -1,4 +1,4 @@
-<?php  
+<?php
 namespace Concrete\Package\ThemeSupermint\Src\Models;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -9,7 +9,7 @@ use Concrete\Package\ThemeSupermint\Src\Models\SupermintFont as SupermintFont;
 
 class SupermintFontList {
 
-	var $googleUrl = "http://fonts.googleapis.com/css";
+	var $googleUrl = "https://fonts.googleapis.com/css";
 	var $subsetUrl = "subset";
 	var $familyUrl = "family";
 
@@ -43,12 +43,12 @@ class SupermintFontList {
 			foreach ($fontArray['subset'] as $sub => $value) :
 				$subset[$sub] = '';
 			endforeach;
-			
+
 		}
 		$time_end = microtime(true);
 		$time = $time_end - $this->time_start;
 		$str = 	$this->googleUrl .
-				'?' . $this->familyUrl . '=' . implode('|', $str) . 
+				'?' . $this->familyUrl . '=' . implode('|', $str) .
 				'&' . $this->subsetUrl . '=' . implode(',', array_keys($subset)) .
 				''; //'&generatedTime=' . $time;
 

@@ -51,6 +51,9 @@ h6,.h6 {<?=$h6->getStyleCss()?> 	font-size:<?=$h6->fullsize?>px}
 	.regular-top-nav > ul li + li {	border:none}
 	.mgm-drop > ul, .multicolumn-pane, .regular-top-nav > ul > li.active > a {box-shadow:none}
 <?php endif ?>
+/* items spacing */
+.regular-top-nav > ul > li > a {padding:0 <?php echo $o->nav_item_spacing ? $o->nav_item_spacing : 20  ?>px}
+
 .l123 > li > a,
 .l12d li > a,
 li.mgm-multi-c-title a {
