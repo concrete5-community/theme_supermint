@@ -28,12 +28,12 @@
 		<td><strong><?php echo t('Content Color')?></strong></td>
 	    <td><?php echo t('The color of the content Text')?></td>
 		<td><input type="text" class="spectrum" name="textColor" value="<?php echo  $options->textColor ?>" /></td>
-   	</tr>	
+   	</tr>
 	<tr>
 		<td style="width:20%"><strong><?php echo t('Bar Color')?></strong></td>
 		<td style="width:30%"><?php echo t('The color of the circular bar.')?></td>
 		<td style="width:50%"><input type="text" class="spectrum" name="barColor" value="<?php echo $options->barColor ?>" /></td>
-	    
+
 	</tr>
 	<tr>
 		<td><strong><?php echo t('Display Track')?></strong></td>
@@ -95,7 +95,7 @@
 	    <td><?php echo t('Rotation of the complete chart in degrees.')?></td>
 	    <td>
 	    	<div class="jrange" data-id="rotate" data-min="0" data-max="360" data-value="<?php echo $options->rotate ?>" data-step="1"></div>
-	    	<input type="text" id="rotate" name="rotate" readonly value="<?php echo $options->rotate ?>"> 
+	    	<input type="text" id="rotate" name="rotate" readonly value="<?php echo $options->rotate ?>">
 	    </td>
 	    </tr>
 	<tr>
@@ -113,20 +113,21 @@
 <script>
 
 	$(document).ready(function(){
-		
+
 		$(".jrange").each(function(){
 			var t = $(this);
 			t.slider({
-				min:t.data('min'), 
+				min:t.data('min'),
 				max:t.data('max'),
-				step:t.data('step'),  
-				value: t.data('value'), 
+				step:t.data('step'),
+				value: t.data('value'),
 				slide: function(event, ui) {
 					$("#" + $(this).data('id')).val(ui.value)}
 				})
 		});
 		$('.spectrum').spectrum({
-			  showInput: true
+			  showInput: true,
+				appendTo: '.ui-dialog'
 		});
 
 	});
