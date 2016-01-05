@@ -103,6 +103,7 @@ $footer = $pageTheme->get_footer_geometry($o->display_footer_column);
   <?php if ($searchURL) : ?>
   var SEARCH_URL = "<?php echo $searchURL?>";
   <?php endif ?>
+  var HIDDE_DROPDOWN_SMALL_SCREEN = <?php echo $o->hidde_dropdown_small_screen ? 'true' : 'false' ?>;
 </script>
 
 </body>

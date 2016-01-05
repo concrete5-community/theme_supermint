@@ -222,6 +222,12 @@ $options = array(
         "type" => "toggle"
     ),
     array(
+        "name" => t("Hidde dropdown on small screen"),
+        "id" => "hidde_dropdown_small_screen",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
         "name" => t("Auto hidde Mobile bar"),
         "desc" => t("If enabled, the small toolbar is hidde during scroll."),
         "id" => "auto_hidde_top_bar",

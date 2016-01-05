@@ -135,26 +135,31 @@ $(document).ready(function(){
 		      }
 	    });
 	}
+	// -- Media Queries -- \\
+
+	enquire.register("screen and (max-width: 979px)", {
+
+	    match : function() {
+				$('.top-nav-lateral').addClass('masked');
+				if (HIDDE_DROPDOWN_SMALL_SCREEN) {
+					// On desactive les dropdown
+					$('.large-top-nav li.has-submenu').removeClass('mgm-drop');
+				}
+			},
+	    unmatch : function() {
+				$('.top-nav-lateral').removeClass('masked');
+				if (HIDDE_DROPDOWN_SMALL_SCREEN) {
+					$('.large-top-nav li.has-submenu').addClass('mgm-drop');
+				}
+			}
+
+	});	
 });
 
 
 window.onload = function() {$('body').addClass('loaded')};
 
-// -- Media Queries -- \\
 
-enquire.register("screen and (max-width: 979px)", {
-
-    match : function() {
-			$('.top-nav-lateral').addClass('masked');
-			// On desactive les dropdown
-			$('.large-top-nav li.has-submenu').removeClass('mgm-drop');
-		},
-    unmatch : function() {
-			$('.top-nav-lateral').removeClass('masked');
-			$('.large-top-nav li.has-submenu').addClass('mgm-drop');
-		}
-
-});
 
 // -- Lateral responsive behavior -- \\
 function intitializeLateralMobile () {

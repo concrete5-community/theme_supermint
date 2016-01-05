@@ -99,39 +99,39 @@ li.mgm-multi-c-title a {
 /* --- Large desktop */
 @media (min-width: 1200px) {
 
-	/* a {font-size:<?=$p->widesize?>px} */
-	h1 {font-size:<?=$h1->widesize?>px}
-	h2 {font-size:<?=$h2->widesize?>px}
-	h3 {font-size:<?=$h3->widesize?>px}
-	h4 {font-size:<?=$h4->widesize?>px}
-	h5 {font-size:<?=$h5->widesize?>px}
-	h6 {font-size:<?=$h6->widesize?>px}
+	body .ccm-page,.ccm-page p,.ccm-page li {font-size:<?=$p->widesize?>px}
+	.ccm-page h1 {font-size:<?=$h1->widesize?>px}
+	.ccm-page h2 {font-size:<?=$h2->widesize?>px}
+	.ccm-page h3 {font-size:<?=$h3->widesize?>px}
+	.ccm-page h4 {font-size:<?=$h4->widesize?>px}
+	.ccm-page h5 {font-size:<?=$h5->widesize?>px}
+	.ccm-page h6 {font-size:<?=$h6->widesize?>px}
 
 }
 
 /* --- Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
 
-	body {font-size:<?=$p->tabletsize?>px}
+	body .ccm-page,.ccm-page p,.ccm-page li {font-size:<?=$p->tabletsize?>px}
 	/* a {font-size:<?=$p->tabletsize?>px} */
-	h1 {font-size:<?=$h1->tabletsize?>px}
-	h2 {font-size:<?=$h2->tabletsize?>px}
-	h3 {font-size:<?=$h3->tabletsize?>px}
-	h4 {font-size:<?=$h4->tabletsize?>px}
-	h5 {font-size:<?=$h5->tabletsize?>px}
-	h6 {font-size:<?=$h6->tabletsize?>px}
+	.ccm-page h1 {font-size:<?=$h1->tabletsize?>px}
+	.ccm-page h2 {font-size:<?=$h2->tabletsize?>px}
+	.ccm-page h3 {font-size:<?=$h3->tabletsize?>px}
+	.ccm-page h4 {font-size:<?=$h4->tabletsize?>px}
+	.ccm-page h5 {font-size:<?=$h5->tabletsize?>px}
+	.ccm-page h6 {font-size:<?=$h6->tabletsize?>px}
 
 }
 
 /* --- Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-	p,li {font-size:<?=$p->fullsize?>px}
-	h1 {font-size:<?=$h1->fullsize?>px}
-	h2 {font-size:<?=$h2->fullsize?>px}
-	h3 {font-size:<?=$h3->fullsize?>px}
-	h4 {font-size:<?=$h4->fullsize?>px}
-	h5 {font-size:<?=$h5->fullsize?>px}
-	h6 {font-size:<?=$h6->fullsize?>px}
+	body .ccm-page,.ccm-page p,.ccm-page li {font-size:<?=$p->fullsize?>px}
+	.ccm-page h1 {font-size:<?=$h1->fullsize?>px}
+	.ccm-page h2 {font-size:<?=$h2->fullsize?>px}
+	.ccm-page h3 {font-size:<?=$h3->fullsize?>px}
+	.ccm-page h4 {font-size:<?=$h4->fullsize?>px}
+	.ccm-page h5 {font-size:<?=$h5->fullsize?>px}
+	.ccm-page h6 {font-size:<?=$h6->fullsize?>px}
 }
 
 /* --- Landscape phones and down */
