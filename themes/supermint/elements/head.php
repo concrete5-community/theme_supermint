@@ -4,7 +4,7 @@ $c = Page::getCurrentPage();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 ?>
 <!DOCTYPE html>
-<html class="<?php  echo $o->navigation_style == 'lateral-regular' ? 'with-lateral-nav' : '' ?>">
+<html lang="<?php echo Localization::activeLanguage()?>" class="<?php  echo $o->navigation_style == 'lateral-regular' ? 'with-lateral-nav' : '' ?>">
 <head>
 <?php echo $html->css($view->getStylesheet('main.less')); ?>
 <!-- Start Concrete Header -->

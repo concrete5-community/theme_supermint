@@ -101,7 +101,6 @@
 .slick-initialized .slick-slide
 {
     display: block;
-    position: relative; /* En esperant que ça ne bug pas sur ecertains points */
 }
 .slick-loading .slick-slide
 {
@@ -114,4 +113,11 @@
     height: auto;
 
     border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+.slick-list {
+  overflow: hidden !important;
+  width:100%;
 }
