@@ -275,7 +275,6 @@ class Controller extends Package  {
             $blocks = $home->getBlocks();
             foreach ($blocks as $b) $b->deleteBlock();
 
-
             $pageTypes = PageType::getList();
             foreach ($pageTypes as $ct) $ct->delete();
 
@@ -285,11 +284,8 @@ class Controller extends Package  {
             if (is_dir($startingPointFolder . '/content_files')) {
                 $ch = new ContentImporter();
                 $computeThumbnails = true;
-                if ($this->contentProvidesFileThumbnails()) {
-                    $computeThumbnails = false;
-                }
+                if ($this->contentProvidesFileThumbnails()) $computeThumbnails = false;
                 $ch->importFiles($startingPointFolder . '/content_files', true );
-
             }
 
             // Install the starting point.
