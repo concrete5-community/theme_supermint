@@ -1,4 +1,4 @@
-<?php  
+<?php
 namespace Concrete\Package\ThemeSupermint\Src\Models;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -9,7 +9,7 @@ use Page;
 
 class SupermintFont extends Model {
 
-	// Ce helper est censé servir coté page, 
+	// Ce helper est censé servir coté page,
 	// Il faudrait lui envoyer un pID si on veut l'utiliser coté dashboard
 
 	var $weight = array('regular');
@@ -51,7 +51,7 @@ class SupermintFont extends Model {
 		// Le varient utilisé par defaut
 		$this->defaultvariant = $o->{$this->defaultVariantName};
 		// SI cette police doit s'afficher en uppercase
-		$this->upp = $o->{$this->uppercaseName .'_fonts'}; // !!!! A verifier
+		$this->upp = $o->{$this->uppercaseName}; // !!!! A verifier
 		// la taille minimale acceptées des fontes
 		$size_minimum = $o->size_minimum;
 		// Sa taille en regular
@@ -59,10 +59,10 @@ class SupermintFont extends Model {
 		// Sa taile en Wide
 		$this->widesize = $this->calculateSizeRatio($this->normalsize, $o->wide_ratio, $size_minimum, '*');
 		// Sa taile en 724
-		$this->tabletsize = $this->calculateSizeRatio($this->normalsize,  $o->w724_ratio, $size_minimum, '/'); 
+		$this->tabletsize = $this->calculateSizeRatio($this->normalsize,  $o->w724_ratio, $size_minimum, '/');
 		// Sa taille en width 100%
-		$this->fullsize = $this->calculateSizeRatio($this->normalsize,  $o->full_ratio, $size_minimum, '/'); 
-		
+		$this->fullsize = $this->calculateSizeRatio($this->normalsize,  $o->full_ratio, $size_minimum, '/');
+
 	}
 
 	function getFontName () {
@@ -76,7 +76,7 @@ class SupermintFont extends Model {
 	}
 	function getDefaultVariantName () {
 		return $this->getVariantName() . '_selected';
-	}	
+	}
 	function getSizeName () {
 		return $this->tag . '_size';
 	}
@@ -88,7 +88,7 @@ class SupermintFont extends Model {
 		if(!$ratio) return 0; // A ameliorer
 		switch ($op) {
 			case '/': $s = $normal / $ratio; break;
-			case '*': $s = $normal * $ratio; break;			
+			case '*': $s = $normal * $ratio; break;
 			default: $s = $normal * $ratio;	break;
 		}
 		return intval($s < $min ? $min : $s);
@@ -107,8 +107,8 @@ class SupermintFont extends Model {
 			$str = $this->getFamily();
 			// Le mode uppercase ou non
 			$str .= "\t" . $this->getTransform();
-			
-			
+
+
 			if ($this->defaultvariant) :
 				preg_match($this->pregstyle, $this->defaultvariant, $matches, PREG_OFFSET_CAPTURE);
 				// var_dump($matches);
@@ -122,18 +122,18 @@ class SupermintFont extends Model {
 					// On trourne dans les decortiqué genre [0] italic, [1] 300 ..
 
 					$this->setFontStyle($matches[0]);
-					
+
 				endforeach;
 
 			endif;
 
-			// Maintenant on va composer 
+			// Maintenant on va composer
 			foreach ($this->css as $cssName => $valueArray) :
 				foreach ($valueArray as $value => $empty) :
 					$str .= "\tfont-$cssName : $value;\n";
 				endforeach;
 			endforeach;
-	
+
 			return $str;
 		endif;
 	}
@@ -144,10 +144,9 @@ class SupermintFont extends Model {
 			if (in_array($match[0], $this->weight)) $this->css['weight'][$this->weightconversion[$match[0]]] = '';
 			if (is_numeric($match[0])) $this->css['weight'][$match[0]] = '';
 			if (in_array($match[0], $this->style)) $this->css['style'][$match[0]] = '';
-		endforeach;		
+		endforeach;
 	}
 
 
 
 }
-
