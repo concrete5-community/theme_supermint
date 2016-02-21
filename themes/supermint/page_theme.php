@@ -425,9 +425,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     $vars['o'] = $o = $this->getOptions();
     $vars['tagsObject'] = $tagsObject;
     $vars['styleObject'] = $styleObject;
+    $vars['column_class'] = ($styleObject->columns > 3 ? 'col-md-' : 'col-sm-') . intval(12 / $styleObject->columns);
     $vars['$masonryWrapperAttributes'] = 'data-gridsizer=".' . $vars['column_class'] . '" data-bid="' . $b->getBlockID() . '"';
     $vars['gap'] = (in_array('no-gap',$styleObject->classesArray)) ? 'no-gap' : 'with-gap';
-    $vars['column_class'] = ($styleObject->columns > 3 ? 'col-md-' : 'col-sm-') . intval(12 / $styleObject->columns);
     // carousels
     if ($isCarousel) :
       $slick = new StdClass();
