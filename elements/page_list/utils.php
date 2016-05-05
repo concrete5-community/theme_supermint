@@ -10,7 +10,6 @@ if (count($pages) == 0): ?>
 </div>
 <link href="<?php  echo BASE_URL.$rssUrl ?>" rel="alternate" type="application/rss+xml" title="<?php  echo $controller->rssTitle ?>" />
 <?php  endif ?>
-
-<?php  if ($controller->showPagination): ?>
-    <?php  echo $controller->pagination;?>
+<?php  if ($pagination): ?>
+    <?php  echo $pagination;?>
 <?php  endif ?>
