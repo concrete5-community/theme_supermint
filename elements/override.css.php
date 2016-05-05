@@ -32,7 +32,7 @@ $small = new \Concrete\Package\ThemeSupermint\Src\Models\SupermintFont('small');
 	font-size:<?php echo $o->alternate_size?>em;
 }
 
-body, p {
+body .ccm-page, .ccm-page p, .ccm-page li, .ccm-page td, .ccm-page textarea {
 	<?=$p->getStyleCss()?>
 }
 h1,.h1 {<?=$h1->getStyleCss()?> 	font-size:<?=$h1->fullsize?>px}
@@ -99,7 +99,7 @@ li.mgm-multi-c-title a {
 /* --- Large desktop */
 @media (min-width: 1200px) {
 
-	body .ccm-page,.ccm-page p,.ccm-page li {font-size:<?=$p->widesize?>px}
+	body .ccm-page, .ccm-page p, .ccm-page li, .ccm-page td, .ccm-page textarea {font-size:<?=$p->widesize?>px}
 	.ccm-page h1 {font-size:<?=$h1->widesize?>px}
 	.ccm-page h2 {font-size:<?=$h2->widesize?>px}
 	.ccm-page h3 {font-size:<?=$h3->widesize?>px}
@@ -112,7 +112,7 @@ li.mgm-multi-c-title a {
 /* --- Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
 
-	body .ccm-page,.ccm-page p,.ccm-page li {font-size:<?=$p->tabletsize?>px}
+	body .ccm-page, .ccm-page p, .ccm-page li, .ccm-page td, .ccm-page textarea {font-size:<?=$p->tabletsize?>px}
 	/* a {font-size:<?=$p->tabletsize?>px} */
 	.ccm-page h1 {font-size:<?=$h1->tabletsize?>px}
 	.ccm-page h2 {font-size:<?=$h2->tabletsize?>px}
@@ -125,7 +125,7 @@ li.mgm-multi-c-title a {
 
 /* --- Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-	body .ccm-page,.ccm-page p,.ccm-page li {font-size:<?=$p->fullsize?>px}
+	body .ccm-page, .ccm-page p, .ccm-page li, .ccm-page td, .ccm-page textarea  {font-size:<?=$p->fullsize?>px}
 	.ccm-page h1 {font-size:<?=$h1->fullsize?>px}
 	.ccm-page h2 {font-size:<?=$h2->fullsize?>px}
 	.ccm-page h3 {font-size:<?=$h3->fullsize?>px}

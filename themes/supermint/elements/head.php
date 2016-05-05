@@ -23,6 +23,9 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 <?php if($o->responsive) : ?>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php endif ?>
+<?php if (is_file(DIR_APPLICATION . '/' . DIRNAME_THEMES . '/supermint/' . DIRNAME_CSS . '/supermint.css')) :?>
+<link rel="stylesheet" href="<?php echo DIR_REL . '/' . DIRNAME_APPLICATION . '/' . DIRNAME_THEMES . '/supermint/' . DIRNAME_CSS . '/supermint.css'?>" type="text/css" media="screen" />
+<?php endif ?>
 <!-- Theme Supermint V<?php echo Package::getByHandle('theme_supermint')->getPackageVersion() ?> // Theme preset ID : <?php echo $o->pID ?> -->
 </head>
 <body id="supermint"  class="supermint <?php if ($c->isEditMode()) : ?>edit-mode<?php  endif ?>" <?php if ($c->isEditMode()) : ?>style="margin:0 !important;"<?php  endif ?>>
