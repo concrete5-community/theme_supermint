@@ -71,10 +71,10 @@ class OptionsGenerator {
 			echo '</td>';
 			echo '<td class="input" data-type="' . $option['type'] . '">';
 
-			$this->generator->$option['type']($option);
+			$this->generator->{$option['type']}($option);
 			echo '</td></tr>';
 		} elseif (method_exists($this, $option['type'])) {
-			$this->$option['type']($option);
+			$this->{$option['type']}($option);
 		}
 	}
 
