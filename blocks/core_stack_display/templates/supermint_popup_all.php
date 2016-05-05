@@ -6,11 +6,11 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 $c = Page::getCurrentPage();
 $cp = new Permissions($c);
 if ($cp->canViewPageVersions()) {
-	$stack = Stack::getByID($stID);	
+	$stack = Stack::getByID($stID);
 } else {
 	$stack = Stack::getByID($stID, 'ACTIVE');
 }
-if (is_object($stack)) { 
+if (is_object($stack)) {
 	$ax = Area::get($stack, STACKS_AREA_NAME);
 	$axp = new Permissions($ax);
 	if ($axp->canRead()) {
@@ -20,6 +20,6 @@ if (is_object($stack)) {
         <div class='white-popup mfp-hide' id="stack-all-popup-<?php echo $bID?>">
 		<?php echo $ax->display($stack) ?>
 		</div>
-		<?php 
+		<?php
 	}
 }

@@ -21,5 +21,6 @@ if (!$c->isEditMode()) :
 	<?php  endforeach ?>
 	</ul>
 	<?php echo $wrapperCloseTag ?>
-	<?php Loader::PackageElement("page_list/utils", 'theme_supermint', array('b'=>$b,'controller' => $controller,'pages'=>$pages))?>
+	<?php Loader::PackageElement("page_list/utils", 'theme_supermint', array('b'=>$b,'controller' => $controller,'pages'=>$pages,'pagination'=>$pagination))?>
+
 <?php  endif ?>

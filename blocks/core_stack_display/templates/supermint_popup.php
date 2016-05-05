@@ -22,8 +22,8 @@ if (is_array($blocks) && count($blocks)): ?>
 <div class="sm-stack-popup">
 	<?php foreach ($blocks as $key => $block) :
 	$bv = new BlockView($block); ?>
-	<a href="#stack-popup-<?php echo $key . '-' . $bID ?>" class="<?php echo $o->popup_button_type . ' ' . $o->popup_button_color ?> mpf-inline open-popup-link"><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?></a>
-	<div class='white-popup mfp-hide' id="stack-popup-<?php echo $key . '-' . $bID ?>"><?php echo $bv->render('view') ?></div>
+	<a href="#stack-popup-<?php echo $bID . '-' . $key?>" class="<?php echo $o->popup_button_type . ' ' . $o->popup_button_color ?> mpf-inline open-popup-link"><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?></a>
+	<div class='white-popup mfp-hide' id="stack-popup-<?php echo $bID . '-' . $key?>"><?php echo $bv->render('view') ?></div>
 	<?php endforeach ?>
 </div>
 <?php endif ?>

@@ -40,7 +40,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 							$dropdown.append($title);
 
 							$.each(value,function(variable,color) {
-								var $swatch = $('<li><a rel="text-' + variable + '-color" href="#" class="themefontcolor-color"><span></span>' + variable + '</a></li>');
+								var $swatch = $('<li><a rel="text-' + variable + '" href="#" class="themefontcolor-color"><span></span>' + variable + '</a></li>');
 								$swatch.find('span').css('background-color', color);
 								$swatch.find('a').on('click', func);
 								$dropdown.append($swatch);
@@ -53,7 +53,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 			set: function(c)
 			{
 				this.buffer.set();
-				this.block.setAttr('class', c);				
+				this.block.setAttr('class', c);
 			}
 
 		};
