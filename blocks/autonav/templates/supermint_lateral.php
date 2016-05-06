@@ -58,7 +58,7 @@ endforeach;
 
 ?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
 <div class="top-nav-lateral">
-	<div class="mobile-handle"><i class="fa fa-navicon"></i></div>
+	<!-- <div class="mobile-handle"><i class="fa fa-navicon"></i></div> -->
 	<div class="wrap">
 		<div class="top">
 			<div class="inner">

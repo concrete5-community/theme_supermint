@@ -254,7 +254,7 @@
     display: table-row;
     position: relative;
     // top:0;
-    z-index: 760; // Au dessus du simple slider 
+    z-index: 760; // Au dessus du simple slider
     height: @large-top-nav-height;
     margin: 0;
     padding: 0;
@@ -409,31 +409,31 @@
 
   &.masked {
     left: -@lateral-nav-width;
-    .mobile-handle {
-      right: -@space-m;
-      opacity: 1;
-    }
+    // .mobile-handle {
+    //   right: -@space-m;
+    //   opacity: 1;
+    // }
   }
   .edit-mode & {
     display: none;
   }
-  .mobile-handle {
-    position: absolute;
-    width: @space-m;
-    height: @space-m;
-    opacity: 0;
-    background-color: @lateral-nav-bg-color;
-    right: 0;
-    .transition(.3s);
-    i {
-      font-size: @space-s;
-      line-height: @space-m;
-      color: @lateral-nav-first-level-contrast;
-    }
-    .ccm-toolbar-visible & {
-      top: 48px;
-    }
-  }
+  // .mobile-handle {
+  //   position: absolute;
+  //   width: @space-m;
+  //   height: @space-m;
+  //   opacity: 0;
+  //   background-color: @lateral-nav-bg-color;
+  //   right: 0;
+  //   .transition(.3s);
+  //   i {
+  //     font-size: @space-s;
+  //     line-height: @space-m;
+  //     color: @lateral-nav-first-level-contrast;
+  //   }
+  //   .ccm-toolbar-visible & {
+  //     top: 48px;
+  //   }
+  // }
   .wrap {
     display: table;
     width: 100%;
