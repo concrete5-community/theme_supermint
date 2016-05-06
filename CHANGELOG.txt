@@ -1,5 +1,10 @@
-3.3.2   - Add a template that display a lightbox for the image block
-        - 
+3.3.3   - Add a template that display a lightbox for the image block
+        - Fix font-size in table
+        - Add Pagination support to page-list
+        - Fix some error with PHP7
+        - Add support for supermint.css
+        - Fix the Themefontcolor issue
+        - Fix multiple popup issue
 3.3.1.3 - Fix Error when two FAQ black live in the same page
 3.3.1.2 - Add a option to manage logo area width
 3.3.1.1 - Fix utils package name
