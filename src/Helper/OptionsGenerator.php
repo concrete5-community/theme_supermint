@@ -132,8 +132,10 @@ class OptionsGenerator {
     ';
 	}
 	function custom ($item) {
-		if (method_exists($this->generator, $item['function']))
-			$this->generator->$item['function']($item);
+		if (method_exists($this->generator, $item['function'])) {
+			$method = $item['function'];
+			$this->generator->$method($item);
+		}
 	}
 	function openSection ($item) {
 
