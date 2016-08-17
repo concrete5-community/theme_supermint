@@ -1,26 +1,33 @@
 $(document).ready(function() {
+
 	var paneLoaded = false;
-	var cookies = Cookies.get();
+	//un test parce que sur certains serveurs, le fichiers script cookies ne veut pas être chargé
+	if( (typeof Cookies === "function") && (Cookies !== null) ) {
+		// -- Les panes -- //
+		var cookies = Cookies.get();
+		console.log(cookies.activeOptionPane);
+		if (cookies.activeOptionPane) {
+			var anchor = $("#" + cookies.activeOptionPane);
+			if (anchor.size()) {
+				changePane(anchor);
+				paneLoaded = true;
+			}
+		}
+	}
+
+
 	/*** Preset select ***/
 	$('#preset_id').change(function() {
 		$('#preset_to_edit').submit();
 	});
 
-	// -- Les panes -- //
-	if (cookies.activeOptionPane) {
-		var anchor = $("#" + cookies.activeOptionPane);
-		if (anchor.size()) {
-			changePane(anchor);
-			paneLoaded = true;
-		}
-	}
+
 	// Si aucun pane à été chargé, on charge le premier
 	if (!paneLoaded) {
 		$('.mcl-options-body:first-child').show().addClass('active');
 		$('.mcl-options-nav li:first-child').addClass('active');
 	}
 	$('.mcl-options-nav a').click(function (e){
-
 		changePane($(this),e);
 	})
 
