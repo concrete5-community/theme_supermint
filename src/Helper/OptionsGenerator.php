@@ -60,7 +60,7 @@ class OptionsGenerator {
 		$option['pID'] = $this->pID;
 
 		if (method_exists($this->generator, $option['type'])) {
-			$value = isset($this->saved_options->$option['id']) ? $this->saved_options->$option['id'] : $option['default'];
+			$value = isset($this->saved_options->{$option['id']}) ? $this->saved_options->{$option['id']} : $option['default'];
 			$option['value'] = $value;
 			// var_dump($option);
 			echo '<tr><td class="title"><strong><label for="'.$option['id'].'">' . $option['name'] . '</label></strong></td>';

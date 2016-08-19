@@ -36,20 +36,8 @@ $(document).ready(function() {
 	$('.toggle').on('click', function(e){
 		var t = $(this);
 	  t.toggleClass("toggle-on");
-		t.find('input[type=radio]').each(function(){
-			//  if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-			// 	 $(this).prop("checked", !$(this).attr("checked"));
-			//  } else {
-			 		$(this).attr("checked", !$(this).attr("checked"));
-				// }
-		 });
-	    // t.find('input[type=radio]').attr("checked", false);
-	    // if (t.is('.toggle-on')) {
-	    // 	t.find('.on').attr("checked", true);
-	    // } else {
-	    // 	t.find('.off').attr("checked", true);
-	    // }
-	    e.preventDefault();
+		t.find('input[type=hidden]').val(t.find('input[type=hidden]').val() == 0 ? 1 : 0);
+	  e.preventDefault();
 	});
 
 
