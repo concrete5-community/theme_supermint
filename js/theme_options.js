@@ -1,26 +1,33 @@
 $(document).ready(function() {
+
 	var paneLoaded = false;
-	var cookies = Cookies.get();
+	//un test parce que sur certains serveurs, le fichiers script cookies ne veut pas être chargé
+	if( (typeof Cookies === "function") && (Cookies !== null) ) {
+		// -- Les panes -- //
+		var cookies = Cookies.get();
+		console.log(cookies.activeOptionPane);
+		if (cookies.activeOptionPane) {
+			var anchor = $("#" + cookies.activeOptionPane);
+			if (anchor.size()) {
+				changePane(anchor);
+				paneLoaded = true;
+			}
+		}
+	}
+
+
 	/*** Preset select ***/
 	$('#preset_id').change(function() {
 		$('#preset_to_edit').submit();
 	});
 
-	// -- Les panes -- //
-	if (cookies.activeOptionPane) {
-		var anchor = $("#" + cookies.activeOptionPane);
-		if (anchor.size()) {
-			changePane(anchor);
-			paneLoaded = true;
-		}
-	}
+
 	// Si aucun pane à été chargé, on charge le premier
 	if (!paneLoaded) {
 		$('.mcl-options-body:first-child').show().addClass('active');
 		$('.mcl-options-nav li:first-child').addClass('active');
 	}
 	$('.mcl-options-nav a').click(function (e){
-
 		changePane($(this),e);
 	})
 
@@ -29,20 +36,8 @@ $(document).ready(function() {
 	$('.toggle').on('click', function(e){
 		var t = $(this);
 	  t.toggleClass("toggle-on");
-		t.find('input[type=radio]').each(function(){
-			//  if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-			// 	 $(this).prop("checked", !$(this).attr("checked"));
-			//  } else {
-			 		$(this).attr("checked", !$(this).attr("checked"));
-				// }
-		 });
-	    // t.find('input[type=radio]').attr("checked", false);
-	    // if (t.is('.toggle-on')) {
-	    // 	t.find('.on').attr("checked", true);
-	    // } else {
-	    // 	t.find('.off').attr("checked", true);
-	    // }
-	    e.preventDefault();
+		t.find('input[type=hidden]').val(t.find('input[type=hidden]').val() == 0 ? 1 : 0);
+	  e.preventDefault();
 	});
 
 
