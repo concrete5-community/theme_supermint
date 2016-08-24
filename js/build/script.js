@@ -85,7 +85,7 @@ $(document).ready(function(){
 	}
 
 // Mobile behavior on lateral navigation
-	intitializeLateralMobile();
+	// intitializeLateralMobile();
 
 // Happier text
 	var nodes = $('.harmonize-width-heading li > a');
@@ -140,17 +140,25 @@ $(document).ready(function(){
 	enquire.register("screen and (max-width: 979px)", {
 
 	    match : function() {
-				$('.top-nav-lateral').addClass('masked');
 				if (HIDDE_DROPDOWN_SMALL_SCREEN) {
 					// On desactive les dropdown
 					$('.large-top-nav li.has-submenu').removeClass('mgm-drop');
 				}
 			},
 	    unmatch : function() {
-				$('.top-nav-lateral').removeClass('masked');
 				if (HIDDE_DROPDOWN_SMALL_SCREEN) {
 					$('.large-top-nav li.has-submenu').addClass('mgm-drop');
 				}
+			}
+
+	});
+	enquire.register("screen and (max-width: 767px)", {
+
+	    match : function() {
+				$('.top-nav-lateral').addClass('masked');
+			},
+	    unmatch : function() {
+				$('.top-nav-lateral').removeClass('masked');
 			}
 
 	});
