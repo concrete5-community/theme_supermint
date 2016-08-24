@@ -52,18 +52,42 @@
       }
     }
   }
-  // Lateral Nav --\\
-  // .top-nav-lateral {
-  //   .mobile-handle {
-  //     right: -@space-m;
-  //     opacity: 1;
-  //   }
-  // }
-  .with-lateral-nav .ccm-page {
-    margin-left: 0;
-    padding-top: @lateral-nav-width; // Pour laisser de la place au .mobile-handle
+
+}
+
+
+/*--  Main Content with a lateral-nav-width a lateral nav -- */
+
+@media (max-width: 1500px) and (min-width: 768px) {
+  .with-lateral-nav {
+    .ccm-page {
+      margin-left: 0;
+
+      padding-top: @lateral-nav-width; // Pour laisser de la place au .mobile-handle
+    }
+    .container {
+      margin-right: 0;
+      margin-left: 300px;
+      width: 70vw;
+    }
   }
 }
+@media (max-width: 1250px) and (min-width: 768px) {
+  .with-lateral-nav {
+    .container {
+      width: 65vw;
+    }
+  }
+}
+@media (max-width: 900px) and (min-width: 768px) {
+  .with-lateral-nav {
+    .container {
+      width: 62vw;
+    }
+  }
+}
+
+
 
 /* Landscape phone to portrait tablet (100%) */
 
