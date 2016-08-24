@@ -1,3 +1,8 @@
+3.3.4   - Add a basic Print stylesheet
+        - Add Mmenu to lateral nav
+        - Fix content width with lateral nav
+        - Fix some php7 issues
+        - Fix the error of loading cookies.js on some servers
 3.3.3   - Add a template that display a lightbox for the image block
         - Fix font-size in table
         - Add Pagination support to page-list
