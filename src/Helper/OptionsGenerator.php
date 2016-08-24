@@ -133,8 +133,7 @@ class OptionsGenerator {
 	}
 	function custom ($item) {
 		if (method_exists($this->generator, $item['function']))
-			$method = $item['function'];
-			$this->generator->$method($item);
+			$this->generator->$item['function']($item);
 	}
 	function openSection ($item) {
 
