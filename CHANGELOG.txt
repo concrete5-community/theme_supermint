@@ -1,3 +1,4 @@
+3.3.4.1 - Fix tabs display on small screen
 3.3.4   - Add a basic Print stylesheet
         - Add Mmenu to lateral nav
         - Fix content width with lateral nav
