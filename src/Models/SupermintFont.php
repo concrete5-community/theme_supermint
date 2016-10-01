@@ -85,13 +85,15 @@ class SupermintFont extends Model {
 	}
 
 	function calculateSizeRatio ($normal,$ratio,$min,$op) {
-		if(!$ratio) return 0; // A ameliorer
+		if(!$ratio) $ratio = 1; // A ameliorer
 		switch ($op) {
 			case '/': $s = $normal / $ratio; break;
 			case '*': $s = $normal * $ratio; break;
 			default: $s = $normal * $ratio;	break;
 		}
-		return intval($s < $min ? $min : $s);
+		$r = intval($s < $min ? $min : $s);
+		return $r > 0 ? $r : 8; // si par erreur le resultat est 0, on envoie un minimum de 8
+
 	}
 
 	function getFamily () {
