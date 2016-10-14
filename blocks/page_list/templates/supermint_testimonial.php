@@ -33,7 +33,7 @@ $columns_number = 2;
 
 		//Other useful page data...
 		$date = date('F j, Y', strtotime($page->getCollectionDatePublic()));
-		
+
 		?>
 		<?php if ($key%$columns_number == 0) : ?><div class="row"><?php endif ?>
 		<div class="col col-md-<?php echo 12 / $columns_number?> testimonial">
@@ -42,7 +42,7 @@ $columns_number = 2;
 					<?php if ($displayThumbnail) echo $imageTag ?>
 				</div>
 				<div class="text">
-					<h4><?php  echo $title ?></h4>
+					<?php if ($includeName): ?><?php if (!$useButtonForLink): ?><a href="<?php echo $url ?>" target="<?php echo $target ?>" /><?php endif ?><h4><?php  echo $title ?></h4><?php if (!$useButtonForLink): ?></a><? endif?><? endif?>
 					<?php if ($includeDescription) : ?>
 					<p class="">
 						<i class="icon-quote-left icon-large pull-left"></i>
