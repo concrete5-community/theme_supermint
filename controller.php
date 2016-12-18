@@ -307,17 +307,18 @@ class MclContentSwapper extends ContentSwapper {
 					endif;
 
 					// Set it as default for the page theme
-					$this->setPresetAsDefault($package->startingPoint);
+					$this->setPresetAsDefault($package);
 
 					// Restore Cache
 					\Core::make('cache/request')->enable();
 			}
 	}
 
-	function setPresetAsDefault ($presetHandle) {
+	function setPresetAsDefault ($package) {
+			$presetHandle = $package->startingPoint;
 			$outputError = false;
 			$baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
-			$pt = PageTheme::getByHandle($package->themeHandle);
+			$pt = PageTheme::getByHandle('supermint');
 			$preset = $pt->getThemeCustomizablePreset($presetHandle);
 			if (!is_object($preset)) {
 					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
