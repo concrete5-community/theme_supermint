@@ -32,6 +32,8 @@ class PresetColors extends RouteController {
         $packageHandle = $pt->getPackageHandle();
         $themeHandle = $pt->getThemeHandle();
         $presets = $pt->getThemeCustomizableStylePresets();
+        // Si on a un tableau vide, onest surement sur une single page ou dans le dashboard, on sort
+        if (is_array($presets) && count($presets) === 0 ) return false;
         // On recupère le preset par defaut
         foreach ($presets as $preset) { if ($preset->isDefaultPreset()) $defaultPreset = $preset; }
 
