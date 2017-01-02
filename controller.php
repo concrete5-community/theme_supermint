@@ -36,8 +36,8 @@ class Controller extends Package  {
 
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
-		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.3.4.1';
+		protected $appVersionRequired = '5.8';
+		protected $pkgVersion = '3.4';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
     public $startingPoint;
@@ -63,11 +63,6 @@ class Controller extends Package  {
 		$o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
 		$o->install_db($this->startingPoint);
 
-	// Setting up the editor clips
-		$plugins = Config::get('concrete.editor.plugins.selected');
-		$p = is_array($plugins) ? $plugins : array();
-		$plugins = array_unique(array_merge(array('themefontcolor','themeclips'),$p));
-		Config::save('concrete.editor.plugins.selected', $plugins);
     // Elements installing
     $this->installOrUpgrade($pkg);
 
@@ -182,8 +177,8 @@ class Controller extends Package  {
 
         $pluginManager = Core::make('editor')->getPluginManager();
 		// ThemeFont plugin
-        $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), $this);
-        $al->register('css', 'editor/plugin/themefontcolor', 'css/editor/themefontcolor.css', array(), $this);
+        $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), 'theme_supermint');
+        $al->register('css', 'editor/plugin/themefontcolor', 'css/editor/themefontcolor.css', array(), 'theme_supermint');
         $al->registerGroup('editor/plugin/themefontcolor', array(
             array('javascript', 'editor/plugin/themefontcolor'),
             array('css', 'editor/plugin/themefontcolor')
@@ -196,7 +191,7 @@ class Controller extends Package  {
 
         $pluginManager->register($plugin);
 		// themClips plugin
-        $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), $this);
+        $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), 'theme_supermint');
         $al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js',  array(), 'theme_supermint' );
         $al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js',  array(), 'theme_supermint' );
         $al->register( 'css', 'chosenicon', 'css/chosenicon.css',  array(), 'theme_supermint' );
