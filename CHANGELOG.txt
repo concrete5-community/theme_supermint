@@ -1,3 +1,5 @@
+3.4	- Fix compatibility with Concrete5.8+
+	- Add hidden class from C5
 3.3.4.1 - Fix tabs display on small screen
 3.3.4   - Add a basic Print stylesheet
         - Add Mmenu to lateral nav
