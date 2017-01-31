@@ -3,7 +3,7 @@
 use Concrete\Core\Block\View\BlockView;
 
 $c = Page::getCurrentPage();
-$pageTheme = $c->getCollectionThemeObject();
+$pageTheme = \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 $open = $pageTheme->getClassSettings($b,'open');
 
 $cp = new Permissions($c);

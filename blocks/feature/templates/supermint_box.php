@@ -1,7 +1,7 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
-$pageTheme = $c->getCollectionThemeObject();
+$pageTheme = \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 $color = $pageTheme->getClassSettings($b,'icon-color');
 if ($color) {
 	$contrast = "color:" . $pageTheme->contrast('#' . $color);

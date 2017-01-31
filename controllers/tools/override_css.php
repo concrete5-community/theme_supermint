@@ -17,7 +17,7 @@ class OverrideCss extends RouteController {
 		$c = Page::getByID($_GET['cID']); // Juste pour pouvoir afficher le nom de la page dans le fichier css
 		$o = ThemeSupermintOptions::get();
 		$option_object = new ThemeSupermintOptions();
-		$t =  $c->getCollectionThemeObject();
+		$t =  \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 
 		// On capte le code CSS dans le tampon
 		ob_start();

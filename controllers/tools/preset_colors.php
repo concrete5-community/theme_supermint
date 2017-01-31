@@ -28,7 +28,7 @@ class PresetColors extends RouteController {
         $c = $_REQUEST['cID'] ? Page::getByID($_REQUEST['cID']) : Page::getCurrentPage();
         if (!$c) die(t('Can\'t retrieve a Page to get Preset color'));
         $cID = $c->getCollectionID();
-        $pt = $c->getCollectionThemeObject();
+        $pt = \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
         $packageHandle = $pt->getPackageHandle();
         $themeHandle = $pt->getThemeHandle();
         $presets = $pt->getThemeCustomizableStylePresets();

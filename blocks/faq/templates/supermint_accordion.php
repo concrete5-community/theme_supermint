@@ -1,6 +1,6 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
-$pageTheme = $c->getCollectionThemeObject();
+$pageTheme = \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 ?>
     <?php  if(count($rows) > 0) { ?>
      <div class="sm-accordion">

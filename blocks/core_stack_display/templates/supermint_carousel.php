@@ -3,7 +3,7 @@
 use Concrete\Core\Block\View\BlockView;
 $c = Page::getCurrentPage();
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
-$t =  $c->getCollectionThemeObject();
+$t =  \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 $cp = new Permissions($c);
 
 if ($includeName || $includeDescription || $useButtonForLink) $includeEntryText = true; else $includeEntryText = false;

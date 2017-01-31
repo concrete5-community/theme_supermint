@@ -1,5 +1,5 @@
 <?php   defined('C5_EXECUTE') or die(_("Access Denied."));
-$pageTheme =  $c->getCollectionThemeObject();
+$pageTheme =  \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 if($o->display_footer) :
 $footer = $pageTheme->get_footer_geometry($o->display_footer_column);

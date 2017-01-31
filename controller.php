@@ -126,7 +126,7 @@ class Controller extends Package  {
 
 								if (!is_object($c)) return;
 								// Now we build the button
-								$pt = $c->getCollectionThemeObject();
+								$pt = \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 								if ($pt->getThemeHandle() != 'supermint') return;
 								$status = t('Supermint Options');
 								$icon = 'toggle-on';
