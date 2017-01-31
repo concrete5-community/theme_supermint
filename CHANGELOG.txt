@@ -1,5 +1,6 @@
-3.4	- Fix compatibility with Concrete5.8+
-	- Add hidden class from C5
+3.4.1		- Fix a fatal error when a custom template is used in a stack
+3.4			- Fix compatibility with Concrete5.8+
+				- Add hidden class from C5
 3.3.4.1 - Fix tabs display on small screen
 3.3.4   - Add a basic Print stylesheet
         - Add Mmenu to lateral nav
