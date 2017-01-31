@@ -754,7 +754,7 @@
     </stack>
   </stacks>
   <pages>
-    <page name="Home" path="" filename="" pagetype="" template="wide" user="admin" description="" package="">
+    <page name="Home" path="" filename="" pagetype="page" template="wide" user="admin" description="" package="">
       <attributes>
         <attributekey handle="number_of_main_areas">
           <value>

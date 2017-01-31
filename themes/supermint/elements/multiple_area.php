@@ -7,7 +7,6 @@ if (is_object($number_of_areas) ) :
   $number_of_areas = $number_of_areas->getSelectedOptions();
   foreach ($number_of_areas as $key => $value)
     $result = $value->getSelectAttributeOptionDisplayValue();
-
 endif;
 // Si l'attribut n'a pas été séléctionné, il est égal à 1
 $number_of_areas = ($result == 0) ? 1 : $result;

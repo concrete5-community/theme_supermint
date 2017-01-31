@@ -228,29 +228,14 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 
     foreach ($pages as $key => $page):
     		if ($tags = $page->getAttribute('tags')) :
-
-            //
-            //
-    				// $v = array($page->getCollectionID(), $page->getVersionID(), $ak->getAttributeKeyID());
-    				// $avID = $db->GetOne("SELECT avID FROM CollectionAttributeValues WHERE cID = ? AND cvID = ? AND akID = ?", $v);
-    				// if (!$avID) continue;
-            //
-    				// $query = $db->GetAll("
-    				// 		SELECT opt.value
-    				// 		FROM atSelectOptions opt,
-    				// 		atSelectOptionsSelected sel
-            //
-    				// 		WHERE sel.avID = ?
-    				// 		AND sel.atSelectOptionID = opt.ID",$avID);
-
-    				foreach($tags->getSelectedOptions() as $value) {
+    				foreach($tags->getSelectedOptions() as $value) :
                 $result = $value->getSelectAttributeOptionDisplayValue();
     						$handle = preg_replace('/\s*/', '', strtolower($result));
 
     						$tagsObject->pageTags[$page->getCollectionID()][] =  $handle ;
                 $tagsObject->pageTagsName[$page->getCollectionID()][] =  $result;
     						$tagsObject->tags[$handle] = $result;
-    				}
+    				endforeach;
     		endif ;
     endforeach;
     return $tagsObject;
