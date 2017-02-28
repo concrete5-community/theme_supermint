@@ -162,13 +162,42 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 
     public function getThemeEditorClasses()
     {
-        return array(
-            array('title' => t('Alternate'), 'menuClass' => 'alternate', 'spanClass' => 'alternate'),
-            array('title' => t('Code'), 'menuClass' => '', 'spanClass' => 'code'),
-            array('title' => t('Light'), 'menuClass' => 'light', 'spanClass' => 'light'),
-            array('title' => t('Small'), 'menuClass' => 'small', 'spanClass' => 'small'),
-            array('title' => t('Lead'), 'menuClass' => 'lead', 'spanClass' => 'lead')
-        );
+      if (self::compat_is_version_8()) {
+            // concrete5 v8
+            // - custom styles for CKEditor
+            return array(
+                    array('title' => t('Alternate'),
+                          'element' => 'span',
+                          'attributes' => array('class' => 'alternate')
+                    ),
+                    array('title' => t('Code'),
+                          'element' => 'span',
+                          'attributes' => array('class' => 'code')
+                    ),
+                    array('title' => t('Light'),
+                          'element' => 'span',
+                          'attributes' => array('class' => 'light')
+                    ),
+                    array('title' => t('Small'),
+                          'element' => 'span',
+                          'attributes' => array('class' => 'small')
+                    ),
+                    array('title' => t('Lead'),
+                          'element' => 'span',
+                          'attributes' => array('class' => 'alternate')
+                    )
+                  );
+        } else {
+            // concrete5 5.7
+            // - custom styles for Redactor
+            return array(
+                array('title' => t('Alternate'), 'menuClass' => 'alternate', 'spanClass' => 'alternate'),
+                array('title' => t('Code'), 'menuClass' => '', 'spanClass' => 'code'),
+                array('title' => t('Light'), 'menuClass' => 'light', 'spanClass' => 'light'),
+                array('title' => t('Small'), 'menuClass' => 'small', 'spanClass' => 'small'),
+                array('title' => t('Lead'), 'menuClass' => 'lead', 'spanClass' => 'lead')
+            );
+        }
     }
 
     public function getThemeResponsiveImageMap()
@@ -587,7 +616,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
       return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;
   }
 
-
+  function compat_is_version_8() {
+      return interface_exists('\Concrete\Core\Export\ExportableInterface');
+  }
 
 
 }

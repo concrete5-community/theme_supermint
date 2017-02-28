@@ -52,7 +52,6 @@ $footer = $pageTheme->get_footer_geometry($o->display_footer_column);
       </div>
   </div>
 </footer>
-
 <?php endif ?>
 </div>
 
