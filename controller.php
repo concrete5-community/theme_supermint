@@ -20,6 +20,8 @@ use Concrete\Package\ThemeSupermint\Src\Helper\MclInstaller;
 use Concrete\Package\ThemeSupermint\Src\Helper\Upgrade;
 use Concrete\Package\ThemeSupermint\Controller\Tools\PresetColors;
 use Concrete\Core\Editor\Plugin;
+// use Concrete\Core\Asset\AssetList as AssetList;
+use \Concrete\Core\Support\Facade\Application as Application;
 use PageType;
 use FileImporter;
 use Concrete\Core\Backup\ContentImporter;
@@ -175,30 +177,37 @@ class Controller extends Package  {
 
 		// -- Redactor Plugins -- \\
 
-        $pluginManager = Core::make('editor')->getPluginManager();
-		// ThemeFont plugin
-        $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), 'theme_supermint');
-        $al->register('css', 'editor/plugin/themefontcolor', 'css/editor/themefontcolor.css', array(), 'theme_supermint');
-        $al->registerGroup('editor/plugin/themefontcolor', array(
-            array('javascript', 'editor/plugin/themefontcolor'),
-            array('css', 'editor/plugin/themefontcolor')
+				$app = Application::getFacadeApplication();
+				$editor = $app->make('editor');
+				$pluginManager = $editor->getPluginManager();
+				// ThemeFont plugin
+        $al->register('javascript', 'editor/ckeditor4/themeFontColor', 'js/ckplugins/themeFontColor/register.js', array(), $this);
+        $al->register('css', 'editor/ckeditor4/themeFontColor', 'css/ckplugins/themefontcolor.css', array(), $this);
+        $al->registerGroup('editor/ckeditor4/themeFontColor', array(
+            array('javascript', 'editor/ckeditor4/themeFontColor'),
+            array('css', 'editor/ckeditor4/themeFontColor')
             ));
 
         $plugin = new Plugin();
-        $plugin->setKey('themefontcolor');
+        $plugin->setKey('themeFontColor');
         $plugin->setName('Font colors from theme');
-        $plugin->requireAsset('editor/plugin/themefontcolor');
+        $plugin->requireAsset('editor/ckeditor4/themeFontColor');
 
-        $pluginManager->register($plugin);
-		// themClips plugin
-        $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), 'theme_supermint');
+				if (!$pluginManager->isAvailable($plugin)) $pluginManager->register($plugin);
+				if (!$pluginManager->isSelected($plugin)) {
+				    $key = $plugin->getKey();
+				    $pluginManager->select($key);
+				}
+
+				// themClips plugin
+        $al->register('javascript', 'editor/ckeditor4/themeClips', 'js/ckplugins/themeClips/register.js', array(), $this);
         $al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js',  array(), 'theme_supermint' );
         $al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js',  array(), 'theme_supermint' );
         $al->register( 'css', 'chosenicon', 'css/chosenicon.css',  array(), 'theme_supermint' );
         $al->register( 'css', 'chosen.min', 'css/chosen.min.css', array(), 'theme_supermint' );
 
-        $al->registerGroup('editor/plugin/themeclips', array(
-            array('javascript', 'editor/plugin/themeclips'),
+        $al->registerGroup('editor/ckeditor4/themeClips', array(
+            array('javascript', 'editor/ckeditor4/themeClips'),
             array('javascript', 'chosen-icon'),
             array('javascript', 'chosen.jquery.min'),
             array('css', 'chosen.min'),
@@ -206,11 +215,15 @@ class Controller extends Package  {
             ));
 
         $plugin = new Plugin();
-        $plugin->setKey('themeclips');
+        $plugin->setKey('themeClips');
         $plugin->setName('Snippets from Supermint');
-        $plugin->requireAsset('editor/plugin/themeclips');
+        $plugin->requireAsset('editor/ckeditor4/themeClips');
 
-        $pluginManager->register($plugin);
+				if (!$pluginManager->isAvailable($plugin)) $pluginManager->register($plugin);
+				if (!$pluginManager->isSelected($plugin)) {
+				    $key = $plugin->getKey();
+				    $pluginManager->select($key);
+				}
 
 	}
 
