@@ -12,13 +12,13 @@
 
             <?php if ($position && $company && $companyURL): ?>
                 <p class="info">
-                    <?php echo t('%s, <a href="%s">%s</a>', h($position), urlencode($companyURL), h($company))?>
+                    <?php echo t('%s, <a href="%s">%s</a>', h($position), ($companyURL), h($company))?>
                 </p>
             <?php endif; ?>
 
             <?php if ($position && !$company && $companyURL): ?>
                 <p class="info">
-                    <?php echo t('<a href="%s">%s</a>', urlencode($companyURL), h($position))?>
+                    <?php echo t('<a href="%s">%s</a>', ($companyURL), h($position))?>
                 </p>
             <?php endif; ?>
 
