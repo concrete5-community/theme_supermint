@@ -1,3 +1,4 @@
+3.4.1.2	- FIx a issue when they are no logo on the the full width main navigation (porfolied)
 3.4.1.1	- Fix error on testimonial block hover template + font too light
 3.4.1		- Fix a fatal error when a custom template is used in a stack
 3.4			- Fix compatibility with Concrete5.8+
