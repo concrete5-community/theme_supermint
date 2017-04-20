@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <concrete5-cif version="1.0">
-	<systemcontenteditorsnippets>
+	<!-- An exception occurred while executing 'insert into SystemContentEditorSnippets on 8.1 -->
+	<!-- <systemcontenteditorsnippets>
 		<snippet handle="edit_site" name="Edit site Link" package="theme_supermint" activated="1"/>
 		<snippet handle="copyright" name="Date Copyright" package="theme_supermint" activated="1"/>
-	</systemcontenteditorsnippets>
+	</systemcontenteditorsnippets> -->
 </concrete5-cif>
