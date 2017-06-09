@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeSupermint\Attribute\SupermintPresetList;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeSupermint\Attribute\IconAwesome;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -16,11 +16,11 @@ use \Concrete\Package\ThemeSupermint\Controller\Tools\AwesomeArray;
 class Controller extends DefaultController  {
 
     public function on_start() {
- 		$al = AssetList::getInstance(); 
- 		$al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), 'theme_supermint' );     
- 		$al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js', array('version' => '1.4.2', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), 'theme_supermint' );     
- 		$al->register( 'css', 'chosenicon', 'css/chosenicon.css', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), 'theme_supermint' ); 
- 		$al->register( 'css', 'chosen.min', 'css/chosen.min.css', array('version' => '1.4.2', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), 'theme_supermint' ); 
+ 		$al = AssetList::getInstance();
+ 		$al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), 'theme_supermint' );
+ 		$al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js', array('version' => '1.4.2', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), 'theme_supermint' );
+ 		$al->register( 'css', 'chosenicon', 'css/chosenicon.css', array('version' => '1.0', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), 'theme_supermint' );
+ 		$al->register( 'css', 'chosen.min', 'css/chosen.min.css', array('version' => '1.4.2', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), 'theme_supermint' );
     }
 
 	public function form() {
@@ -41,7 +41,7 @@ class Controller extends DefaultController  {
 		}
 
 		if (count($icons)):
-			
+
 			echo "<select name=\"$inputname\" class=\"chosenicon\">";
 			foreach ($icons as $handle => $name) :
 					echo "<option value=\"$handle\" data-icon=\"$handle\"" . ($selected == $handle ? ' selected ' : '') . ">$name</option>";
