@@ -220,7 +220,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
   /* --- HELPERS ---- */
 
 
-  public function getPageTags ($pages) {
+  public function getPagesTags ($pages) {
     $tagsObject = new StdClass();
     $tagsObject->tags = $tagsObject->pageTags = array();
     $ak = CollectionAttributeKey::getByHandle('tags');
@@ -401,7 +401,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle($options['type']);
 
     $styleObject = $this->getClassSettingsObject($b);
-    $tagsObject = $this->getPageTags($pages);
+    $tagsObject = $this->getPagesTags($pages);
 
     $displayUser = true;
     $displaytopics = $options['topics'];
