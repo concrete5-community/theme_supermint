@@ -161,7 +161,7 @@ class BaseOptionsGenerator {
 		), $item));
 
 		echo '<div class="toggle-wrapper"><div class="toggle ' . ($value ? 'toggle-on' : '') . '">
-				<input type="hidden" name="' . $id . '" value="' . $value . '"/>				
+				<input type="hidden" name="' . $id . '" value="' . $value . '"/>
 				<div class="toggle-text-off">OFF</div>
 				<div class="toggle-button"></div>
 				<div class="toggle-text-on">ON</div>
