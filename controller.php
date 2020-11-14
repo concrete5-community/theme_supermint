@@ -28,6 +28,7 @@ use PageList;
 use StackList;
 use Config;
 use Concrete\Core\StyleCustomizer\Style\ValueList;
+use Concrete\Core\Package\ContentSwapper;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
@@ -35,11 +36,11 @@ class Controller extends Package  {
 
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
-		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.3.4.1';
+		protected $appVersionRequired = '5.8';
+		protected $pkgVersion = '3.4.1.3';
 		protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
-    protected $startingPoint;
+    public $startingPoint;
 
 	public function getPackageDescription() {
 		return t("Supermint responsive suit any kind of website.");
@@ -62,11 +63,6 @@ class Controller extends Package  {
 		$o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
 		$o->install_db($this->startingPoint);
 
-	// Setting up the editor clips
-		$plugins = Config::get('concrete.editor.plugins.selected');
-		$p = is_array($plugins) ? $plugins : array();
-		$plugins = array_unique(array_merge(array('themefontcolor','themeclips'),$p));
-		Config::save('concrete.editor.plugins.selected', $plugins);
     // Elements installing
     $this->installOrUpgrade($pkg);
 
@@ -130,7 +126,7 @@ class Controller extends Package  {
 
 								if (!is_object($c)) return;
 								// Now we build the button
-								$pt = $c->getCollectionThemeObject();
+								$pt = \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 								if ($pt->getThemeHandle() != 'supermint') return;
 								$status = t('Supermint Options');
 								$icon = 'toggle-on';
@@ -181,8 +177,8 @@ class Controller extends Package  {
 
         $pluginManager = Core::make('editor')->getPluginManager();
 		// ThemeFont plugin
-        $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), $this);
-        $al->register('css', 'editor/plugin/themefontcolor', 'css/editor/themefontcolor.css', array(), $this);
+        $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), 'theme_supermint');
+        $al->register('css', 'editor/plugin/themefontcolor', 'css/editor/themefontcolor.css', array(), 'theme_supermint');
         $al->registerGroup('editor/plugin/themefontcolor', array(
             array('javascript', 'editor/plugin/themefontcolor'),
             array('css', 'editor/plugin/themefontcolor')
@@ -195,7 +191,7 @@ class Controller extends Package  {
 
         $pluginManager->register($plugin);
 		// themClips plugin
-        $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), $this);
+        $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), 'theme_supermint');
         $al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js',  array(), 'theme_supermint' );
         $al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js',  array(), 'theme_supermint' );
         $al->register( 'css', 'chosenicon', 'css/chosenicon.css',  array(), 'theme_supermint' );
@@ -254,86 +250,99 @@ class Controller extends Package  {
         );
     }
 
-    public function swapContent($options) {
 
-        if ($this->validateClearSiteContents($options)) {
-            \Core::make('cache/request')->disable();
+		public function getContentSwapper() {
+			return new MclContentSwapper();
+		}
 
-            $pl = new PageList();
-            $pages = $pl->getResults();
-            foreach ($pages as $c) $c->delete();
 
-            $fl = new FileList();
-            $files = $fl->getResults();
-            foreach ($files as $f) $f->delete();
-
-            // clear stacks
-            $sl = new StackList();
-            foreach ($sl->get() as $c) $c->delete();
-
-            $home = Page::getByID(HOME_CID);
-            $blocks = $home->getBlocks();
-            foreach ($blocks as $b) $b->deleteBlock();
-
-            $pageTypes = PageType::getList();
-            foreach ($pageTypes as $ct) $ct->delete();
-
-						$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
-
-            // Import Files
-            if (is_dir($startingPointFolder . '/content_files')) {
-                $ch = new ContentImporter();
-                $computeThumbnails = true;
-                if ($this->contentProvidesFileThumbnails()) $computeThumbnails = false;
-                $ch->importFiles($startingPointFolder . '/content_files', true );
-            }
-
-            // Install the starting point.
-            if (is_file($startingPointFolder . '/content.xml')) :
-                $ci = new ContentImporter();
-                $ci->importContentFile($startingPointFolder . '/content.xml');
-            endif;
-
-            // Set it as default for the page theme
-            $this->setPresetAsDefault($this->startingPoint);
-
-            // Restore Cache
-            \Core::make('cache/request')->enable();
-        }
-    }
-
-    function setPresetAsDefault ($presetHandle) {
-        $outputError = false;
-        $baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
-        $pt = PageTheme::getByHandle($this->themeHandle);
-        $preset = $pt->getThemeCustomizablePreset($presetHandle);
-        if (!is_object($preset)) {
-            if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
-            return;
-        }
-        $styleList = $pt->getThemeCustomizableStyleList();
-        if (!is_object($styleList)) {
-            if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style List from ' . $presetHandle));
-            return;
-        }
-        $valueList = $preset->getStyleValueList();
-        $vl = new ValueList();
-
-        $sets = $styleList->getSets();
-        if (!is_array($sets)) {
-            if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style Set from ' . $presetHandle));
-            return;
-        }
-
-        foreach ($sets as $set) :
-         foreach($set->getStyles() as $style)  :
-            $valueObject = $style->getValueFromList($valueList);
-            if (is_object($valueObject))
-                $vl->addValue($valueObject);
-         endforeach;
-        endforeach;
-
-        $vl->save();
-        $pt->setCustomStyleObject($vl, $preset);
-    }
 }
+
+class MclContentSwapper extends ContentSwapper {
+
+	public function swapContent (Package $package, $options) {
+
+			if ($this->validateClearSiteContents($options)) {
+					\Core::make('cache/request')->disable();
+
+					$pl = new PageList();
+					$pages = $pl->getResults();
+					foreach ($pages as $c) $c->delete();
+
+					$fl = new FileList();
+					$files = $fl->getResults();
+					foreach ($files as $f) $f->delete();
+
+					// clear stacks
+					$sl = new StackList();
+					foreach ($sl->get() as $c) $c->delete();
+
+					$home = Page::getByID(HOME_CID);
+					$blocks = $home->getBlocks();
+					foreach ($blocks as $b) $b->deleteBlock();
+
+					$pageTypes = PageType::getList();
+					foreach ($pageTypes as $ct) $ct->delete();
+
+					$startingPointFolder = $package->getPackagePath() . '/starting_points/'. $package->startingPoint;
+
+					// Import Files
+					if (is_dir($startingPointFolder . '/content_files')) {
+							$ch = new ContentImporter();
+							$computeThumbnails = true;
+							if ($package->contentProvidesFileThumbnails()) $computeThumbnails = false;
+							$ch->importFiles($startingPointFolder . '/content_files', true );
+					}
+
+					// Install the starting point.
+					if (is_file($startingPointFolder . '/content.xml')) :
+						// var_dump($startingPointFolder); die(' TS ');
+							$ci = new ContentImporter();
+							$ci->importContentFile($startingPointFolder . '/content.xml');
+					endif;
+
+					// Set it as default for the page theme
+					$this->setPresetAsDefault($package);
+
+					// Restore Cache
+					\Core::make('cache/request')->enable();
+			}
+	}
+
+	function setPresetAsDefault ($package) {
+			$presetHandle = $package->startingPoint;
+			$outputError = false;
+			$baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
+			$pt = PageTheme::getByHandle('supermint');
+			$preset = $pt->getThemeCustomizablePreset($presetHandle);
+			if (!is_object($preset)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
+					return;
+			}
+			$styleList = $pt->getThemeCustomizableStyleList();
+			if (!is_object($styleList)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style List from ' . $presetHandle));
+					return;
+			}
+			$valueList = $preset->getStyleValueList();
+			$vl = new ValueList();
+
+			$sets = $styleList->getSets();
+			if (!is_array($sets)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style Set from ' . $presetHandle));
+					return;
+			}
+
+			foreach ($sets as $set) :
+			 foreach($set->getStyles() as $style)  :
+					$valueObject = $style->getValueFromList($valueList);
+					if (is_object($valueObject))
+							$vl->addValue($valueObject);
+			 endforeach;
+			endforeach;
+
+			$vl->save();
+			$pt->setCustomStyleObject($vl, $preset);
+	}
+
+	}

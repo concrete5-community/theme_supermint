@@ -1,6 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
-$t =  $c->getCollectionThemeObject();
+$t =  \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 $styleObject = $t->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);?>
 
 <div class="image-caption-wrapper">

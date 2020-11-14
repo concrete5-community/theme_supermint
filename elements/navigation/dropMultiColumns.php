@@ -1,6 +1,6 @@
 <?php  defined('C5_EXECUTE') or die(_("Access Denied."));
 $c = Page::getCurrentPage();
-$t =  $c->getCollectionThemeObject();
+$t =  \Concrete\Package\ThemeSupermint\Src\Helper\ThemeObject::get($c);
 
 
 echo "\n<!-- Start Multi columns dropdown -->\n";?>

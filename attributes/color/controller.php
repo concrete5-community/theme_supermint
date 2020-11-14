@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeSupermint\Attribute\Color;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -13,7 +13,7 @@ class Controller extends DefaultController  {
         'type' => 'string',
         'options' => array('default' => null, 'notnull' => false)
     );
-   
+
    public function getDisplayValue() {
 
       if (is_object($this->attributeValue)) {
@@ -21,10 +21,10 @@ class Controller extends DefaultController  {
       } else {
          $value= '#ffffff';
       }
-      
+
       $contrast = $this->get_contrast_color(substr($value,1,6));
       return "<span style='background:$value; padding:4px; color:#$contrast'>$value</span>";
-   
+
    }
 
 
@@ -57,34 +57,34 @@ class Controller extends DefaultController  {
    }
 
   function get_contrast_color($hex, $c = 120 ) {
-  
+
       $rgb = array(substr($hex,0,2), substr($hex,2,2), substr($hex,4,2));
-      
+
       if(hexdec($rgb[0]) + hexdec($rgb[1]) + hexdec($rgb[2]) > 382){
-  
+
       }else{
          $c = -$c;
-      }  
-      
+      }
+
       for($i=0; $i < 3; $i++) :
-      
+
     if((hexdec( $rgb[$i]) - $c ) >= 0 )  :
-      
+
       $rgb[$i] = hexdec($rgb[$i]) - $c;
       $rgb[$i] = dechex($rgb[$i]);
-      
+
       if(hexdec($rgb[$i]) <= 9) :
         $rgb[$i] = "0".$rgb[$i];
       elseif (hexdec($rgb[$i]) == 10 ) :
         $rgb[$i] = $rgb[$i] . $rgb[$i];
       endif;
-      
+
     else :
         $rgb[$i] = "00";
     endif;
-        
+
       endfor;
-      
+
       return $rgb[0].$rgb[1].$rgb[2];
   }
 

@@ -22,11 +22,10 @@ foreach ($navItems as $ni) {
 }
 
 echo '<div class="' . ( $o->auto_hidde_top_bar ? 'auto-hidde-top-bar ' : '') . 'small-display-nav-bar-inner Fixed">';
-if ($logo):
 	echo '<span class="nav-logo">';
-	$logo->display();
+	if ($logo) $logo->display(); else	echo '&nbsp;';
 	echo '</span>';
-endif;
+
 		if($o->display_searchbox) :
 				$p = Page::getByID($o->display_searchbox);
 				if (is_object($p)) :

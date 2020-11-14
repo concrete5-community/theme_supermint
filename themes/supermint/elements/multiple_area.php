@@ -2,9 +2,14 @@
 
 $number_of_areas = $c->getAttribute($attribute_handle);
 // Si l'attribut est un 'select' :
-if (is_object($number_of_areas) && is_object($current = $number_of_areas->current())) $number_of_areas = $current->getSelectAttributeOptionValue();
+
+if (is_object($number_of_areas) ) :
+  $number_of_areas = $number_of_areas->getSelectedOptions();
+  foreach ($number_of_areas as $key => $value)
+    $result = $value->getSelectAttributeOptionDisplayValue();
+endif;
 // Si l'attribut n'a pas été séléctionné, il est égal à 1
-$number_of_areas = ($number_of_areas == 0) ? 1 : $number_of_areas;
+$number_of_areas = ($result == 0) ? 1 : $result;
 
 if ($number_of_areas > 0 ) {
     for ($i=0; $i <= $number_of_areas; $i++) {
