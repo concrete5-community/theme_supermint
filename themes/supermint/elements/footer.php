@@ -10,7 +10,7 @@ $footer = $pageTheme->get_footer_geometry($o->display_footer_column);
       	<div class="space-s"></div>
 		<?php  foreach ($footer as $area) : ?>
 		<div class="<?php echo $area['class'] ?>" id='<?php echo $area['name']?>'>
-			<?php
+			<?php 
 			if($o->footer_global) :
 				$f = new GlobalArea($area['name']);
 				$f->display();
@@ -30,11 +30,11 @@ $footer = $pageTheme->get_footer_geometry($o->display_footer_column);
       		<p id="footer-note" class="small">
       			<span>&copy;&nbsp;<?php echo date('Y')?>&nbsp;<a href="<?php echo DIR_REL?>/"><?php echo Config::get('concrete.site')?></a>&nbsp;</span>
 				<?php echo $o->footer_credit ?>
-				<?php
+				<?php 
         if (!$o->disable_footer_login) :
 				$u = new User();
 				if ($u->isRegistered()) { ?>
-					<?php
+					<?php 
 					if (Config::get("ENABLE_USER_PROFILES")) {
 						$userName = '<a href="' . $this->url('/profile') . '">' . $u->getUserName() . '</a>';
 					} else {
@@ -86,8 +86,8 @@ $footer = $pageTheme->get_footer_geometry($o->display_footer_column);
     },
     <?php endif; endif ?>
      extensions: <?php echo '["theme-' . ($o->mmenu_theme ? $o->mmenu_theme : 'light') .'"';
-                 echo $o->mmenu_shadow ? ',"pageshadow"' : '';
-                 echo $o->mmenu_iconbar ? ',"iconbar"' : '';
+                 echo isset($o->mmenu_shadow) ? ',"pageshadow"' : '';
+                 echo isset($o->mmenu_iconbar) ? ',"iconbar"' : '';
                  echo '],'
                  ?>
      offCanvas: {
@@ -100,7 +100,7 @@ $footer = $pageTheme->get_footer_geometry($o->display_footer_column);
 	var THEME_PATH = '<?php  echo $this->getThemePath()?>';
 	var FONT_DETAILS_TOOLS_URL = "<?php echo URL::to('/ThemeSupermint/tools/font_details'); ?>";
 	var FIX_IFRAME_ZINDEX = <?php echo $o->fix_iframe_zindex ? 'true' : 'false' ?>;
-  <?php if ($searchURL) : ?>
+  <?php if (isset($searchURL)) : ?>
   var SEARCH_URL = "<?php echo $searchURL?>";
   <?php endif ?>
   var HIDDE_DROPDOWN_SMALL_SCREEN = <?php echo $o->hidde_dropdown_small_screen ? 'true' : 'false' ?>;

@@ -12,7 +12,7 @@ if ($display_intro) :
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-content-style padding-<?php echo $o->content_padding ?>">
-			    <?php
+			    <?php 
 					$a = new Area("Intro");
 		            $a->setAreaGridMaximumColumns(12);
 					$a->display($c);

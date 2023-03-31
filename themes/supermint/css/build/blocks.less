@@ -242,18 +242,18 @@ a.mpf-inline.open-popup-link {
 	top:-26px;
 	margin:0 0 0 -28px;
 	font-size: 31px; /* Fixé pour tous les supports */
-  .icon-size-m > &{
-    top:-@space-m;
-    margin-left:-@space-m;
-  }
-  .icon-size-l > &{
-    top:-@space-l;
-    margin-left:-@space-l;
-  }
-  .icon-size-xl > & {
-    top:-@space-xl;
-    margin-left:-@space-xl;
-  }
+}
+.icon-size-m > .feature-box_icon{
+	top:-@space-m;
+	margin-left:-@space-m;
+}
+.icon-size-l > .feature-box_icon{
+	top:-@space-l;
+	margin-left:-@space-l;
+}
+.icon-size-xl > .feature-box_icon {
+	top:-@space-xl;
+	margin-left:-@space-xl;
 }
 .feature-box_icon .fa-stack {
 	text-align: left;
@@ -348,13 +348,14 @@ a.mpf-inline.open-popup-link {
 	article {
 		padding-left: 7px;
 	}
-	.redactor-box & aside > *,
-	.redactor-box & article > *,
-	{
-			min-height: 30px;
-			padding: 5px;
-			border: 1px dotted rgba(94, 237, 94,.5);
-	}
+}
+
+.redactor-box .left-right aside > *,
+.redactor-box .left-right article > *
+{
+	min-height: 30px;
+	padding: 5px;
+	border: 1px dotted rgba(94, 237, 94,.5);
 }
 
 // -- Search block -- \\

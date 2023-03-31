@@ -21,7 +21,7 @@ class Controller extends DefaultController  {
 			$selected = 0;
 		}
 
-		 $poh->output_presets_list(true, $selected, $name);
+		 $poh->outputPresetsList(true, $selected, $name);
 	}
 
 }

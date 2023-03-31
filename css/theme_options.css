@@ -126,6 +126,8 @@
 	min-width: 200px;
 	width:auto !important;
 	width:200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 #preset_to_edit  {

@@ -1,7 +1,7 @@
 $(document).ready(function(){
-  isDashboard = $('#ccm-dashboard-page').size();
-	noScript = $('.no-script').size();
-	if (isDashboard || noScript ) return;
+  isDashboard = $('#ccm-dashboard-page').length;
+	noScript = $('.no-script').length;
+	if (isDashboard || noScript ) return;
 
     var $win = $(window),
         $containers = $(".masonry-wrapper"),

@@ -1,4 +1,4 @@
-<?php   defined('C5_EXECUTE') or die(_("Access Denied.")); ?>
+<?php   defined('C5_EXECUTE') or die("Access Denied."); ?>
 
 <div class="mcl-edit">
 <form action="<?php  echo $this->action('edit_preset')?>" method="post" >
@@ -15,15 +15,15 @@
     <?php  foreach ($list as $k=>$p) :
             //$u = User::getByUserID($p['creator']);
         ?>
-            <tr <?php  if ($p['pID'] == $poh->get_default_pID()) : ?> style="background:rgb(221, 226, 231)"<?php  endif ?>>
-                <td class="title"><?php  if ($p['pID'] == $poh->get_default_pID()) : ?><strong><?php  endif?><?php  echo $p['name']?><?php  if ($p['pID'] == $poh->get_default_pID()) : ?></strong><?php  endif?></td>
+            <tr <?php  if ($p['pID'] == $poh->getDefaultPID()) : ?> style="background:rgb(221, 226, 231)"<?php  endif ?>>
+                <td class="title"><?php  if ($p['pID'] == $poh->getDefaultPID()) : ?><strong><?php  endif?><?php  echo $p['name']?><?php  if ($p['pID'] == $poh->getDefaultPID()) : ?></strong><?php  endif?></td>
                 <td><?php echo $p['pID'] ?></td>
                 <td>
                     <input type="text" name="rename_<?php  echo $p['pID']?>" class="ccm-input-text" style="width:60%" />
                     <input type="submit" name="preset_to_rename_<?php  echo $p['pID']?>" value="<?php  echo t('Rename');?>" class="btn btn-primary" />
                 </td>
                 <td>
-                    <?php  if ($p['pID'] != $poh->get_default_pID()) : ?>
+                    <?php  if ($p['pID'] != $poh->getDefaultPID()) : ?>
                         <input type="submit" name="set_as_default_<?php  echo $p['pID']?>" value="<?php  echo t('Set as Default'); ?>" class="btn btn-primary primary" />
                     <?php  else : ?>
                         <strong><?php  echo t("Choosed as default"); ?></strong>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td><input type="text" name="name" style="width:95%" /></td>
-                <td><?php  $poh->output_presets_list(true, 1, 'preset_id')?></td>
+                <td><?php echo $poh->outputPresetsList(1, 'preset_id')?></td>
                 <td><input type="submit" class="btn btn-primary primary" name="new" value="<?php  echo t('Add'); ?>" /></td>
             </tr>
         </table>

@@ -1,7 +1,8 @@
-<?php
-defined('C5_EXECUTE') or die(_("Access Denied."));
+<?php 
+defined('C5_EXECUTE') or die("Access Denied.");
 
 $options = array(
+        /*
     array(
         'name' => t("Fonts from Google"),
         "desc" => t('In this section choose which font to which element. Also choose one or more variations, so that the italic and bold styles have their police.'),
@@ -80,7 +81,7 @@ $options = array(
         "type" => "custom",
         "function" => "font"
     ),
-    
+    */
     /* --- Measurements --- */
     
     array(

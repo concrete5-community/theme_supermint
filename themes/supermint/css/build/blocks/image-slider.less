@@ -9,9 +9,6 @@
     .rslides {
       li {
         max-height: @image-slider-max-height;
-      li when (@image-slider-max-height = 0) {
-        max-height: 100vh;
-      }
       }
     }
     .clearfix();
@@ -46,18 +43,13 @@
 
   }
 
-  .rslides {
-    &1_on,
-    &2_on,
-    &3_on,
-    &4_on,
-    &5_on,
-
-     {
-      .ccm-image-slider-text {
-        // The right position
-        .transform(translate(-50%,-50%));
-      }
+  .rslides1_on,
+  .rslides2_on,
+  .rslides3_on,
+  .rslides4_on,
+  .rslides5_on {
+    .ccm-image-slider-text {
+      .transform(translate(-50%,-50%));
     }
   }
 

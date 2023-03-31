@@ -28,7 +28,7 @@ foreach ($ni->blocks as $n => $block) :
 endforeach?>
 <div class=' stack-pane <?php echo $classes ?>' style="padding:20px; <?php if(!$o->full_width_mega) : ?>width:<?php echo (intval(count($layout['columns']) * $o->mega_columns_width)) ?>px<?php endif ?>">
 
-<?php
+<?php 
 
 /*
  *	If they are blocks for the header full width

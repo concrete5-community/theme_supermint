@@ -58,7 +58,7 @@ endforeach;
 
 ?><!-- template supermint_mega.php Prepared nav in <?php echo  microtime(true) - $prepare_start ?>s  -->
 <div class="top-nav-lateral">
-	<!-- <div class="mobile-handle"><i class="fa fa-navicon"></i></div> -->
+	<div class="mobile-handle"><i class="fa fa-navicon"></i></div>
 	<div class="wrap">
 		<div class="top">
 			<div class="inner">
@@ -75,7 +75,7 @@ endforeach;
 				<nav class="lateral-nav <?php echo $o->lateral_nav_element_harmonized ? 'harmonize-width-heading' : ''?>">
 					<ul class="zero">
 
-<?php
+<?php 
 foreach ($navItems as $k=>$ni) :
 
         echo '<li class="' . $ni->classes . '" >'; //opens a nav item
@@ -104,7 +104,7 @@ endforeach?>
 		</div><!-- .middle -->
 		<div class="bottom">
 			<div class="inner">
-				<?php
+				<?php 
 				if($o->display_searchbox) :
 					$p = Page::getByID($o->display_searchbox);
 					if (is_object($p)) :

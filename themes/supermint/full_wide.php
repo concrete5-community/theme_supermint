@@ -1,10 +1,17 @@
 <?php  defined('C5_EXECUTE') or die(_("Access Denied."));
 $this->inc('elements/header.php');
 $this->inc('elements/intro.php');
+/** @var \Concrete\Core\Entity\Attribute\Value\Value\SelectValue $columns */
 $columns = $c->getAttribute('number_of_wide_columns');
-if (is_object($columns)) $columns = $columns->current()->getSelectAttributeOptionValue();
+if (is_object($columns)) {
+    /** @var \Concrete\Core\Entity\Attribute\Value\Value\SelectValueOption $selectValueOption */
+    if (is_object($selectValueOption = $columns->getSelectedOptions()->get(0))) {
+        $columns = $selectValueOption->getSelectAttributeOptionValue();
+    }
+}
+
 $columns = $columns ? $columns : 2;
-$columnClass = 'col-md-' . (12 / $columns);
+$columnClass = 'col-md-' . (12 / (int)$columns);
 ?>
 
 <main class="wide-container">

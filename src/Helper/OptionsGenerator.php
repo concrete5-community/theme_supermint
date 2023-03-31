@@ -1,12 +1,7 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Src\Helper;
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
-use \Concrete\Package\ThemeSupermint\Src\Helper\BaseOptionsGenerator;
 use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
-use Core;
-use Loader;
 
 /**
  * @package Supermint theme Options
@@ -26,12 +21,12 @@ class OptionsGenerator {
 
 		if ($options) : // Option n'est pas rempli quand il est appelle par loader::helper
 
-			$this->poh = new ThemeSupermintOptions();
+			$this->poh = new ThemeSupermintOptions(app());
 			$this->pID = $pID;
 			$this->generator = new BaseOptionsGenerator($pID);
 			$this->url = $url;
 			$this->options = $options;
-			$this->saved_options = $saved_options ? $saved_options : ThemeSupermintOptions::get_options_from_preset_ID($pID);
+			$this->saved_options = $saved_options ? $saved_options : ThemeSupermintOptions::getOptionsFromPresetID($pID);
 			$this->url_view = $url_view;
 			$this->first_section = true;
 			$this->render();
@@ -43,7 +38,7 @@ class OptionsGenerator {
 	}
 
 	function render() {
-		echo '<div class="mcl-options-wrapper" style="opacity:0">';
+		echo '<div class="mcl-options-wrapper active" style="opacity:0">';
 
 		$this->start();
 
@@ -62,7 +57,6 @@ class OptionsGenerator {
 		if (method_exists($this->generator, $option['type'])) {
 			$value = isset($this->saved_options->{$option['id']}) ? $this->saved_options->{$option['id']} : $option['default'];
 			$option['value'] = $value;
-			// var_dump($option);
 			echo '<tr><td class="title"><strong><label for="'.$option['id'].'">' . $option['name'] . '</label></strong></td>';
 			echo '<td class="desc">';
 			if(isset($option['desc'])){
@@ -89,7 +83,7 @@ class OptionsGenerator {
 		// First we print the preset select
 		if ($this->url_view) :
 			echo '<form action="' . $this->url_view . '" method="post" id="preset_to_edit">';
-			$this->poh->output_presets_list(true, $this->pID);
+			$this->poh->outputPresetsList(true, $this->pID);
 			echo '</form>';
 		endif;
 		// After Navigation into sections
@@ -126,14 +120,15 @@ class OptionsGenerator {
 		echo '<div style="clear:both"></div>';
 	    echo '<div class="ccm-dashboard-form-actions-wrapper">
 	        <div class="ccm-dashboard-form-actions">
-	            <button class="pull-right btn btn-success" type="submit" " name="pID" value="' . $this->pID . '" >' . $item["name"] . '</button>
+	            <button class="float-end btn btn-success" type="submit" " name="pID" value="' . $this->pID . '" >' . $item["name"] . '</button>
 	        </div>
 	    </div>
     ';
 	}
 	function custom ($item) {
-		if (method_exists($this->generator, $item['function']))
-			$this->generator->{$item['function']}($item);
+		if ($item['function'] && method_exists($this->generator, $item['function'])) {
+            $this->generator->{$item['function']}($item);
+        }
 	}
 	function openSection ($item) {
 

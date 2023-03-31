@@ -40,7 +40,7 @@ if (is_object($f)) {
         <strong><?php echo $title  ?></strong> <?php echo $desc ?>
       </p>
     </div>
-    <?php
+    <?php 
 
 
     if ($linkURL):
@@ -48,7 +48,7 @@ if (is_object($f)) {
     endif;
     ?>
     </div>
-<?php
+<?php 
 } else if ($c->isEditMode()) { ?>
 
     <div class="ccm-edit-mode-disabled-item"><?php echo t('Empty Image Block.')?></div>

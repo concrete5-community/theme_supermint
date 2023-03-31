@@ -7,13 +7,10 @@ use Loader;
 
 use \Concrete\Package\ThemeSupermint\Src\Models\SupermintFontList;
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
 class FontsTools extends RouteController {		
 	function getFontDetails () {
-				
-		if (!$fontList) {
-			$fontList = Loader::helper('json')->decode(Loader::helper('file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
+		if (!isset($fontList)) {
+			$fontList = app('helper/json')->decode(app('helper/file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
 		}
 
 		if (is_object($fontList)) {
@@ -53,7 +50,7 @@ class FontsTools extends RouteController {
 		echo $this->getFontsURL();
 	}
 
-	function getFontsURL ()	{
+	public static function getFontsURL ()	{
 
 		$list = new SupermintFontList();
 		$list->addFont('p');

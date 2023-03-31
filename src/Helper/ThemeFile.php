@@ -25,7 +25,7 @@ class ThemeFile {
      * @param bool $recursive Whether to list subfolders as well.
      * @param string $baseDir String to append at the beginning of every filepath that the callback will receive.
      */
-    function dir_walk( $dir, $types = null, $recursive = false, $baseDir = '') {
+    public static function dir_walk( $dir, $types = null, $recursive = false, $baseDir = '') {
         if ($dh = @opendir($dir)) {
             while (($file = readdir($dh)) !== false) {
                 if ($file === '.' || $file === '..') {
@@ -39,7 +39,7 @@ class ThemeFile {
                     }
                     $r[] = $file;
                 }elseif($recursive && is_dir($dir . $file)) {
-                    $this->dir_walk( $dir . $file . DIRECTORY_SEPARATOR, $types, $recursive, $baseDir . $file . DIRECTORY_SEPARATOR);
+                    self::dir_walk( $dir . $file . DIRECTORY_SEPARATOR, $types, $recursive, $baseDir . $file . DIRECTORY_SEPARATOR);
                 }
             }
             closedir($dh);

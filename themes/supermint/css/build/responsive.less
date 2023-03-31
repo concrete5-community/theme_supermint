@@ -52,42 +52,18 @@
       }
     }
   }
-
-}
-
-
-/*--  Main Content with a lateral-nav-width a lateral nav -- */
-
-@media (max-width: 1500px) and (min-width: 768px) {
-  .with-lateral-nav {
-    .ccm-page {
-      margin-left: 0;
-
-      padding-top: @lateral-nav-width; // Pour laisser de la place au .mobile-handle
-    }
-    .container {
-      margin-right: 0;
-      margin-left: 300px;
-      width: 70vw;
+  // Lateral Nav --\\
+  .top-nav-lateral {
+    .mobile-handle {
+      right: -@space-m;
+      opacity: 1;
     }
   }
-}
-@media (max-width: 1250px) and (min-width: 768px) {
-  .with-lateral-nav {
-    .container {
-      width: 65vw;
-    }
+  .with-lateral-nav .ccm-page {
+    margin-left: 0;
+    padding-top: @lateral-nav-width; // Pour laisser de la place au .mobile-handle
   }
 }
-@media (max-width: 900px) and (min-width: 768px) {
-  .with-lateral-nav {
-    .container {
-      width: 62vw;
-    }
-  }
-}
-
-
 
 /* Landscape phone to portrait tablet (100%) */
 
@@ -117,14 +93,14 @@
     display: none;
   }
 // Show  Mobile navigation
-  .small-display-nav-bar   {
+  .small-display-nav-bar {
     height: (@fixed-bar-height)-.1;
     .small-display-nav-bar-inner {
       display: block;
     }
   }
 // Hide the large-top-nav
-  .large-top-nav {
+  div.ccm-page .large-top-nav {
     display: none;
   }
 // With the lateral navigation Style
@@ -135,7 +111,7 @@
     }
 // Hidde the mobile nav if present
     .small-display-nav-bar {
-      // display: none;
+      display: none;
     }
   }
 
@@ -155,15 +131,6 @@
     width: 100%
   }
 
-  .area {
-  // Spacing
-  	&-space-s,
-  	&-space-m,
-  	&-space-l,
-  	&-space-xl, {
-  		padding:0;
-  	}
-  }
 }
 
 /* Landscape phones and down */

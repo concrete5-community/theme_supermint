@@ -1,4 +1,4 @@
-<?php
+<?php 
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 if (!$content && is_object($c) && $c->isEditMode()) : ?>

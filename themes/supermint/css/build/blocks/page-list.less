@@ -135,10 +135,10 @@ ul.filter-set {
 .ccm-block-page-list-date {
     color: @grey-color;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 0.75rem;
 }
 .ccm-block-page-list-description {
-  font-size: 1.2rem;
+  font-size: 0.75rem;
 }
 .ccm-block-page-list-page-entry-thumbnail {
 
@@ -351,10 +351,11 @@ ul.filter-set {
 .page-list-block-static {
   .item {
     margin-bottom: @space-s;
-    .no-gap & {
-      margin-bottom: 0;
-    }
   }
+}
+
+.no-gap .page-list-block-static .item {
+  margin-bottom: 0;
 }
 
 // -- With no Gap -- \\

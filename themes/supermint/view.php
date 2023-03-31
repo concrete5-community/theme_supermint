@@ -1,4 +1,5 @@
-<?php  defined('C5_EXECUTE') or die(_("Access Denied."));
+<?php  defined('C5_EXECUTE') or die("Access Denied.");
+
 $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 $this->inc('elements/header.php');
 $this->inc('elements/intro.php');

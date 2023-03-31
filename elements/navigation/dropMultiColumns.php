@@ -4,7 +4,7 @@ $t =  $c->getCollectionThemeObject();
 
 
 echo "\n<!-- Start Multi columns dropdown -->\n";?>
-<?php
+<?php 
 
 $layout = $t->createLayout($navItems, $niKey, $o->break_columns_on_child, $o->nav_multicolumns_item_per_column);
 
@@ -12,7 +12,7 @@ $span = 'col-sm-' . (intval( 12 / (count($layout))));
 ?>
 <div class='multicolumn-pane  <?php if($o->full_width_multicolumn) : ?>absolute-container <?php endif ?>' style="padding:20px; <?php if(!$o->full_width_multicolumn) : ?>width:<?php echo (intval(count($layout) * $o->mega_columns_width)) ?>px<?php endif ?>">
 	<div class="row">
-<?php
+<?php 
 foreach ($layout as $key => $element) :
 	echo '<div class="' . $span . ' stack-column">';
 	echo '<ul class="mgm-multi-c-column">';
@@ -25,5 +25,5 @@ foreach ($layout as $key => $element) :
 endforeach?>
 	</div><!-- row -->
 </div><!-- stack-pane -->
-<?php
+<?php 
  ?>

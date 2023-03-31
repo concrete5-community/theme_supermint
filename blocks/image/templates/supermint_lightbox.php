@@ -4,7 +4,7 @@ $t =  $c->getCollectionThemeObject();
 $styleObject = $t->getClassSettingsObject($b,$o->carousel_slidesToShow,$o->carousel_margin);?>
 
 <div class="image-caption-wrapper magnific-wrapper" >
-<?php
+<?php 
 if (is_object($f)) {
     if ($maxWidth > 0 || $maxHeight > 0) {
         $im = Core::make('helper/image');
@@ -37,7 +37,7 @@ if (is_object($f)) {
     </div>
     <?php print '</a>'?>
     </div>
-<?php
+<?php 
 } else if ($c->isEditMode()) { ?>
 
     <div class="ccm-edit-mode-disabled-item"><?php echo t('Empty Image Block.')?></div>

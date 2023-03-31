@@ -6,7 +6,7 @@ detectOnView();
 
 $(document).ready(function(){
 
-	if ($('#ccm-dashboard-page').size() || $('.no-script').size() ) return;
+	if ($('#ccm-dashboard-page').length || $('.no-script').length ) return;
 
 	if (typeof(navigationOptions) == "object")
 		$('.nav_tabs').boxNav('.submenu_panes',navigationOptions);
@@ -66,7 +66,7 @@ $(document).ready(function(){
 	$('.auto-hidde-top-bar').autoHidingNavbar();
 
 // Mmenu
-	if($("#mmenu").size()) {
+	if($("#mmenu").length) {
 		$("#mmenu").mmenu(mmenuSettings,  {
 		    // configuration
 		    offCanvas: {
@@ -85,11 +85,11 @@ $(document).ready(function(){
 	}
 
 // Mobile behavior on lateral navigation
-	// intitializeLateralMobile();
+	intitializeLateralMobile();
 
 // Happier text
 	var nodes = $('.harmonize-width-heading li > a');
-	if (nodes.size()) nodes.harmonizeText().delay(3000).css('opacity',1);
+	if (nodes.length) nodes.harmonizeText().delay(3000).css('opacity',1);
 
 
 // Magnific popup
@@ -140,25 +140,17 @@ $(document).ready(function(){
 	enquire.register("screen and (max-width: 979px)", {
 
 	    match : function() {
+				$('.top-nav-lateral').addClass('masked');
 				if (HIDDE_DROPDOWN_SMALL_SCREEN) {
 					// On desactive les dropdown
 					$('.large-top-nav li.has-submenu').removeClass('mgm-drop');
 				}
 			},
 	    unmatch : function() {
+				$('.top-nav-lateral').removeClass('masked');
 				if (HIDDE_DROPDOWN_SMALL_SCREEN) {
 					$('.large-top-nav li.has-submenu').addClass('mgm-drop');
 				}
-			}
-
-	});
-	enquire.register("screen and (max-width: 767px)", {
-
-	    match : function() {
-				$('.top-nav-lateral').addClass('masked');
-			},
-	    unmatch : function() {
-				$('.top-nav-lateral').removeClass('masked');
 			}
 
 	});

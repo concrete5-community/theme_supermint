@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Src\Models;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -45,6 +45,10 @@ class SupermintFontList {
 			endforeach;
 
 		}
+
+		if (isset($str['Roboto'])) {
+		    return '';
+        }
 		$time_end = microtime(true);
 		$time = $time_end - $this->time_start;
 		$str = 	$this->googleUrl .

@@ -1,59 +1,45 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Controller\SinglePage\Dashboard\SupermintOptions;
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
-use Loader;
-use Package;
 use Core;
-use \Concrete\Core\Page\Controller\DashboardPageController;
 use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
-use \Concrete\Package\ThemeSupermint\Src\Helper\OptionsGenerator;
-use \Concrete\Package\ThemeSupermint\Src\Helper\ThemeFile;
-use Concrete\Core\Asset\Asset;
-use Concrete\Core\Asset\AssetList;
 
 use \Concrete\Package\ThemeSupermint\Controller\SinglePage\Dashboard\SupermintOptions as SmController;
 
 class OptionsPresets extends SmController {
 
+    protected ThemeSupermintOptions $themeSupermintOptions;
 
-
-	public $helpers = array('form');
-
-	function on_start() {
-		$this->poh = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions();
+	function on_start()
+    {
+		$this->themeSupermintOptions = $this->app->make(ThemeSupermintOptions::class);
 		$this->requireAsset('javascript', 'jquery');
+		parent::on_start();
 	}
 
 	function view() {
-
-
-		$this->set('poh', $this->poh);
-		$this->set('list',  $this->poh->get_presets_list());		
+		$this->set('poh', $this->themeSupermintOptions);
+		$this->set('list',  $this->themeSupermintOptions->getPresetsList());
 		$this->set('ih', Core::make('helper/form'));
-
 		parent::view();
-
-
 	}
 
 	function save_preset() {
 		if ($_POST['name'] != '') :
-			$this->poh->save_preset( htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') , $_POST['preset_id']);
+            $this->themeSupermintOptions->savePreset( htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') , $_POST['preset_id']);
 			$this->set('message', t('Preset created !'));
 			$this->view();
 		else:
 			$this->error->add(t('Error, the name is empty'));
-//			$this->set('message', );
 			$this->view();
 		endif;
 
 		$this->view();
 	}
+
 	function edit_preset() {
 		if ($pID = $this->retrieve_id('preset_to_delete_')) {
-			$this->poh->delete_preset($pID);
+            $this->themeSupermintOptions->deletePreset($pID);
 			$this->set('message', t('Preset deleted !'));
 			$this->view();
 		}
@@ -63,18 +49,18 @@ class OptionsPresets extends SmController {
 				$this->view();
 				return;
 			}
-			$this->poh->rename_preset($_POST['rename_' . $pID] , $pID);
+            $this->themeSupermintOptions->rename_preset($_POST['rename_' . $pID] , $pID);
 			$this->set('message', t('Preset renamed !'));
 			$this->view();
 		}
 		if ($pID = $this->retrieve_id('set_as_default_')) {
-			$this->poh->set_default_pID($pID);
-			$title = $this->poh->get_preset_title($pID);
+            $this->themeSupermintOptions->setDefaultPID($pID);
+			$title = $this->themeSupermintOptions->getPresetTitle($pID);
 			$this->set('message', t('Preset set as default'));
 			$this->view();
 		}
 		if ($pID = $this->retrieve_id('preset_to_reset_')) {
-			$success = $this->poh->reset_options($pID);
+			$success = $this->themeSupermintOptions->reset_options($pID);
 			if (!$success['error'])
 				$this->set('message', 'Preset reseted with starting values');
 			else
@@ -88,6 +74,10 @@ class OptionsPresets extends SmController {
 	function retrieve_id ($expr) {
 		$expression = '/^' . $expr . '(.+)$/';
 		$unextracted_rows = array_merge(array(),preg_grep($expression, array_keys($_POST)));
+
+        if ($unextracted_rows === []) {
+            return false;
+        }
 		preg_match($expression, $unextracted_rows[0], $row_matches);
 		return $row_matches[1];
 
@@ -98,7 +88,7 @@ class OptionsPresets extends SmController {
 		$uploadfile = DIR_FILES_UPLOADED_STANDARD . '/' . basename($_FILES['userfile']['name']);
 
 		if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-			$success = $this->poh->importXML_preset($uploadfile);
+			$success = $this->themeSupermintOptions->importXML_preset($uploadfile);
 			if (!$success['error'])
 				$this->set('message', 'Preset imported successfully');
 			else

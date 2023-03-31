@@ -12,20 +12,20 @@ $this->inc('elements/intro.php');
     <div class="row">
         <div class="<?php echo $span_sidebar ?> sidebar" id="left-sidebar">
             <div class="sb-head">
-                <?php
+                <?php 
                 $a = new Area('Sidebar Header');
                 $a->display($c);
                 ?>
             </div>
             <div class="sb-header padding-<?php echo $o->sidebar_padding?>">
-                <?php
+                <?php 
                 $a = new Area('Sidebar');
                 $a->display($c);
                 ?>
 
             </div>
             <div class="sb-footer">
-                <?php
+                <?php 
                 $a = new Area('Sidebar Footer');
                 $a->display($c);
                 ?>

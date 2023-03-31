@@ -2,7 +2,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  // height: @space-ms; //desactive pour laisse la hauteur s'adapter à la largeur
+  height: @space-ms;
   float: left;
   clear: both;
 }
@@ -53,27 +53,24 @@
 
 
 .sm-tabs {
-
   // Default behavior
   .tabs-mixin-color(@grey-color; @white-color; @light-color);
+}
 
-  .element-primary & {
-    .tabs-mixin-color(@primary-color; @primary-text-color; @light-color);
-  }  // Customs Behavior
-  .element-secondary & {
-    .tabs-mixin-color(@secondary-color; @secondary-text-color; @light-color);
-  }
-  .element-tertiary & {
-    .tabs-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
-  }
-  .element-quaternary & {
-    .tabs-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
-  }
-  .element-light & {
-    .tabs-mixin-color(@white-color; @black-color; @white-color);
-  }
-
-
+.element-primary .sm-tabs {
+  .tabs-mixin-color(@primary-color; @primary-text-color; @light-color);
+}  // Customs Behavior
+.element-secondary .sm-tabs {
+  .tabs-mixin-color(@secondary-color; @secondary-text-color; @light-color);
+}
+.element-tertiary .sm-tabs {
+  .tabs-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
+}
+.element-quaternary .sm-tabs {
+  .tabs-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
+}
+.element-light .sm-tabs {
+  .tabs-mixin-color(@white-color; @black-color; @white-color);
 }
 
 

@@ -1,0 +1,47 @@
+.acc-popup {
+  .collapse {
+    &:not(.show) {
+      display: none;
+    }
+  }
+  .text-end {
+    text-align: end;
+  }
+  .acc-optout-options__inner  {
+    .card-header {
+      &>label:first-child {
+        margin: 0.8rem 0;
+        display: flex;
+      }
+    }
+  }
+}
+
+.acc-block-overlay {
+  .display-cookies-disclaimer-popup {
+    transition: all 0.3s linear;
+    text-shadow: none;
+    border: none;
+    vertical-align: middle;
+    zoom: 1;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 0.75rem;
+    font-family: sans-serif;
+    outline: none;
+    background-color: @warning-color;
+    color: contrast(@warning-color, @black-color, @white-color,60%);
+    &:focus, &:hover {
+      background-color: saturate(@warning-color, 15%);
+    }
+
+    &.pressed, &:active {
+      background-color: saturate(@warning-color, 20%);
+    }
+
+    &.disabled {
+      background: hardlight(@warning-color, #aaa);
+    }
+  }
+}

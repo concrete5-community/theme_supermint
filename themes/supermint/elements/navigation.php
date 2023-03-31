@@ -24,7 +24,7 @@ $this->inc('elements/head.php');
 
 			else :?>
 			<nav id="header-nav">
-				<?php
+				<?php 
 				 $ga = new GlobalArea('Header Nav');
 				 $ga->display();
 				 ?>
