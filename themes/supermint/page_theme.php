@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Theme\Supermint;
 
 use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
@@ -24,7 +24,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
 	public function registerAssets() {
 
         $this->requireAsset('javascript', 'jquery');
-        $this->requireAsset('core/lightbox');
+        //$this->requireAsset('core/lightbox');
         $this->requireAsset('javascript', 'backstretch');
         $this->requireAsset('javascript', 'bootstrap/alert');
 
@@ -598,7 +598,15 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
       return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;
   }
 
-
-
+  public function getThemeButtonClasses(): array
+  {
+      return [
+          'button button-flat button-primary' => t('Primary'),
+          'button button-flat button-success' => t('Success'),
+          'button button-flat button-info' => t('Info'),
+          'button button-flat button-warning' => t('Warning'),
+          'button button-flat button-danger' => t('Danger'),
+      ];
+  }
 
 }

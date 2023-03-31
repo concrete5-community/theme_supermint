@@ -1,5 +1,6 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Src\Helper;
+use Concrete\Core\Package\PackageService;
 use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Loader;
 use Core;
@@ -30,27 +31,8 @@ class BaseOptionsGenerator {
 
     protected function getAwesomeArray ()
     {
-        $iconLessFile = DIR_BASE_CORE . '/css/build/vendor/font-awesome/variables.less';
-        $icons = array();
-        $txt = Core::make('helper/text');
-
-        $l = new Less_Parser();
-        $parser = $l->parseFile($iconLessFile, false, true);
-        $rules = $parser->rules;
-        // print_r($rules);
-        foreach ($rules as $rule) {
-            if ($rule instanceof Less_Tree_Rule) {
-            	// $v = $rule->value->value[0]->value[0]->value;
-            	// if(is_string($v)) {
-            	// 	$unicode =  (strpos($v, '\\') === 0) ? str_replace('\\', '&#x', $v) : '';
-            	// }
-                if (strpos($rule->name, '@fa-var') === 0) {
-                    $name = str_replace('@fa-var-', 'fa-', $rule->name);
-                    $icons[$name] = $txt->unhandle($name);
-                }
-            }
-        }
-        // die();
+        $package = app(PackageService::class)->getClass('theme_supermint');
+        $icons = $package->getFileConfig()->get('awesome.classes');
         return $icons;
     }
 
@@ -161,7 +143,8 @@ class BaseOptionsGenerator {
 		), $item));
 
 		echo '<div class="toggle-wrapper"><div class="toggle ' . ($value ? 'toggle-on' : '') . '">
-				<input type="hidden" name="' . $id . '" value="' . $value . '"/>				
+				<input type="radio" class="on" name="' . $id . '" value="1" ' . ($value ? 'checked="checked" ' : '') . '>
+				<input type="radio" class="off" name="' . $id . '" value="0" ' . (!$value ? 'checked="checked" ' : '') . '>
 				<div class="toggle-text-off">OFF</div>
 				<div class="toggle-button"></div>
 				<div class="toggle-text-on">ON</div>
@@ -240,7 +223,7 @@ class BaseOptionsGenerator {
 			"variantType" => "multiple",
 		), $item));
 
-		$options =  ThemeSupermintOptions::get_options_from_preset_ID($this->pID);
+		$options =  ThemeSupermintOptions::getOptionsFromPresetID($this->pID);
 		$fontList = json_decode(Core::make('helper/file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
 		if (!$fontList) :
 			// Si nous n'avaons pas pu recurérer le fichier, on charge celui prechargé.

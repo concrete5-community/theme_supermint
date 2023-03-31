@@ -20,6 +20,6 @@ if (is_object($stack)) {
         <div class='white-popup mfp-hide' id="stack-all-popup-<?php echo $bID?>">
 		<?php echo $ax->display($stack) ?>
 		</div>
-		<?php
+		<?php 
 	}
 }

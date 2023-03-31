@@ -13,7 +13,7 @@
  _ Q&A:  http://jquery.pupunzi.com                                                                                                                  _
  _                                                                                                                                                  _
  _ Licences: MIT, GPL                                                                                                                               _
- _    http://www.opensource.org/licenses/mit-license.php                                                                                            _
+ _    http://www.opensource.org/licenses/mit-license.php                                                                                           _
  _    http://www.gnu.org/licenses/gpl.html                                                                                                          _
  _                                                                                                                                                  _
  _ Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);                                                                                              _

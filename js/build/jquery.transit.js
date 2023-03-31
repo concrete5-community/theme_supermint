@@ -195,7 +195,7 @@ $(document).ready(function(){
       });
     }
   };
-  if ($('#ccm-dashboard-page').size() || $('.no-script').size() ) return;
+  if ($('#ccm-dashboard-page').length || $('.no-script').length ) return;
 
   $('#container').imagesLoaded( function() {
     $(".transit").transit();

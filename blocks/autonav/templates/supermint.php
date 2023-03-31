@@ -94,7 +94,7 @@ foreach ($navItems as $ni) {
 		<div class="regular-top-nav">
 			<ul class="nav_tabs">
 
-<?php
+<?php 
 foreach ($navItems as $k=>$ni) {
 
 	if($ni->level != 1 ) continue;
@@ -136,12 +136,12 @@ foreach ($navItems as $k=>$ni) {
 				<?php endif ?>
 			  	<!-- wrapper for scrollable items -->
 				<div  class='nav-panes'>
-				<?php
+				<?php 
 				$j = 0;
 				foreach ($navItems as $k => $ni) {
 					// on regarde si un stack à été prévu en temps que sous menu.
 					if ($ni->blocks) :	?>
-						<?php
+						<?php 
 						Loader::PackageElement("navigation/stack", 'theme_supermint', array(
 							'ni' => $ni,
 							'o' => $o,
@@ -192,7 +192,7 @@ foreach ($navItems as $k=>$ni) {
 	</div> <!-- .row -->
 </div> <!-- .container -->
 
-<?php
+<?php 
 $time_end = microtime(true);
 $time = $time_end - $time_start;
 ?>

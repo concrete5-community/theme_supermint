@@ -2,7 +2,12 @@
 
 $number_of_areas = $c->getAttribute($attribute_handle);
 // Si l'attribut est un 'select' :
-if (is_object($number_of_areas) && is_object($current = $number_of_areas->current())) $number_of_areas = $current->getSelectAttributeOptionValue();
+if (is_object($number_of_areas)) {
+	/** @var \Concrete\Core\Entity\Attribute\Value\Value\SelectValueOption $selectValueOption */
+	if (is_object($selectValueOption = $number_of_areas->getSelectedOptions()->get(0))) {
+		$number_of_areas = $selectValueOption->getSelectAttributeOptionValue();
+	}
+}
 // Si l'attribut n'a pas été séléctionné, il est égal à 1
 $number_of_areas = ($number_of_areas == 0) ? 1 : $number_of_areas;
 

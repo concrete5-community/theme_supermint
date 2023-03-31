@@ -1,11 +1,9 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Src\Models;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 use \Concrete\Core\Legacy\Model;
-use Loader;
-use Page;
 
 class SupermintFont extends Model {
 
@@ -37,25 +35,28 @@ class SupermintFont extends Model {
 	}
 
 	function setFontInfo () {
-
-		if ($_GET['pID']) $o = ThemeSupermintOptions::get_options_from_preset_ID($_GET['pID']);
-		else $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
+	    $themeSupermintOptions = app(ThemeSupermintOptions::class);
+		if (isset($_GET['pID'])) {
+            $o = $themeSupermintOptions->getOptionsFromPresetID($_GET['pID']);
+        } else {
+            $o = $themeSupermintOptions->getOptionsFromActivePresetID();
+        }
 		// Le nom avec le "+"
 		$this->font = $o->{$this->fontName};
 		// Le nom sans le "+"
 		$this->cleanfont =str_replace('+', ' ', $this->font);
 		// Le tableau des subset choisis
-		$this->subset = explode(',' ,  $o->{$this->subsetName});
+		$this->subset = explode(',' ,  $o->{$this->subsetName} ?? null);
 		// Le tableau des variants choisis
-		$this->variant = explode(',', $o->{$this->variantName});
+		$this->variant = explode(',', $o->{$this->variantName} ?? null);
 		// Le varient utilisé par defaut
-		$this->defaultvariant = $o->{$this->defaultVariantName};
+		$this->defaultvariant = $o->{$this->defaultVariantName} ?? null;
 		// SI cette police doit s'afficher en uppercase
-		$this->upp = $o->{$this->uppercaseName}; // !!!! A verifier
+		$this->upp = $o->{$this->uppercaseName} ?? null; // !!!! A verifier
 		// la taille minimale acceptées des fontes
 		$size_minimum = $o->size_minimum;
 		// Sa taille en regular
-		$this->normalsize = $o->{$this->sizeName};
+		$this->normalsize = $o->{$this->sizeName} ?? null;
 		// Sa taile en Wide
 		$this->widesize = $this->calculateSizeRatio($this->normalsize, $o->wide_ratio, $size_minimum, '*');
 		// Sa taile en 724
@@ -85,15 +86,13 @@ class SupermintFont extends Model {
 	}
 
 	function calculateSizeRatio ($normal,$ratio,$min,$op) {
-		if(!$ratio) $ratio = 1; // A ameliorer
+		if(!$ratio) return 0; // A ameliorer
 		switch ($op) {
 			case '/': $s = $normal / $ratio; break;
 			case '*': $s = $normal * $ratio; break;
 			default: $s = $normal * $ratio;	break;
 		}
-		$r = intval($s < $min ? $min : $s);
-		return $r > 0 ? $r : 8; // si par erreur le resultat est 0, on envoie un minimum de 8
-
+		return intval($s < $min ? $min : $s);
 	}
 
 	function getFamily () {

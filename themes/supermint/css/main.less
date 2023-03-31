@@ -2,48 +2,50 @@
 @import "presets/defaults.less";
 
 @import "build/mixins.less";
+@import "fonts/roboto/font.less";
 
 // @import ~"@{preset-fonts-file}";
 
-@import "build/scaffolding.less";
-@import "build/hr.less";
-@import "build/typography.less";
-@import "build/images.less";
-@import "build/page.less";
-@import "build/accordion.less";
-@import "build/tabs.less";
-@import "build/ribbon.less";
-@import "build/navigations.less";
-@import "build/navigation-full-screen.less";
-@import "build/alerts.less";
+div.ccm-page {
+  @import "build/accordion.less";
+  @import "build/tabs.less";
+  @import "build/ribbon.less";
+  @import "build/alerts.less";
 
-/* Import Blocks */
-@import "build/blocks.less"; // small block code
-@import "build/blocks/page-list.less";
-@import "build/blocks/tags.less";
-@import "build/blocks/image-slider.less";
+  /* Import Blocks */
+  @import "build/blocks.less"; // small block code
+  @import "build/blocks/page-list.less";
+  @import "build/blocks/tags.less";
+  @import "build/blocks/image-slider.less";
 
-/* Import Addons */
-@import "build/addons/slick-theme.less";
-@import "build/addons/mmenu-theme.less";
-@import "addons/button/button-util.less";
-@import "addons/button/button-flat.less";
-@import "addons/button/button-plain.less";
-@import "addons/button/button-push.less";
-@import "addons/hint.less";
+  /* Import Addons */
+  @import "addons/button/button-util.less";
+  @import "addons/button/button-flat.less";
+  @import "addons/button/button-plain.less";
+  @import "addons/button/button-push.less";
+  @import "addons/hint.less";
+
+  @import "build/ribbon.less";
+  // @import "build/stack.less";
+
+  /* Misc */
+  @import "build/misc.less";
+  // jQuery addons
+  @import "build/addons.less";
+
+  /* Fixing */
+  @import "build/hacks.less";
+}
 
 @import "build/area-classes.less";
+@import "build/scaffolding.less";
+@import "build/navigations.less";
+@import "build/images.less";
+@import "build/hr.less";
+@import "build/addons/mmenu-theme.less";
+@import "build/addons/slick-theme.less";
+@import "build/navigation-full-screen.less";
+@import "build/typography.less";
+@import "build/page.less";
 @import "build/responsive.less";
-@import "build/ribbon.less";
-// @import "build/stack.less";
-
-/* Misc */
-@import "build/misc.less";
-
-/* Print */
-@import "build/print.less";
-
-// jQuery addons
-@import "build/addons.less";
-/* Fixing */
-@import "build/hacks.less";
+@import "build/acc.less";

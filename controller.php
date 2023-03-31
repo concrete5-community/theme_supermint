@@ -1,27 +1,21 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint;
 
-use PageTemplate;
+use Concrete\Core\Database\Connection\Connection;
 use PageTheme;
-use Asset;
 use AssetList;
 use Package;
 use Page;
-use BlockType;
-use SinglePage;
-use Loader;
-use Route;
+use Concrete\Core\Support\Facade\Route;
 use Events;
 use URL;
 use Core;
-use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Concrete\Package\ThemeSupermint\Src\Helper\MclInstaller;
 use Concrete\Package\ThemeSupermint\Src\Helper\Upgrade;
 use Concrete\Package\ThemeSupermint\Controller\Tools\PresetColors;
 use Concrete\Core\Editor\Plugin;
 use PageType;
-use FileImporter;
 use Concrete\Core\Backup\ContentImporter;
 use FileList;
 use PageList;
@@ -29,15 +23,13 @@ use StackList;
 use Config;
 use Concrete\Core\StyleCustomizer\Style\ValueList;
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
 class Controller extends Package  {
 
 	protected $pkgHandle = 'theme_supermint';
     protected $themeHandle = 'supermint';
-		protected $appVersionRequired = '5.7.4';
-		protected $pkgVersion = '3.3.4.1';
-		protected $pkg;
+    protected $appVersionRequired = '5.7.4';
+    protected $pkgVersion = '3.3.2';
+    protected $pkg;
     protected $pkgAllowsFullContentSwap = true;
     protected $startingPoint;
 
@@ -49,26 +41,27 @@ class Controller extends Package  {
 		return t("Supermint Theme");
 	}
 
-	public function install($data = array()) {
+	public function install($data = array())
+    {
+        $this->startingPoint = $data['spHandle'];
 
-    $this->startingPoint = $data['spHandle'];
+        if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0') {
+            throw new \Exception(t('You must choose a Starting point to Swap all content'));
+        }
+        $pkg = parent::install();
 
-    if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0')
-        throw new \Exception(t('You must choose a Starting point to Swap all content'));
+        // Theme options
+		$o = $this->app->make(ThemeSupermintOptions::class);
+		$o->installDB($this->startingPoint);
 
-		$pkg = parent::install();
-
-	// Theme options
-		$o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
-		$o->install_db($this->startingPoint);
-
-	// Setting up the editor clips
-		$plugins = Config::get('concrete.editor.plugins.selected');
+		// Setting up the editor clips
+        $config = $this->app->make('config');
+		$plugins = $config->get('concrete.editor.plugins.selected');
 		$p = is_array($plugins) ? $plugins : array();
 		$plugins = array_unique(array_merge(array('themefontcolor','themeclips'),$p));
-		Config::save('concrete.editor.plugins.selected', $plugins);
-    // Elements installing
-    $this->installOrUpgrade($pkg);
+        $config->save('concrete.editor.plugins.selected', $plugins);
+        // Elements installing
+        $this->installOrUpgrade($pkg);
 
 	}
 
@@ -79,7 +72,7 @@ class Controller extends Package  {
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/attributes.xml');
-    $ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
 		if(version_compare(APP_VERSION, '5.7.4.2') === 1):
 			// We are 5.7.5+
 			$ci->importContentFile($this->getPackagePath() . '/config/install/base/systemcontenteditorsnippets.xml');
@@ -88,17 +81,16 @@ class Controller extends Package  {
 
 	public function uninstall() {
 	      parent::uninstall();
-	      $db = Loader::db();
+	      $db = $this->app[Connection::class];
 	      $db->execute("DROP TABLE SupermintOptions, SupermintOptionsPreset");
 	}
 
-	public function upgrade() {
-        // Theme options
-        $o = new \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions($c);
-        $o->update_db();
-        // All things
-				$this->installOrUpgrade($this);
-				parent::upgrade();
+	public function upgrade()
+    {
+        $o = $this->app->make(ThemeSupermintOptions::class);
+        $o->updateDB();
+        $this->installOrUpgrade($this);
+        parent::upgrade();
 	}
 
 	public function upgradeCoreData() {
@@ -106,7 +98,8 @@ class Controller extends Package  {
 		$u->upgrade($this, $this->pkgVersion );
 		parent::upgradeCoreData();
 	}
-  public function on_start() {
+
+	public function on_start() {
         $this->registerRoutes();
         $this->registerAssets();
         $this->registerEvents();
@@ -117,16 +110,17 @@ class Controller extends Package  {
             'on_before_render',
             function($e) {
                 $session = \Core::make('session');
-								$c = Page::getCurrentPage();
+                $c = Page::getCurrentPage();
                 // Register options into the session
-				        $options = ThemeSupermintOptions::get_options_from_active_preset_ID();
-								$session->set('supermint.options',$options);
+                $themeSupermintOptions = $this->app->make(ThemeSupermintOptions::class);
+                $options = $themeSupermintOptions->getOptionsFromActivePresetID();
+                $session->set('supermint.options',$options);
 
                 // Register colors from active or default preset in the session
-                if (is_object($c)) :
-                    $colors = PresetColors::GetColorsFromPage();
-                    $session->set('supermint.colors',$colors);
-                endif;
+                if (is_object($c)) {
+                    //$colors = PresetColors::GetColorsFromPage();
+                    //$session->set('supermint.colors',$colors);
+                }
 
 								if (!is_object($c)) return;
 								// Now we build the button
@@ -157,13 +151,13 @@ class Controller extends Package  {
  		$al->register( 'javascript', 'nprogress', 'js/build/nprogress.js', array('version' => '0.1.6'), $this );
  		$al->register( 'javascript', 'autohidingnavbar', 'js/build/jquery.autohidingnavbar.js', array('version' => '0.1.6'), $this );
  		$al->register( 'javascript', 'supermint.script', 'js/build/script.js', array('version' => '0.1.6'), $this );
-   	$al->register( 'javascript', 'YTPlayer', 'js/build/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
+ 		$al->register( 'javascript', 'YTPlayer', 'js/build/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
 		$al->register( 'javascript', 'modernizr.custom', 'js/build/modernizr.custom.js', array('version' => '2.7.1'), $this );
 		$al->register( 'javascript', 'transit', 'js/build/jquery.transit.js', array('version' => '0.1'), $this );
 		$al->register( 'javascript', 'imageloaded', 'js/build/imageloaded.js', array('version' => '2.1.1'), $this );
-    $al->register( 'javascript', 'isotope', 'js/build/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
-    $al->register( 'javascript', 'wow', 'js/build/wow.js', array('version' => '1.1.2'), $this );
-    $al->register( 'javascript', 'harmonize-text', 'js/build/harmonize-text.js', array('version' => '1'), $this );
+        $al->register( 'javascript', 'isotope', 'js/build/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
+        $al->register( 'javascript', 'wow', 'js/build/wow.js', array('version' => '1.1.2'), $this );
+        $al->register( 'javascript', 'harmonize-text', 'js/build/harmonize-text.js', array('version' => '1'), $this );
 		$al->register( 'javascript', 'enquire', 'js/build/enquire.js', array('version' => '2.1.2'), $this );
 		$al->register( 'javascript', 'twitterFetcher', 'js/build/twitterFetcher_min.js', array('version' => '12'), $this );
 		$al->register( 'javascript', 'element-masonry', 'js/build/element-masonry.js', array('version' => '1'), $this );

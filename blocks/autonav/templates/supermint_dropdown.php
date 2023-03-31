@@ -53,6 +53,7 @@ foreach ($navItems as $niKey => $ni) :
 	$classes = array();
 	$style = array();
 	$col_width = 230;
+    $ni->blocks = [];
 
 	if ($ni->cObj->getAttribute('main_page_color'))
 		$style[] = 'border-bottom-color:' . $ni->cObj->getAttribute('main_page_color');
@@ -132,10 +133,10 @@ foreach ($navItems as $niKey => $ni) :
 	// On charge le template 'drop'
 	elseif ($ni->hasSubmenu && $ni->level == 1) :
 		$options = array(
-				'navItems'=> $navItems,
-				'niKey' => $niKey,
-				'subNavItems' => $subNavItems,
-				'subsubNavItems' => $subsubNavItems,
+				'navItems'=> $navItems ?? null,
+				'niKey' => $niKey ?? null,
+				'subNavItems' => $subNavItems ?? null,
+				'subsubNavItems' => $subsubNavItems ?? null,
 				'o' => $o
 				);
 		ob_start();
@@ -152,7 +153,7 @@ endforeach;
 	<?php if ($o->wide_navbar_contained && $o->navigation_style == 'large-top-nav'): ?><div class="container"><?php endif ?>
 	<ul class="mega-menu" >
 			<li class="nav-logo"><span><?php if ($logo) $logo->display(); ?></span></li>
-<?php
+<?php 
 foreach ($navItems as $k=>$ni) :
 
 	if($ni->level != 1 ) continue;
@@ -160,7 +161,7 @@ foreach ($navItems as $k=>$ni) :
 	echo '<li class="' . $ni->classes . '" style="' . $ni->style . '">'; //opens a nav item
 	echo '<a href="' .   $ni->url . '" target="' . $ni->target . '">' . $ni->icon . ' ' . $ni->name . '</a>';
 
-	if($ni->sub) echo $ni->sub;
+	if(isset($ni->sub)) echo $ni->sub;
 
 	echo '</li>';
 

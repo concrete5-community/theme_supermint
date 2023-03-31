@@ -18,7 +18,9 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" href="<?php echo URL::to("/ThemeSupermint/tools/override") . '?cID=' . $c->cID ?>" id="css-override" type="text/css" />
-<link rel="stylesheet" href="<?php echo Concrete\Package\ThemeSupermint\Controller\Tools\FontsTools::getFontsURL() ?>" id="css-fonts" type="text/css" />
+    <?php if (($fontsURL = \Concrete\Package\ThemeSupermint\Controller\Tools\FontsTools::getFontsURL()) !== ''): ?>
+        <link rel="stylesheet" href="<?php echo $fontsURL ?>" id="css-fonts" type="text/css" />
+    <?php endif; ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <?php if($o->responsive) : ?>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,7 +32,7 @@ $o = \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions::get();
 </head>
 <body id="supermint"  class="supermint <?php if ($c->isEditMode()) : ?>edit-mode<?php  endif ?>" <?php if ($c->isEditMode()) : ?>style="margin:0 !important;"<?php  endif ?>>
     <!-- Responsive Nav -->
-    <?php
+    <?php 
     $responsiveNav = new GlobalArea('Responsive Navigation');
     $responsiveNav->load($c);
     $display_responsiveNav = $responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode() ;

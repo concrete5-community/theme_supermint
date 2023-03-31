@@ -18,7 +18,7 @@ $this->inc('elements/header.php');
 						</div>
 						<?php if($o->display_breadcrumb) : ?>
 						<div class="col-md-4 bread">
-							<?php
+							<?php 
 								$bt_main = BlockType::getByHandle('autonav');
 								$bt_main->controller->displayPages = 'top';
 								$bt_main->controller->orderBy = 'display_asc';                  

@@ -40,22 +40,6 @@
   // Default behavior
   .accordion-mixin-color(@white-color; @link-color; @light-color);
 
-  .element-primary & {
-    .accordion-mixin-color(@primary-color; @primary-text-color; @light-color);
-  }  // Customs Behavior 
-  .element-secondary & {
-    .accordion-mixin-color(@secondary-color; @secondary-text-color; @light-color);
-  }
-  .element-tertiary & {
-    .accordion-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
-  }
-  .element-quaternary & {
-    .accordion-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
-  }
-  .element-light & {
-    .accordion-mixin-color(@light-color; @black-color; @white-color);
-  } 
-
   .ui-accordion-header {
     border: 0;
     margin: 0;
@@ -71,6 +55,22 @@
 
   }
 
+}
+
+.element-primary .sm-accordion {
+  .accordion-mixin-color(@primary-color; @primary-text-color; @light-color);
+}  // Customs Behavior
+.element-secondary .sm-accordion {
+  .accordion-mixin-color(@secondary-color; @secondary-text-color; @light-color);
+}
+.element-tertiary .sm-accordion {
+  .accordion-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
+}
+.element-quaternary .sm-accordion {
+  .accordion-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
+}
+.element-light .sm-accordion {
+  .accordion-mixin-color(@light-color; @black-color; @white-color);
 }
 
 // -- Mixin -- \\

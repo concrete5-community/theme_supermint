@@ -40,7 +40,7 @@ $options->autoplaySpeed = (int)$o->image_slider_autoplaySpeed;
         <?php if($row['linkURL']) : ?>
             <!-- <a href="<?php echo $row['linkURL'] ?>"></a> -->
         <?php endif ?>
-        <?php
+        <?php 
         $f = File::getByID($row['fID'])
         ?>
         <?php if(is_object($f)) :

@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Controller\Tools;
 
 use \Concrete\Core\Controller\Controller as RouteController;
@@ -24,16 +24,16 @@ class PresetColors extends RouteController {
         echo json_encode($colorsObject);
     }
 
-	function GetColorsFromPage () {
-        $c = $_REQUEST['cID'] ? Page::getByID($_REQUEST['cID']) : Page::getCurrentPage();
+	public static function GetColorsFromPage () {
+        $c = isset($_REQUEST['cID']) ? Page::getByID($_REQUEST['cID']) : Page::getCurrentPage();
         if (!$c) die(t('Can\'t retrieve a Page to get Preset color'));
         $cID = $c->getCollectionID();
         $pt = $c->getCollectionThemeObject();
         $packageHandle = $pt->getPackageHandle();
         $themeHandle = $pt->getThemeHandle();
-        $presets = $pt->getThemeCustomizableStylePresets();
+        $presets = $pt->getThemeCustomizableStyleSheets();
         // On recupère le preset par defaut
-        foreach ($presets as $preset) { if ($preset->isDefaultPreset()) $defaultPreset = $preset; }
+        //foreach ($presets as $preset) { if ($preset->isDefaultPreset()) $defaultPreset = $preset; }
 
         $colorsObject = new stdClass();
 

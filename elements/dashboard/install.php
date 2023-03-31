@@ -21,7 +21,7 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 				</div>
 			</div>
 		</div>
-		<?php
+		<?php 
 		foreach ($spArray as $spHandle) :
 			if(	is_dir($spPath . '/' . $spHandle . '/content_files')
 				&& 	file_exists($spPath . '/' . $spHandle . '/content.xml')
@@ -42,7 +42,7 @@ $spArray = Core::make('helper/file')->getDirectoryContents($spPath);
 						</div>
 					</div>
 				</div>
-				<?php
+				<?php 
 			endif;
 		endforeach;
 		?>

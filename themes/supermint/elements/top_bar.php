@@ -8,13 +8,13 @@ $col_right = 12 - $col_logo;
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-<?php echo $col_logo?> <?php echo $o->display_main_logo_on_mobile ? '' : 'hidden-mobile' ?> " id="logo">
-					<?php
+					<?php 
 					   $ga = new GlobalArea('Logo');
 					   $ga->display();
 					?>
 				</div>
 				<div class="col-sm-<?php echo $col_right?>" id="header-right">
-					<?php
+					<?php 
 					   $ga = new GlobalArea('Header Right');
 					   $ga->display();
 					   $a = new Area('Header Right Local');
@@ -25,7 +25,7 @@ $col_right = 12 - $col_logo;
 		</div> <!-- .container -->
 		<?php if ($o->display_top_area) : ?>
 			<div class="full-top-bar">
-		<?php
+		<?php 
 		   $ga = new Area('Top Bar');
 		   $a->enableGridContainer();
 		   $ga->display($c);

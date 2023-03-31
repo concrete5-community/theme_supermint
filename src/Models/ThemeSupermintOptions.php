@@ -1,114 +1,113 @@
-<?php
+<?php 
 namespace Concrete\Package\ThemeSupermint\Src\Models;
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
-use \Concrete\Core\Legacy\Model;
-use \Concrete\Core\Foundation\Object;
-
+use Concrete\Core\Application\ApplicationAwareInterface;
+use Concrete\Core\Application\ApplicationAwareTrait;
+use Concrete\Core\Database\Connection\Connection;
+use Concrete\Core\Package\PackageService;
 use Loader;
 use Config;
 use Package;
-use User;
 use DOMDocument;
-use Core;
 use Page;
 use stdClass;
 
 use \Concrete\Package\ThemeSupermint\Src\Helper\ThemeFile as ThemeFileHelper;
 use \Concrete\Package\ThemeSupermint\Src\Helper\SmArrayToXml;
 use \Concrete\Package\ThemeSupermint\Src\Helper\SmXmlToArray ;
+use Concrete\Core\Application\Application;
+use Concrete\Core\Entity\Package as PackageEntity;
 
-use \Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
-
-
-class ThemeSupermintOptions extends Object
+class ThemeSupermintOptions implements ApplicationAwareInterface
  {
+ 	use ApplicationAwareTrait;
 
-	var $cObj;
+ 	protected PackageEntity $pkg;
 
-	function __construct ($c = null) {
-		$this->init($c);
+ 	protected int $pID;
+
+	function __construct (Application $app) {
+		$this->setApplication($app);
+		$this->init();
 	}
 
-	static function get () {
-		$session = \Core::make('session');
+	public static function get () {
+		$session = app('session');
 		return $session->get('supermint.options');
 	}
 
-	function init ($c) {
-
-		$this->pkg = Package::getByHandle("theme_supermint");
-		$this->pID = $this->get_active_pID();
-
-	}
-	function set_collection_object($c) {
-		$this->init($c);
-	}
-	function set_toggle_option_name($name) {
-		$this->option_name = $name;
+	protected function init (): void
+	{
+		$this->pkg = $this->app[PackageService::class]->getByHandle("theme_supermint");
+		$this->pID = $this->getActivePID();
 	}
 
-	function get_presets_list() {
-		$all = Loader::db()->getAll("SELECT pID, name FROM SupermintOptionsPreset");
+	public function getPresetsList() {
+		$all = $this->app[Connection::class]->fetchAll("SELECT pID, name FROM SupermintOptionsPreset");
 		if(is_array($all)) return $all; else return false;
 	}
-	function get_preset_by_id ($pID) {
-		$row = Loader::db()->getRow("SELECT pID, name FROM SupermintOptionsPreset WHERE pID=?", array($pID));
-		if(is_array($row)) return $row; else return false;
-	}
-	function get_preset_id_from_handle ($pHandle) {
-		$row = Loader::db()->getRow("SELECT pID FROM SupermintOptionsPreset WHERE name=?", array($pHandle));
-		if(isset($row['pID'])) return (int)$row['pID']; else return false;
-	}
-
-	function output_presets_list ($echo = false, $selected=null, $name = 'preset_id', $before = array()) {
-
-		$list = $this->get_presets_list ();
-
-		if ($list) :
-			$r[] = '<select name="' . $name . '" id="' . $name . '" class="form-control ' . $name . '">';
-			if (count($before)) :
-				foreach($before as $k=>$option ) :
-					$r[] = '<option value="' . -($k) . '">' . $option . '</option>';
-				endforeach;
-			endif;
-			$default_pID = $this->get_default_pID();
-			foreach($list as $k=>$p) :
-
-				$text = ($p['pID'] == $default_pID) ? t(' (default)') : '' ;
-				$select = ($p['pID'] == $selected ) ? 'selected' : '';
-
-				$r[] = "<option value='{$p['pID']}' $select >{$p['name']}$text</option>";
-
-			endforeach;
-
-			$r[] = '</select>';
-			$r = implode("\r" , $r);
-
-			if ($echo) 	echo $r;
-			else return $r;
-
-		else:
-			return false;
-		endif;
-
+	public function getPresetById ($pID)
+    {
+		$row = $this->app[Connection::class]->executeQuery("SELECT pID, name FROM SupermintOptionsPreset WHERE pID=?", [$pID])->fetchAllAssociative();
+		if(is_array($row)) {
+            return $row[0];
+        }
+		return false;
 	}
 
-	function update () {
-
+	function getPresetIdFromHandle ($pHandle)
+    {
+		$row = $this->app[Connection::class]->executeQuery("SELECT pID FROM SupermintOptionsPreset WHERE name=?", [$pHandle]);
+		if(isset($row['pID'])) {
+            return (int)$row['pID'];
+        }
+        return false;
 	}
 
-	function save_preset($name, $based_on = false, $active = false, $returnID = false) {
+	function outputPresetsList ($selected=null, $name = 'preset_id', $before = [])
+    {
 
-		Loader::db()->query("INSERT INTO SupermintOptionsPreset (name,active) VALUES (?,?)", array($name, $active ? 1 : 0));
+		$list = $this->getPresetsList();
+        if (!$list) {
+            return false;
+        }
+        $r[] = '<select name="' . $name . '" id="' . $name . '" class="form-control ' . $name . '">';
+        if (count($before)) :
+            foreach($before as $k=>$option ) :
+                $r[] = '<option value="' . -($k) . '">' . $option . '</option>';
+            endforeach;
+        endif;
+        $default_pID = $this->getDefaultPID();
+        foreach($list as $k=>$p) :
 
-		if ($returnID) return  Loader::db()->Insert_ID();
+            $text = ($p['pID'] == $default_pID) ? t(' (default)') : '' ;
+            $select = ($p['pID'] == $selected ) ? 'selected' : '';
+
+            $r[] = "<option value='{$p['pID']}' $select >{$p['name']}$text</option>";
+
+        endforeach;
+
+        $r[] = '</select>';
+        $r = implode("\r" , $r);
+
+        return $r;
+	}
+
+	public function update()
+    {
+	}
+
+	function savePreset($name, $based_on = false, $active = false, $returnID = false)
+    {
+        $connection = $this->app[Connection::class];
+        $connection->query("INSERT INTO SupermintOptionsPreset (name,active) VALUES (?,?)", [$name, $active ? 1 : 0]);
+
+		if ($returnID) return  $connection->lastInsertId();
 		if ($based_on) :
 			// Recupere le nouvel ID
-			$pID = Loader::db()->Insert_ID();
+			$pID = $connection->lastInsertId();
 			// Duplique toutes les options qui ont comme presetID $based_on et leur donne un nouvel ID base sur celui qui vient d'etre cr��
-			Loader::db()->query("INSERT INTO SupermintOptions (option_key, option_value, pID)
+            $connection->query("INSERT INTO SupermintOptions (option_key, option_value, pID)
 					  SELECT option_key, option_value, ?
 					  FROM SupermintOptions
 					  WHERE pID=?",
@@ -116,64 +115,73 @@ class ThemeSupermintOptions extends Object
 		endif;
 
 	}
-	function delete_preset ($pID) {
-		/* Ne fonctione pas quand les options d'un preset sont vides
-		Loader::db()->query("DELETE SupermintOptions, SupermintOptionsPreset
-				  FROM SupermintOptions, SupermintOptionsPreset
-				  WHERE SupermintOptions.pID = SupermintOptionsPreset.pID
-				  AND SupermintOptionsPreset.pID = ?
-				  ", array($pID));
-		*/
 
-		Loader::db()->query("DELETE SupermintOptions FROM SupermintOptions WHERE pID = ?", array($pID));
-		Loader::db()->query("DELETE SupermintOptionsPreset FROM  SupermintOptionsPreset WHERE pID = ?", array($pID));
+	function deletePreset ($pID)
+    {
+        $connection = $this->app[Connection::class];
+        $connection->query("DELETE SupermintOptions FROM SupermintOptions WHERE pID = ?", [$pID]);
+        $connection->query("DELETE SupermintOptionsPreset FROM  SupermintOptionsPreset WHERE pID = ?", [$pID]);
 
-		if ($pID == $this->get_default_pID()) $this->set_default_pID(1);
+		if ($pID == $this->getDefaultPID()) $this->setDefaultPID(1);
 
 	}
 
 	function rename_preset ($name, $pID) {
-		Loader::db()->query("UPDATE SupermintOptionsPreset
+        $this->app[Connection::class]->executeQuery("UPDATE SupermintOptionsPreset
 				 SET name = ?
 				 WHERE pID = ?",
-				 array( $name, $pID));
+				 [$name, $pID]);
 
 	}
 
-	function set_default_pID ($pID) {
-		Config::save('concrete.misc.default_supermint_preset_id', $pID);
+	function setDefaultPID ($pID) {
+	    $config = $this->app['config'];
+        $config->save('concrete.misc.default_supermint_preset_id', $pID);
 	}
-	function get_default_pID () {
-		return Config::get('concrete.misc.default_supermint_preset_id');
+
+	function getDefaultPID () {
+        $config = $this->app['config'];
+		return $config->get('concrete.misc.default_supermint_preset_id');
 	}
-	function get_default_preset_title() {
-		$p = $this->get_preset_by_id($this->get_default_pID());
-		return $p['name'];
+
+	function getDefaultPresetTitle() {
+	    if ($p = $this->getPresetById($this->getDefaultPID())) {
+            return $p['name'];
+        }
+		return '';
 	}
-	function get_preset_title($pID) {
-		$p = $this->get_preset_by_id($pID);
-		return $p['name'];
+
+	function getPresetTitle($pID) {
+		if ($p = $this->getPresetById($pID)) {
+            return $p['name'];
+        }
+		return '';
 	}
-	function get_active_pID ($c = null) {
-		if ($_GET['pID']) return $_GET['pID'];
+
+	protected function getActivePID ($c = null)
+    {
+		if (isset($_GET['pID'])){
+            return $_GET['pID'];
+        }
 		// On regarde quel objet page prendre
 		$page = $c ? $c : Page::getCurrentPage();
 		// On tente de re�cup�rer la valeur de l'attribut
-		if (is_object($page)) :
-			if (get_class($page) == 'Concrete\Core\Page\Page') {
-				$cpID = $page->getAttribute('supermint_theme_preset_options');
-			};
-		endif;
+        $cpID = null;
+		if (is_object($page)) {
+            if (get_class($page) == 'Concrete\Core\Page\Page') {
+                $cpID = $page->getAttribute('supermint_theme_preset_options');
+            }
+        }
 		// On retourne la valeur de l'attribut, sinon le preset par d�fault
-		return $cpID ? $cpID : self::get_default_pID();
+		return $cpID ? $cpID : $this->getDefaultPID();
 	}
 
 	/*******************************
 	 * Options
 	 * *****************************/
 
-	static function get_options_from_preset_ID ($pID) {
-		$all = Loader::db()->getAll("SELECT option_key, option_value FROM SupermintOptions WHERE pID=?", array($pID));
+	public static function getOptionsFromPresetID ($pID) {
+		$all = app(Connection::class)->fetchAll("SELECT option_key, option_value FROM SupermintOptions WHERE pID=?", [$pID]);
 		if(is_array($all)) {
 			$r = new stdClass();
 			foreach($all as $o) {
@@ -184,27 +192,22 @@ class ThemeSupermintOptions extends Object
 		}
 		return false;
 	}
-	static function get_options_from_active_preset_ID () {
-		return self::get_options_from_preset_ID(self::get_active_pID());
+
+	public function getOptionsFromActivePresetID () {
+		return $this->getOptionsFromPresetID($this->getActivePID());
 	}
 
-	function save_options ($data, $pID, $updateOnly = false) {
+	function saveOptions ($data, $pID, $updateOnly = false) {
 
 		foreach ($data as $k => $v):
 			if ($k == 'pID') continue;
 			$test = Loader::db()->GetOne("SELECT * FROM SupermintOptions WHERE option_key = ? AND pID= ?", array($k, $pID));
 			if ($test):
 				if ($updateOnly === false) :
-					Loader::db()->query("UPDATE SupermintOptions
-							SET option_value=?
-							WHERE option_key = ? AND pID= ?",
-							array( $v, $k, $pID));
+					Loader::db()->update('SupermintOptions', ['option_value' => $v], ['option_key' => $k, 'pID' => $pID]);
 				endif;
 			 else :
-				Loader::db()->query("INSERT INTO SupermintOptions
-						(option_key, option_value, pID)
-						VALUES(?,?,?)
-						", array( $k, $v, $pID));
+				Loader::db()->executeQuery('INSERT INTO SupermintOptions(option_key, option_value, pID) VALUES(?,?,?)', [$k, $v, $pID]);
 			 endif;
 		endforeach;
 	}
@@ -215,9 +218,9 @@ class ThemeSupermintOptions extends Object
 		$export = array('config' =>
 			array(	'theme' => $pkg->getPackageHandle(),
 					'version' => $pkg->getPackageVersion(),
-					'name' => $this->get_preset_title($pID)
+					'name' => $this->getPresetTitle($pID)
 			));
-		$export['options'] = (array)$this->get_options_from_preset_ID($pID);
+		$export['options'] = (array)$this->getOptionsFromPresetID($pID);
 		$exportDOM = SmArrayToXml::createXML('mcl_preset', $export);
 		return $exportDOM->saveHTML();
 	}
@@ -232,20 +235,20 @@ class ThemeSupermintOptions extends Object
 		// On tyest si on a un tableau et qu'il n'est pas vide
 		if (is_array($p) && count($p)) :
 			// On teste les different conteneurs
-			if(count($p['mcl_preset']) && count($p['mcl_preset']['config'] && count($p['mcl_preset']['options']))) :
+			if(count($p['mcl_preset']) && count($p['mcl_preset']['config']) && count($p['mcl_preset']['options'])) :
 				$pp = $p['mcl_preset'];
 				if ($this->pkg->getPackageHandle() != $pp['config']['theme']) return array ('error' => true, 'message' => t('This preset in not compatible with this theme'));
 				if (!$pID) :
 					// On cree un nouveau preset et recup�re son ID
-					$pID = $this->save_preset($pp['config']['name'], false, false, true);
+					$pID = $this->savePreset($pp['config']['name'], false, false, true);
 				endif;
 				// Si on a pu avoir un ID
 				if ($pID) :
 					// On sauve les options pour cet ID
 					if ($updateOnly)
-						$this->save_options ($pp['options'], $pID, true);
+						$this->saveOptions ($pp['options'], $pID, true);
 					else
-						$this->save_options ($pp['options'], $pID, false);
+						$this->saveOptions ($pp['options'], $pID, false);
 
 					return array ('error' => false, 'message' => t('Preset imported'));
 				else :
@@ -279,11 +282,11 @@ class ThemeSupermintOptions extends Object
 		return $this->importXML_preset ($path . '/models/theme_presets/base.mcl',1);
 	}
 
-	function update_db () {
-		$this->install_db(false,true);
+	function updateDB () {
+		$this->installDB(false,true);
 	}
 
-	function install_db ($pHandle = '', $updateOnly = false) {
+	function installDB ($pHandle = '', $updateOnly = false) {
 
 		$path = Package::getByHandle('theme_supermint')->getPackagePath() . '/src/Models/theme_presets/';
 		$presets_files = ThemeFileHelper::dir_walk($path , array('mcl'));
@@ -291,7 +294,7 @@ class ThemeSupermintOptions extends Object
 		if (is_array($presets_files) && count($presets_files)) :
 			foreach ($presets_files as $p) :
 				if($updateOnly) :
-					$_pID = $this->get_preset_id_from_handle(str_replace('.mcl', '', $p));
+					$_pID = $this->getPresetIdFromHandle(str_replace('.mcl', '', $p));
 					// On update les valeurs
 					if ($_pID) $this->importXML_preset ($path . $p, $_pID, true);
 					// On importe le xml
@@ -303,15 +306,13 @@ class ThemeSupermintOptions extends Object
 		endif;
 
 		// Set as default
-		if ($pHandle) $pID = $this->get_preset_id_from_handle($pHandle);
+		if ($pHandle) $pID = $this->getPresetIdFromHandle($pHandle);
 	  else $pID = 1;
 
     // Si la function est appellé avec pHandle === false, on update, donc on ne change pas le pID actif
 		if ($pID && !$updateOnly)
-		  $this->set_default_pID($pID);
+		  $this->setDefaultPID($pID);
 
 	}
 
 }
-
-?>

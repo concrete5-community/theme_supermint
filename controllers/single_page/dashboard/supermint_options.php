@@ -1,35 +1,31 @@
 <?php     
 namespace Concrete\Package\ThemeSupermint\Controller\SinglePage\Dashboard;
-// namespace Concrete\Package\Fundamental\Controller\SinglePage\Dashboard\Fundamental;
-defined('C5_EXECUTE') or die(_("Access Denied."));
 
-
-use \Concrete\Core\Page\Controller\DashboardPageController;
-use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
-use \Concrete\Package\ThemeSupermint\Src\Helper\OptionsGenerator;
-use \Concrete\Package\ThemeSupermint\Src\Helper\ThemeFile;
-use \Concrete\Core\Asset\Asset;
-use \Concrete\Core\Asset\AssetList;
-use Loader;
+use Concrete\Core\Page\Controller\DashboardPageController;
+use Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
+use Concrete\Package\ThemeSupermint\Src\Helper\ThemeFile;
+use Concrete\Core\Asset\Asset;
+use Concrete\Core\Asset\AssetList;
 use Package;
 
+class SupermintOptions extends DashboardPageController
+{
+    protected array $jsFiles = [];
+    protected array $cssFiles = [];
 
-class SupermintOptions extends DashboardPageController {
-
-	public $helpers = array('form'); 
+    protected ThemeSupermintOptions $themeSupermintOptions;
 
 	function on_start () {
+	    parent::on_start();
 		$pkg = Package::getByHandle('theme_supermint');
 		$path = $pkg->getPackagePath();
 		$js_files = ThemeFile::dir_walk($path . '/js/', array('js'));
 		$css_files = ThemeFile::dir_walk($path . '/css/', array('css'));
 
-		$this->poh = new ThemeSupermintOptions();
-		
+		$this->themeSupermintOptions = $this->app->make(ThemeSupermintOptions::class);
 				
 		// Include all js file from package/js
- 		$al = AssetList::getInstance(); 
-
+ 		$al = AssetList::getInstance();
 
 		if (is_array($js_files)) :
 			foreach ($js_files as $js) :
@@ -53,7 +49,7 @@ class SupermintOptions extends DashboardPageController {
 
 	function view() {
 		
-		$this->requireAsset('select2');
+		//$this->requireAsset('select2');
 
 		if(is_array($this->jsFiles)) :
 			foreach ($this->jsFiles as $name) {
@@ -66,18 +62,17 @@ class SupermintOptions extends DashboardPageController {
 			}
 		endif;
 
-		// $this->poh = ThemeSupermintOptions::get();
 		$this->set('post', $_POST);
-		if ($this->c->cPath == '/dashboard/supermint_options') $this->redirect('/dashboard/supermint_options/theme_options');
+		if ($this->c->getCollectionPath() == '/dashboard/supermint_options') $this->redirect('/dashboard/supermint_options/theme_options');
 
-		$this->set('poh', $this->poh);
+		$this->set('poh', $this->themeSupermintOptions);
 		
 		if 	(isset($_POST['preset_id']) ) :
 				$this->set('pID', $_POST['preset_id']);
 		elseif 	(isset($_POST['pID']) ) :
 				$this->set('pID', $_POST['pID']);
 		else :
-				$this->set('pID', $this->poh->get_default_pID());
+				$this->set('pID', $this->themeSupermintOptions->getDefaultPID());
 		endif;			
 			
 		// parent::view();		
@@ -97,7 +92,7 @@ class SupermintOptions extends DashboardPageController {
 			endif;
 		endforeach;
 		if (isset($pID)):
-			$this->poh->save_options($data,$pID);
+            $this->themeSupermintOptions->saveOptions($data, $pID);
 			$this->set('message', t('Options saved !'));
 			$this->view();
 		else :
